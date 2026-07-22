@@ -20,6 +20,7 @@ interface ServiceItem {
   desc: string;
   href?: string;
   subItems?: SubItem[];
+  onNavigate?: () => void;
 }
 
 // ─── Data constants ────────────────────────────────────
@@ -70,13 +71,13 @@ const SIMPLE_NAV_LINKS = [
 ];
 
 // ─── Sub-components ────────────────────────────────────
-function ServiceLink({ Icon, title, desc, href, subItems }: ServiceItem) {
+function ServiceLink({ Icon, title, desc, href, subItems, onNavigate }: ServiceItem) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="relative group/subitem w-full">
       <div className="flex items-center md:items-start justify-between w-full">
-        <Link href={href || '#'} className="flex gap-3 md:gap-4 items-center md:items-start no-underline text-inherit transition-opacity duration-150 hover:opacity-60 flex-1">
+        <Link href={href || '#'} className="flex gap-3 md:gap-4 items-center md:items-start no-underline text-inherit transition-opacity duration-150 hover:opacity-60 flex-1" onClick={onNavigate}>
           <div className="mt-0 md:mt-[2px] text-[#333]"><Icon size={18} className="w-[16px] h-[16px] md:w-[18px] md:h-[18px]" /></div>
           <div>
             <div className="text-[13.5px] md:text-[14.5px] font-semibold text-[#111] mb-0 md:mb-1">{title}</div>
@@ -85,7 +86,7 @@ function ServiceLink({ Icon, title, desc, href, subItems }: ServiceItem) {
         </Link>
         {subItems && (
           <div 
-            className="text-[#999] ml-2 flex items-center justify-center p-1 md:p-0 cursor-pointer md:cursor-default"
+            className="text-[#999] ml-2 flex items-center justify-center p-3 -mr-3 md:p-0 md:-mr-0 cursor-pointer md:cursor-default"
             onClick={(e) => {
               if (window.innerWidth < 768) {
                 e.preventDefault();
@@ -94,16 +95,16 @@ function ServiceLink({ Icon, title, desc, href, subItems }: ServiceItem) {
             }}
           >
             <ChevronRight size={16} className="hidden md:block transition-transform group-hover/subitem:translate-x-1" />
-            <ChevronDown size={14} className={`md:hidden transition-transform duration-200 ${mobileOpen ? 'rotate-180' : ''}`} />
+            <ChevronDown size={18} className={`md:hidden transition-transform duration-200 ${mobileOpen ? 'rotate-180' : ''}`} />
           </div>
         )}
       </div>
 
-      {/* Desktop Submenu (pop-out right) */}
+      {/* Desktop Submenu (pop-out right) with enlarged invisible hover bridge to fix diagonal mouse movement */}
       {subItems && (
-        <div className="flex flex-col gap-2 absolute top-0 left-[calc(100%+15px)] bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] min-w-[200px] p-4 z-[101] before:absolute before:content-[''] before:w-[20px] before:h-full before:-left-[20px] before:top-0 opacity-0 invisible translate-x-2 md:group-hover/subitem:opacity-100 md:group-hover/subitem:visible md:group-hover/subitem:translate-x-0 transition-all duration-300 ease-out pointer-events-none md:group-hover/subitem:pointer-events-auto">
+        <div className="flex flex-col gap-2 absolute top-0 left-[calc(100%+15px)] bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] min-w-[200px] p-4 z-[101] before:absolute before:content-[''] before:w-[60px] before:h-[150%] before:-left-[40px] before:-top-[25%] opacity-0 invisible translate-x-2 md:group-hover/subitem:opacity-100 md:group-hover/subitem:visible md:group-hover/subitem:translate-x-0 transition-all duration-300 ease-out pointer-events-none md:group-hover/subitem:pointer-events-auto">
           {subItems.map(sub => (
-            <Link key={sub.title} href={sub.href} className="text-[14px] text-[#444] font-medium hover:text-[#111] hover:bg-[#f4f4f4] py-2 px-3 rounded-md transition-colors block">
+            <Link key={sub.title} href={sub.href} className="text-[14px] text-[#444] font-medium hover:text-[#111] hover:bg-[#f4f4f4] py-2 px-3 rounded-md transition-colors block" onClick={onNavigate}>
               {sub.title}
             </Link>
           ))}
@@ -114,7 +115,7 @@ function ServiceLink({ Icon, title, desc, href, subItems }: ServiceItem) {
       {subItems && (
         <div className={`md:hidden flex-col gap-2 pl-7 mt-2 border-l-2 border-[#f0f0f0] ml-2 overflow-hidden transition-all duration-300 ${mobileOpen ? 'flex max-h-[500px] opacity-100 mb-2' : 'max-h-0 opacity-0 !mt-0'}`}>
           {subItems.map(sub => (
-            <Link key={sub.title} href={sub.href} className="text-[13.5px] text-[#555] py-1 hover:text-[#111] block">
+            <Link key={sub.title} href={sub.href} className="text-[13.5px] text-[#555] py-1 hover:text-[#111] block" onClick={onNavigate}>
               {sub.title}
             </Link>
           ))}
@@ -130,6 +131,13 @@ export default function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // Close all menus helper
+  const closeAllMenus = () => {
+    setMenuOpen(false);
+    setServicesOpen(false);
+    setResourcesOpen(false);
+  };
 
   // Track scroll position for dynamic blur effect
   useEffect(() => {
@@ -165,7 +173,7 @@ export default function Navbar() {
       return `flex ${base} w-full pl-3 border-l-2 border-[#f0f0f0] overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[800px] opacity-100 mt-2' : 'max-h-0 opacity-0 !mt-0'}`;
     }
     const visibility = isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2 md:group-hover:opacity-100 md:group-hover:visible md:group-hover:translate-y-0';
-    return `flex ${base} absolute top-[calc(100%+10px)] left-0 bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] w-[360px] p-6 z-[100] transition-all duration-300 ease-out before:absolute before:content-[""] before:w-full before:h-[20px] before:-top-[20px] before:left-0 ${visibility}`;
+    return `flex ${base} absolute top-[calc(100%+10px)] left-0 bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] w-[360px] p-6 z-[100] transition-all duration-300 ease-out before:absolute before:content-[""] before:w-[150%] before:-left-[25%] before:h-[40px] before:-top-[30px] ${visibility}`;
   };
 
   // Reusable NavLinks function so we can render it differently for mobile vs desktop
@@ -179,14 +187,14 @@ export default function Navbar() {
         </button>
         <div className={getDropdownClass(servicesOpen, isMobile)}>
           <div className="text-[11px] font-semibold text-[#666] tracking-[0.5px] uppercase mb-[2px]">OUR SERVICES</div>
-          {SERVICES.map(item => <ServiceLink key={item.title} {...item} />)}
+          {SERVICES.map(item => <ServiceLink key={item.title} {...item} onNavigate={closeAllMenus} />)}
         </div>
       </li>
 
       {/* Simple links */}
       {SIMPLE_NAV_LINKS.map(link => (
         <li key={link.label} className={isMobile ? 'w-full' : ''}>
-          <Link href={link.href} className={navBtnClass} onClick={isMobile ? () => setMenuOpen(false) : undefined}>
+          <Link href={link.href} className={navBtnClass} onClick={closeAllMenus}>
             {link.label}
           </Link>
         </li>
@@ -200,12 +208,12 @@ export default function Navbar() {
         </button>
         <div className={getDropdownClass(resourcesOpen, isMobile)}>
           <div className="text-[11px] font-semibold text-[#666] tracking-[0.5px] uppercase mb-[2px]">OUR RESOURCES</div>
-          <a href="#" className="flex items-center md:items-start gap-3 md:gap-4 no-underline text-inherit transition-opacity duration-150 hover:opacity-60">
+          <Link href="#" className="flex items-center md:items-start gap-3 md:gap-4 no-underline text-inherit transition-opacity duration-150 hover:opacity-60" onClick={closeAllMenus}>
             <div>
               <div className="text-[13.5px] md:text-[14.5px] font-semibold text-[#111] mb-0 md:mb-1">Blog</div>
               <div className="hidden md:block text-[13px] text-[#666] leading-[1.4]">Latest news and articles</div>
             </div>
-          </a>
+          </Link>
         </div>
       </li>
     </ul>
