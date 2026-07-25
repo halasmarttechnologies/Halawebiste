@@ -51,8 +51,8 @@ export default function Home() {
         <OurJourney />
         <OurProcess />
         <CustomTestimonials />
+        <ContactConsultation contained={true} />
         <BrandingBlogs />
-        <ContactConsultation />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

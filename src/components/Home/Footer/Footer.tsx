@@ -1,8 +1,5 @@
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { ArrowUpRight, MapPin, Phone, Mail } from 'lucide-react';
 
 const footerColumns = [
@@ -34,13 +31,11 @@ const footerColumns = [
 ];
 
 export default function Footer() {
-  const pathname = usePathname();
-  const isHomePage = pathname === '/';
-
   return (
-    <footer className={`bg-[#111111] font-poppins text-white flex flex-col w-full px-6 pt-16 pb-8 md:px-16 md:pt-20 md:pb-10 border-t border-[#222222] relative ${!isHomePage ? 'rounded-t-[40px] md:rounded-t-[60px] mt-10' : ''}`}>
-      
-      {/* TOP SECTION: Logo + Driving Digital Growth */}
+    <div className="pt-10">
+      <footer className="bg-[#111111] font-poppins text-white flex flex-col w-full px-6 pt-16 pb-8 md:px-16 md:pt-20 md:pb-10 relative rounded-t-[40px] md:rounded-t-[60px]">
+        
+        {/* TOP SECTION: Logo + Driving Digital Growth */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center w-full border-b border-[#222222] pb-12 md:pb-16 mb-12 md:mb-16 gap-10 lg:gap-0 max-w-[1400px] mx-auto">
         <div className="hidden lg:flex items-center">
           {/* Logo matches Hala but inverted for dark background */}
@@ -140,6 +135,7 @@ export default function Footer() {
         </div>
 
       </footer>
+    </div>
   );
 }
 

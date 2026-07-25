@@ -255,7 +255,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
 
   if (contained) {
     return (
-      <section className="bg-white w-full px-5 sm:px-8 md:px-12 lg:px-16 py-16 md:py-24 flex justify-center border-b border-[#e5e5e5]">
+      <section className="bg-white w-full px-5 sm:px-8 md:px-12 lg:px-16 py-16 md:py-24 flex justify-center">
         <div className="w-full bg-[#111111] text-white rounded-[32px] md:rounded-[40px] px-4 sm:px-6 md:px-10 py-12 md:py-16 shadow-2xl relative overflow-hidden flex justify-center">
           {/* Subtle background decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#007FFF]/10 blur-[80px] rounded-full pointer-events-none"></div>
