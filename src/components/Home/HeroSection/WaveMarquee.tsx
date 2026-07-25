@@ -1,21 +1,13 @@
-'use client';
-
-import { useState, useEffect } from 'react';
+// SVG SMIL animations are declarative — fully safe to render server-side.
+// No client JS needed for this component.
 
 export default function WaveMarquee() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
     <>
       {/* Mobile Marquee (Tighter curve for small screens) */}
       <div className="absolute md:hidden w-full min-w-[800px] left-1/2 -translate-x-1/2 h-[220px] z-10 pointer-events-none select-none overflow-hidden -bottom-4">
         <svg
+          suppressHydrationWarning
           className="w-full h-full"
           viewBox="0 0 800 220"
           preserveAspectRatio="xMidYMid slice"
@@ -45,6 +37,7 @@ export default function WaveMarquee() {
       {/* Desktop Marquee (Wider curve for large screens) */}
       <div className="hidden md:block absolute w-full min-w-[1440px] left-1/2 -translate-x-1/2 h-[300px] z-10 pointer-events-none select-none overflow-hidden -bottom-4">
         <svg
+          suppressHydrationWarning
           className="w-full h-full"
           viewBox="0 0 1440 300"
           preserveAspectRatio="xMidYMid slice"

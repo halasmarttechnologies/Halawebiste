@@ -1,21 +1,15 @@
 'use client';
-import { useState, useEffect } from 'react';
 
 import Image from 'next/image';
 import { PenTool } from 'lucide-react';
 import ContentCreationServices from './ContentCreationServices';
 import ContentCreationWhyChoose from './ContentCreationWhyChoose';
 import CustomTestimonials from '../../Home/Testimonials';
-import BrandingFAQ from '../BrandingFAQ';
+import ContentCreationFAQ from '../ContentCreationFAQ';
 import BrandingBlogs from '../BrandingBlogs';
+import ContactCTA from '../../Home/ContactCTA/ContactCTA';
 
 export default function ContentCreation() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <div className="relative w-full bg-[#111111] text-[#F3F0E6] overflow-x-hidden antialiased selection:bg-[#EADCF8] selection:text-[#111] rounded-b-[40px]">
 
@@ -125,7 +119,9 @@ export default function ContentCreation() {
       <CustomTestimonials />
 
       {/* FAQs Section */}
-      <BrandingFAQ />
+      <ContentCreationFAQ />
+
+      <ContactCTA contained={true} />
 
       {/* Blog Section */}
       <BrandingBlogs />

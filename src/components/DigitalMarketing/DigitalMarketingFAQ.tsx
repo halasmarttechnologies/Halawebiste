@@ -5,50 +5,60 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-const faqs = [
+const digitalMarketingFaqs = [
   {
     number: "01",
-    question: "What is expert branding & marketing, and why is it important?",
-    answer: "Expert branding is the professional process of creating a unique, cohesive identity and strategic search positioning for your business. It builds recognition, long-term trust, and differentiates your brand in competitive UAE markets."
+    question: "Who should invest in Digital Marketing?",
+    answer: "Any business looking to increase customer reach, boost online sales, build brand authority, or outpace competitors should invest in digital marketing—including B2B companies, eCommerce stores, local service providers, and global enterprises."
   },
   {
     number: "02",
-    question: "How do your digital marketing and SEO strategies drive business growth?",
-    answer: "We combine consumer analytics, targeted keyword intent, and high-converting creative execution across Google, Meta, and social platforms to turn search traffic directly into qualified leads and sales."
+    question: "What’s the difference between SEO, PPC, and Social Media?",
+    answer: "SEO builds long-term organic visibility on Google. PPC (Pay-Per-Click) delivers instant targeted traffic through paid search ads. Social Media Marketing engages audiences, builds brand trust, and generates leads on platforms like Instagram, LinkedIn, and Meta."
   },
   {
     number: "03",
-    question: "What core elements are included in your full-suite services?",
-    answer: "Our full-suite includes SEO (On-page, Off-page, Technical), Pay-Per-Click Ads, Social Media Marketing, Content Creation, and Mobile-first Web Design engineered for maximum conversions."
+    question: "How long does it take to see results?",
+    answer: "PPC ad campaigns and paid social ads deliver instant traffic and lead volume on launch. SEO strategies and organic content marketing show compounding growth and peak rankings within 3 to 6 months."
   },
   {
     number: "04",
-    question: "How long does it take to see measurable results from SEO & Marketing?",
-    answer: "PPC ad campaigns deliver instant traffic and leads on launch. Organic SEO search rankings typically show strong momentum and sustainable traffic increases within 3 to 6 months."
+    question: "Is Digital Marketing suitable for small businesses?",
+    answer: "Yes! Digital marketing allows small businesses to compete directly with industry giants by hyper-targeting local buyers, optimizing ad budgets, and converting high-intent leads efficiently."
   },
   {
     number: "05",
-    question: "Can your services work for startups and expanding UAE businesses?",
-    answer: "Yes! We tailor our growth strategies specifically for your business scale—whether you are a startup building initial market presence or an established brand scaling regional market share."
+    question: "Will you create the content too?",
+    answer: "Yes! Our full-service marketing packages include end-to-end content production—from graphic design and video editing to SEO copywriting, ad creatives, and landing page designs."
   },
   {
     number: "06",
-    question: "How do I know if my business needs a marketing & website upgrade?",
-    answer: "If your website traffic is stagnant, competitors rank higher on Google search results, or your current campaigns fail to produce measurable ROI, a strategic upgrade is recommended."
+    question: "Can I track the performance of campaigns?",
+    answer: "Yes, 100%. We provide transparent real-time analytics dashboards tracking click-through rates, lead conversion costs, keyword rankings, and exact Return on Ad Spend (ROAS)."
   },
   {
     number: "07",
-    question: "What kind of performance reporting and analytics do you provide?",
-    answer: "We provide complete transparency with real-time reporting dashboards, tracking user behavior, traffic sources, conversion rates, and keyword rankings so you know your exact ROI."
+    question: "Is a website required to start?",
+    answer: "While having a high-converting website optimizes lead capture, we can also launch campaigns utilizing dedicated sales landing pages, social media lead forms, or WhatsApp direct funnels."
   },
   {
     number: "08",
-    question: "How do we get started with Hala Technology?",
-    answer: "Getting started is simple. Contact our Dubai strategy team at 1803, Latifa Tower, Sheikh Zayed Road, Dubai, email us at Contact@halatechnology.ae, or call +971 58 613 9007. We will prepare a customized proposal for your brand."
+    question: "How do I get started with Hala Technology?",
+    answer: "Getting started is simple! Reach out to our Dubai strategy team at 1803, Latifa Tower, Sheikh Zayed Road, email Contact@halatechnology.ae, or call +971 58 613 9007 for a custom growth audit."
+  },
+  {
+    number: "09",
+    question: "How much should I budget for digital marketing?",
+    answer: "Budgets vary based on your industry competitiveness and growth targets. We craft tailored marketing packages designed to maximize Return on Investment for both emerging startups and enterprise budgets."
+  },
+  {
+    number: "10",
+    question: "Do I need to sign a long-term contract?",
+    answer: "No, we offer flexible month-to-month marketing retainers focused on delivering measurable performance without locking you into restrictive long-term commitments."
   }
 ];
 
-export default function BrandingFAQ() {
+export default function DigitalMarketingFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -58,45 +68,40 @@ export default function BrandingFAQ() {
   return (
     <section className="w-full bg-white text-[#111111] py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#e5e5e5]">
       <div className="max-w-[1280px] mx-auto">
-        
-        {/* Main Grid Layout: Left Sticky Header & Right Accordions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column (Sticky Sidebar & Callout) */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
             <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
-              Got Questions? <br className="hidden sm:inline" />
-              We Have Answers.
+              Digital Marketing <br className="hidden sm:inline" />
+              FAQs &amp; Answers.
             </h2>
 
             <p className="font-poppins text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our digital strategies, search engine optimization, content execution, and measurable growth models.
+              Everything you need to know about our digital marketing channels, timelines, performance tracking, and ROI models.
             </p>
 
-            {/* Human-crafted Help Box */}
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">
               <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
-                Need Custom Advice?
+                Performance Marketing
               </span>
               <h3 className="font-poppins font-semibold text-lg text-[#111111] mb-2">
-                Have a specific question?
+                Want to grow your revenue online?
               </h3>
               <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
-                Our Dubai strategy team is ready to analyze your business goals and provide tailored insights.
+                Our Dubai marketing strategists will audit your brand and build a custom multi-channel roadmap.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-poppins font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
               >
-                <span>Ask Our Team</span>
+                <span>Request Growth Consultation</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column (Accordion List) */}
           <div className="lg:col-span-7 flex flex-col gap-4 w-full">
-            {faqs.map((faq, index) => {
+            {digitalMarketingFaqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
@@ -105,7 +110,7 @@ export default function BrandingFAQ() {
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
                     isOpen 
                       ? 'bg-[#111111] border-[#111111] text-white' 
-                      : 'bg-[#f9f9f9] hover:bg-[#f2f2f2] border-[#e5e5e5] text-[#111111]'
+                      : 'bg-[#f9f9f9] border-[#e5e5e5] text-[#111111]'
                   }`}
                   onClick={() => toggleFAQ(index)}
                 >
@@ -114,14 +119,12 @@ export default function BrandingFAQ() {
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      {/* Index Number Badge */}
                       <span className={`font-poppins text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
                         isOpen ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111] border border-[#e5e5e5]'
                       }`}>
                         {faq.number}
                       </span>
 
-                      {/* Question Text */}
                       <span className={`font-poppins text-base md:text-lg font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-[#111111]'
                       }`}>
@@ -129,7 +132,6 @@ export default function BrandingFAQ() {
                       </span>
                     </div>
 
-                    {/* Toggle Icon */}
                     <div className="shrink-0">
                       {isOpen ? (
                         <Minus className="w-5 h-5 text-white" />
@@ -159,7 +161,6 @@ export default function BrandingFAQ() {
           </div>
 
         </div>
-
       </div>
     </section>
   );

@@ -8,7 +8,8 @@ import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
+const VideoEditingFAQ = dynamic(() => import('@/components/branding/VideoEditingFAQ'));
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 
 export const metadata: Metadata = {
@@ -26,7 +27,8 @@ export default function VideoEditingPage() {
       <VideoEditingServices />
       <VideoEditingStandOut />
       <CustomTestimonials />
-      <BrandingFAQ />
+      <VideoEditingFAQ />
+      <ContactCTA contained={true} />
       <BrandingBlogs />
     </div>
   );

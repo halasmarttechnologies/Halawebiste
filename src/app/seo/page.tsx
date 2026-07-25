@@ -9,9 +9,10 @@ import SEOWhyChoose from '@/components/SEO/SEOWhyChoose';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
+const SEOFAQ = dynamic(() => import('@/components/SEO/SEOFAQ'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
   title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
@@ -45,7 +46,8 @@ export default function SEOPage() {
         <SEOServices />
         <SEOWhyChoose />
         <CustomTestimonials />
-        <BrandingFAQ />
+        <SEOFAQ />
+        <ContactCTA contained={true} />
         <BrandingBlogs />
         <OutroMessage />
       </main>

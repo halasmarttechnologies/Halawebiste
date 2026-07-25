@@ -1,21 +1,14 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Grid2X2 } from 'lucide-react';
 import GraphicDesignWaveMarquee from './GraphicDesignWaveMarquee';
 
 export default function GraphicDesignHero() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <div className="relative w-full bg-[#111111] text-[#F3F0E6] overflow-x-hidden antialiased selection:bg-[#EADCF8] selection:text-[#111] rounded-b-[40px]">
 
       {/* Hero Section */}
-      <section className="relative w-full h-[100vh] flex flex-col items-center justify-center px-6 z-10 overflow-hidden pt-[100px]">
+      <section className="relative w-full h-[100vh] flex flex-col items-center justify-center px-4 sm:px-6 z-10 overflow-hidden pt-[75px] sm:pt-[85px]">
 
         {/* Background Image Setup */}
         <div className="absolute inset-0 z-0">
@@ -33,16 +26,18 @@ export default function GraphicDesignHero() {
         </div>
 
         {/* Wavy Logo Marquee */}
-        {mounted && <GraphicDesignWaveMarquee />}
+        <GraphicDesignWaveMarquee />
 
         {/* Hero Content */}
-        <div className="relative z-20 text-center max-w-4xl flex flex-col items-center -mt-16 md:-mt-24">
-          <h1 className="font-poppins text-5xl md:text-7xl lg:text-[85px] font-semibold leading-[1.05] tracking-tight mb-6 text-white drop-shadow-xl">
-            Graphic Design that
-            <em className="eb-garamond font-semibold italic"> makes you stand out.</em>
+        <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 -mt-20 sm:-mt-24 md:-mt-24">
+          <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-semibold leading-[1.06] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
+            <span className="block md:inline">Graphic design</span>{' '}
+            <span className="block md:inline">that makes</span>{' '}
+            <span className="block md:inline">you stand</span>{' '}
+            <span className="eb-garamond font-normal italic text-white block md:inline-block">out.</span>
           </h1>
 
-          <p className="font-poppins text-base md:text-lg lg:text-xl mb-10 max-w-[600px] mx-auto font-medium text-white/90 leading-relaxed">
+          <p className="font-poppins text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-medium text-white/90 leading-relaxed px-2">
             Communicate your brand's unique message through stunning, purposeful, and strategic visual design.
           </p>
 

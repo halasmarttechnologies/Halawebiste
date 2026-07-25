@@ -5,9 +5,10 @@ import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
+const GraphicDesignFAQ = dynamic(() => import('@/components/branding/GraphicDesignFAQ'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
   title: 'Graphic Design Services | Branding | Hala Technologies',
@@ -37,7 +38,8 @@ export default function GraphicDesignPage() {
       <SocialMediaShowcase />
       <GraphicDesignServices />
       <CustomTestimonials />
-      <BrandingFAQ />
+      <GraphicDesignFAQ />
+      <ContactCTA contained={true} />
       <BrandingBlogs />
       <OutroMessage />
     </div>

@@ -1,14 +1,13 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import { Code2, MonitorPlay, Search, Share2, PenTool, TrendingUp, Mail, MousePointerClick, Smartphone } from 'lucide-react';
+import { Code2, MonitorPlay, Search, Share2, PenTool, MousePointerClick, Smartphone } from 'lucide-react';
+
 const marketingTags = [
   { name: 'SEO', icon: Search },
   { name: 'PPC Ads', icon: MousePointerClick },
   { name: 'Social Media', icon: Share2 },
   { name: 'Content Strategy', icon: PenTool },
-  { name: 'Email Campaigns', icon: Mail },
-  { name: 'Analytics', icon: TrendingUp },
   { name: 'Web Dev', icon: Code2 },
   { name: 'App Marketing', icon: Smartphone },
   { name: 'Video Marketing', icon: MonitorPlay },

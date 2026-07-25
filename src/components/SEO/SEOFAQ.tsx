@@ -5,50 +5,60 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-const faqs = [
+const seoFaqs = [
   {
     number: "01",
-    question: "What is expert branding & marketing, and why is it important?",
-    answer: "Expert branding is the professional process of creating a unique, cohesive identity and strategic search positioning for your business. It builds recognition, long-term trust, and differentiates your brand in competitive UAE markets."
+    question: "What is SEO, and why is it important?",
+    answer: "SEO (Search Engine Optimization) is the process of optimizing your website to rank higher on Google search results. It is essential because high rankings generate continuous, high-intent organic traffic without paying for every click."
   },
   {
     number: "02",
-    question: "How do your digital marketing and SEO strategies drive business growth?",
-    answer: "We combine consumer analytics, targeted keyword intent, and high-converting creative execution across Google, Meta, and social platforms to turn search traffic directly into qualified leads and sales."
+    question: "How long does it take to see SEO results?",
+    answer: "Initial technical indexation fixes show ranking improvements within 30 to 60 days. Sustainable Page-1 rankings and traffic exponential growth typically compound within 3 to 6 months of consistent optimization."
   },
   {
     number: "03",
-    question: "What core elements are included in your full-suite services?",
-    answer: "Our full-suite includes SEO (On-page, Off-page, Technical), Pay-Per-Click Ads, Social Media Marketing, Content Creation, and Mobile-first Web Design engineered for maximum conversions."
+    question: "Do you follow Google’s SEO guidelines?",
+    answer: "Yes, 100%. We practice strict White-Hat SEO strictly complying with Google Search Quality Rater Guidelines, Core Web Vitals, EEAT rules, and helpful content updates to protect your domain authority."
   },
   {
     number: "04",
-    question: "How long does it take to see measurable results from SEO & Marketing?",
-    answer: "PPC ad campaigns deliver instant traffic and leads on launch. Organic SEO search rankings typically show strong momentum and sustainable traffic increases within 3 to 6 months."
+    question: "What kind of businesses benefit from SEO?",
+    answer: "Any business whose prospective customers search online for products, services, or solutions benefits from SEO—including local UAE businesses, eCommerce stores, corporate services, and B2B tech platforms."
   },
   {
     number: "05",
-    question: "Can your services work for startups and expanding UAE businesses?",
-    answer: "Yes! We tailor our growth strategies specifically for your business scale—whether you are a startup building initial market presence or an established brand scaling regional market share."
+    question: "How do you choose keywords?",
+    answer: "We perform deep search intent analysis combining keyword search volume, ranking difficulty, commercial intent, and competitor gap analysis to target high-converting transactional keywords."
   },
   {
     number: "06",
-    question: "How do I know if my business needs a marketing & website upgrade?",
-    answer: "If your website traffic is stagnant, competitors rank higher on Google search results, or your current campaigns fail to produce measurable ROI, a strategic upgrade is recommended."
+    question: "Is content creation part of SEO?",
+    answer: "Yes! High-quality SEO copywriting, content structure, pillar pages, and regular blog publishing are core pillars of our organic search optimization strategy."
   },
   {
     number: "07",
-    question: "What kind of performance reporting and analytics do you provide?",
-    answer: "We provide complete transparency with real-time reporting dashboards, tracking user behavior, traffic sources, conversion rates, and keyword rankings so you know your exact ROI."
+    question: "Will you provide regular reports?",
+    answer: "Yes, you receive transparent monthly performance reports detailing keyword position changes, organic traffic growth, backlink acquisitions, and Google Search Console performance metrics."
   },
   {
     number: "08",
-    question: "How do we get started with Hala Technology?",
-    answer: "Getting started is simple. Contact our Dubai strategy team at 1803, Latifa Tower, Sheikh Zayed Road, Dubai, email us at Contact@halatechnology.ae, or call +971 58 613 9007. We will prepare a customized proposal for your brand."
+    question: "Can SEO increase sales?",
+    answer: "Yes! By capturing users active in their decision-making phase and sending targeted commercial search traffic directly to optimized landing pages, SEO directly drives qualified leads and sales."
+  },
+  {
+    number: "09",
+    question: "What’s the difference between on-page and off-page SEO?",
+    answer: "On-page SEO optimizes elements directly on your site (content, meta tags, speed, internal links). Off-page SEO builds domain authority through high-quality external backlinks, brand citations, and digital PR."
+  },
+  {
+    number: "10",
+    question: "Do you guarantee top rankings?",
+    answer: "No reputable agency can guarantee #1 spot on Google due to algorithm updates. However, our proven White-Hat methodology consistently delivers Page-1 rankings and sustainable traffic growth across competitive markets."
   }
 ];
 
-export default function BrandingFAQ() {
+export default function SEOFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -58,45 +68,40 @@ export default function BrandingFAQ() {
   return (
     <section className="w-full bg-white text-[#111111] py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#e5e5e5]">
       <div className="max-w-[1280px] mx-auto">
-        
-        {/* Main Grid Layout: Left Sticky Header & Right Accordions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column (Sticky Sidebar & Callout) */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
             <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
-              Got Questions? <br className="hidden sm:inline" />
-              We Have Answers.
+              Search Optimization <br className="hidden sm:inline" />
+              FAQs &amp; Answers.
             </h2>
 
             <p className="font-poppins text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our digital strategies, search engine optimization, content execution, and measurable growth models.
+              Everything you need to know about our organic search engine optimization, technical audits, Google compliance, and ranking models.
             </p>
 
-            {/* Human-crafted Help Box */}
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">
               <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
-                Need Custom Advice?
+                Organic Search Growth
               </span>
               <h3 className="font-poppins font-semibold text-lg text-[#111111] mb-2">
-                Have a specific question?
+                Ready to rank higher on Google?
               </h3>
               <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
-                Our Dubai strategy team is ready to analyze your business goals and provide tailored insights.
+                Our Dubai SEO specialists are ready to audit your website and identify major ranking growth opportunities.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-poppins font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
               >
-                <span>Ask Our Team</span>
+                <span>Request Free SEO Audit</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column (Accordion List) */}
           <div className="lg:col-span-7 flex flex-col gap-4 w-full">
-            {faqs.map((faq, index) => {
+            {seoFaqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
@@ -105,7 +110,7 @@ export default function BrandingFAQ() {
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
                     isOpen 
                       ? 'bg-[#111111] border-[#111111] text-white' 
-                      : 'bg-[#f9f9f9] hover:bg-[#f2f2f2] border-[#e5e5e5] text-[#111111]'
+                      : 'bg-[#f9f9f9] border-[#e5e5e5] text-[#111111]'
                   }`}
                   onClick={() => toggleFAQ(index)}
                 >
@@ -114,14 +119,12 @@ export default function BrandingFAQ() {
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      {/* Index Number Badge */}
                       <span className={`font-poppins text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
                         isOpen ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111] border border-[#e5e5e5]'
                       }`}>
                         {faq.number}
                       </span>
 
-                      {/* Question Text */}
                       <span className={`font-poppins text-base md:text-lg font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-[#111111]'
                       }`}>
@@ -129,7 +132,6 @@ export default function BrandingFAQ() {
                       </span>
                     </div>
 
-                    {/* Toggle Icon */}
                     <div className="shrink-0">
                       {isOpen ? (
                         <Minus className="w-5 h-5 text-white" />
@@ -159,7 +161,6 @@ export default function BrandingFAQ() {
           </div>
 
         </div>
-
       </div>
     </section>
   );

@@ -5,50 +5,60 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-const faqs = [
+const videoEditingFaqs = [
   {
     number: "01",
-    question: "What is expert branding & marketing, and why is it important?",
-    answer: "Expert branding is the professional process of creating a unique, cohesive identity and strategic search positioning for your business. It builds recognition, long-term trust, and differentiates your brand in competitive UAE markets."
+    question: "What video editing services do you offer?",
+    answer: "We offer comprehensive video post-production services including color grading, audio cleaning & mixing, motion graphics, sound design, transitions, visual effects, and format resizing for multi-platform delivery."
   },
   {
     number: "02",
-    question: "How do your digital marketing and SEO strategies drive business growth?",
-    answer: "We combine consumer analytics, targeted keyword intent, and high-converting creative execution across Google, Meta, and social platforms to turn search traffic directly into qualified leads and sales."
+    question: "Which types of videos can you edit?",
+    answer: "We edit corporate promos, social media reels & TikToks, YouTube content, product showcases, podcast highlights, event recap videos, real estate tours, and paid ad creatives."
   },
   {
     number: "03",
-    question: "What core elements are included in your full-suite services?",
-    answer: "Our full-suite includes SEO (On-page, Off-page, Technical), Pay-Per-Click Ads, Social Media Marketing, Content Creation, and Mobile-first Web Design engineered for maximum conversions."
+    question: "What software do you use for editing?",
+    answer: "Our video editors use industry-leading tools including Adobe Premiere Pro, After Effects, DaVinci Resolve Studio, and Audition to deliver broadcast-quality video content."
   },
   {
     number: "04",
-    question: "How long does it take to see measurable results from SEO & Marketing?",
-    answer: "PPC ad campaigns deliver instant traffic and leads on launch. Organic SEO search rankings typically show strong momentum and sustainable traffic increases within 3 to 6 months."
+    question: "How long does it take to edit a video?",
+    answer: "Short-form content (Reels/Shorts) takes 24 to 48 hours. Comprehensive corporate promos or long-form videos typically take 3 to 5 business days based on duration and graphic requirements."
   },
   {
     number: "05",
-    question: "Can your services work for startups and expanding UAE businesses?",
-    answer: "Yes! We tailor our growth strategies specifically for your business scale—whether you are a startup building initial market presence or an established brand scaling regional market share."
+    question: "Can you work with raw footage from smartphones or cameras?",
+    answer: "Yes! We work with all footage formats—from 4K/8K cinema camera RAW files (RED, Sony, Canon) to high-quality smartphone videos (iPhone/Android ProRes)."
   },
   {
     number: "06",
-    question: "How do I know if my business needs a marketing & website upgrade?",
-    answer: "If your website traffic is stagnant, competitors rank higher on Google search results, or your current campaigns fail to produce measurable ROI, a strategic upgrade is recommended."
+    question: "Do you provide revisions?",
+    answer: "Yes, every video project includes dedicated revision cycles so you can request changes to pacing, audio balance, captions, or color tone until you are completely satisfied."
   },
   {
     number: "07",
-    question: "What kind of performance reporting and analytics do you provide?",
-    answer: "We provide complete transparency with real-time reporting dashboards, tracking user behavior, traffic sources, conversion rates, and keyword rankings so you know your exact ROI."
+    question: "Can you add captions, subtitles, or animations?",
+    answer: "Yes! We specialize in engaging dynamic captions, animated text overlays, kinetic typography, lower thirds, and custom logo motion graphics."
   },
   {
     number: "08",
-    question: "How do we get started with Hala Technology?",
-    answer: "Getting started is simple. Contact our Dubai strategy team at 1803, Latifa Tower, Sheikh Zayed Road, Dubai, email us at Contact@halatechnology.ae, or call +971 58 613 9007. We will prepare a customized proposal for your brand."
+    question: "Do you offer social media optimization?",
+    answer: "Yes, we export videos tailored specifically to platform specifications (9:16 vertical for Reels/TikTok, 1:1 square for Instagram, 16:9 widescreen for YouTube/LinkedIn) with optimized compression for maximum reach."
+  },
+  {
+    number: "09",
+    question: "How do I submit my footage and requirements?",
+    answer: "You can securely upload your raw footage via Google Drive, Dropbox, Frame.io, or WeTransfer. We will provide a dedicated folder link upon project kickoff."
+  },
+  {
+    number: "10",
+    question: "What makes Hala Smart Technologies different?",
+    answer: "We combine strategic narrative storytelling with high-converting visual pacing. We don't just edit clips; we structure videos designed to capture attention, boost watch time, and drive conversions."
   }
 ];
 
-export default function BrandingFAQ() {
+export default function VideoEditingFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -58,45 +68,40 @@ export default function BrandingFAQ() {
   return (
     <section className="w-full bg-white text-[#111111] py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#e5e5e5]">
       <div className="max-w-[1280px] mx-auto">
-        
-        {/* Main Grid Layout: Left Sticky Header & Right Accordions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column (Sticky Sidebar & Callout) */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
             <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
-              Got Questions? <br className="hidden sm:inline" />
-              We Have Answers.
+              Video Editing <br className="hidden sm:inline" />
+              FAQs &amp; Answers.
             </h2>
 
             <p className="font-poppins text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our digital strategies, search engine optimization, content execution, and measurable growth models.
+              Everything you need to know about our video editing process, file submissions, revision cycles, and platform optimization.
             </p>
 
-            {/* Human-crafted Help Box */}
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">
               <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
-                Need Custom Advice?
+                Video Post-Production
               </span>
               <h3 className="font-poppins font-semibold text-lg text-[#111111] mb-2">
-                Have a specific question?
+                Ready to edit your video footage?
               </h3>
               <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
-                Our Dubai strategy team is ready to analyze your business goals and provide tailored insights.
+                Send us your raw clips and our Dubai post-production team will transform them into high-converting videos.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-poppins font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
               >
-                <span>Ask Our Team</span>
+                <span>Submit Video Inquiry</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column (Accordion List) */}
           <div className="lg:col-span-7 flex flex-col gap-4 w-full">
-            {faqs.map((faq, index) => {
+            {videoEditingFaqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
@@ -105,7 +110,7 @@ export default function BrandingFAQ() {
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
                     isOpen 
                       ? 'bg-[#111111] border-[#111111] text-white' 
-                      : 'bg-[#f9f9f9] hover:bg-[#f2f2f2] border-[#e5e5e5] text-[#111111]'
+                      : 'bg-[#f9f9f9] border-[#e5e5e5] text-[#111111]'
                   }`}
                   onClick={() => toggleFAQ(index)}
                 >
@@ -114,14 +119,12 @@ export default function BrandingFAQ() {
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      {/* Index Number Badge */}
                       <span className={`font-poppins text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
                         isOpen ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111] border border-[#e5e5e5]'
                       }`}>
                         {faq.number}
                       </span>
 
-                      {/* Question Text */}
                       <span className={`font-poppins text-base md:text-lg font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-[#111111]'
                       }`}>
@@ -129,7 +132,6 @@ export default function BrandingFAQ() {
                       </span>
                     </div>
 
-                    {/* Toggle Icon */}
                     <div className="shrink-0">
                       {isOpen ? (
                         <Minus className="w-5 h-5 text-white" />
@@ -159,7 +161,6 @@ export default function BrandingFAQ() {
           </div>
 
         </div>
-
       </div>
     </section>
   );

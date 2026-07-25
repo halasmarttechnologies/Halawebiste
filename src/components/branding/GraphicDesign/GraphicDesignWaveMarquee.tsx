@@ -1,8 +1,29 @@
 'use client';
 
 import { motion, useTime, useTransform } from 'framer-motion';
-import { SiAffinitydesigner, SiAffinityphoto } from 'react-icons/si';
 import Image from 'next/image';
+
+// Inline SVG for Affinity Designer (replaces react-icons/si SiAffinitydesigner)
+function AffinityDesignerIcon({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="24,4 44,38 4,38" fill="none" stroke="white" strokeWidth="3" strokeLinejoin="round"/>
+      <circle cx="24" cy="28" r="7" fill="white" fillOpacity="0.9"/>
+    </svg>
+  );
+}
+
+// Inline SVG for Affinity Photo (replaces react-icons/si SiAffinityphoto)
+function AffinityPhotoIcon({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="6" width="36" height="36" rx="8" fill="none" stroke="white" strokeWidth="3"/>
+      <circle cx="24" cy="24" r="9" fill="white" fillOpacity="0.9"/>
+      <circle cx="24" cy="24" r="4" fill="#8A2B87"/>
+    </svg>
+  );
+}
+
 
 const icons = [
   { type: 'image', src: '/photoshop.png', alt: 'Photoshop' },
@@ -51,7 +72,7 @@ function RenderRealIcon({ iconDef, isDesktop }: { iconDef: any; isDesktop: boole
         className="w-full h-full flex items-center justify-center rounded-[20%] shadow-xl shadow-black/50 border border-white/10 hover:scale-110 transition-transform duration-300" 
         style={{ background: 'linear-gradient(135deg, #174B8F 0%, #0D2B52 100%)' }}
       >
-        <SiAffinitydesigner size={38 * sizeMultiplier} color="#ffffff" />
+        <AffinityDesignerIcon size={38 * sizeMultiplier} />
       </div>
     );
   }
@@ -62,7 +83,7 @@ function RenderRealIcon({ iconDef, isDesktop }: { iconDef: any; isDesktop: boole
         className="w-full h-full flex items-center justify-center rounded-[20%] shadow-xl shadow-black/50 border border-white/10 hover:scale-110 transition-transform duration-300" 
         style={{ background: 'linear-gradient(135deg, #8A2B87 0%, #4A1249 100%)' }}
       >
-        <SiAffinityphoto size={38 * sizeMultiplier} color="#ffffff" />
+        <AffinityPhotoIcon size={38 * sizeMultiplier} />
       </div>
     );
   }
@@ -87,7 +108,7 @@ function IconItemMobile({ index, initialOffset }: { index: number; initialOffset
 
   return (
     <motion.div
-      className="absolute top-0 left-0 w-10 h-10 flex items-center justify-center"
+      className="absolute top-0 left-0 w-10 h-10 flex items-center justify-center [will-change:transform]"
       style={{
         x,
         y: useTransform(y, (yVal) => `calc(${yVal}px - 50%)`),
@@ -116,7 +137,7 @@ function IconItemDesktop({ index, initialOffset }: { index: number; initialOffse
 
   return (
     <motion.div
-      className="absolute top-0 left-0 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center"
+      className="absolute top-0 left-0 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center [will-change:transform]"
       style={{
         x,
         y: useTransform(y, (yVal) => `calc(${yVal}px - 50%)`),
@@ -129,21 +150,21 @@ function IconItemDesktop({ index, initialOffset }: { index: number; initialOffse
 }
 
 export default function GraphicDesignWaveMarquee() {
-  const NUM_MOBILE_ITEMS = 14;
-  const NUM_DESKTOP_ITEMS = 24;
+  const NUM_MOBILE_ITEMS = 10;
+  const NUM_DESKTOP_ITEMS = 16;
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
       
       {/* Mobile Marquee */}
-      <div className="absolute md:hidden w-full min-w-[800px] left-1/2 -translate-x-1/2 h-[220px] -bottom-4">
+      <div className="absolute md:hidden w-full min-w-[800px] left-1/2 -translate-x-1/2 h-[220px] bottom-4">
         {Array.from({ length: NUM_MOBILE_ITEMS }, (_, i) => (
           <IconItemMobile key={`mobile-${i}`} index={i} initialOffset={i * (1000 / NUM_MOBILE_ITEMS)} />
         ))}
       </div>
 
       {/* Desktop Marquee */}
-      <div className="hidden md:block absolute w-full min-w-[1440px] left-1/2 -translate-x-1/2 h-[300px] -bottom-8">
+      <div className="hidden md:block absolute w-full min-w-[1440px] left-1/2 -translate-x-1/2 h-[300px] bottom-2">
         {Array.from({ length: NUM_DESKTOP_ITEMS }, (_, i) => (
           <IconItemDesktop key={`desktop-${i}`} index={i} initialOffset={i * (1840 / NUM_DESKTOP_ITEMS)} />
         ))}

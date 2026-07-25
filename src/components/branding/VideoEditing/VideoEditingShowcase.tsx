@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { PlayCircle } from 'lucide-react';
@@ -16,17 +15,8 @@ const thumbnailProjects = [
 ];
 
 export default function VideoEditingShowcase() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return <section className="w-full bg-white min-h-[800px]"></section>;
-  }
-
   return (
+
     <section className="w-full bg-white text-[#111] py-16 md:py-20 overflow-hidden relative">
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#fcfcfc] to-transparent z-10 pointer-events-none opacity-[0.03]"></div>
 

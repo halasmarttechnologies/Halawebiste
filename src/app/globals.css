@@ -52,14 +52,31 @@
 
 html {
   overflow-x: clip;
-  scroll-behavior: smooth;
+  /* Removed scroll-behavior:smooth — it causes jank during anchor navigation.
+     Use JS-based smooth scroll where needed for precise control. */
+  scroll-padding-top: 80px; /* Offset for fixed navbar */
 }
 
 body {
   font-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
   overflow-x: clip;
   background-color: #111111;
   min-width: 320px;
 }
+
+/* ─── Performance Hints ──────────────────────────────── */
+
+/* Marquee animations run on GPU composited layer */
+[class*="animate-marquee"],
+[class*="marquee"] {
+  will-change: transform;
+}
+
+/* Navbar backdrop-blur layer — promote to its own GPU layer */
+header nav > div[class*="absolute"] {
+  will-change: opacity, backdrop-filter;
+}
+

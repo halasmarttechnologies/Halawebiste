@@ -128,32 +128,32 @@ export default function ProcessSection() {
         </div>
 
         {/* Step Navigation Bar */}
-        <div className="w-full overflow-x-auto pb-4 mb-10 no-scrollbar">
-          <div className="flex items-center justify-start md:justify-center gap-2 min-w-max px-2">
+        <div className="w-full overflow-x-auto pb-3 mb-8 no-scrollbar scroll-smooth">
+          <div className="flex items-center justify-start md:justify-center gap-2 min-w-max px-1">
             {processSteps.map((item, index) => {
               const isActive = index === activeStepIndex;
               return (
                 <button
                   key={item.step}
                   onClick={() => setActiveStepIndex(index)}
-                  className={`flex items-center gap-2.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-colors border ${
+                  className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold transition-colors border ${
                     isActive
                       ? 'bg-[#111111] text-white border-[#111111]'
                       : 'bg-[#F5F5F7] text-[#555555] border-[#E5E5E5] hover:bg-[#EAEAEA] hover:text-[#111111]'
                   }`}
                 >
-                  <span className={`text-[11px] px-1.5 py-0.5 rounded-md ${isActive ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111]'}`}>
+                  <span className={`text-[10px] sm:text-[11px] px-1.5 py-0.5 rounded-md ${isActive ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111]'}`}>
                     {item.step}
                   </span>
-                  <span>{item.shortTitle}</span>
+                  <span className="whitespace-nowrap">{item.shortTitle}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Split Card Featured Showcase (Inspired by Screenshot) */}
-        <div className="w-full rounded-[24px] sm:rounded-[32px] border border-[#E5E5E5] overflow-hidden bg-white">
+        {/* Split Card Featured Showcase */}
+        <div className="w-full rounded-[20px] sm:rounded-[32px] border border-[#E5E5E5] overflow-hidden bg-white shadow-xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStepIndex}
@@ -161,36 +161,36 @@ export default function ProcessSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 lg:grid-cols-2 min-h-[420px]"
+              className="grid grid-cols-1 lg:grid-cols-2 min-h-[400px]"
             >
               {/* Left Side: Dark Card */}
-              <div className="bg-[#111111] text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between">
+              <div className="bg-[#111111] text-white p-5 sm:p-8 lg:p-14 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex items-center gap-2 mb-4 sm:mb-6">
                     <span className="w-2 h-2 rounded-full bg-[#007FFF]" />
-                    <span className="text-xs font-bold tracking-widest text-white/70 uppercase">
+                    <span className="text-[11px] sm:text-xs font-bold tracking-widest text-white/70 uppercase">
                       {activeStep.tag}
                     </span>
                   </div>
 
-                  <h3 className="font-poppins font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-5 leading-tight">
+                  <h3 className="font-poppins font-bold text-xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-5 leading-tight">
                     {activeStep.title}
                   </h3>
 
-                  <p className="text-white/80 font-poppins text-sm sm:text-base leading-relaxed mb-8">
+                  <p className="text-white/80 font-poppins text-xs sm:text-base leading-relaxed mb-6 sm:mb-8">
                     {activeStep.description}
                   </p>
                 </div>
 
                 {/* Key Deliverables Checkmarks */}
-                <div className="pt-6 border-t border-white/10">
-                  <span className="text-xs font-bold text-[#007FFF] uppercase tracking-wider block mb-3">
+                <div className="pt-4 sm:pt-6 border-t border-white/10">
+                  <span className="text-[11px] sm:text-xs font-bold text-[#007FFF] uppercase tracking-wider block mb-2 sm:mb-3">
                     Key Deliverables:
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
                     {activeStep.highlights.map((item, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-white/90 font-medium">
-                        <CheckCircle2 className="w-4 h-4 text-[#007FFF] shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#007FFF] shrink-0" />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -199,45 +199,45 @@ export default function ProcessSection() {
               </div>
 
               {/* Right Side: Brand Blue Card */}
-              <div className="bg-[#007FFF] text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between relative overflow-hidden">
+              <div className="bg-[#007FFF] text-white p-5 sm:p-8 lg:p-14 flex flex-col justify-between relative overflow-hidden">
                 <div>
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className="flex items-center gap-2 mb-4 sm:mb-6">
                     <span className="w-2 h-2 rounded-full bg-white" />
-                    <span className="text-xs font-bold tracking-widest text-white/80 uppercase">
+                    <span className="text-[11px] sm:text-xs font-bold tracking-widest text-white/80 uppercase">
                       HALA WORKFLOW
                     </span>
                   </div>
 
-                  <h3 className="font-poppins font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-4 leading-tight">
+                  <h3 className="font-poppins font-bold text-xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-4 leading-tight">
                     {activeStep.mockupTitle}
                   </h3>
 
-                  <p className="text-white/90 font-poppins text-sm sm:text-base leading-relaxed">
+                  <p className="text-white/90 font-poppins text-xs sm:text-base leading-relaxed">
                     {activeStep.mockupDetail}
                   </p>
                 </div>
 
-                {/* ClickUp-Style Internal Card Graphic */}
-                <div className="mt-8 bg-white text-[#111111] p-6 rounded-2xl border border-white/30">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs">
+                {/* Internal Card Graphic */}
+                <div className="mt-6 sm:mt-8 bg-white text-[#111111] p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/30 shadow-md">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="flex items-center gap-2 sm:gap-2.5">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs">
                         {activeStep.step}
                       </div>
-                      <span className="font-poppins font-bold text-sm text-[#111111]">
+                      <span className="font-poppins font-bold text-xs sm:text-sm text-[#111111]">
                         {activeStep.title}
                       </span>
                     </div>
-                    <span className="bg-[#007FFF]/10 text-[#007FFF] text-[11px] font-bold px-2.5 py-1 rounded-md uppercase">
+                    <span className="bg-[#007FFF]/10 text-[#007FFF] text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md uppercase">
                       IN PROGRESS
                     </span>
                   </div>
 
-                  <p className="text-xs text-[#555555] leading-relaxed mb-4">
+                  <p className="text-xs text-[#555555] leading-relaxed mb-3 sm:mb-4">
                     {activeStep.description}
                   </p>
 
-                  <div className="flex items-center justify-between pt-3 border-t border-[#EEEEEE] text-[11px] text-[#777777] font-semibold">
+                  <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-[#EEEEEE] text-[10px] sm:text-[11px] text-[#777777] font-semibold">
                     <span>STATUS: ACTIVE</span>
                     <span className="text-[#007FFF] flex items-center gap-1 font-bold">
                       Step {activeStepIndex + 1} of 6 <ArrowRight className="w-3 h-3" />

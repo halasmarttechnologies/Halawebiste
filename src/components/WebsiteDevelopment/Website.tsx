@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { Star } from 'lucide-react';
 
 export default function Website() {
   return (
@@ -24,68 +23,13 @@ export default function Website() {
       {/* Content Container */}
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
 
-        {/* Top Badge: Avatars + Stars + Rating + Subtext */}
-        <div className="flex flex-col items-center mb-8 sm:mb-10">
-          {/* Avatar & Rating Row */}
-          <div className="flex items-center gap-2.5 sm:gap-3 mb-2">
-            {/* Overlapping Avatars */}
-            <div className="flex items-center -space-x-2.5">
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#111] overflow-hidden shadow-sm">
-                <Image
-                  src="/Team pics/Ceo.jpg"
-                  alt="Client avatar 1"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#111] overflow-hidden shadow-sm z-10">
-                <Image
-                  src="/Team pics/Ui Ux & Web devloepr.jpg"
-                  alt="Client avatar 2"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full border-2 border-[#111] overflow-hidden shadow-sm z-20">
-                <Image
-                  src="/Team pics/Contetn writer.jpg"
-                  alt="Client avatar 3"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Stars & Pill */}
-            <div className="flex items-center gap-1.5">
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="fill-[#007FFF] text-[#007FFF]"
-                  />
-                ))}
-              </div>
-              <span className="bg-[#007FFF] text-white text-[11px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full leading-none">
-                4.9
-              </span>
-            </div>
-          </div>
-
-          {/* Brands Count Subtext */}
-          <span className="text-[13px] sm:text-sm font-semibold text-white/90 tracking-tight">
-            300+ Scaled Brands
-          </span>
-        </div>
 
         {/* Hero Headline */}
-        <h1 className="font-poppins text-4xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl">
+        <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl">
           We Build Websites{' '}
           <br className="hidden sm:block" />
-          {' '}{' '}
           <span className="eb-garamond italic font-normal text-white inline-block">
-            That Drive Growth
+            That Drive Growth.
           </span>
         </h1>
 
@@ -94,7 +38,9 @@ export default function Website() {
           Strategy. Design. Performance. Unified for measurable ROI.
         </p>
 
-
+        <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-poppins font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
+          Let's build a website
+        </button>
       </div>
     </section>
 

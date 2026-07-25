@@ -8,9 +8,11 @@ import FeaturedWork from '@/components/WebsiteDevelopment/FeaturedWork';
 import WebDesignGrowth from '@/components/WebsiteDevelopment/WebDesignGrowth';
 import ProcessSection from '@/components/WebsiteDevelopment/ProcessSection';
 import Testimonials from '@/components/Home/Testimonials/Testimonials';
-import BrandingFAQ from '@/components/branding/BrandingFAQ';
+import WebDevFAQ from '@/components/WebsiteDevelopment/WebDevFAQ';
 import BrandingBlogs from '@/components/branding/BrandingBlogs';
 import Footer from '@/components/Home/Footer';
+import dynamic from 'next/dynamic';
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
   title: 'Website Development | Hala Technology',
@@ -46,7 +48,8 @@ export default function WebsiteDevelopmentPage() {
         <ProcessSection />
         <WebDesignShowcase />
         <Testimonials />
-        <BrandingFAQ />
+        <WebDevFAQ />
+        <ContactCTA contained={true} />
         <BrandingBlogs />
       </main>
       <div className="bg-white w-full relative z-20">

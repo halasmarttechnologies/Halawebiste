@@ -1,20 +1,13 @@
 'use client';
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { PlayCircle } from 'lucide-react';
 
 export default function VideoEditing() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <div className="relative w-full bg-[#111111] text-[#F3F0E6] overflow-x-hidden antialiased selection:bg-[#EADCF8] selection:text-[#111]">
 
       {/* Hero Section */}
-      <section className="relative w-full h-[100vh] flex flex-col items-center justify-center px-6 z-10 overflow-hidden pt-[100px]">
+      <section className="relative w-full h-[100vh] flex flex-col items-center justify-center px-4 sm:px-6 z-10 overflow-hidden pt-[75px] sm:pt-[85px]">
 
         {/* Background Image Setup */}
         <div className="absolute inset-0 z-0">
@@ -32,13 +25,13 @@ export default function VideoEditing() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-20 text-center max-w-4xl flex flex-col items-center">
-          <h1 className="font-poppins text-5xl md:text-7xl lg:text-[85px] font-extrabold leading-[1.05] tracking-tight mb-6 text-white drop-shadow-xl">
-            Your Videos<br />
-            <em className="eb-garamond font-semibold italic"> Deserve Clicks.</em>
+        <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 -mt-20 sm:-mt-24 md:-mt-24">
+          <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-semibold leading-[1.08] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
+            <span className="block">Your Videos</span>
+            <span className="eb-garamond font-normal italic block md:inline-block">Deserve Clicks.</span>
           </h1>
 
-          <p className="font-poppins text-base md:text-lg lg:text-xl mb-10 max-w-[600px] mx-auto font-medium text-white/90 leading-relaxed">
+          <p className="font-poppins text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-medium text-white/90 leading-relaxed px-2">
             Custom-designed thumbnails and editing that make your content visually stunning and impossible to ignore.
           </p>
 

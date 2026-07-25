@@ -5,50 +5,60 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-const faqs = [
+const contentCreationFaqs = [
   {
     number: "01",
-    question: "What is expert branding & marketing, and why is it important?",
-    answer: "Expert branding is the professional process of creating a unique, cohesive identity and strategic search positioning for your business. It builds recognition, long-term trust, and differentiates your brand in competitive UAE markets."
+    question: "What is content creation, and why is it important for my business?",
+    answer: "Content creation is the process of generating valuable written, visual, and multimedia assets tailored for your target audience. It builds brand authority, drives organic traffic, educates prospective buyers, and turns casual visitors into loyal customers."
   },
   {
     number: "02",
-    question: "How do your digital marketing and SEO strategies drive business growth?",
-    answer: "We combine consumer analytics, targeted keyword intent, and high-converting creative execution across Google, Meta, and social platforms to turn search traffic directly into qualified leads and sales."
+    question: "What types of content do you offer?",
+    answer: "We produce website copywriting, blog articles, SEO landing pages, social media captions & carousel scripts, video scripts, email newsletters, case studies, and corporate press releases."
   },
   {
     number: "03",
-    question: "What core elements are included in your full-suite services?",
-    answer: "Our full-suite includes SEO (On-page, Off-page, Technical), Pay-Per-Click Ads, Social Media Marketing, Content Creation, and Mobile-first Web Design engineered for maximum conversions."
+    question: "Is the content SEO-optimized?",
+    answer: "Yes, all written content is thoroughly researched and optimized with high-intent keywords, semantic headings, meta tags, and internal link structures to maximize search engine rankings."
   },
   {
     number: "04",
-    question: "How long does it take to see measurable results from SEO & Marketing?",
-    answer: "PPC ad campaigns deliver instant traffic and leads on launch. Organic SEO search rankings typically show strong momentum and sustainable traffic increases within 3 to 6 months."
+    question: "How do you understand my brand’s tone and audience?",
+    answer: "Before writing, we conduct a brand discovery session to map out your brand persona, target demographics, unique selling propositions, and tone guidelines (whether professional, playful, or authoritative)."
   },
   {
     number: "05",
-    question: "Can your services work for startups and expanding UAE businesses?",
-    answer: "Yes! We tailor our growth strategies specifically for your business scale—whether you are a startup building initial market presence or an established brand scaling regional market share."
+    question: "Can I request edits or revisions?",
+    answer: "Yes, every content deliverable includes revision rounds so you can provide feedback and refine tone, formatting, or messaging to your exact satisfaction."
   },
   {
     number: "06",
-    question: "How do I know if my business needs a marketing & website upgrade?",
-    answer: "If your website traffic is stagnant, competitors rank higher on Google search results, or your current campaigns fail to produce measurable ROI, a strategic upgrade is recommended."
+    question: "How long does it take to deliver the content?",
+    answer: "Standard blog posts or social content sets are delivered within 3 to 5 business days. Full website copywriting or complex technical whitepapers take 7 to 10 business days."
   },
   {
     number: "07",
-    question: "What kind of performance reporting and analytics do you provide?",
-    answer: "We provide complete transparency with real-time reporting dashboards, tracking user behavior, traffic sources, conversion rates, and keyword rankings so you know your exact ROI."
+    question: "Do you write for specific industries or niches?",
+    answer: "Yes, our experienced copywriters research and create authoritative content for technology, real estate, finance, healthcare, eCommerce, hospitality, legal, and luxury sectors across the Middle East."
   },
   {
     number: "08",
-    question: "How do we get started with Hala Technology?",
-    answer: "Getting started is simple. Contact our Dubai strategy team at 1803, Latifa Tower, Sheikh Zayed Road, Dubai, email us at Contact@halatechnology.ae, or call +971 58 613 9007. We will prepare a customized proposal for your brand."
+    question: "Can you manage our content on an ongoing basis?",
+    answer: "Yes! We offer monthly content retainers including content calendar planning, topic research, writing, editing, graphic design, and CMS publishing."
+  },
+  {
+    number: "09",
+    question: "Will the content be 100% original?",
+    answer: "Yes, guaranteed. All content is 100% human-crafted, unique, and passed through rigorous plagiarism and quality control checks prior to client delivery."
+  },
+  {
+    number: "10",
+    question: "How do I get started with your content creation services?",
+    answer: "Getting started is easy! Simply reach out via our contact page, email us at Contact@halatechnology.ae, or call +971 58 613 9007 to discuss your content goals with our Dubai team."
   }
 ];
 
-export default function BrandingFAQ() {
+export default function ContentCreationFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -58,45 +68,40 @@ export default function BrandingFAQ() {
   return (
     <section className="w-full bg-white text-[#111111] py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-b border-[#e5e5e5]">
       <div className="max-w-[1280px] mx-auto">
-        
-        {/* Main Grid Layout: Left Sticky Header & Right Accordions */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column (Sticky Sidebar & Callout) */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
             <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
-              Got Questions? <br className="hidden sm:inline" />
-              We Have Answers.
+              Content Creation <br className="hidden sm:inline" />
+              FAQs &amp; Answers.
             </h2>
 
             <p className="font-poppins text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our digital strategies, search engine optimization, content execution, and measurable growth models.
+              Everything you need to know about our content strategy, copywriting, SEO optimization, and ongoing editorial management.
             </p>
 
-            {/* Human-crafted Help Box */}
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">
               <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
-                Need Custom Advice?
+                Editorial Strategy
               </span>
               <h3 className="font-poppins font-semibold text-lg text-[#111111] mb-2">
-                Have a specific question?
+                Need high-performing content?
               </h3>
               <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
-                Our Dubai strategy team is ready to analyze your business goals and provide tailored insights.
+                Our Dubai strategy team can craft tailored content calendars and SEO copywriting for your business.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-poppins font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
               >
-                <span>Ask Our Team</span>
+                <span>Get Started with Content</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
-          {/* Right Column (Accordion List) */}
           <div className="lg:col-span-7 flex flex-col gap-4 w-full">
-            {faqs.map((faq, index) => {
+            {contentCreationFaqs.map((faq, index) => {
               const isOpen = openIndex === index;
 
               return (
@@ -105,7 +110,7 @@ export default function BrandingFAQ() {
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
                     isOpen 
                       ? 'bg-[#111111] border-[#111111] text-white' 
-                      : 'bg-[#f9f9f9] hover:bg-[#f2f2f2] border-[#e5e5e5] text-[#111111]'
+                      : 'bg-[#f9f9f9] border-[#e5e5e5] text-[#111111]'
                   }`}
                   onClick={() => toggleFAQ(index)}
                 >
@@ -114,14 +119,12 @@ export default function BrandingFAQ() {
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      {/* Index Number Badge */}
                       <span className={`font-poppins text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
                         isOpen ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111] border border-[#e5e5e5]'
                       }`}>
                         {faq.number}
                       </span>
 
-                      {/* Question Text */}
                       <span className={`font-poppins text-base md:text-lg font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-[#111111]'
                       }`}>
@@ -129,7 +132,6 @@ export default function BrandingFAQ() {
                       </span>
                     </div>
 
-                    {/* Toggle Icon */}
                     <div className="shrink-0">
                       {isOpen ? (
                         <Minus className="w-5 h-5 text-white" />
@@ -159,7 +161,6 @@ export default function BrandingFAQ() {
           </div>
 
         </div>
-
       </div>
     </section>
   );

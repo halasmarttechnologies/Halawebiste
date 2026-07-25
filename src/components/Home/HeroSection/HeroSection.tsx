@@ -29,29 +29,25 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-20 flex flex-col items-center justify-center w-full flex-grow px-4 sm:px-6 -mt-16 md:-mt-24">
-        <h1 className="font-poppins text-[36px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.1] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
+        <h1 className="font-poppins text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.05] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
           <span className="text-white font-semibold">
-            <em className="eb-garamond  ">Scale</em>{' '}
-            your brand</span>{' '}
+            <em className="eb-garamond">Scale</em>{' '}
+            your brand.</span>{' '}
 
-          <span className="text-white font-semibold">dominate
+          <span className="text-white font-semibold block sm:inline mt-1 sm:mt-0">Dominate
             {' '}
-            <em className="eb-garamond font-semibold">the market</em>
+            <em className="eb-garamond font-semibold">the market.</em>
           </span>
         </h1>
 
-        <p className="text-[15px] sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px]">
-          The digital marketing agency that turns clicks into customers.
+        <p className="text-[13px] whitespace-nowrap sm:whitespace-normal sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px]">
+          Digital marketing agency that turns clicks into customers.
         </p>
 
         <button className={ctaBtn}>
           <Grid2X2 size={18} />
           Get a Free Consultation
         </button>
-
-        <p className="text-[13px] sm:text-sm text-white tracking-widest font-medium uppercase mt-2">
-          SEO • PPC • Social Media • Content Marketing
-        </p>
       </div>
 
       <WaveMarquee />

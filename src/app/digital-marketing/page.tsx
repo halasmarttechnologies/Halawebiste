@@ -8,8 +8,9 @@ import DigitalMarketingWhyChoose from '@/components/DigitalMarketing/DigitalMark
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
+const DigitalMarketingFAQ = dynamic(() => import('@/components/DigitalMarketing/DigitalMarketingFAQ'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
   title: 'Digital Marketing Company in Dubai | SEO, SMM & PPC Services | Hala Technologies',
@@ -42,7 +43,8 @@ export default function DigitalMarketingPage() {
         <DigitalMarketingServices />
         <DigitalMarketingWhyChoose />
         <CustomTestimonials />
-        <BrandingFAQ />
+        <DigitalMarketingFAQ />
+        <ContactCTA contained={true} />
         <BrandingBlogs />
       </main>
       <div className="bg-white w-full relative z-20">

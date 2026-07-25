@@ -81,20 +81,20 @@ export default function DigitalMarketingServices() {
                 return (
                   <div
                     key={service.id}
-                    className={`flex flex-col py-5 px-5 md:px-6 rounded-2xl transition-colors duration-300 cursor-pointer ${
-                      isActive ? 'bg-[#111111] text-white' : 'bg-white hover:bg-[#f9f9f9] text-[#111111] border border-[#e5e5e5]'
+                    className={`flex flex-col py-4 px-4 sm:py-5 sm:px-6 rounded-2xl transition-all duration-300 cursor-pointer shadow-sm ${
+                      isActive ? 'bg-[#111111] text-white border-transparent' : 'bg-white hover:bg-[#fafafa] text-[#111111] border border-[#e5e5e5]'
                     }`}
                     onClick={() => toggleService(service.id)}
                   >
                     {/* Accordion Trigger Header */}
-                    <div className="flex items-center justify-between w-full focus:outline-none">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-                          isActive ? 'bg-[#007FFF] text-white' : 'bg-[#f5f5f5] text-[#111111]'
+                    <div className="flex items-center justify-between w-full focus:outline-none gap-3">
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className={`w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-xl flex items-center justify-center transition-colors ${
+                          isActive ? 'bg-[#007FFF] text-white' : 'bg-[#f0f0f0] text-[#111111]'
                         }`}>
                           <IconComponent className="w-5 h-5" />
                         </div>
-                        <span className={`font-poppins text-base md:text-lg font-semibold ${
+                        <span className={`font-poppins text-[15px] sm:text-base md:text-lg font-semibold text-left leading-[1.2] ${
                           isActive ? 'text-white' : 'text-[#111111]'
                         }`}>
                           {service.title}
@@ -102,9 +102,9 @@ export default function DigitalMarketingServices() {
                       </div>
 
                       {isActive ? (
-                        <Minus className="w-5 h-5 text-white" />
+                        <Minus className="w-5 h-5 text-white shrink-0" />
                       ) : (
-                        <Plus className="w-5 h-5 text-[#111111]" />
+                        <Plus className="w-5 h-5 text-[#111111] shrink-0" />
                       )}
                     </div>
 
@@ -118,14 +118,14 @@ export default function DigitalMarketingServices() {
                           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="pt-5 pb-2 pl-14 flex flex-col gap-4">
-                            <p className="font-poppins text-sm md:text-base leading-relaxed text-[#CCCCCC] font-normal max-w-[750px]">
+                          <div className="pt-4 pb-2 pl-0 sm:pl-16 flex flex-col gap-4">
+                            <p className="font-poppins text-[13.5px] sm:text-sm md:text-base leading-relaxed text-[#CCCCCC] font-normal max-w-[750px]">
                               {service.description}
                             </p>
 
                             <Link 
                               href={service.href} 
-                              className="inline-flex items-center gap-2 font-poppins text-xs sm:text-sm font-semibold text-[#007FFF] hover:text-white transition-colors self-start pt-2"
+                              className="inline-flex items-center gap-2 font-poppins text-[13px] sm:text-sm font-semibold text-[#007FFF] hover:text-white transition-colors self-start pt-1"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <span>Explore More</span>

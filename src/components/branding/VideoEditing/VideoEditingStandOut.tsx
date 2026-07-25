@@ -7,8 +7,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { CheckCircle, Clapperboard, Settings2 } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const strengths = [
   'Cinematic Storytelling',
   'Precision Editing',
@@ -22,9 +20,15 @@ export default function VideoEditingStandOut() {
   const containerRef = useRef<HTMLElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const listItemsRef = useRef<HTMLUListElement>(null);
+  // Direct refs for floating elements — no global class selectors
+  const floatingUI1Ref = useRef<HTMLDivElement>(null);
+  const floatingUI2Ref = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Parallax effect for the main image
+    // Register plugin inside the hook — safe for SSR
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Parallax effect for the main image — smooth scrub interpolation
     gsap.to(imageRef.current, {
       yPercent: 15,
       ease: 'none',
@@ -32,34 +36,36 @@ export default function VideoEditingStandOut() {
         trigger: containerRef.current,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: true,
+        scrub: 0.5,
       },
     });
 
-    // Staggered reveal for list items
-    gsap.from('.strength-item', {
-      scrollTrigger: {
-        trigger: listItemsRef.current,
-        start: 'top 85%',
-        toggleActions: 'play none none reverse',
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out',
-    });
+    // Staggered reveal for list items — scoped to listItemsRef children
+    if (listItemsRef.current) {
+      gsap.from(listItemsRef.current.children, {
+        scrollTrigger: {
+          trigger: listItemsRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
+      });
+    }
 
-    // Floating UI animations
-    gsap.to('.floating-ui-1', {
+    // Floating UI animations — ref-targeted, no global selectors
+    gsap.to(floatingUI1Ref.current, {
       y: -15,
       duration: 2,
       yoyo: true,
       repeat: -1,
       ease: 'sine.inOut',
     });
-    
-    gsap.to('.floating-ui-2', {
+
+    gsap.to(floatingUI2Ref.current, {
       y: 15,
       duration: 2.5,
       yoyo: true,
@@ -70,13 +76,14 @@ export default function VideoEditingStandOut() {
 
   }, { scope: containerRef });
 
+
   return (
     <section ref={containerRef} className="w-full bg-[#fcfcfc] text-[#111] py-16 md:py-24 px-6 sm:px-8 md:px-12 lg:px-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
         
         {/* Left Side: Parallax Showcase */}
         <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-[4/4] rounded-3xl md:rounded-[2.5rem] bg-gray-100 mt-8 lg:mt-0 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] overflow-hidden border-[8px] border-white order-2 lg:order-1 group">
-          <div ref={imageRef} className="absolute -inset-12 w-[120%] h-[120%]">
+          <div ref={imageRef} className="absolute -inset-12 w-[120%] h-[120%] [will-change:transform]">
             <Image 
               src="/featureimage.jpg" 
               alt="Video Editing Workspace" 
@@ -88,7 +95,7 @@ export default function VideoEditingStandOut() {
           </div>
 
           {/* Floating UI Element 1: Rendering Badge */}
-          <div className="floating-ui-1 absolute top-6 sm:top-10 md:top-12 left-6 sm:left-10 md:left-12 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/40 flex items-center gap-3 z-10">
+          <div ref={floatingUI1Ref} className="absolute top-6 sm:top-10 md:top-12 left-6 sm:left-10 md:left-12 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-white/40 flex items-center gap-3 z-10 [will-change:transform]">
             <div className="w-10 h-10 rounded-full bg-[#007FFF]/10 flex items-center justify-center shrink-0">
               <Settings2 className="w-5 h-5 text-[#007FFF] animate-spin" style={{ animationDuration: '3s' }} />
             </div>
@@ -99,7 +106,7 @@ export default function VideoEditingStandOut() {
           </div>
 
           {/* Floating UI Element 2: Timeline Graphic */}
-          <div className="floating-ui-2 absolute bottom-6 sm:bottom-10 md:bottom-12 right-6 sm:right-10 md:right-12 bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-5 shadow-2xl border border-white/40 flex items-center gap-4 z-10">
+          <div ref={floatingUI2Ref} className="absolute bottom-6 sm:bottom-10 md:bottom-12 right-6 sm:right-10 md:right-12 bg-white/95 backdrop-blur-md rounded-2xl p-4 md:p-5 shadow-2xl border border-white/40 flex items-center gap-4 z-10 [will-change:transform]">
             <div className="w-12 h-12 rounded-full bg-[#111] flex items-center justify-center shadow-lg shrink-0">
               <Clapperboard className="w-5 h-5 text-white" />
             </div>

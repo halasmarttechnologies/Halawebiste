@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import {
   ChevronDown, Grid2X2, Search, MousePointerClick,
@@ -49,8 +49,8 @@ const SERVICES: ServiceItem[] = [
     href: '/digital-marketing',
     subItems: [
       { title: 'SEO', href: '/seo' },
-      { title: 'SMM', href: '#' },
-      { title: 'PPC', href: '#' },
+      { title: 'SMM', href: '/smm' },
+      { title: 'PPC', href: '/ppc' },
     ]
   },
   { 
@@ -68,7 +68,7 @@ const SERVICES: ServiceItem[] = [
 const SIMPLE_NAV_LINKS = [
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'About Us', href: '/about' },
-  { label: 'Contact', href: '#' }
+  { label: 'Contact', href: '/contact' }
 ];
 
 // ─── Sub-components ────────────────────────────────────
@@ -134,11 +134,11 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   // Close all menus helper
-  const closeAllMenus = () => {
+  const closeAllMenus = useCallback(() => {
     setMenuOpen(false);
     setServicesOpen(false);
     setResourcesOpen(false);
-  };
+  }, []);
 
   // Track scroll position for dynamic blur effect
   useEffect(() => {
@@ -168,14 +168,14 @@ export default function Navbar() {
   const navBtnClass = 'flex items-center justify-between md:justify-start gap-[3px] text-[13.5px] font-medium text-[#444] bg-transparent border-none cursor-pointer transition-[color,background] duration-150 whitespace-nowrap py-2.5 px-3 rounded-lg hover:text-[#111] hover:bg-[#f4f4f4] w-full md:w-auto text-left';
 
   // Shared helper for dropdown panels
-  const getDropdownClass = (isOpen: boolean, isMobile: boolean) => {
+  const getDropdownClass = useCallback((isOpen: boolean, isMobile: boolean) => {
     const base = 'flex-col gap-4';
     if (isMobile) {
       return `flex ${base} w-full pl-3 border-l-2 border-[#f0f0f0] overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[800px] opacity-100 mt-2' : 'max-h-0 opacity-0 !mt-0'}`;
     }
     const visibility = isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2 md:group-hover:opacity-100 md:group-hover:visible md:group-hover:translate-y-0';
     return `flex ${base} absolute top-[calc(100%+10px)] left-0 bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] w-[360px] p-6 z-[100] transition-all duration-300 ease-out before:absolute before:content-[""] before:w-[150%] before:-left-[25%] before:h-[40px] before:-top-[30px] ${visibility}`;
-  };
+  }, []);
 
   // Reusable NavLinks function so we can render it differently for mobile vs desktop
   const renderNavLinks = (isMobile = false) => (
@@ -227,7 +227,7 @@ export default function Navbar() {
         Notice there is NO background color on the nav itself to ensure perfect layering.
       */}
       <nav
-        className={`flex items-center justify-between py-3 px-4 sm:px-6 w-full max-w-[1080px] relative transition-all duration-500 ease-out rounded-full ${
+        className={`flex items-center justify-between py-3 px-4 sm:px-6 w-full max-w-[1080px] relative transition-all duration-500 ease-out rounded-2xl ${
           scrolled 
             ? 'border border-[#111111]/10 shadow-[0_8px_30px_rgba(0,0,0,0.08)]' 
             : 'border border-[#e5e5e5] shadow-sm'
@@ -238,7 +238,7 @@ export default function Navbar() {
           This dynamically applies the blur only on scroll WITHOUT causing Safari clipping bugs on the nav content!
         */}
         <div 
-          className={`absolute inset-0 rounded-full -z-10 pointer-events-none transition-all duration-500 ease-out ${
+          className={`absolute inset-0 rounded-2xl -z-10 pointer-events-none transition-all duration-500 ease-out ${
             scrolled ? 'bg-white/65 backdrop-blur-lg' : 'bg-white'
           }`} 
         />
