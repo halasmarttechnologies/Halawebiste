@@ -117,7 +117,7 @@ export default function BrandingHeroSection() {
       </section>
 
       {/* Intro Section */}
-      <section className="relative bg-[#111111] z-10 pt-10 pb-24 md:pt-16 md:pb-32 px-6 flex flex-col items-center">
+      <section className="relative bg-[#111111] z-20 rounded-t-[40px] md:rounded-t-[60px] -mt-8 md:-mt-10 pt-10 pb-24 md:pt-16 md:pb-32 px-6 flex flex-col items-center overflow-hidden">
         {/* Centered container for perfect alignment */}
         <div className="max-w-[900px] text-center relative z-30">
 

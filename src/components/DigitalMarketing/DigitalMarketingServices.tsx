@@ -1,0 +1,149 @@
+'use client';
+
+import { useState } from 'react';
+import {
+  Share2, Search, Target, Plus, Minus, ArrowRight, ArrowUpRight
+} from 'lucide-react';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const SERVICES = [
+  {
+    id: 'smm',
+    title: 'Social Media Marketing (SMM)',
+    icon: Share2,
+    description: 'We manage your brand across platforms like Facebook, Instagram, LinkedIn & TikTok creating engaging content and ad campaigns that connect with your audience.',
+    href: '/contact'
+  },
+  {
+    id: 'seo',
+    title: 'SEO (Search Engine Optimization)',
+    icon: Search,
+    description: 'We improve your search visibility through SEO by optimizing your site, content, and technical structure bringing long-term, organic traffic through better Google rankings.',
+    href: '/contact'
+  },
+  {
+    id: 'ppc',
+    title: 'Pay-Per-Click Advertising (PPC)',
+    icon: Target,
+    description: 'Need instant growth? Our Pay-Per-Click Advertising strategies on Google, Meta and YouTube bring you the right traffic and convert it into real customers.',
+    href: '/contact'
+  }
+];
+
+export default function DigitalMarketingServices() {
+  const [activeServiceId, setActiveServiceId] = useState<string | null>(SERVICES[0].id);
+
+  const toggleService = (id: string) => {
+    setActiveServiceId((prev) => (prev === id ? null : id));
+  };
+
+  return (
+    <section className="font-sans bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-24 relative overflow-hidden border-b border-[#e5e5e5]">
+      
+      <div className="max-w-[1200px] mx-auto relative z-10">
+
+        {/* Top Section Header */}
+        <div className="flex flex-col items-center justify-center text-center mb-16 md:mb-20">
+          <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-xs sm:text-sm font-poppins font-semibold mb-6">
+            Digital Marketing Services
+          </div>
+          <h2 className="font-poppins font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
+            Explore Our Full-Suite, <br className="hidden sm:block" />
+            <em className="eb-garamond font-normal italic pr-2">Digital Marketing Services</em>
+          </h2>
+          <p className="font-poppins text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
+            We focus on transparency, performance, and innovation helping businesses in Dubai and across the UAE strengthen their online presence and achieve sustainable success.
+          </p>
+        </div>
+
+        {/* Main Card with Interactive Accordion Services */}
+        <div className="w-full max-w-[1000px] mx-auto">
+          <div className="bg-white rounded-[24px] md:rounded-[32px] p-6 sm:p-10 md:p-12 border border-[#eeeeee]">
+            
+            {/* Header Row */}
+            <div className="flex items-center justify-between pb-6 border-b border-[#e5e5e5] mb-4">
+              <h3 className="font-poppins text-xl md:text-2xl font-semibold text-[#111111] tracking-tight">
+                Our Core Marketing Pillars
+              </h3>
+              <div className="w-9 h-9 rounded-full bg-[#007FFF] flex items-center justify-center">
+                <ArrowUpRight className="w-5 h-5 text-white" />
+              </div>
+            </div>
+
+            {/* Accordion List Items */}
+            <div className="flex flex-col gap-3">
+              {SERVICES.map((service, index) => {
+                const isActive = activeServiceId === service.id;
+                const isLast = index === SERVICES.length - 1;
+                const IconComponent = service.icon;
+
+                return (
+                  <div
+                    key={service.id}
+                    className={`flex flex-col py-5 px-5 md:px-6 rounded-2xl transition-colors duration-300 cursor-pointer ${
+                      isActive ? 'bg-[#111111] text-white' : 'bg-white hover:bg-[#f9f9f9] text-[#111111] border border-[#e5e5e5]'
+                    }`}
+                    onClick={() => toggleService(service.id)}
+                  >
+                    {/* Accordion Trigger Header */}
+                    <div className="flex items-center justify-between w-full focus:outline-none">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
+                          isActive ? 'bg-[#007FFF] text-white' : 'bg-[#f5f5f5] text-[#111111]'
+                        }`}>
+                          <IconComponent className="w-5 h-5" />
+                        </div>
+                        <span className={`font-poppins text-base md:text-lg font-semibold ${
+                          isActive ? 'text-white' : 'text-[#111111]'
+                        }`}>
+                          {service.title}
+                        </span>
+                      </div>
+
+                      {isActive ? (
+                        <Minus className="w-5 h-5 text-white" />
+                      ) : (
+                        <Plus className="w-5 h-5 text-[#111111]" />
+                      )}
+                    </div>
+
+                    {/* Accordion Body */}
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-5 pb-2 pl-14 flex flex-col gap-4">
+                            <p className="font-poppins text-sm md:text-base leading-relaxed text-[#CCCCCC] font-normal max-w-[750px]">
+                              {service.description}
+                            </p>
+
+                            <Link 
+                              href={service.href} 
+                              className="inline-flex items-center gap-2 font-poppins text-xs sm:text-sm font-semibold text-[#007FFF] hover:text-white transition-colors self-start pt-2"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <span>Explore More</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

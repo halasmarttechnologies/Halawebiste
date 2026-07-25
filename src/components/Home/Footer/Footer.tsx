@@ -9,7 +9,7 @@ const footerColumns = [
       { name: 'About Hala', href: '/about' },
       { name: 'Our Journey', href: '/#our-journey' },
       { name: 'Careers', href: '/careers' },
-      { name: 'Case Studies', href: '/#case-studies' },
+      { name: 'Case Studies', href: '/case-studies' },
       { name: 'Contact Us', href: '/#contact' },
     ]
   },

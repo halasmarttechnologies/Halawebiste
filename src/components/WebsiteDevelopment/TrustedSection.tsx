@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 export default function TrustedSection() {
   return (
-    <section className="relative w-full bg-white py-20 lg:py-32 px-6 overflow-hidden">
+    <section className="relative w-full bg-white py-20 lg:py-32 px-6 overflow-hidden rounded-t-[40px] md:rounded-t-[60px] z-20 -mt-8 md:-mt-10">
       <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         
         {/* Text Content */}

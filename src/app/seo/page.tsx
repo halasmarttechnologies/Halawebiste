@@ -1,0 +1,57 @@
+import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
+import Navbar from '@/components/Navbar/Navbar';
+import SEOHero from '@/components/SEO/SEOHero';
+import SEOIntro from '@/components/SEO/SEOIntro';
+import SEOPerformanceShowcase from '@/components/SEO/SEOPerformanceShowcase';
+import SEOServices from '@/components/SEO/SEOServices';
+import SEOWhyChoose from '@/components/SEO/SEOWhyChoose';
+import Footer from '@/components/Home/Footer';
+
+const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
+const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
+const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
+const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
+
+export const metadata: Metadata = {
+  title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
+  description:
+    'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+  openGraph: {
+    title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
+    description:
+      'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+    url: 'https://halatechnologies.com/seo',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
+    description:
+      'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+  },
+  alternates: {
+    canonical: 'https://halatechnologies.com/seo',
+  },
+};
+
+export default function SEOPage() {
+  return (
+    <div className="font-sans bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow w-full">
+        <SEOHero />
+        <SEOIntro />
+        <SEOPerformanceShowcase />
+        <SEOServices />
+        <SEOWhyChoose />
+        <CustomTestimonials />
+        <BrandingFAQ />
+        <BrandingBlogs />
+        <OutroMessage />
+      </main>
+      <div className="bg-white w-full relative z-20">
+        <Footer />
+      </div>
+    </div>
+  );
+}
