@@ -52,7 +52,7 @@ export default function CaseStudies() {
         
         {/* Heading Area */}
         <div className="text-center mb-12 md:mb-16 relative z-10 flex flex-col items-center">
-          <h2 className="font-poppins font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.05] tracking-tight text-[#111111]">
+          <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.05] tracking-tight text-[#111111]">
             Where great ideas<br />
             <span className="eb-garamond italic pr-2">became real results.</span>
           </h2>
@@ -80,7 +80,7 @@ export default function CaseStudies() {
                   <span className="text-base">{caseStudies[currentIndex].flag}</span>
                 </div>
 
-                <h3 className="font-poppins text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-bold text-[#111111] leading-[1.15] tracking-tight mb-6">
+                <h3 className="font-jakarta text-2xl sm:text-3xl md:text-[32px] lg:text-[36px] font-bold text-[#111111] leading-[1.15] tracking-tight mb-6">
                   {caseStudies[currentIndex].title}
                 </h3>
 

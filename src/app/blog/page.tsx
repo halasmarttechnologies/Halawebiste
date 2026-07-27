@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="font-sans bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-jakarta bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow w-full">
         <BlogClientWrapper />

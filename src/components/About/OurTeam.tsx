@@ -10,42 +10,42 @@ const teamMembers = [
     name: 'Taimoor Ali Warraich',
     role: 'Co-Founder',
     category: 'Management',
-    image: '/Team pics/Ceo.jpg',
+    image: '/team-pics/Ceo.jpg',
   },
   {
     id: 1,
     name: 'Saif Ali',
     role: 'UI/UX & Web Developer',
     category: 'Development',
-    image: '/Team pics/Ui Ux & Web devloepr.jpg',
+    image: '/team-pics/Ui Ux & Web devloepr.jpg',
   },
   {
     id: 2,
     name: 'Rimza Habib',
     role: 'SEO Manager',
     category: 'Marketing',
-    image: '/Team pics/Seo manager.jpg',
+    image: '/team-pics/Seo manager.jpg',
   },
   {
     id: 6,
     name: 'Hasnain Akbar',
     role: 'SEO Expert',
     category: 'Marketing',
-    image: '/Team pics/seo expert.jpg',
+    image: '/team-pics/seo expert.jpg',
   },
   {
     id: 3,
     name: 'Chaman shafique',
     role: 'Content Writer',
     category: 'Creative',
-    image: '/Team pics/Contetn writer.jpg',
+    image: '/team-pics/Contetn writer.jpg',
   },
   {
     id: 4,
     name: 'Abdur Rafay',
     role: 'Video Editor',
     category: 'Creative',
-    image: '/Team pics/videoeditor.jpg',
+    image: '/team-pics/videoeditor.jpg',
   },
 ];
 
@@ -64,11 +64,11 @@ export default function OurTeam() {
         
         {/* Header */}
         <div className="text-center mb-10 w-full max-w-3xl">
-          <h2 className="font-poppins text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium leading-[1.05] tracking-tight text-[#111111] mb-6">
+          <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium leading-[1.05] tracking-tight text-[#111111] mb-6">
             Meet the team that makes<br />
-            the <span className="eb-garamond italic font-normal text-[#111111]">magic</span> happen
+            the <span className="font-jakarta font-bold text-[#111111]">magic</span> happen
           </h2>
-          <p className="font-poppins text-[#666666] text-base md:text-lg font-medium px-4">
+          <p className="font-jakarta text-[#666666] text-base md:text-lg font-medium px-4">
             Meet our diverse team of world-class creators, developers, and problem solvers.
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function OurTeam() {
                 {/* Image */}
                 <div className="absolute inset-0 w-full h-full">
                   {member.image.includes('placeholder') ? (
-                    <div className="w-full h-full flex items-center justify-center text-[#999] font-poppins text-xs tracking-widest uppercase">
+                    <div className="w-full h-full flex items-center justify-center text-[#999] font-jakarta text-xs tracking-widest uppercase">
                       Image {member.id}
                     </div>
                   ) : (
@@ -125,10 +125,10 @@ export default function OurTeam() {
                 {/* Info Panel */}
                 <div className="absolute bottom-4 left-0 right-0 w-[85%] mx-auto">
                   <div className="bg-white/95 backdrop-blur-md rounded-[16px] py-3 px-4 flex flex-col items-center justify-center text-center shadow-sm border border-white/50">
-                    <h3 className="font-poppins font-bold text-[#111111] text-[14px] md:text-[15px] leading-tight mb-0.5">
+                    <h3 className="font-jakarta font-bold text-[#111111] text-[14px] md:text-[15px] leading-tight mb-0.5">
                       {member.name}
                     </h3>
-                    <p className="font-poppins text-[#666666] text-[11px] md:text-[12px] font-medium">
+                    <p className="font-jakarta text-[#666666] text-[11px] md:text-[12px] font-medium">
                       {member.role}
                     </p>
                   </div>

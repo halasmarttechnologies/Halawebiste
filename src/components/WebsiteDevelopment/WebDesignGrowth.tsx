@@ -51,7 +51,7 @@ export default function WebDesignGrowth() {
         </span>
 
         {/* Main Headline */}
-        <h2 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-[#111111] text-center tracking-tight leading-[1.12] mb-6 max-w-4xl">
+        <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-[#111111] text-center tracking-tight leading-[1.12] mb-6 max-w-4xl">
           How Our Web Designs UAE{' '}
           <span className="eb-garamond italic font-normal text-[#111111] inline-block">
             Power Business Growth
@@ -59,7 +59,7 @@ export default function WebDesignGrowth() {
         </h2>
 
         {/* Subtitle / Paragraph */}
-        <p className="text-center font-poppins text-base sm:text-lg text-[#666666] font-medium max-w-2xl leading-relaxed mb-14 sm:mb-16">
+        <p className="text-center font-jakarta text-base sm:text-lg text-[#666666] font-medium max-w-2xl leading-relaxed mb-14 sm:mb-16">
           Hala replaces slow websites and outdated templates with high-performing, bespoke digital platforms designed for rapid expansion.
         </p>
 
@@ -84,7 +84,7 @@ export default function WebDesignGrowth() {
                 </div>
 
                 {/* Card Title */}
-                <h3 className="font-poppins font-bold text-lg sm:text-xl text-[#111111] tracking-tight mb-2">
+                <h3 className="font-jakarta font-bold text-lg sm:text-xl text-[#111111] tracking-tight mb-2">
                   {point.title}
                 </h3>
 

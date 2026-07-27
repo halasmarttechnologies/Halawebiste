@@ -110,7 +110,7 @@ export default function WebsiteServices() {
   };
 
   return (
-    <section className="font-sans bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden">
+    <section className="font-jakarta bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden">
       
       <div className="max-w-[1200px] mx-auto relative z-10">
 
@@ -119,7 +119,7 @@ export default function WebsiteServices() {
           <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-sm">
             Web Design UAE
           </div>
-          <h2 className="font-poppins font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
+          <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
             Transforming Ideas Into <br className="hidden sm:block" />
             <span className="eb-garamond italic pr-2">Powerful Websites.</span>
           </h2>
@@ -139,7 +139,7 @@ export default function WebsiteServices() {
                 <div key={catIndex} className="flex flex-col h-full">
                   {/* Header Row */}
                   <div className="flex items-center justify-between pb-5 border-b border-[#e5e5e5] mb-2">
-                    <h3 className="font-sans text-[22px] md:text-[24px] font-medium text-[#111111] tracking-tight">
+                    <h3 className="font-jakarta text-[22px] md:text-[24px] font-medium text-[#111111] tracking-tight">
                       {category.title}
                     </h3>
                     <div className="flex items-center gap-2">

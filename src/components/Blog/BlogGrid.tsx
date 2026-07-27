@@ -95,10 +95,10 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
         
         {/* Results Info Bar */}
         <div className="flex items-center justify-between border-b border-[#e5e5e5] pb-4 mb-12">
-          <span className="font-poppins text-xs font-semibold text-[#888888] uppercase tracking-wider">
+          <span className="font-jakarta text-xs font-semibold text-[#888888] uppercase tracking-wider">
             Showing {filteredPosts.length} {filteredPosts.length === 1 ? 'Article' : 'Articles'}
           </span>
-          <span className="font-poppins text-xs font-semibold text-[#111111]">
+          <span className="font-jakarta text-xs font-semibold text-[#111111]">
             Topic: <span className="text-[#007FFF]">{activeCategory}</span>
           </span>
         </div>
@@ -120,7 +120,7 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
                     fill
                     className="object-cover"
                   />
-                  <span className="absolute top-4 left-4 bg-[#007FFF] text-white font-poppins text-xs font-semibold px-3 py-1 rounded-md">
+                  <span className="absolute top-4 left-4 bg-[#007FFF] text-white font-jakarta text-xs font-semibold px-3 py-1 rounded-md">
                     {post.category}
                   </span>
                 </div>
@@ -128,7 +128,7 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
                 {/* Body Text */}
                 <div className="p-6 md:p-8">
                   {/* Meta details */}
-                  <div className="flex items-center gap-4 text-xs font-poppins text-[#888888] mb-4">
+                  <div className="flex items-center gap-4 text-xs font-jakarta text-[#888888] mb-4">
                     <span className="flex items-center gap-1.5">
                       <User size={13} className="text-[#111111]" />
                       {post.author}
@@ -141,12 +141,12 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-poppins text-xl font-semibold text-[#111111] leading-snug mb-3">
+                  <h3 className="font-jakarta text-xl font-semibold text-[#111111] leading-snug mb-3">
                     {post.title}
                   </h3>
 
                   {/* Excerpt */}
-                  <p className="font-poppins text-sm text-[#555555] leading-relaxed line-clamp-3">
+                  <p className="font-jakarta text-sm text-[#555555] leading-relaxed line-clamp-3">
                     {post.excerpt}
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
               <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0 border-t border-[#f0f0f0] mt-4">
                 <Link
                   href={`/blog#${post.id}`}
-                  className="inline-flex items-center gap-2 font-poppins text-sm font-semibold text-[#111111] hover:text-[#007FFF] transition-colors pt-4"
+                  className="inline-flex items-center gap-2 font-jakarta text-sm font-semibold text-[#111111] hover:text-[#007FFF] transition-colors pt-4"
                 >
                   <span>Read Full Article</span>
                   <ArrowRight className="w-4 h-4" />
@@ -169,7 +169,7 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
         {/* Empty State */}
         {filteredPosts.length === 0 && (
           <div className="text-center py-24 border border-dashed border-[#e5e5e5] rounded-2xl">
-            <p className="font-poppins text-base text-[#666666]">
+            <p className="font-jakarta text-base text-[#666666]">
               No publications found in the "{activeCategory}" category.
             </p>
           </div>

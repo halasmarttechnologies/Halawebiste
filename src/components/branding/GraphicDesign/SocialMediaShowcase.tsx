@@ -9,10 +9,10 @@ export default function SocialMediaShowcase() {
       {/* Title Section - Sticky */}
       <div className="sticky top-[100px] md:top-[120px] z-0 w-full bg-white h-[40vh] md:h-[50vh] flex flex-col justify-center items-center">
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 text-center">
-          <h2 className="font-poppins text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 text-[#111]">
+          <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 text-[#111]">
             Visuals that <span className="eb-garamond italic text-[#007FFF]">speak.</span>
           </h2>
-          <p className="text-[#555] font-poppins text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-[#555] font-jakarta text-sm md:text-base max-w-2xl mx-auto">
             From striking brand identities to pixel-perfect UI designs, explore our premium graphic design showcase. Each piece is crafted to capture attention and elevate your brand.
           </p>
         </div>
@@ -36,7 +36,7 @@ export default function SocialMediaShowcase() {
         {/* 2. Below that add 2 images */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2">
           <div className="w-full aspect-[4/3] relative overflow-hidden group">
-            <Image src="/mainpic.png" alt="Two Column 1" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/hero-images/HomeHeroimage.png" alt="Two Column 1" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="w-full aspect-[4/3] relative overflow-hidden group">
             <Image src="/brand3.png" alt="Two Column 2" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -56,7 +56,7 @@ export default function SocialMediaShowcase() {
         {/* 5. Below that 4 images, side by side. */}
         <div className="w-full grid grid-cols-2 md:grid-cols-4">
           <div className="w-full aspect-[3/4] relative overflow-hidden group">
-            <Image src="/mainpic.png" alt="Four Grid 1" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <Image src="/hero-images/HomeHeroimage.png" alt="Four Grid 1" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="w-full aspect-[3/4] relative overflow-hidden group">
             <Image src="/brand3.png" alt="Four Grid 2" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />

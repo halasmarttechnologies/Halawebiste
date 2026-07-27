@@ -51,12 +51,12 @@ export default function DigitalMarketingWhyChoose() {
       <div className="max-w-[1280px] mx-auto flex flex-col items-center">
         
         {/* Top Eyebrow Badge */}
-        <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-widest block mb-4">
+        <span className="font-jakarta text-xs font-semibold text-[#007FFF] uppercase tracking-widest block mb-4">
           THE HALA DIFFERENCE
         </span>
 
         {/* Main Headline */}
-        <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] text-center tracking-tight leading-[1.12] mb-14 sm:mb-16 max-w-4xl">
+        <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] text-center tracking-tight leading-[1.12] mb-14 sm:mb-16 max-w-4xl">
           Why Choosing Hala Technology for{' '}
           <span className="eb-garamond italic font-normal text-[#111111] inline-block">
             Digital Marketing?
@@ -92,12 +92,12 @@ export default function DigitalMarketingWhyChoose() {
                 </div>
 
                 {/* Card Title */}
-                <h3 className="font-poppins font-semibold text-lg sm:text-xl text-[#111111] tracking-tight mb-2">
+                <h3 className="font-jakarta font-semibold text-lg sm:text-xl text-[#111111] tracking-tight mb-2">
                   {pillar.title}
                 </h3>
 
                 {/* Card Description */}
-                <p className="font-poppins text-xs sm:text-sm text-[#666666] font-normal leading-relaxed">
+                <p className="font-jakarta text-xs sm:text-sm text-[#666666] font-normal leading-relaxed">
                   {pillar.description}
                 </p>
 

@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
-import SEOHero from '@/components/SEO/SEOHero';
-import SEOIntro from '@/components/SEO/SEOIntro';
-import SEOPerformanceShowcase from '@/components/SEO/SEOPerformanceShowcase';
-import SEOServices from '@/components/SEO/SEOServices';
-import SEOWhyChoose from '@/components/SEO/SEOWhyChoose';
+import SEOHero from '@/components/DigitalMarketing/SEO/SEOHero';
+import SEOIntro from '@/components/DigitalMarketing/SEO/SEOIntro';
+import SEOPerformanceShowcase from '@/components/DigitalMarketing/SEO/SEOPerformanceShowcase';
+import SEOServices from '@/components/DigitalMarketing/SEO/SEOServices';
+import SEOWhyChoose from '@/components/DigitalMarketing/SEO/SEOWhyChoose';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const SEOFAQ = dynamic(() => import('@/components/SEO/SEOFAQ'));
+const SEOFAQ = dynamic(() => import('@/components/DigitalMarketing/SEO/SEOFAQ'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function SEOPage() {
   return (
-    <div className="font-sans bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-jakarta bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow w-full">
         <SEOHero />

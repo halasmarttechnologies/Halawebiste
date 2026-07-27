@@ -26,20 +26,20 @@ export default function BrandingExpertise() {
         <div
           className="w-full lg:w-1/2 flex flex-col justify-center"
         >
-          <h2 className="font-poppins text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.15] tracking-tight mb-8">
+          <h2 className="font-jakarta text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.15] tracking-tight mb-8">
             Hala – The Trusted Branding Expertise for <span className="eb-garamond italic pr-2 font-normal">Business Growth</span>
           </h2>
 
-          <p className="font-poppins text-lg md:text-xl text-[#111111]/70 leading-relaxed font-medium mb-10 max-w-[600px]">
+          <p className="font-jakarta text-lg md:text-xl text-[#111111]/70 leading-relaxed font-medium mb-10 max-w-[600px]">
             We dive deep into your mission to create branding that speaks with purpose. Beyond standing out, we help you truly connect, making your identity unforgettable. By keeping your brand voice consistent across every platform—from logos to websites and packaging—we build enduring trust through clear, cohesive, and thoughtful design.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <button className="flex items-center justify-center gap-3 bg-[#111111] text-white hover:bg-black px-8 py-4 rounded-full font-poppins font-semibold text-base">
+            <button className="flex items-center justify-center gap-3 bg-[#111111] text-white hover:bg-black px-8 py-4 rounded-full font-jakarta font-semibold text-base">
               Start Your Journey
               <ArrowRight size={18} />
             </button>
-            <button className="flex items-center justify-center gap-3 bg-transparent hover:bg-black/5 text-[#111111] px-8 py-4 rounded-full font-poppins font-semibold text-base border border-[#111111]/20">
+            <button className="flex items-center justify-center gap-3 bg-transparent hover:bg-black/5 text-[#111111] px-8 py-4 rounded-full font-jakarta font-semibold text-base border border-[#111111]/20">
               View Our Work
             </button>
           </div>

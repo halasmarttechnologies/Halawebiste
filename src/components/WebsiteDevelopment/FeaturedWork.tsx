@@ -8,14 +8,14 @@ const projects = [
     id: 1,
     title: 'Annex Website',
     category: 'UI/UX & Development',
-    image: '/webpage.jpg',
+    image: '/hero-images/webpage.jpg',
     badge: 'NEW'
   },
   {
     id: 2,
     title: 'IP16 Pro Showcase',
     category: '3D Visuals & Mobile Design',
-    image: '/mainpic.png',
+    image: '/hero-images/HomeHeroimage.png',
     badge: 'FEATURED'
   },
   {
@@ -93,7 +93,7 @@ export default function FeaturedWork() {
               <span className="w-2 h-2 rounded-full bg-[#007FFF] animate-pulse"></span>
               Work
             </div>
-            <h2 className="font-poppins font-bold text-4xl sm:text-5xl md:text-6xl text-[#111111] tracking-tight leading-tight">
+            <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl text-[#111111] tracking-tight leading-tight">
               Featured Work
             </h2>
           </div>
@@ -130,7 +130,7 @@ export default function FeaturedWork() {
               {/* Floating Bottom Card / Pill Overlay */}
               <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-lg border border-white/60 transition-transform duration-500 group-hover:-translate-y-1">
                 <div className="flex flex-col pr-2">
-                  <h3 className="font-poppins font-bold text-base sm:text-lg md:text-xl text-[#111111] tracking-tight">
+                  <h3 className="font-jakarta font-bold text-base sm:text-lg md:text-xl text-[#111111] tracking-tight">
                     {project.title}
                   </h3>
                   <p className="text-xs sm:text-sm text-[#666666] font-medium mt-0.5">
@@ -148,7 +148,7 @@ export default function FeaturedWork() {
 
         {/* Bottom Logo Bar: Worked With */}
         <div className="mt-16 sm:mt-20 pt-8 border-t border-[#E5E5E5] flex flex-col md:flex-row items-center justify-between gap-6">
-          <span className="font-poppins font-bold text-base sm:text-lg text-[#111111] whitespace-nowrap">
+          <span className="font-jakarta font-bold text-base sm:text-lg text-[#111111] whitespace-nowrap">
             Worked With:
           </span>
 
@@ -156,7 +156,7 @@ export default function FeaturedWork() {
             {clientLogos.map((client, index) => (
               <div key={index} className="flex items-center gap-2.5 group cursor-pointer">
                 {client.icon}
-                <span className="font-poppins font-bold text-base sm:text-lg text-[#333333] group-hover:text-[#007FFF] transition-colors tracking-tight">
+                <span className="font-jakarta font-bold text-base sm:text-lg text-[#333333] group-hover:text-[#007FFF] transition-colors tracking-tight">
                   {client.name}
                 </span>
               </div>

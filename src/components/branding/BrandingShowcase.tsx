@@ -10,10 +10,10 @@ export default function BrandingShowcase() {
         <div 
           className="text-center mb-16 md:mb-20"
         >
-          <h2 className="font-poppins text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
+          <h2 className="font-jakarta text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
             Branding Shows Class
           </h2>
-          <p className="font-poppins text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="font-jakarta text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
             Discover the artistry behind our premium brand identities.
           </p>
         </div>

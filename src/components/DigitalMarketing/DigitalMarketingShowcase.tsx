@@ -18,7 +18,7 @@ export default function DigitalMarketingShowcase() {
       badge: 'Proof of Growth 02',
       title: 'High-ROI Campaign Analytics',
       subtitle: 'Targeted ad spend performance and conversion rate optimizations delivering measurable growth.',
-      image: '/mainpic.png', // Placeholder image path - can be replaced easily
+      image: '/hero-images/HomeHeroimage.png', // Placeholder image path - can be replaced easily
       alt: 'Marketing Result Screenshot 2'
     }
   ];
@@ -31,16 +31,16 @@ export default function DigitalMarketingShowcase() {
         <div className="flex flex-col items-center justify-center text-center mb-12 md:mb-16">
           <div className="flex items-center gap-2 bg-[#007FFF]/10 border border-[#007FFF]/20 px-4 py-1.5 rounded-full mb-4">
             <TrendingUp className="w-4 h-4 text-[#007FFF]" />
-            <span className="font-poppins text-xs md:text-sm font-semibold text-[#007FFF] uppercase tracking-wider">
+            <span className="font-jakarta text-xs md:text-sm font-semibold text-[#007FFF] uppercase tracking-wider">
               Proof of Performance
             </span>
           </div>
 
-          <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] leading-tight mb-4 max-w-4xl">
+          <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] leading-tight mb-4 max-w-4xl">
             Real Marketing Results &amp; <em className="eb-garamond font-normal italic">Proven Numbers</em>
           </h2>
 
-          <p className="font-poppins text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
             A transparent view of our data-backed marketing campaigns and growth metrics driving tangible ROI for businesses across Dubai &amp; the UAE.
           </p>
         </div>
@@ -54,20 +54,20 @@ export default function DigitalMarketingShowcase() {
             >
               {/* Card Top Information */}
               <div className="flex items-center justify-between mb-4">
-                <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider bg-[#007FFF]/10 px-3 py-1 rounded-md">
+                <span className="font-jakarta text-xs font-semibold text-[#007FFF] uppercase tracking-wider bg-[#007FFF]/10 px-3 py-1 rounded-md">
                   {item.badge}
                 </span>
-                <span className="font-poppins text-xs text-[#888888] font-medium flex items-center gap-1.5">
+                <span className="font-jakarta text-xs text-[#888888] font-medium flex items-center gap-1.5">
                   <BarChart3 className="w-3.5 h-3.5 text-[#111111]" />
                   Verified Analytics
                 </span>
               </div>
 
               {/* Card Title & Description */}
-              <h3 className="font-poppins text-xl md:text-2xl font-semibold text-[#111111] mb-2">
+              <h3 className="font-jakarta text-xl md:text-2xl font-semibold text-[#111111] mb-2">
                 {item.title}
               </h3>
-              <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
                 {item.subtitle}
               </p>
 
@@ -81,7 +81,7 @@ export default function DigitalMarketingShowcase() {
                 />
                 
                 {/* Subtle Overlay Badge indicating editable placeholder */}
-                <div className="absolute bottom-4 right-4 bg-[#111111]/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-poppins font-medium border border-white/20">
+                <div className="absolute bottom-4 right-4 bg-[#111111]/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-jakarta font-medium border border-white/20">
                   Screenshot Placeholder
                 </div>
               </div>

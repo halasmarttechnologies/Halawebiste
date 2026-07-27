@@ -16,18 +16,18 @@ export default function BlogHero({ categories, activeCategory, onSelectCategory 
         {/* Editorial Top Tag */}
         <div className="flex items-center gap-3 mb-6">
           <ArrowRight className="w-3.5 h-3.5 text-[#111111]" />
-          <span className="font-poppins text-xs md:text-sm text-[#666666] font-medium tracking-wide">
+          <span className="font-jakarta text-xs md:text-sm text-[#666666] font-medium tracking-wide">
             Hala Smart Technologies • Insights &amp; Articles
           </span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="font-poppins text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1000px]">
+        <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1000px]">
           Marketing <em className="eb-garamond font-normal italic">Insights</em> &amp; Growth Strategies
         </h1>
 
         {/* Overview */}
-        <p className="font-poppins text-lg sm:text-xl md:text-2xl text-[#555555] leading-relaxed font-normal max-w-[850px] mb-12">
+        <p className="font-jakarta text-lg sm:text-xl md:text-2xl text-[#555555] leading-relaxed font-normal max-w-[850px] mb-12">
           Explore expert publications on AI marketing, digital strategies, SEO optimization, social media expansion, and high-impact visual editing tailored for modern business growth.
         </p>
 
@@ -40,7 +40,7 @@ export default function BlogHero({ categories, activeCategory, onSelectCategory 
                 <button
                   key={cat}
                   onClick={() => onSelectCategory(cat)}
-                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-poppins text-xs md:text-sm font-semibold transition-colors cursor-pointer border ${
+                  className={`whitespace-nowrap px-4 py-2 rounded-lg font-jakarta text-xs md:text-sm font-semibold transition-colors cursor-pointer border ${
                     isActive
                       ? 'bg-[#007FFF] text-white border-[#007FFF]'
                       : 'bg-white text-[#555555] border-[#e5e5e5] hover:border-[#cccccc] hover:text-[#111111]'
@@ -52,7 +52,7 @@ export default function BlogHero({ categories, activeCategory, onSelectCategory 
             })}
           </div>
 
-          <span className="hidden lg:inline-block font-poppins text-xs text-[#888888] font-semibold uppercase tracking-wider whitespace-nowrap">
+          <span className="hidden lg:inline-block font-jakarta text-xs text-[#888888] font-semibold uppercase tracking-wider whitespace-nowrap">
             Filter by Topic
           </span>
         </div>

@@ -56,17 +56,20 @@ const SERVICES: ServiceItem[] = [
   { 
     Icon: Bot, 
     title: 'AI Agent', 
-    desc: 'Automate tasks intelligently' 
+    desc: 'Automate tasks intelligently',
+    href: '/ai-agent'
   },
   { 
     Icon: MessageCircle, 
     title: 'WhatsApp Automation', 
-    desc: 'Seamless customer communication' 
+    desc: 'Seamless customer communication',
+    href: '/whatsapp-automation'
   },
 ];
 
 const SIMPLE_NAV_LINKS = [
   { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Careers', href: '/careers' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' }
 ];
@@ -245,8 +248,8 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5 z-10 no-underline transition-opacity hover:opacity-80">
-          <Image src="/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority />
-          <span className="font-poppins text-[15px] font-bold tracking-[-0.3px] text-[#111] whitespace-nowrap">Hala Technology</span>
+          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority />
+          <span className="font-jakarta text-[15px] font-bold tracking-[-0.3px] text-[#111] whitespace-nowrap">Hala Technology</span>
         </Link>
 
         {/* Desktop Nav (Hidden on Mobile) */}

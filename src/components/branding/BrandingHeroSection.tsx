@@ -44,7 +44,7 @@ export default function BrandingHeroSection() {
                   fill="none"
                   stroke="transparent"
                 />
-                <text className="font-poppins text-[13px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
+                <text className="font-jakarta text-[13px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
                   <textPath href="#wavyTextPathMobile" startOffset="0%">
                     <animate
                       attributeName="startOffset"
@@ -74,7 +74,7 @@ export default function BrandingHeroSection() {
                   fill="none"
                   stroke="transparent"
                 />
-                <text className="font-poppins text-[11px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
+                <text className="font-jakarta text-[11px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
                   <textPath href="#wavyTextPathDesktop" startOffset="0%">
                     <animate
                       attributeName="startOffset"
@@ -93,18 +93,18 @@ export default function BrandingHeroSection() {
 
         {/* Hero Content */}
         <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 -mt-20 sm:-mt-24 md:-mt-24">
-          <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-semibold leading-[1.06] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
+          <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold leading-[1.06] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
             <span className="block md:inline">Branding</span>{' '}
             <span className="block md:inline">that makes</span>{' '}
             <span className="block md:inline">you stand</span>{' '}
             <span className="eb-garamond font-normal italic text-white block md:inline-block">out.</span>
           </h1>
 
-          <p className="font-poppins text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-medium text-white/90 leading-relaxed px-2">
+          <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">
             Build a memorable brand with custom logos,<br className="hidden sm:block" /> brand identity, and strategy that helps you grow.
           </p>
 
-          <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-poppins font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
+          <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
             <Grid2X2 size={18} />
             Let's Talk Branding
           </button>
@@ -116,15 +116,15 @@ export default function BrandingHeroSection() {
         {/* Centered container for perfect alignment */}
         <div className="max-w-[900px] text-center relative z-30">
 
-          <p className="font-poppins text-xl md:text-2xl lg:text-3xl leading-[1.6] md:leading-[1.7] mb-10 md:mb-14 text-[#E8E6E1]">
+          <p className="font-jakarta text-xl md:text-2xl lg:text-3xl leading-[1.6] md:leading-[1.7] mb-10 md:mb-14 text-[#E8E6E1]">
             At Hala Technologies, we're rethinking the fundamental layer of branding: how your business connects with its audience. We believe a brand should be the most natural, powerful way to communicate your vision — and we're building the identities to make that a reality.
           </p>
 
-          <p className="font-poppins text-lg md:text-xl lg:text-2xl leading-[1.6] mb-12 md:mb-16 text-[#E8E6E1]/80">
+          <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.6] mb-12 md:mb-16 text-[#E8E6E1]/80">
             Our branding strategies are already helping businesses ditch generic looks and express themselves faster, clearer, and more effortlessly. But we're just getting started.
           </p>
 
-          <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-poppins font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
+          <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
             Learn about our Process
           </button>
 

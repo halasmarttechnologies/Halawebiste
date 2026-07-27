@@ -12,9 +12,9 @@ const showcaseProjects = [
     category: 'Enterprise B2B & Web Architecture',
     description: 'A high-performance digital ecosystem built with Next.js, handling high concurrency with sub-second page loads.',
     url: 'https://apex.halatechnologies.com',
-    desktopImg: '/webpage.jpg',
+    desktopImg: '/hero-images/webpage.jpg',
     tabletImg: '/web.jpg',
-    mobileImg: '/mainpic.png',
+    mobileImg: '/hero-images/HomeHeroimage.png',
     metrics: [
       { label: 'Speed Score', val: '99/100' },
       { label: 'Conversion Boost', val: '+240%' },
@@ -44,7 +44,7 @@ const showcaseProjects = [
     url: 'https://nexus.halatechnologies.com',
     desktopImg: '/seo.jpg',
     tabletImg: '/MS.jpg',
-    mobileImg: '/Dell.jpg',
+    mobileImg: '/hero-images/Dell.jpg',
     metrics: [
       { label: 'Offline Ready', val: '100%' },
       { label: 'App Load Time', val: '0.4s' },
@@ -103,14 +103,14 @@ export default function WebDesignShowcase() {
             WEB DESIGN SHOWCASE
           </div>
           
-          <h2 className="font-poppins font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.1] mb-5">
+          <h2 className="font-jakarta font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.1] mb-5">
             A Glimpse of{' '}
             <span className="eb-garamond italic font-normal text-white inline-block">
               Our Work
             </span>
           </h2>
 
-          <p className="font-poppins text-base sm:text-lg text-white/70 font-medium leading-relaxed max-w-2xl mx-auto">
+          <p className="font-jakarta text-base sm:text-lg text-white/70 font-medium leading-relaxed max-w-2xl mx-auto">
             Interactive, high-converting digital platforms engineered with modern frameworks, pixel-perfect precision, and responsive performance.
           </p>
         </div>
@@ -179,7 +179,7 @@ export default function WebDesignShowcase() {
                   </span>
                 </div>
 
-                <h3 className="font-poppins font-bold text-xl sm:text-4xl text-white mb-2 sm:mb-3 tracking-tight">
+                <h3 className="font-jakarta font-bold text-xl sm:text-4xl text-white mb-2 sm:mb-3 tracking-tight">
                   {currentProject.title}
                 </h3>
 
@@ -187,7 +187,7 @@ export default function WebDesignShowcase() {
                   {currentProject.category}
                 </p>
 
-                <p className="font-poppins text-xs sm:text-base text-white/80 leading-relaxed mb-5 sm:mb-6 font-medium">
+                <p className="font-jakarta text-xs sm:text-base text-white/80 leading-relaxed mb-5 sm:mb-6 font-medium">
                   {currentProject.description}
                 </p>
               </div>

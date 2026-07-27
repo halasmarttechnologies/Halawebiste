@@ -19,7 +19,7 @@ export default function WaveMarquee() {
             fill="none"
             stroke="transparent"
           />
-          <text className="font-poppins text-[13px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
+          <text className="font-jakarta text-[13px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
             <textPath href="#wavyTextPathMobileHome" startOffset="0%">
               <animate
                 attributeName="startOffset"
@@ -49,7 +49,7 @@ export default function WaveMarquee() {
             fill="none"
             stroke="transparent"
           />
-          <text className="font-poppins text-[11px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
+          <text className="font-jakarta text-[11px] font-semibold tracking-[0.2em] uppercase fill-white opacity-40">
             <textPath href="#wavyTextPathDesktopHome" startOffset="0%">
               <animate
                 attributeName="startOffset"

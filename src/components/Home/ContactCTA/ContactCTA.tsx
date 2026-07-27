@@ -47,12 +47,12 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
           
           {/* Real Hala Logo */}
           <div className="flex items-center gap-2 mb-6 sm:mb-10">
-            <Image src="/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert" />
+            <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert" />
           </div>
 
           {/* Heading */}
           <div className="max-w-[500px] z-10 relative">
-            <h1 className="font-sans font-semibold text-3xl sm:text-5xl md:text-[60px] leading-[1.05] tracking-tight mb-2 text-white">
+            <h1 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-[60px] leading-[1.05] tracking-tight mb-2 text-white">
               See if Hala is<br />
               the right fit for you
             </h1>
@@ -109,7 +109,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
             <div className="flex flex-col animate-in fade-in slide-in-from-left-4 duration-300 h-full">
               {/* Calendar Header */}
               <div className="flex items-center justify-between mb-6">
-                <h3 className="font-sans text-[18px] font-semibold text-white">
+                <h3 className="font-jakarta text-[18px] font-semibold text-white">
                   July <span className="text-white">2026</span>
                 </h3>
                 <div className="flex items-center gap-4 text-white">

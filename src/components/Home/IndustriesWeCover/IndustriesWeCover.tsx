@@ -43,7 +43,7 @@ export default function IndustriesWeCover() {
                   className="flex items-center gap-3 px-8 md:px-12 text-[#111111]/80 hover:text-[#111111] transition-colors cursor-default"
                 >
                   <Icon className="w-6 h-6 md:w-7 md:h-7 stroke-[1.5]" />
-                  <span className="font-poppins text-lg md:text-xl font-medium tracking-tight">
+                  <span className="font-jakarta text-lg md:text-xl font-medium tracking-tight">
                     {industry.name}
                   </span>
                 </div>
@@ -61,7 +61,7 @@ export default function IndustriesWeCover() {
                   className="flex items-center gap-3 px-8 md:px-12 text-[#111111]/80 hover:text-[#111111] transition-colors cursor-default"
                 >
                   <Icon className="w-6 h-6 md:w-7 md:h-7 stroke-[1.5]" />
-                  <span className="font-poppins text-lg md:text-xl font-medium tracking-tight">
+                  <span className="font-jakarta text-lg md:text-xl font-medium tracking-tight">
                     {industry.name}
                   </span>
                 </div>

@@ -73,7 +73,7 @@ export default function Testimonials() {
       {/* Header Container */}
       <div className="flex flex-col items-center text-center max-w-4xl mx-auto px-4 sm:px-6 mb-8 md:mb-16">
         {/* Heading */}
-        <h2 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-[#111111] leading-[1.15] tracking-tight">
+        <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-[#111111] leading-[1.15] tracking-tight">
           Words of praise from others <br className="hidden md:block" />
           about our presence.
         </h2>
@@ -134,7 +134,7 @@ function TestimonialCard({ quote, name, title, image }: { quote: string, name: s
       </div>
 
       {/* Quote Text */}
-      <p className="font-poppins text-[13.5px] sm:text-[14.5px] md:text-[18px] text-[#333333] leading-[1.5] md:leading-[1.6] font-medium mb-6 md:mb-12 flex-grow">
+      <p className="font-jakarta text-[13.5px] sm:text-[14.5px] md:text-[18px] text-[#333333] leading-[1.5] md:leading-[1.6] font-medium mb-6 md:mb-12 flex-grow">
         {quote}
       </p>
 
@@ -144,10 +144,10 @@ function TestimonialCard({ quote, name, title, image }: { quote: string, name: s
           <img src={image} alt={name} className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col">
-          <h4 className="font-poppins font-bold text-[#111111] text-[13.5px] md:text-[16px]">
+          <h4 className="font-jakarta font-bold text-[#111111] text-[13.5px] md:text-[16px]">
             {name}
           </h4>
-          <span className="font-poppins text-[11.5px] md:text-[14px] text-[#777777] font-medium mt-0.5">
+          <span className="font-jakarta text-[11.5px] md:text-[14px] text-[#777777] font-medium mt-0.5">
             {title}
           </span>
         </div>

@@ -7,23 +7,23 @@ import { ArrowRight } from 'lucide-react';
 export default function DigitalMarketingIntro() {
   return (
     <div id="intro" className="w-full">
-      {/* Dark Intro Section with Rounded Top Corners */}
-      <section className="relative bg-[#111111] z-20 rounded-t-[40px] md:rounded-t-[60px] -mt-8 md:-mt-10 pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center border-b border-[#222222] overflow-hidden">
+      {/* Dark Intro Section */}
+      <section className="relative bg-[#111111] z-20 pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 lg:px-8 flex flex-col items-center border-b border-[#222222] overflow-hidden">
         <div className="max-w-[900px] text-center relative z-20">
           
-          <span className="font-poppins text-xs md:text-sm font-semibold text-[#007FFF] uppercase tracking-widest block mb-4">
+          <span className="font-jakarta text-xs md:text-sm font-semibold text-[#007FFF] uppercase tracking-widest block mb-4">
             The Digital Shift
           </span>
 
-          <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-8">
+          <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-8">
             Being Online Isn’t Enough Anymore. <em className="eb-garamond font-normal italic">To Grow, You Must Stand Out.</em>
           </h2>
 
-          <p className="font-poppins text-base sm:text-lg md:text-xl leading-[1.7] mb-8 text-[#E8E6E1] font-normal">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] mb-8 text-[#E8E6E1] font-normal">
             Hala Technology is a results-driven digital marketing company in Dubai specializing in SEO, social media marketing, PPC, and web design. We help businesses boost online visibility, attract quality leads, and increase sales through data-driven strategies.
           </p>
 
-          <p className="font-poppins text-base sm:text-lg md:text-xl leading-[1.7] text-[#CCCCCC] font-normal">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] text-[#CCCCCC] font-normal">
             With expert marketers and proven results, Hala Technology delivers customized digital solutions to help your brand grow and succeed in the UAE market.
           </p>
 
@@ -36,21 +36,21 @@ export default function DigitalMarketingIntro() {
           
           {/* Text Content Left */}
           <div className="flex flex-col items-start text-left">
-            <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-widest mb-3">
+            <span className="font-jakarta text-xs font-bold text-[#007FFF] uppercase tracking-widest mb-3">
               Core Overview
             </span>
 
-            <h2 className="font-poppins text-3xl sm:text-4xl md:text-5xl font-semibold text-[#111111] leading-tight mb-6">
+            <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold text-[#111111] leading-tight mb-6">
               What is Digital Marketing and <em className="eb-garamond font-normal italic">Why It Matters</em>
             </h2>
 
-            <p className="font-poppins text-base md:text-lg text-[#555555] leading-relaxed mb-8 font-normal">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8 font-normal">
               Digital marketing helps your business connect with people online. It makes your brand more visible, builds trust with customers, and creates new opportunities for growth. At Hala Smart Technologies, we combine strategy, creativity and analytics to design campaigns that deliver real results. Whether your goal is more traffic, higher sales or stronger brand awareness, our full-service solutions create measurable growth for your business.
             </p>
 
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2.5 bg-[#007FFF] hover:bg-[#0066CC] transition-colors duration-300 text-white font-poppins font-semibold text-sm md:text-base px-8 py-3.5 rounded-xl"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#007FFF] hover:bg-[#0066CC] transition-colors duration-300 text-white font-jakarta font-semibold text-sm md:text-base px-8 py-3.5 rounded-xl"
             >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4" />

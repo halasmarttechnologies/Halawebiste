@@ -128,17 +128,17 @@ export default function VideoEditingStandOut() {
         <div className="flex flex-col z-10 order-1 lg:order-2">
           <div className="inline-flex items-center gap-3 mb-6 md:mb-8">
             <div className="w-10 h-[2px] bg-[#007FFF]"></div>
-            <span className="font-poppins text-[13px] md:text-sm font-semibold tracking-[0.2em] uppercase text-[#007FFF]">
+            <span className="font-jakarta text-[13px] md:text-sm font-semibold tracking-[0.2em] uppercase text-[#007FFF]">
               The Hala Difference
             </span>
           </div>
 
-          <h2 className="font-poppins text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-[#111] mb-8">
+          <h2 className="font-jakarta text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-[#111] mb-8">
             Why Our Video Editing Services <br className="hidden xl:block" />
             <em className="eb-garamond italic text-[#007FFF] font-medium pr-2">Stand Out?</em>
           </h2>
 
-          <p className="font-poppins text-base md:text-lg lg:text-[19px] text-[#555] leading-[1.8] font-medium mb-10 md:mb-12 max-w-[600px]">
+          <p className="font-jakarta text-base md:text-lg lg:text-[19px] text-[#555] leading-[1.8] font-medium mb-10 md:mb-12 max-w-[600px]">
             At Hala Smart Technologies, our video editing services in Dubai go beyond basic cuts and transitions. We craft stories that connect with your audience. By blending creativity, precision, and the latest editing tools, we deliver videos that are visually stunning, emotionally engaging, and perfectly aligned with your brand identity.
             <br/><br/>
             From corporate presentations to social media reels, every project is handled with a focus on quality, originality, and results. What sets us apart is our commitment to detail, quick turnaround, and the ability to transform ideas into impactful visual experiences that help businesses grow.
@@ -150,7 +150,7 @@ export default function VideoEditingStandOut() {
                 <div className="w-7 h-7 rounded-full bg-[#007FFF]/10 border border-[#007FFF]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#007FFF] group-hover:border-[#007FFF] transition-colors duration-300 shadow-sm">
                   <CheckCircle className="w-4 h-4 text-[#007FFF] group-hover:text-white transition-colors duration-300" />
                 </div>
-                <span className="font-poppins text-[17px] md:text-xl font-semibold text-[#111] group-hover:text-[#007FFF] transition-colors duration-300 tracking-tight">
+                <span className="font-jakarta text-[17px] md:text-xl font-semibold text-[#111] group-hover:text-[#007FFF] transition-colors duration-300 tracking-tight">
                   {strength}
                 </span>
               </li>

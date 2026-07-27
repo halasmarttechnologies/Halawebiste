@@ -5,26 +5,26 @@ import PhoneMockup from './PhoneMockup';
 
 export default function InteractiveSection() {
   return (
-    <section className="relative w-full bg-[#111111] overflow-hidden pt-12 pb-[160px] md:pt-16 md:pb-32 flex justify-center rounded-t-[40px] md:rounded-t-[60px]">
+    <section className="relative w-full bg-white overflow-hidden pt-12 pb-[160px] md:pt-16 md:pb-32 flex justify-center rounded-t-[40px] md:rounded-t-[60px]">
       <WaveMarquee />
 
       <div className="max-w-[1200px] w-full px-6 sm:px-8 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
 
         {/* Left Content */}
         <div className="flex flex-col items-start text-left lg:pr-10 -translate-y-4 md:-translate-y-8">
-          <h2 className="font-poppins font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.1] mb-6">
+          <h2 className="font-jakarta font-bold text-4xl sm:text-5xl lg:text-6xl text-[#111111] leading-[1.1] mb-6">
             We Are Available on All{' '}
-            <span className="eb-garamond italic font-normal text-[#e0e0e0]">Platforms.</span>
+            <span className="font-jakarta font-bold text-[#111111]">Platforms.</span>
           </h2>
           {/* Mobile Description */}
-          <p className="block md:hidden text-[#a0a0a0] text-lg sm:text-xl font-medium max-w-md leading-relaxed mb-8">
+          <p className="block md:hidden text-[#555555] text-lg sm:text-xl font-medium max-w-md leading-relaxed mb-8">
             Grow your business with Hala Technology's digital marketing, SEO, web development, and branding services.
           </p>
           {/* Desktop Description */}
-          <p className="hidden md:block text-[#a0a0a0] text-lg sm:text-xl font-medium max-w-md leading-relaxed mb-8">
+          <p className="hidden md:block text-[#555555] text-lg sm:text-xl font-medium max-w-md leading-relaxed mb-8">
             Connect with Hala Technology wherever you are. Whether you&apos;re looking for digital marketing, SEO, web development, or branding solutions, our team is ready to help you grow your business across every platform.
           </p>
-          <button className="hidden md:block bg-[#f2f0e9] text-[#111] font-bold text-base px-8 py-3.5 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200">
+          <button className="hidden md:block bg-[#111111] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200">
             Watch in action
           </button>
         </div>

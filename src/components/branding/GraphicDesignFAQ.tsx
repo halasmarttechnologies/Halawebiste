@@ -71,28 +71,28 @@ export default function GraphicDesignFAQ() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
-            <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
+            <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
               Graphic Design <br className="hidden sm:inline" />
               FAQs &amp; Answers.
             </h2>
 
-            <p className="font-poppins text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
               Everything you need to know about our graphic design process, deliverables, source files, and turnaround times.
             </p>
 
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">
-              <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
+              <span className="font-jakarta text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
                 Custom Creative Support
               </span>
-              <h3 className="font-poppins font-semibold text-lg text-[#111111] mb-2">
+              <h3 className="font-jakarta font-semibold text-lg text-[#111111] mb-2">
                 Have a specific design requirement?
               </h3>
-              <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
                 Our Dubai design team is ready to discuss your custom branding or creative project.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-poppins font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
+                className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-jakarta font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
               >
                 <span>Talk to a Designer</span>
                 <ArrowRight className="w-4 h-4" />
@@ -119,13 +119,13 @@ export default function GraphicDesignFAQ() {
                     className="w-full flex items-center justify-between p-5 md:p-6 text-left focus:outline-none"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      <span className={`font-poppins text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
+                      <span className={`font-jakarta text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
                         isOpen ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111] border border-[#e5e5e5]'
                       }`}>
                         {faq.number}
                       </span>
 
-                      <span className={`font-poppins text-base md:text-lg font-semibold transition-colors ${
+                      <span className={`font-jakarta text-base md:text-lg font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-[#111111]'
                       }`}>
                         {faq.question}
@@ -149,7 +149,7 @@ export default function GraphicDesignFAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 pt-1 font-poppins text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
+                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
                           {faq.answer}
                         </div>
                       </motion.div>

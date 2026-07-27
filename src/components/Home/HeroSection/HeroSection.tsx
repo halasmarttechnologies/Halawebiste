@@ -17,7 +17,7 @@ export default function HeroSection() {
       {/* Background Image Setup */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/mainpic.png"
+          src="/hero-images/HomeHeroimage.png"
           alt="Hero Background"
           fill
           className="object-cover object-center opacity-90"
@@ -29,7 +29,7 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-20 flex flex-col items-center justify-center w-full flex-grow px-4 sm:px-6 -mt-16 md:-mt-24">
-        <h1 className="font-poppins text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.05] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
+        <h1 className="font-jakarta text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.05] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
           <span className="text-white font-semibold">
             <em className="eb-garamond">Scale</em>{' '}
             your brand.</span>{' '}
@@ -40,8 +40,9 @@ export default function HeroSection() {
           </span>
         </h1>
 
-        <p className="text-[13px] whitespace-nowrap sm:whitespace-normal sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px]">
-          Digital marketing agency that turns clicks into customers.
+        <p className="text-[13px] sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px] text-center">
+          Digital marketing agency <br />
+          that turns clicks into customers.
         </p>
 
         <button className={ctaBtn}>

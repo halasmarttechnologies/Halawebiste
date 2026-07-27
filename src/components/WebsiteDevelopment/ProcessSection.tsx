@@ -116,13 +116,13 @@ export default function ProcessSection() {
           <span className="inline-block bg-[#F4F4F5] text-[#111111] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-4 border border-[#E4E4E7]">
             OUR PROCESS
           </span>
-          <h2 className="font-poppins font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] tracking-tight leading-[1.15] mb-5">
+          <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] tracking-tight leading-[1.15] mb-5">
             A Structured Approach To{' '}
             <span className="eb-garamond italic font-normal text-[#111111]">
               Digital Excellence
             </span>
           </h2>
-          <p className="font-poppins text-base sm:text-lg text-[#666666] font-medium leading-relaxed">
+          <p className="font-jakarta text-base sm:text-lg text-[#666666] font-medium leading-relaxed">
             From initial strategy to final delivery, we follow a transparent and efficient 6-step workflow to ensure your website succeeds.
           </p>
         </div>
@@ -173,11 +173,11 @@ export default function ProcessSection() {
                     </span>
                   </div>
 
-                  <h3 className="font-poppins font-bold text-xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-5 leading-tight">
+                  <h3 className="font-jakarta font-bold text-xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-5 leading-tight">
                     {activeStep.title}
                   </h3>
 
-                  <p className="text-white/80 font-poppins text-xs sm:text-base leading-relaxed mb-6 sm:mb-8">
+                  <p className="text-white/80 font-jakarta text-xs sm:text-base leading-relaxed mb-6 sm:mb-8">
                     {activeStep.description}
                   </p>
                 </div>
@@ -208,11 +208,11 @@ export default function ProcessSection() {
                     </span>
                   </div>
 
-                  <h3 className="font-poppins font-bold text-xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-4 leading-tight">
+                  <h3 className="font-jakarta font-bold text-xl sm:text-3xl lg:text-4xl text-white mb-3 sm:mb-4 leading-tight">
                     {activeStep.mockupTitle}
                   </h3>
 
-                  <p className="text-white/90 font-poppins text-xs sm:text-base leading-relaxed">
+                  <p className="text-white/90 font-jakarta text-xs sm:text-base leading-relaxed">
                     {activeStep.mockupDetail}
                   </p>
                 </div>
@@ -224,7 +224,7 @@ export default function ProcessSection() {
                       <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs">
                         {activeStep.step}
                       </div>
-                      <span className="font-poppins font-bold text-xs sm:text-sm text-[#111111]">
+                      <span className="font-jakarta font-bold text-xs sm:text-sm text-[#111111]">
                         {activeStep.title}
                       </span>
                     </div>

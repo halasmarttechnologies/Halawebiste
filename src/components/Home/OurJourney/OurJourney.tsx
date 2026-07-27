@@ -42,7 +42,7 @@ export default function OurJourney() {
               >
                 <div className="flex items-center gap-3 text-[#111111]/60 group-hover/item:text-[#007FFF] transition-colors duration-300">
                   <Icon className="w-6 h-6 md:w-7 md:h-7 stroke-[1.8]" />
-                  <span className="font-poppins text-xl md:text-2xl font-bold tracking-tight uppercase">
+                  <span className="font-jakarta text-xl md:text-2xl font-bold tracking-tight uppercase">
                     {logo.name}
                   </span>
                 </div>
@@ -65,7 +65,7 @@ export default function OurJourney() {
               >
                 <div className="flex items-center gap-3 text-[#111111]/60 group-hover/item:text-[#007FFF] transition-colors duration-300">
                   <Icon className="w-6 h-6 md:w-7 md:h-7 stroke-[1.8]" />
-                  <span className="font-poppins text-xl md:text-2xl font-bold tracking-tight uppercase">
+                  <span className="font-jakarta text-xl md:text-2xl font-bold tracking-tight uppercase">
                     {logo.name}
                   </span>
                 </div>
@@ -86,17 +86,13 @@ export default function OurJourney() {
 
         {/* Title */}
         <div className="text-center mb-16 md:mb-20 px-4">
-          <h2 className="font-sans font-bold text-[28px] sm:text-3xl md:text-[36px] leading-[1.3] tracking-tight text-[#171a22]">
+          <h2 className="font-jakarta font-bold text-[28px] sm:text-3xl md:text-[36px] leading-[1.3] tracking-tight text-[#171a22]">
             Our Journey of Innovation & Impact
           </h2>
         </div>
 
         {/* 2-Row Marquee Container */}
         <div className="w-full relative overflow-hidden flex flex-col py-4">
-
-          {/* Gradient Edges */}
-          <div className="absolute top-0 left-0 w-[100px] md:w-[200px] h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-[100px] md:w-[200px] h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           {/* Row 1 */}
           <div className="mb-6 md:mb-8">

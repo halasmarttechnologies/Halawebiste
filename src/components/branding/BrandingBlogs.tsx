@@ -43,13 +43,13 @@ export default function BrandingBlogs() {
         
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="font-poppins text-[#007FFF] font-bold tracking-[0.2em] text-xs md:text-sm uppercase mb-4">
+          <p className="font-jakarta text-[#007FFF] font-bold tracking-[0.2em] text-xs md:text-sm uppercase mb-4">
             OUR BLOG
           </p>
-          <h2 className="font-poppins text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] mb-6 text-[#111111]">
+          <h2 className="font-jakarta text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] mb-6 text-[#111111]">
             Latest Publications
           </h2>
-          <p className="font-poppins text-base md:text-lg text-[#666666] max-w-[600px] mx-auto leading-relaxed font-medium">
+          <p className="font-jakarta text-base md:text-lg text-[#666666] max-w-[600px] mx-auto leading-relaxed font-medium">
             Stay informed with the latest marketing trends, expert tips, and proven strategies. We provide the knowledge you need to drive smarter and more effective business growth.
           </p>
         </div>
@@ -80,15 +80,15 @@ export default function BrandingBlogs() {
               {/* Text Card (Foreground) */}
               <div className="relative z-10 bg-white rounded-[24px] p-6 sm:p-8 mx-3 sm:mx-5 shadow-[0_15px_40px_rgba(0,0,0,0.08)] flex flex-col flex-grow transition-transform duration-500 group-hover:-translate-y-2">
                 
-                <span className="font-poppins text-sm font-semibold text-[#007FFF] mb-3 inline-block">
+                <span className="font-jakarta text-sm font-semibold text-[#007FFF] mb-3 inline-block">
                   {blog.date}
                 </span>
 
-                <h3 className="font-poppins text-xl font-bold leading-[1.3] text-[#111111] mb-4 group-hover:text-[#007FFF] transition-colors duration-300">
+                <h3 className="font-jakarta text-xl font-bold leading-[1.3] text-[#111111] mb-4 group-hover:text-[#007FFF] transition-colors duration-300">
                   {blog.title}
                 </h3>
 
-                <div className="flex items-center gap-4 mb-4 text-[13px] text-[#777777] font-medium font-poppins">
+                <div className="flex items-center gap-4 mb-4 text-[13px] text-[#777777] font-medium font-jakarta">
                   <div className="flex items-center gap-1.5">
                     <User size={14} className="stroke-[2.5] text-[#999]" />
                     <span>By {blog.author}</span>
@@ -99,12 +99,12 @@ export default function BrandingBlogs() {
                   </div>
                 </div>
 
-                <p className="font-poppins text-[15px] text-[#666666] leading-relaxed mb-6 line-clamp-3">
+                <p className="font-jakarta text-[15px] text-[#666666] leading-relaxed mb-6 line-clamp-3">
                   {blog.excerpt}
                 </p>
 
                 <div className="mt-auto pt-2">
-                  <Link href="#" className="inline-block font-poppins text-[14px] font-bold text-[#111111] underline underline-offset-4 decoration-2 decoration-[#111111]/30 group-hover:decoration-[#007FFF] group-hover:text-[#007FFF] transition-colors duration-300">
+                  <Link href="#" className="inline-block font-jakarta text-[14px] font-bold text-[#111111] underline underline-offset-4 decoration-2 decoration-[#111111]/30 group-hover:decoration-[#007FFF] group-hover:text-[#007FFF] transition-colors duration-300">
                     Read More
                   </Link>
                 </div>

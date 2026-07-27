@@ -17,7 +17,7 @@ export default function WhyChooseUs() {
         <div className="flex flex-col items-center text-center relative z-10">
           
           {/* Title */}
-          <h2 className="font-poppins font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-wide uppercase text-[#111111] mb-6">
+          <h2 className="font-jakarta font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-wide uppercase text-[#111111] mb-6">
             Why Choose Us
           </h2>
 
@@ -36,7 +36,7 @@ export default function WhyChooseUs() {
                   className="flex items-center gap-3 bg-[#007FFF] border border-[#007FFF] rounded-full px-6 py-3 shadow-[2px_2px_0px_0px_#111111] hover:shadow-[4px_4px_0px_0px_#111111] hover:-translate-y-0.5 transition-all cursor-default"
                 >
                   <Icon className="w-5 h-5 text-white stroke-[2]" />
-                  <span className="font-poppins font-semibold text-white text-sm md:text-base whitespace-nowrap">
+                  <span className="font-jakarta font-semibold text-white text-sm md:text-base whitespace-nowrap">
                     {reason.title}
                   </span>
                 </div>

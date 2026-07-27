@@ -73,12 +73,12 @@ function StickyCard({
           <div className="mb-5 text-[#555555]">{card.icon}</div>
 
           {/* Tag */}
-          <p className="font-poppins text-[10px] font-bold tracking-[2.5px] uppercase text-[#555555] mb-3">
+          <p className="font-jakarta text-[10px] font-bold tracking-[2.5px] uppercase text-[#555555] mb-3">
             {card.tag}
           </p>
 
           {/* Heading */}
-          <h3 className="font-poppins font-bold text-2xl md:text-3xl text-[#111111] leading-tight tracking-tight mb-5">
+          <h3 className="font-jakarta font-bold text-2xl md:text-3xl text-[#111111] leading-tight tracking-tight mb-5">
             {card.heading}
           </h3>
 
@@ -86,7 +86,7 @@ function StickyCard({
           <div className="w-10 h-[2px] bg-[#111111] mb-5" />
 
           {/* Body */}
-          <p className="font-poppins text-[#333333] font-medium text-sm md:text-[15px] leading-relaxed max-w-xl">
+          <p className="font-jakarta text-[#333333] font-medium text-sm md:text-[15px] leading-relaxed max-w-xl">
             {card.body}
           </p>
         </div>
@@ -104,14 +104,14 @@ export default function AboutValues() {
           {/* ── Left sticky column ── */}
           <div className="lg:sticky lg:top-28 self-start">
             {/* Section label */}
-            <p className="font-poppins text-[11px] font-bold tracking-[3px] uppercase text-[#555555] mb-5">
+            <p className="font-jakarta text-[11px] font-bold tracking-[3px] uppercase text-[#555555] mb-5">
               For Our Valuable Customers
             </p>
 
             {/* Main heading */}
-            <h2 className="font-poppins font-bold text-4xl sm:text-5xl leading-[1.08] tracking-tight mb-12 text-[#111111]">
+            <h2 className="font-jakarta font-bold text-4xl sm:text-5xl leading-[1.08] tracking-tight mb-12 text-[#111111]">
               What We{' '}
-              <span className="eb-garamond italic font-normal text-[#111111]">
+              <span className="font-jakarta font-bold text-[#111111]">
                 Stand For
               </span>
             </h2>
@@ -123,10 +123,10 @@ export default function AboutValues() {
                   key={card.tag}
                   className="py-5 border-b-2 border-[#111111]/10 last:border-b-0"
                 >
-                  <span className="font-poppins text-[11px] font-bold tracking-[2px] uppercase text-[#555555]">
+                  <span className="font-jakarta text-[11px] font-bold tracking-[2px] uppercase text-[#555555]">
                     0{i + 1}
                   </span>
-                  <p className="font-poppins font-bold text-[16px] text-[#111111] mt-1 tracking-tight">
+                  <p className="font-jakarta font-bold text-[16px] text-[#111111] mt-1 tracking-tight">
                     {card.tag}
                   </p>
                 </div>

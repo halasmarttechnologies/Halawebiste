@@ -51,17 +51,17 @@ export default function HowItWorks() {
       <div className="max-w-[1280px] mx-auto flex flex-col items-center">
         
         {/* Top Eyebrow Badge */}
-        <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-widest block mb-4">
+        <span className="font-jakarta text-xs font-semibold text-[#007FFF] uppercase tracking-widest block mb-4">
           OUR PROCESS
         </span>
 
         {/* Main Headline */}
-        <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] text-center tracking-tight leading-[1.12] mb-6 max-w-4xl">
+        <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] text-center tracking-tight leading-[1.12] mb-6 max-w-4xl">
           How Our Process <em className="eb-garamond font-normal italic">Drives Growth</em>
         </h2>
 
         {/* Subtitle / Description */}
-        <p className="font-poppins text-base md:text-lg text-[#555555] font-normal text-center max-w-2xl leading-relaxed mb-14 sm:mb-16">
+        <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal text-center max-w-2xl leading-relaxed mb-14 sm:mb-16">
           A proven 5-step methodology designed to elevate your brand, optimize performance, and deliver measurable ROI.
         </p>
 
@@ -88,7 +88,7 @@ export default function HowItWorks() {
                   </svg>
 
                   {/* Step Number Tag */}
-                  <span className="absolute top-4 left-4 bg-white/20 backdrop-blur-md border border-white/30 text-white font-poppins text-xs font-semibold px-2.5 py-0.5 rounded-full z-10">
+                  <span className="absolute top-4 left-4 bg-white/20 backdrop-blur-md border border-white/30 text-white font-jakarta text-xs font-semibold px-2.5 py-0.5 rounded-full z-10">
                     {step.id}
                   </span>
 
@@ -99,12 +99,12 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Card Title */}
-                <h3 className="font-poppins font-semibold text-lg sm:text-xl text-[#111111] tracking-tight mb-2">
+                <h3 className="font-jakarta font-semibold text-lg sm:text-xl text-[#111111] tracking-tight mb-2">
                   {step.title}
                 </h3>
 
                 {/* Card Description */}
-                <p className="font-poppins text-xs sm:text-sm text-[#666666] font-normal leading-relaxed">
+                <p className="font-jakarta text-xs sm:text-sm text-[#666666] font-normal leading-relaxed">
                   {step.description}
                 </p>
 

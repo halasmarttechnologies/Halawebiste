@@ -39,20 +39,20 @@ export default function DigitalMarketingServices() {
   };
 
   return (
-    <section className="font-sans bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-24 relative overflow-hidden border-b border-[#e5e5e5]">
+    <section className="font-jakarta bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-24 relative overflow-hidden border-b border-[#e5e5e5]">
       
       <div className="max-w-[1200px] mx-auto relative z-10">
 
         {/* Top Section Header */}
         <div className="flex flex-col items-center justify-center text-center mb-16 md:mb-20">
-          <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-xs sm:text-sm font-poppins font-semibold mb-6">
+          <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-xs sm:text-sm font-jakarta font-semibold mb-6">
             Digital Marketing Services
           </div>
-          <h2 className="font-poppins font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
+          <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
             Explore Our Full-Suite, <br className="hidden sm:block" />
             <em className="eb-garamond font-normal italic pr-2">Digital Marketing Services</em>
           </h2>
-          <p className="font-poppins text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
             We focus on transparency, performance, and innovation helping businesses in Dubai and across the UAE strengthen their online presence and achieve sustainable success.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function DigitalMarketingServices() {
             
             {/* Header Row */}
             <div className="flex items-center justify-between pb-6 border-b border-[#e5e5e5] mb-4">
-              <h3 className="font-poppins text-xl md:text-2xl font-semibold text-[#111111] tracking-tight">
+              <h3 className="font-jakarta text-xl md:text-2xl font-semibold text-[#111111] tracking-tight">
                 Our Core Marketing Pillars
               </h3>
               <div className="w-9 h-9 rounded-full bg-[#007FFF] flex items-center justify-center">
@@ -94,7 +94,7 @@ export default function DigitalMarketingServices() {
                         }`}>
                           <IconComponent className="w-5 h-5" />
                         </div>
-                        <span className={`font-poppins text-[15px] sm:text-base md:text-lg font-semibold text-left leading-[1.2] ${
+                        <span className={`font-jakarta text-[15px] sm:text-base md:text-lg font-semibold text-left leading-[1.2] ${
                           isActive ? 'text-white' : 'text-[#111111]'
                         }`}>
                           {service.title}
@@ -119,13 +119,13 @@ export default function DigitalMarketingServices() {
                           className="overflow-hidden"
                         >
                           <div className="pt-4 pb-2 pl-0 sm:pl-16 flex flex-col gap-4">
-                            <p className="font-poppins text-[13.5px] sm:text-sm md:text-base leading-relaxed text-[#CCCCCC] font-normal max-w-[750px]">
+                            <p className="font-jakarta text-[13.5px] sm:text-sm md:text-base leading-relaxed text-[#CCCCCC] font-normal max-w-[750px]">
                               {service.description}
                             </p>
 
                             <Link 
                               href={service.href} 
-                              className="inline-flex items-center gap-2 font-poppins text-[13px] sm:text-sm font-semibold text-[#007FFF] hover:text-white transition-colors self-start pt-1"
+                              className="inline-flex items-center gap-2 font-jakarta text-[13px] sm:text-sm font-semibold text-[#007FFF] hover:text-white transition-colors self-start pt-1"
                               onClick={(e) => e.stopPropagation()}
                             >
                               <span>Explore More</span>

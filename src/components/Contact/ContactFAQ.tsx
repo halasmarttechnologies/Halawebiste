@@ -54,31 +54,31 @@ export default function ContactFAQ() {
           
           {/* Left Column (Sticky Sidebar & Callout) */}
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
-            <h2 className="font-poppins font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
+            <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
               Contact FAQs <br className="hidden sm:inline" />
               &amp; Answers.
             </h2>
 
-            <p className="font-poppins text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
               Got questions before scheduling a consultation or visiting our office? Here is everything you need to know about reaching our Dubai team.
             </p>
 
             {/* Help Box */}
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">
-              <span className="font-poppins text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
+              <span className="font-jakarta text-xs font-semibold text-[#007FFF] uppercase tracking-wider mb-2">
                 Fast Assistance
               </span>
-              <h3 className="font-poppins font-semibold text-lg text-[#111111] mb-2">
+              <h3 className="font-jakarta font-semibold text-lg text-[#111111] mb-2">
                 Need Immediate Help?
               </h3>
-              <p className="font-poppins text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
                 Call or WhatsApp our direct line for instant project assistance.
               </p>
               <a
                 href="https://wa.me/971586139007"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-poppins font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
+                className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors text-white font-jakarta font-semibold text-xs md:text-sm px-6 py-3 rounded-xl"
               >
                 <span>WhatsApp Us Now</span>
                 <ArrowRight className="w-4 h-4" />
@@ -107,14 +107,14 @@ export default function ContactFAQ() {
                   >
                     <div className="flex items-center gap-4 pr-4">
                       {/* Index Number Badge */}
-                      <span className={`font-poppins text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
+                      <span className={`font-jakarta text-xs md:text-sm font-semibold px-2.5 py-1 rounded-md transition-colors ${
                         isOpen ? 'bg-[#007FFF] text-white' : 'bg-white text-[#111111] border border-[#e5e5e5]'
                       }`}>
                         {faq.number}
                       </span>
 
                       {/* Question Text */}
-                      <span className={`font-poppins text-base md:text-lg font-semibold transition-colors ${
+                      <span className={`font-jakarta text-base md:text-lg font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-[#111111]'
                       }`}>
                         {faq.question}
@@ -139,7 +139,7 @@ export default function ContactFAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 pt-1 font-poppins text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
+                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
                           {faq.answer}
                         </div>
                       </motion.div>

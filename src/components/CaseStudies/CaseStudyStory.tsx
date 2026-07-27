@@ -82,7 +82,7 @@ export default function CaseStudyStory() {
                   const matching = category === 'All Projects' ? PROJECTS[0] : PROJECTS.find(p => p.category === category);
                   if (matching) setSelectedProjectId(matching.id);
                 }}
-                className={`whitespace-nowrap pb-2 text-sm font-poppins font-medium transition-colors relative cursor-pointer
+                className={`whitespace-nowrap pb-2 text-sm font-jakarta font-medium transition-colors relative cursor-pointer
                   ${activeCategory === category ? 'text-[#111111]' : 'text-[#888888] hover:text-[#555555]'}`}
               >
                 {category}
@@ -95,7 +95,7 @@ export default function CaseStudyStory() {
               </button>
             ))}
           </div>
-          <span className="hidden md:inline-block font-poppins text-xs text-[#888888] uppercase tracking-wider font-semibold">
+          <span className="hidden md:inline-block font-jakarta text-xs text-[#888888] uppercase tracking-wider font-semibold">
             Side-by-Side Documentation View
           </span>
         </div>
@@ -108,7 +108,7 @@ export default function CaseStudyStory() {
             
             {/* Project List Selector */}
             <div className="flex flex-col gap-3">
-              <span className="font-poppins text-xs font-bold text-[#888888] uppercase tracking-wider mb-2 block">
+              <span className="font-jakarta text-xs font-bold text-[#888888] uppercase tracking-wider mb-2 block">
                 Select Case Study
               </span>
               {filteredProjects.map((p) => {
@@ -124,14 +124,14 @@ export default function CaseStudyStory() {
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="font-poppins text-xs font-bold text-[#007FFF]">
+                      <span className="font-jakarta text-xs font-bold text-[#007FFF]">
                         {p.number}
                       </span>
-                      <span className="font-poppins text-[11px] text-[#888888]">
+                      <span className="font-jakarta text-[11px] text-[#888888]">
                         {p.year}
                       </span>
                     </div>
-                    <div className="font-poppins text-base font-semibold leading-snug">
+                    <div className="font-jakarta text-base font-semibold leading-snug">
                       {p.name}
                     </div>
                   </button>
@@ -142,18 +142,18 @@ export default function CaseStudyStory() {
             {/* Active Project Meta Summary Card */}
             <div className="bg-[#f9f9f9] border border-[#e5e5e5] p-6 rounded-lg flex flex-col gap-4">
               <div>
-                <span className="font-poppins text-xs font-semibold text-[#888888] uppercase tracking-wider block mb-1">
+                <span className="font-jakarta text-xs font-semibold text-[#888888] uppercase tracking-wider block mb-1">
                   Category
                 </span>
-                <span className="font-poppins text-sm font-semibold text-[#111111]">
+                <span className="font-jakarta text-sm font-semibold text-[#111111]">
                   {activeProject.category}
                 </span>
               </div>
               <div className="border-t border-[#e5e5e5] pt-3">
-                <span className="font-poppins text-xs font-semibold text-[#888888] uppercase tracking-wider block mb-1">
+                <span className="font-jakarta text-xs font-semibold text-[#888888] uppercase tracking-wider block mb-1">
                   Overview
                 </span>
-                <p className="font-poppins text-xs text-[#555555] leading-relaxed">
+                <p className="font-jakarta text-xs text-[#555555] leading-relaxed">
                   {activeProject.overview}
                 </p>
               </div>
@@ -167,17 +167,17 @@ export default function CaseStudyStory() {
             {/* Documentation Header */}
             <div className="border-b border-[#e5e5e5] pb-8">
               <div className="flex items-center gap-3 mb-3">
-                <span className="px-2.5 py-1 text-xs font-poppins font-bold bg-[#111111] text-white rounded">
+                <span className="px-2.5 py-1 text-xs font-jakarta font-bold bg-[#111111] text-white rounded">
                   DOC-{activeProject.number}
                 </span>
-                <span className="font-poppins text-xs font-semibold text-[#888888] uppercase tracking-wider">
+                <span className="font-jakarta text-xs font-semibold text-[#888888] uppercase tracking-wider">
                   {activeProject.category} • {activeProject.year}
                 </span>
               </div>
-              <h2 className="font-poppins text-3xl md:text-5xl font-semibold text-[#111111] leading-tight mb-4">
+              <h2 className="font-jakarta text-3xl md:text-5xl font-semibold text-[#111111] leading-tight mb-4">
                 {activeProject.name}
               </h2>
-              <p className="font-poppins text-base md:text-lg text-[#555555] leading-relaxed max-w-[720px]">
+              <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed max-w-[720px]">
                 {activeProject.overview}
               </p>
             </div>
@@ -188,13 +188,13 @@ export default function CaseStudyStory() {
               {/* Section 1: About the Client */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-[#f0f0f0] pb-8 items-start">
                 <div className="md:col-span-4">
-                  <h3 className="font-poppins text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
+                  <h3 className="font-jakarta text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
                     <ArrowRight className="w-3.5 h-3.5 text-[#111111]" />
                     About the Client
                   </h3>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="font-poppins text-sm md:text-base text-[#444444] leading-relaxed">
+                  <p className="font-jakarta text-sm md:text-base text-[#444444] leading-relaxed">
                     {activeProject.aboutClient}
                   </p>
                 </div>
@@ -203,13 +203,13 @@ export default function CaseStudyStory() {
               {/* Section 2: The Challenge */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-[#f0f0f0] pb-8 items-start">
                 <div className="md:col-span-4">
-                  <h3 className="font-poppins text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
+                  <h3 className="font-jakarta text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
                     <ArrowRight className="w-3.5 h-3.5 text-[#111111]" />
                     The Challenge
                   </h3>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="font-poppins text-sm md:text-base text-[#444444] leading-relaxed">
+                  <p className="font-jakarta text-sm md:text-base text-[#444444] leading-relaxed">
                     {activeProject.challenge}
                   </p>
                 </div>
@@ -218,13 +218,13 @@ export default function CaseStudyStory() {
               {/* Section 3: What We Delivered */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 border-b border-[#f0f0f0] pb-8 items-start">
                 <div className="md:col-span-4">
-                  <h3 className="font-poppins text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
+                  <h3 className="font-jakarta text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
                     <ArrowRight className="w-3.5 h-3.5 text-[#111111]" />
                     What We Delivered
                   </h3>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="font-poppins text-sm md:text-base text-[#444444] leading-relaxed">
+                  <p className="font-jakarta text-sm md:text-base text-[#444444] leading-relaxed">
                     {activeProject.delivered}
                   </p>
                 </div>
@@ -233,13 +233,13 @@ export default function CaseStudyStory() {
               {/* Section 4: Conclusion */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 pb-4 items-start">
                 <div className="md:col-span-4">
-                  <h3 className="font-poppins text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
+                  <h3 className="font-jakarta text-sm font-semibold text-[#111111] uppercase tracking-wider flex items-center gap-2">
                     <ArrowRight className="w-3.5 h-3.5 text-[#111111]" />
                     Conclusion
                   </h3>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="font-poppins text-sm md:text-base text-[#444444] leading-relaxed font-medium">
+                  <p className="font-jakarta text-sm md:text-base text-[#444444] leading-relaxed font-medium">
                     {activeProject.conclusion}
                   </p>
                 </div>

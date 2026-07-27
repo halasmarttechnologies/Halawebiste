@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 
 const projects = [
-  { id: 1, title: 'Quantum Rebrand', category: 'Brand Identity', image: '/mainpic.png', size: 'featured' },
+  { id: 1, title: 'Quantum Rebrand', category: 'Brand Identity', image: '/hero-images/HomeHeroimage.png', size: 'featured' },
   { id: 2, title: 'Eco Packaging', category: 'Packaging Design', image: '/brand3.png', size: 'small' },
   { id: 3, title: 'Neon Nights', category: 'Social Media', image: '/featureimage.jpg', size: 'medium' },
-  { id: 4, title: 'Aura App UI', category: 'UI Design', image: '/mainpic.png', size: 'medium' },
+  { id: 4, title: 'Aura App UI', category: 'UI Design', image: '/hero-images/HomeHeroimage.png', size: 'medium' },
   { id: 5, title: 'Vertex Logo', category: 'Logo Design', image: '/brand3.png', size: 'small' },
 ];
 
@@ -110,10 +110,10 @@ const TiltCard = ({ project, index }: { project: { id: number, title: string, ca
              transition={{ type: "spring", stiffness: 400, damping: 30 }}
              className="flex flex-col"
           >
-            <span className="text-[#007FFF] font-poppins font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+            <span className="text-[#007FFF] font-jakarta font-bold text-[10px] md:text-xs uppercase tracking-[0.2em] mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
               {project.category}
             </span>
-            <h3 className="text-white font-poppins text-xl md:text-3xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150 leading-[1.2]">
+            <h3 className="text-white font-jakarta text-xl md:text-3xl font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-150 leading-[1.2]">
               {project.title}
             </h3>
             <div className="mt-4 md:mt-6 overflow-hidden">
@@ -146,14 +146,14 @@ export default function GraphicDesignShowcase() {
         >
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-10 h-[2px] bg-[#007FFF]"></div>
-            <span className="font-poppins text-[13px] md:text-sm font-semibold uppercase text-[#007FFF]">
+            <span className="font-jakarta text-[13px] md:text-sm font-semibold uppercase text-[#007FFF]">
               Creative Portfolio
             </span>
           </div>
-          <h2 className="font-poppins text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#111] leading-[1.1] mb-6">
+          <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#111] leading-[1.1] mb-6">
             Visuals that <span className="eb-garamond italic text-[#007FFF] font-medium pr-2">speak.</span>
           </h2>
-          <p className="text-[#555] font-poppins text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#555] font-jakarta text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             From striking brand identities to pixel-perfect UI designs, explore our premium graphic design showcase. Each piece is crafted to capture attention and elevate your brand.
           </p>
         </motion.div>

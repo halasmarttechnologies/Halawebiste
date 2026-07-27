@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="font-sans bg-[#111111] text-white min-h-screen flex flex-col">
+    <div className="font-jakarta bg-[#111111] text-white min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow flex flex-col">
         <AboutHero />

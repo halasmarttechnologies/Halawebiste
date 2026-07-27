@@ -22,11 +22,11 @@ export default function ContactInfoCards() {
             <span className="text-xs uppercase tracking-widest text-[#007FFF] font-semibold mb-3 block">
               Direct Access &amp; Support
             </span>
-            <h2 className="font-poppins text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111111]">
+            <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111111]">
               Reach Out <em className="eb-garamond font-normal italic pr-2">Directly</em>
             </h2>
           </div>
-          <p className="font-poppins text-base text-[#666666] max-w-md">
+          <p className="font-jakarta text-base text-[#666666] max-w-md">
             Prefer direct communication over scheduling? Choose the method that suits you best and our specialists will respond in less than an hour.
           </p>
         </div>
@@ -40,16 +40,16 @@ export default function ContactInfoCards() {
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#eee] flex items-center justify-center mb-6 text-[#007FFF] shadow-sm">
                 <Mail className="w-6 h-6" />
               </div>
-              <h3 className="font-poppins text-lg font-bold text-[#111111] mb-2">
+              <h3 className="font-jakarta text-lg font-bold text-[#111111] mb-2">
                 Email Us
               </h3>
-              <p className="font-poppins text-sm text-[#666666] mb-4">
+              <p className="font-jakarta text-sm text-[#666666] mb-4">
                 Send your RFP, project details, or general queries anytime.
               </p>
             </div>
             
             <div>
-              <p className="font-poppins text-sm font-semibold text-[#111111] mb-3 break-all">
+              <p className="font-jakarta text-sm font-semibold text-[#111111] mb-3 break-all">
                 Contact@halatechnology.ae
               </p>
               <button
@@ -77,16 +77,16 @@ export default function ContactInfoCards() {
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#eee] flex items-center justify-center mb-6 text-[#007FFF] shadow-sm">
                 <Phone className="w-6 h-6" />
               </div>
-              <h3 className="font-poppins text-lg font-bold text-[#111111] mb-2">
+              <h3 className="font-jakarta text-lg font-bold text-[#111111] mb-2">
                 Call or WhatsApp
               </h3>
-              <p className="font-poppins text-sm text-[#666666] mb-4">
+              <p className="font-jakarta text-sm text-[#666666] mb-4">
                 Speak directly with our strategy consultants in Dubai.
               </p>
             </div>
 
             <div>
-              <p className="font-poppins text-sm font-semibold text-[#111111] mb-3">
+              <p className="font-jakarta text-sm font-semibold text-[#111111] mb-3">
                 +971 58 613 9007
               </p>
               <a
@@ -108,10 +108,10 @@ export default function ContactInfoCards() {
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#eee] flex items-center justify-center mb-6 text-[#007FFF] shadow-sm">
                 <MapPin className="w-6 h-6" />
               </div>
-              <h3 className="font-poppins text-lg font-bold text-[#111111] mb-2">
+              <h3 className="font-jakarta text-lg font-bold text-[#111111] mb-2">
                 Visit Our HQ
               </h3>
-              <p className="font-poppins text-sm text-[#666666] mb-4">
+              <p className="font-jakarta text-sm text-[#666666] mb-4">
                 1803, Latifa Tower, Sheikh Zayed Road, Dubai, UAE.
               </p>
             </div>
@@ -135,10 +135,10 @@ export default function ContactInfoCards() {
               <div className="w-12 h-12 rounded-2xl bg-white border border-[#eee] flex items-center justify-center mb-6 text-[#007FFF] shadow-sm">
                 <Clock className="w-6 h-6" />
               </div>
-              <h3 className="font-poppins text-lg font-bold text-[#111111] mb-2">
+              <h3 className="font-jakarta text-lg font-bold text-[#111111] mb-2">
                 Business Hours
               </h3>
-              <p className="font-poppins text-sm text-[#666666] mb-4">
+              <p className="font-jakarta text-sm text-[#666666] mb-4">
                 Monday – Saturday<br />
                 9:00 AM – 6:00 PM GST
               </p>

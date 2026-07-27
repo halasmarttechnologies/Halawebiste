@@ -5,11 +5,11 @@ import Hero from '@/components/Home/HeroSection';
 import MarketingSolutions from '@/components/Home/MarketingSolutions';
 
 const OurServices = dynamic(() => import('@/components/Home/Services'));
+const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'));
 const IndustriesWeCover = dynamic(() => import('@/components/Home/IndustriesWeCover'));
 const CaseStudies = dynamic(() => import('@/components/Home/CaseStudies'));
 const WhyChooseHala = dynamic(() => import('@/components/Home/WhyChooseUs'));
 const OurJourney = dynamic(() => import('@/components/Home/OurJourney'));
-const OurProcess = dynamic(() => import('@/components/Home/HowItWorks'));
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const BrandingBlogs = dynamic(() => import('@/components/Home/Blogs'));
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="font-sans bg-[#111111] text-[#111] overflow-x-hidden">
+    <div className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden">
       <Navbar />
       <main className="bg-[#111111]">
         <Hero />
@@ -49,7 +49,7 @@ export default function Home() {
         <CaseStudies />
         <WhyChooseHala />
         <OurJourney />
-        <OurProcess />
+        <HomeWorkflow />
         <CustomTestimonials />
         <ContactConsultation contained={true} />
         <BrandingBlogs />

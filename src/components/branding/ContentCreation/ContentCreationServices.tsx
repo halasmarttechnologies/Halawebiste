@@ -87,7 +87,7 @@ export default function ContentCreationServices() {
   };
 
   return (
-    <section className="font-sans bg-white text-[#111111] w-full px-5 sm:px-8 md:px-12 lg:px-16 py-16 md:py-24 relative overflow-hidden">
+    <section className="font-jakarta bg-white text-[#111111] w-full px-5 sm:px-8 md:px-12 lg:px-16 py-16 md:py-24 relative overflow-hidden">
       
       {/* Background ambient glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#007FFF]/5 rounded-full blur-[120px] pointer-events-none"></div>
@@ -100,7 +100,7 @@ export default function ContentCreationServices() {
           <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-sm">
             What We Offer
           </div>
-          <h2 className="font-poppins font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
+          <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
             High-Performing <br className="hidden md:block" />
             <span className="eb-garamond italic pr-2">Content</span> Services
           </h2>
@@ -120,7 +120,7 @@ export default function ContentCreationServices() {
                 <div key={catIndex} className="flex flex-col h-full">
                   {/* Header Row */}
                   <div className="flex items-center justify-between pb-5 border-b border-[#e5e5e5] mb-2">
-                    <h3 className="font-sans text-[22px] md:text-[24px] font-medium text-[#111111] tracking-tight">
+                    <h3 className="font-jakarta text-[22px] md:text-[24px] font-medium text-[#111111] tracking-tight">
                       {category.title}
                     </h3>
                     <div className="flex items-center gap-2">

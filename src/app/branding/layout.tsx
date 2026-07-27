@@ -7,7 +7,7 @@ export default function BrandingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="font-sans bg-white text-[#111]">
+    <div className="font-jakarta bg-white text-[#111]">
       <Navbar />
       <main>{children}</main>
       <Footer />

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="font-sans bg-[#111111] text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow w-full">
         {/* 1. Case Study Style Hero Section */}

@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
-import PPCHero from '@/components/PPC/PPCHero';
-import PPCIntro from '@/components/PPC/PPCIntro';
-import PPCWhyItMatters from '@/components/PPC/PPCWhyItMatters';
-import PPCServices from '@/components/PPC/PPCServices';
-import PPCWhyChoose from '@/components/PPC/PPCWhyChoose';
+import PPCHero from '@/components/DigitalMarketing/PPC/PPCHero';
+import PPCIntro from '@/components/DigitalMarketing/PPC/PPCIntro';
+import PPCWhyItMatters from '@/components/DigitalMarketing/PPC/PPCWhyItMatters';
+import PPCServices from '@/components/DigitalMarketing/PPC/PPCServices';
+import PPCWhyChoose from '@/components/DigitalMarketing/PPC/PPCWhyChoose';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const PPCFAQ = dynamic(() => import('@/components/PPC/PPCFAQ'));
+const PPCFAQ = dynamic(() => import('@/components/DigitalMarketing/PPC/PPCFAQ'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function PPCPage() {
   return (
-    <div className="font-sans bg-white text-[#111111] overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-jakarta bg-white text-[#111111] overflow-x-hidden min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow w-full">
         <PPCHero />

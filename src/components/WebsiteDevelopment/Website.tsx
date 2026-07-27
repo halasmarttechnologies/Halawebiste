@@ -9,7 +9,7 @@ export default function Website() {
       {/* Background Image Setup */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/webpage.jpg"
+          src="/hero-images/webpage.jpg"
           alt="Web Development Background"
           fill
           className="object-cover object-center opacity-90"
@@ -25,7 +25,7 @@ export default function Website() {
 
 
         {/* Hero Headline */}
-        <h1 className="font-poppins text-5xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl">
+        <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-bold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl">
           We Build Websites{' '}
           <br className="hidden sm:block" />
           <span className="eb-garamond italic font-normal text-white inline-block">
@@ -34,11 +34,11 @@ export default function Website() {
         </h1>
 
         {/* Hero Subheadline */}
-        <p className="font-poppins text-base sm:text-lg md:text-xl font-medium text-white/80 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10">
+        <p className="font-jakarta text-base sm:text-lg md:text-xl font-semibold text-white/80 max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10">
           Strategy. Design. Performance. Unified for measurable ROI.
         </p>
 
-        <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-poppins font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
+        <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
           Let's build a website
         </button>
       </div>
@@ -49,15 +49,15 @@ export default function Website() {
         {/* Centered container for perfect alignment */}
         <div className="max-w-[900px] text-center relative z-30">
 
-          <p className="font-poppins text-xl md:text-2xl lg:text-3xl leading-[1.6] md:leading-[1.7] mb-10 md:mb-14 text-[#E8E6E1]">
+          <p className="font-jakarta text-xl md:text-2xl lg:text-3xl leading-[1.6] md:leading-[1.7] mb-10 md:mb-14 text-[#E8E6E1]">
             At Hala Smart Technologies, we don’t just build websites; we craft powerful digital experiences that drive real business growth. As Dubai’s trusted web design agency, we fuse cutting-edge technology with bold, purposeful design to create solutions that don’t just compete, they lead.
           </p>
 
-          <p className="font-poppins text-lg md:text-xl lg:text-2xl leading-[1.6] mb-12 md:mb-16 text-[#E8E6E1]/80">
+          <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.6] mb-12 md:mb-16 text-[#E8E6E1]/80">
             From startups to established enterprises, UAE’s most ambitious brands trust us to deliver proven results across every industry. Your website isn’t just a digital business card—it’s your hardest-working salesperson, open 24/7, building trust and closing deals while you sleep.
           </p>
 
-          <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-poppins font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
+          <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
             Start Your Project
           </button>
 

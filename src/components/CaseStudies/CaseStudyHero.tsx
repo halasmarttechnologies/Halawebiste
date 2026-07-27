@@ -8,28 +8,28 @@ export default function CaseStudyHero() {
         {/* Editorial Top Metadata */}
         <div className="flex items-center gap-3 mb-6">
           <ArrowRight className="w-3.5 h-3.5 text-[#111111]" />
-          <span className="font-poppins text-xs md:text-sm text-[#666666] font-medium tracking-wide">
+          <span className="font-jakarta text-xs md:text-sm text-[#666666] font-medium tracking-wide">
             Hala Smart Technologies
           </span>
         </div>
 
         {/* Main Heading with Classic Typography */}
-        <h1 className="font-poppins text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1000px]">
+        <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1000px]">
           Our <em className="eb-garamond font-normal italic">Case Studies</em> &amp; Client Stories
         </h1>
 
         {/* Subtitle / Overview */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 w-full pt-6 border-t border-[#f0f0f0]">
           <div className="md:col-span-8">
-            <p className="font-poppins text-lg sm:text-xl md:text-2xl text-[#555555] leading-relaxed font-normal">
+            <p className="font-jakarta text-lg sm:text-xl md:text-2xl text-[#555555] leading-relaxed font-normal">
               A curated documentation of real-world results driven by innovation, strategic execution, and smart technology solutions.
             </p>
           </div>
           <div className="md:col-span-4 flex flex-col justify-end items-start md:items-end">
-            <span className="font-poppins text-xs uppercase tracking-wider text-[#888888] font-semibold mb-1">
+            <span className="font-jakarta text-xs uppercase tracking-wider text-[#888888] font-semibold mb-1">
               Documentation Index
             </span>
-            <span className="font-poppins text-sm font-medium text-[#111111]">
+            <span className="font-jakarta text-sm font-medium text-[#111111]">
               4 Verified Client Projects
             </span>
           </div>

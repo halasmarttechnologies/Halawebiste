@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
-import SMMHero from '@/components/SMM/SMMHero';
-import SMMIntro from '@/components/SMM/SMMIntro';
-import SMMWhyItMatters from '@/components/SMM/SMMWhyItMatters';
-import SMMServices from '@/components/SMM/SMMServices';
-import SMMWhyChoose from '@/components/SMM/SMMWhyChoose';
+import SMMHero from '@/components/DigitalMarketing/SMM/SMMHero';
+import SMMIntro from '@/components/DigitalMarketing/SMM/SMMIntro';
+import SMMWhyItMatters from '@/components/DigitalMarketing/SMM/SMMWhyItMatters';
+import SMMServices from '@/components/DigitalMarketing/SMM/SMMServices';
+import SMMWhyChoose from '@/components/DigitalMarketing/SMM/SMMWhyChoose';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const SMMFAQ = dynamic(() => import('@/components/SMM/SMMFAQ'));
+const SMMFAQ = dynamic(() => import('@/components/DigitalMarketing/SMM/SMMFAQ'));
 const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function SMMPage() {
   return (
-    <div className="font-sans bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-jakarta bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow w-full">
         <SMMHero />

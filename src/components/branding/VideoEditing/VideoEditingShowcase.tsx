@@ -5,13 +5,13 @@ import { motion } from 'framer-motion';
 import { PlayCircle } from 'lucide-react';
 
 const thumbnailProjects = [
-  { id: 6, title: 'Travel Vlog', category: 'YouTube', image: '/mainpic.png' },
+  { id: 6, title: 'Travel Vlog', category: 'YouTube', image: '/hero-images/HomeHeroimage.png' },
   { id: 7, title: 'Fitness Promo', category: 'Social Media', image: '/brand3.png' },
   { id: 8, title: 'Tech Review', category: 'YouTube', image: '/featureimage.jpg' },
-  { id: 9, title: 'Real Estate Tour', category: 'Corporate', image: '/mainpic.png' },
+  { id: 9, title: 'Real Estate Tour', category: 'Corporate', image: '/hero-images/HomeHeroimage.png' },
   { id: 10, title: 'Restaurant Ad', category: 'Commercial', image: '/brand3.png' },
   { id: 11, title: 'Music Video', category: 'Entertainment', image: '/featureimage.jpg' },
-  { id: 12, title: 'Documentary', category: 'YouTube', image: '/mainpic.png' },
+  { id: 12, title: 'Documentary', category: 'YouTube', image: '/hero-images/HomeHeroimage.png' },
 ];
 
 export default function VideoEditingShowcase() {
@@ -21,10 +21,10 @@ export default function VideoEditingShowcase() {
       <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#fcfcfc] to-transparent z-10 pointer-events-none opacity-[0.03]"></div>
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 mb-12 md:mb-16 text-center relative z-20">
-        <h2 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#111] mb-4">
+        <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#111] mb-4">
           Featured <span className="eb-garamond italic text-[#007FFF]">Video</span> Projects
         </h2>
-        <p className="text-[#555] font-poppins text-sm md:text-base max-w-2xl mx-auto">
+        <p className="text-[#555] font-jakarta text-sm md:text-base max-w-2xl mx-auto">
           Explore our portfolio of premium video editing work, from high-impact commercial campaigns to engaging social media content.
         </p>
       </div>
@@ -45,7 +45,7 @@ export default function VideoEditingShowcase() {
             <div className="w-20 h-20 md:w-28 md:h-28 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
               <PlayCircle className="w-10 h-10 md:w-14 md:h-14 text-white drop-shadow-md ml-1" />
             </div>
-            <span className="text-white font-poppins font-bold mt-6 tracking-widest uppercase text-sm md:text-base drop-shadow-md">Play Full Video</span>
+            <span className="text-white font-jakarta font-bold mt-6 tracking-widest uppercase text-sm md:text-base drop-shadow-md">Play Full Video</span>
           </div>
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function VideoEditingShowcase() {
                     <span className="text-[10px] text-gray-300 font-semibold uppercase tracking-wider block mb-1">
                       {project.category}
                     </span>
-                    <h4 className="text-white font-poppins text-sm md:text-base font-bold truncate">
+                    <h4 className="text-white font-jakarta text-sm md:text-base font-bold truncate">
                       {project.title}
                     </h4>
                   </div>

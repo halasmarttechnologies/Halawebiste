@@ -1,11 +1,16 @@
 /* ─── Fonts ─────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap');
 
 .eb-garamond {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond", serif !important;
   font-optical-sizing: auto;
-  font-weight: 548;
-  font-style: italic;
+  font-weight: 300 !important; /* Very light weight globally */
+  font-style: italic !important;
+}
+
+.font-jakarta {
+  font-family: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
 }
 
 /* ─── Tailwind ───────────────────────────────────────── */
@@ -13,8 +18,8 @@
 
 /* ─── Theme tokens (Tailwind v4 style) ──────────────── */
 @theme {
-  --font-family-sans: var(--font-inter), sans-serif;
-  --font-family-poppins: var(--font-poppins), sans-serif;
+  --font-family-sans: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
+  --font-family-jakarta: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
   --font-family-ebgaramond: 'EB Garamond', serif;
 
   --color-brand-dark: #111111;
@@ -58,13 +63,19 @@ html {
 }
 
 body {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeSpeed;
   overflow-x: clip;
   background-color: #111111;
   min-width: 320px;
+}
+
+/* Force EB Garamond for all italic text */
+.italic, i, em {
+  font-family: "EB Garamond", serif !important;
+  font-weight: 300 !important; /* Very light weight globally */
 }
 
 /* ─── Performance Hints ──────────────────────────────── */
