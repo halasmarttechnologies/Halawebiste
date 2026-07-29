@@ -263,292 +263,291 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
           )}
         </div>
 
-        {step === 'calendar' && (
-          <div className="flex flex-col flex-1 animate-in fade-in slide-in-from-left-4 duration-300">
-            {/* Calendar Header */}
-            <div className="flex items-center justify-between mb-5 px-1">
-              <div className="flex items-center gap-2">
-                <CalendarIcon className="w-4 h-4 text-white" />
-                <h3 className="font-jakarta text-[17px] font-bold text-white">
-                  {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                </h3>
-              </div>
-              <div className="flex items-center gap-1.5 bg-[#181818] p-1 rounded-xl border border-[#333333] text-white">
-                <button
-                  type="button"
-                  onClick={handlePrevMonth}
-                  aria-label="Previous Month"
-                  className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextMonth}
-                  aria-label="Next Month"
-                  className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
+        <div className={`flex flex-col flex-1 duration-300 ${step === 'calendar' ? 'block animate-in fade-in slide-in-from-left-4' : 'hidden'}`}>
+          {/* Calendar Header */}
+          <div className="flex items-center justify-between mb-5 px-1">
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-4 h-4 text-white" />
+              <h3 className="font-jakarta text-[17px] font-bold text-white">
+                {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+              </h3>
             </div>
-
-            {/* Days of Week Header */}
-            <div className="grid grid-cols-7 gap-1 mb-2 text-center">
-              {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
-                <span key={day} className="text-[10px] font-bold tracking-wider text-white/40 py-1">
-                  {day}
-                </span>
-              ))}
-            </div>
-
-            {/* Calendar Grid */}
-            <div className="grid grid-cols-7 gap-1.5 text-center text-[13px] font-medium mb-5">
-              {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-                <div key={`empty-${i}`} className="h-9"></div>
-              ))}
-
-              {Array.from({ length: daysInMonth }).map((_, i) => {
-                const day = i + 1;
-                const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-                const isPast = dateObj < new Date(new Date().setHours(0, 0, 0, 0));
-                const isSelected = selectedDate?.toDateString() === dateObj.toDateString();
-
-                return (
-                  <button
-                    key={day}
-                    type="button"
-                    onClick={() => !isPast && setSelectedDate(dateObj)}
-                    disabled={isPast}
-                    className={`h-9 w-full flex items-center justify-center rounded-xl transition-all duration-200 text-sm font-semibold select-none ${isPast ? 'text-[#444444] cursor-not-allowed bg-transparent' :
-                        isSelected
-                          ? 'bg-white text-black font-bold shadow-lg scale-105 cursor-pointer'
-                          : 'bg-[#181818] text-white hover:bg-[#252525] hover:scale-105 cursor-pointer border border-[#333333]'
-                      }`}
-                  >
-                    {day}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Time Slots Section */}
-            {selectedDate ? (
-              <div className="border-t border-[#222222] pt-4 mt-auto animate-in fade-in slide-in-from-bottom-3 duration-300">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-white" />
-                    <span className="text-[13px] font-bold text-white">
-                      {getDayOfWeek(selectedDate)}, {selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                    </span>
-                  </div>
-
-                  {/* Format Toggle */}
-                  <div className="flex items-center bg-[#000000] border border-[#222222] rounded-full p-0.5 text-[11px] font-semibold">
-                    <button
-                      type="button"
-                      onClick={() => setTimeFormat('12h')}
-                      className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '12h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
-                    >
-                      12h
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTimeFormat('24h')}
-                      className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '24h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
-                    >
-                      24h
-                    </button>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                  {baseTimeSlots.map(time => {
-                    const timeStr = getTimeSlotString(time, timeFormat);
-                    return (
-                      <button
-                        key={time}
-                        type="button"
-                        onClick={() => handleTimeSelect(timeStr)}
-                        className="w-full py-2.5 border border-[#333333] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-all shadow-sm flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
-                      >
-                        {timeStr}
-                      </button>
-                    )
-                  })}
-                </div>
-              </div>
-            ) : (
-              <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#181818]/40 rounded-xl border border-dashed border-[#333333]">
-                <p className="text-white/50 text-xs font-medium">Select an available date to view time slots</p>
-              </div>
-            )}
-          </div>
-        )}
-
-        {step === 'form' && (
-          <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="mb-4 bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <CalendarIcon className="w-4 h-4 text-white" />
-                <div>
-                  <p className="text-xs text-white/50 font-medium">Selected Slot</p>
-                  <p className="text-xs font-bold text-white">
-                    {selectedDate && getDayOfWeek(selectedDate)}, {selectedDate?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at {selectedTime}
-                  </p>
-                </div>
-              </div>
+            <div className="flex items-center gap-1.5 bg-[#181818] p-1 rounded-xl border border-[#333333] text-white">
               <button
                 type="button"
-                onClick={handleBack}
-                className="text-xs text-white hover:underline font-semibold"
+                onClick={handlePrevMonth}
+                aria-label="Previous Month"
+                className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
               >
-                Change
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNextMonth}
+                aria-label="Next Month"
+                className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
+              >
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
+          </div>
 
-            <form className="flex flex-col gap-3.5 flex-1 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-semibold text-white/90">Your Name *</label>
-                  <input
-                    type="text" required
-                    value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. John Doe"
-                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-semibold text-white/90">Email Address *</label>
-                  <input
-                    type="email" required
-                    value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="john@example.com"
-                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
-                  />
-                </div>
-              </div>
+          {/* Days of Week Header */}
+          <div className="grid grid-cols-7 gap-1 mb-2 text-center">
+            {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
+              <span key={day} className="text-[10px] font-bold tracking-wider text-white/40 py-1">
+                {day}
+              </span>
+            ))}
+          </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-semibold text-white/90">Job Title</label>
-                  <input
-                    type="text"
-                    value={formData.jobTitle} onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
-                    placeholder="e.g. Marketing Manager"
-                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-semibold text-white/90">Country</label>
-                  <input
-                    type="text"
-                    value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })}
-                    placeholder="e.g. United Arab Emirates"
-                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
-                  />
-                </div>
-              </div>
+          {/* Calendar Grid */}
+          <div className="grid grid-cols-7 gap-1.5 text-center text-[13px] font-medium mb-5">
+            {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+              <div key={`empty-${i}`} className="h-9"></div>
+            ))}
 
-              {/* Service Pills (Monochrome White & Black) */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-semibold text-white/90">Services of Interest</label>
-                <div className="flex flex-wrap gap-1.5">
-                  {availableServices.map(service => {
-                    const isSelected = formData.services.includes(service);
-                    return (
-                      <button
-                        key={service}
-                        type="button"
-                        onClick={() => handleServiceToggle(service)}
-                        className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all duration-200 flex items-center gap-1.5 border cursor-pointer ${isSelected
-                            ? 'bg-white text-black border-white shadow-md'
-                            : 'bg-[#181818] text-white/70 border-[#333333] hover:bg-[#252525] hover:text-white'
-                          }`}
-                      >
-                        {isSelected && <Check className="w-3 h-3 text-black" />}
-                        {service}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+            {Array.from({ length: daysInMonth }).map((_, i) => {
+              const day = i + 1;
+              const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+              const isPast = dateObj < new Date(new Date().setHours(0, 0, 0, 0));
+              const isSelected = selectedDate?.toDateString() === dateObj.toDateString();
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-semibold text-white/90">Estimated Monthly Budget</label>
-                  <select
-                    value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[12px] text-white focus:border-white focus:outline-none transition-all appearance-none cursor-pointer"
+              return (
+                <button
+                  key={day}
+                  type="button"
+                  onClick={() => !isPast && setSelectedDate(dateObj)}
+                  disabled={isPast}
+                  className={`h-9 w-full flex items-center justify-center rounded-xl transition-all duration-200 text-sm font-semibold select-none ${isPast ? 'text-[#444444] cursor-not-allowed bg-transparent' :
+                      isSelected
+                        ? 'bg-white text-black font-bold shadow-lg scale-105 cursor-pointer'
+                        : 'bg-[#181818] text-white hover:bg-[#252525] hover:scale-105 cursor-pointer border border-[#333333]'
+                    }`}
+                >
+                  {day}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Time Slots Section */}
+          {selectedDate ? (
+            <div className="border-t border-[#222222] pt-4 mt-auto animate-in fade-in slide-in-from-bottom-3 duration-300">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-white" />
+                  <span className="text-[13px] font-bold text-white">
+                    {getDayOfWeek(selectedDate)}, {selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                  </span>
+                </div>
+
+                {/* Format Toggle */}
+                <div className="flex items-center bg-[#000000] border border-[#222222] rounded-full p-0.5 text-[11px] font-semibold">
+                  <button
+                    type="button"
+                    onClick={() => setTimeFormat('12h')}
+                    className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '12h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
                   >
-                    <option value="" className="bg-[#111111] text-white/50">Select budget</option>
-                    <option value="< 3,500 AED" className="bg-[#111111]">Less than 3,500 AED</option>
-                    <option value="3,500 AED - 18,000 AED" className="bg-[#111111]">3,500 AED - 18,000 AED</option>
-                    <option value="18,000 AED - 35,000 AED" className="bg-[#111111]">18,000 AED - 35,000 AED</option>
-                    <option value="> 35,000 AED" className="bg-[#111111]">More than 35,000 AED</option>
-                  </select>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="text-[11px] font-semibold text-white/90">How did you hear about us?</label>
-                  <select
-                    value={formData.howDidYouHear} onChange={e => setFormData({ ...formData, howDidYouHear: e.target.value })}
-                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[12px] text-white focus:border-white focus:outline-none transition-all appearance-none cursor-pointer"
+                    12h
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTimeFormat('24h')}
+                    className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '24h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
                   >
-                    <option value="" className="bg-[#111111] text-white/50">Select source</option>
-                    <option value="Google Search" className="bg-[#111111]">Google Search</option>
-                    <option value="Social Media" className="bg-[#111111]">Social Media</option>
-                    <option value="Referral" className="bg-[#111111]">Referral</option>
-                    <option value="Other" className="bg-[#111111]">Other</option>
-                  </select>
+                    24h
+                  </button>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {baseTimeSlots.map(time => {
+                  const timeStr = getTimeSlotString(time, timeFormat);
+                  return (
+                    <button
+                      key={time}
+                      type="button"
+                      onClick={() => handleTimeSelect(timeStr)}
+                      className="w-full py-2.5 border border-[#333333] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-all shadow-sm flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
+                    >
+                      {timeStr}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          ) : (
+            <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#181818]/40 rounded-xl border border-dashed border-[#333333]">
+              <p className="text-white/50 text-xs font-medium">Select an available date to view time slots</p>
+            </div>
+          )}
+        </div>
+
+        <div className={`flex flex-col h-full duration-300 ${step === 'form' ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
+          <div className="mb-4 bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-4 h-4 text-white" />
+              <div>
+                <p className="text-xs text-white/50 font-medium">Selected Slot</p>
+                <p className="text-xs font-bold text-white">
+                  {selectedDate && getDayOfWeek(selectedDate)}, {selectedDate?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at {selectedTime}
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={handleBack}
+              className="text-xs text-white hover:underline font-semibold"
+            >
+              Change
+            </button>
+          </div>
+
+          <form className="flex flex-col gap-3.5 flex-1 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] font-semibold text-white/90">Full Name *</label>
+                <input
+                  type="text" required
+                  value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="John Doe"
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">Project Details / Message</label>
-                <textarea
-                  rows={2}
-                  value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell us briefly about your goals..."
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30 resize-none"
-                ></textarea>
+                <label className="text-[11px] font-semibold text-white/90">Work Email *</label>
+                <input
+                  type="email" required
+                  value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="john@company.com"
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] font-semibold text-white/90">Job Title</label>
+                <input
+                  type="text"
+                  value={formData.jobTitle} onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
+                  placeholder="Marketing Director"
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                />
               </div>
 
-              {/* reCAPTCHA - Scaled & Centered */}
-              <div className="mt-1 flex justify-center w-full overflow-hidden scale-[0.88] xs:scale-95 sm:scale-100 origin-center">
-                {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                    onChange={(token) => setCaptchaToken(token)}
-                    theme="dark"
-                  />
-                ) : (
-                  <div className="text-white/80 text-xs text-center border border-white/20 p-2 rounded-xl bg-white/5 w-full">
-                    reCAPTCHA Site Key missing in .env
-                  </div>
-                )}
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] font-semibold text-white/90">Country</label>
+                <input
+                  type="text"
+                  value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })}
+                  placeholder="United Arab Emirates"
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                />
+              </div>
+            </div>
+
+            {/* Service Selection Toggle Pills */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-[11px] font-semibold text-white/90">Services Needed</label>
+              <div className="flex flex-wrap gap-1.5">
+                {availableServices.map(service => {
+                  const isSelected = formData.services.includes(service);
+                  return (
+                    <button
+                      key={service}
+                      type="button"
+                      onClick={() => handleServiceToggle(service)}
+                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${isSelected
+                          ? 'bg-white text-black font-bold shadow-md scale-[1.02]'
+                          : 'bg-[#181818] text-white/70 border border-[#333333] hover:border-white/40 hover:text-white'
+                        }`}
+                    >
+                      {isSelected && <Check className="w-3 h-3 inline mr-1 -mt-0.5 text-black stroke-[3]" />}
+                      {service}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] font-semibold text-white/90">Est. Monthly Budget (AED)</label>
+                <select
+                  value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all cursor-pointer"
+                >
+                  <option value="" className="bg-[#111111] text-white/50">Select budget</option>
+                  <option value="< 3,500 AED" className="bg-[#111111]">Less than 3,500 AED</option>
+                  <option value="3,500 AED - 18,000 AED" className="bg-[#111111]">3,500 AED - 18,000 AED</option>
+                  <option value="18,000 AED - 35,000 AED" className="bg-[#111111]">18,000 AED - 35,000 AED</option>
+                  <option value="> 35,000 AED" className="bg-[#111111]">More than 35,000 AED</option>
+                </select>
               </div>
 
-              {errorMsg && (
-                <p className="text-white bg-white/10 border border-white/20 text-[12px] text-center font-medium py-1.5 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] font-semibold text-white/90">How did you hear about us?</label>
+                <select
+                  value={formData.howDidYouHear} onChange={e => setFormData({ ...formData, howDidYouHear: e.target.value })}
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all cursor-pointer"
+                >
+                  <option value="" className="bg-[#111111] text-white/50">Select source</option>
+                  <option value="Google Search" className="bg-[#111111]">Google Search</option>
+                  <option value="Social Media" className="bg-[#111111]">Social Media</option>
+                  <option value="Referral" className="bg-[#111111]">Referral</option>
+                  <option value="Other" className="bg-[#111111]">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">Project Details / Message</label>
+              <textarea
+                rows={2}
+                value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Tell us briefly about your goals..."
+                className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30 resize-none"
+              ></textarea>
+            </div>
+
+            {/* reCAPTCHA - Scaled & Centered */}
+            <div className="mt-1 flex justify-center w-full overflow-hidden scale-[0.88] xs:scale-95 sm:scale-100 origin-center">
+              {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  onChange={(token) => setCaptchaToken(token)}
+                  theme="dark"
+                />
+              ) : (
+                <div className="text-white/80 text-xs text-center border border-white/20 p-2 rounded-xl bg-white/5 w-full">
+                  reCAPTCHA Site Key missing in .env
+                </div>
               )}
+            </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="mt-1 w-full bg-white text-black hover:bg-white/90 rounded-xl py-3 font-bold text-[14px] transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none shadow-none"
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin text-black" /> Confirming...
-                  </>
-                ) : (
-                  'Confirm Booking'
-                )}
-              </button>
-            </form>
-          </div>
-        )}
+            {errorMsg && (
+              <p className="text-white bg-white/10 border border-white/20 text-[12px] text-center font-medium py-1.5 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-1 w-full bg-white text-black hover:bg-white/90 rounded-xl py-3 font-bold text-[14px] transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none shadow-none"
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin text-black" /> Confirming...
+                </>
+              ) : (
+                'Confirm Booking'
+              )}
+            </button>
+          </form>
+        </div>
 
       </div>
     </div>
