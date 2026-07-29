@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import {
-  ChevronDown, Grid2X2, Search, MousePointerClick,
+  ChevronDown, ArrowUpRight, Search, MousePointerClick,
   Share2, PenTool, LayoutTemplate, BarChart3, Menu, X, ChevronRight, Bot, MessageCircle
 } from 'lucide-react';
 import Link from 'next/link';
@@ -256,9 +256,9 @@ export default function Navbar() {
         <div className="hidden md:flex md:flex-row md:items-center md:gap-4 w-full justify-end z-10">
           {renderNavLinks()}
           <div className="w-px h-8 bg-[#e0e0e0] mx-2" />
-          <Link href="/contact" className="flex items-center justify-center gap-[7px] py-2.5 px-5 bg-[#007FFF] text-white rounded-lg text-[13.5px] font-semibold cursor-pointer transition-colors hover:bg-[#0066CC] shadow-sm shadow-[#007FFF]/20 no-underline">
-            <Grid2X2 size={16} />
-            Lets Talk
+          <Link href="/contact" className="group flex items-center justify-center gap-[7px] py-2.5 px-5 bg-[#007FFF] text-white rounded-lg text-[13.5px] font-semibold cursor-pointer transition-colors hover:bg-[#0066CC] shadow-sm shadow-[#007FFF]/20 no-underline">
+            <span>Lets Talk</span>
+            <ArrowUpRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
 
@@ -286,9 +286,9 @@ export default function Navbar() {
       <div className={`md:hidden absolute top-[calc(100%+15px)] left-4 right-4 bg-white border border-[#e5e5e5] rounded-[18px] shadow-lg z-[9999] p-6 flex flex-col items-start gap-4 transition-all duration-300 ease-out origin-top pointer-events-auto ${menuOpen ? 'opacity-100 visible scale-100 translate-y-0' : 'opacity-0 invisible scale-95 -translate-y-2 pointer-events-none'}`}>
         {renderNavLinks(true)}
         <div className="w-full h-px bg-[#e0e0e0] my-1" />
-        <Link href="/contact" onClick={closeAllMenus} className="flex items-center justify-center gap-[7px] py-2.5 px-5 bg-[#111] text-white rounded-lg text-[13.5px] font-semibold cursor-pointer w-full transition-colors hover:bg-[#333] shadow-sm no-underline">
-          <Grid2X2 size={16} />
-          Lets Talk
+        <Link href="/contact" onClick={closeAllMenus} className="group flex items-center justify-center gap-[7px] py-2.5 px-5 bg-[#111] text-white rounded-lg text-[13.5px] font-semibold cursor-pointer w-full transition-colors hover:bg-[#333] shadow-sm no-underline">
+          <span>Lets Talk</span>
+          <ArrowUpRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>
     </header>

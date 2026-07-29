@@ -1,59 +1,90 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Grid2X2 } from 'lucide-react';
+import { Calendar, X } from 'lucide-react';
 import WaveMarquee from './WaveMarquee';
+import ContactCTA from '@/components/Home/ContactCTA';
 
 // ─── Shared class constants ───────────────────────────
 const ctaBtn =
-  'flex items-center justify-center gap-2 py-2.5 px-6 ' +
+  'group flex items-center justify-center gap-2.5 py-3 px-7 ' +
   'bg-[#007FFF] text-white rounded-xl text-sm sm:text-[15px] ' +
-  'font-semibold cursor-pointer transition-transform transition-colors duration-150 ' +
-  'mb-5 shadow-md shadow-[#007FFF]/20 hover:bg-[#0066CC] hover:scale-[1.02] active:scale-[0.98] no-underline';
+  'font-semibold cursor-pointer transition-all duration-200 ' +
+  'mb-5 shadow-lg shadow-[#007FFF]/25 hover:bg-[#0066CC] hover:scale-[1.03] active:scale-[0.98] border-none outline-none';
 
 export default function HeroSection() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
   return (
-    <section className="relative z-0 flex flex-col items-center justify-between text-center w-full h-[100svh] min-h-[600px] overflow-hidden pt-[100px]">
-      {/* Background Image Setup */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-images/HomeHeroimage.png"
-          alt="Hero Background"
-          fill
-          className="object-cover object-center opacity-90"
-          priority
-        />
-        {/* Black overlays for high contrast and black-and-white design system */}
-        <div className="absolute inset-0 bg-black/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-[#111111]"></div>
-      </div>
+    <>
+      <section className="relative z-0 flex flex-col items-center justify-between text-center w-full h-[100svh] min-h-[600px] overflow-hidden pt-[100px]">
+        {/* Background Image Setup */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/hero-images/HomeHeroimage.png"
+            alt="Hero Background"
+            fill
+            className="object-cover object-center opacity-90"
+            priority
+          />
+          {/* Black overlays for high contrast */}
+          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-[#111111]"></div>
+        </div>
 
-      <div className="relative z-20 flex flex-col items-center justify-center w-full flex-grow px-4 sm:px-6 -mt-16 md:-mt-24">
-        <h1 className="font-jakarta text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.05] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
-          <span className="text-white font-semibold">
-            <em className="eb-garamond">Grow</em>{' '}
-            your brand.</span>{' '}
+        <div className="relative z-20 flex flex-col items-center justify-center w-full flex-grow px-4 sm:px-6 -mt-16 md:-mt-24">
+          <h1 className="font-jakarta text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.05] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
+            <span className="text-white font-semibold">
+              <em className="eb-garamond">Grow</em>{' '}
+              your brand.</span>{' '}
 
-          <span className="text-white font-semibold block sm:inline mt-1 sm:mt-0">
-            Dominate
-            {' '}
-            <em className="eb-garamond font-semibold">the market.</em>
-          </span>
-        </h1>
+            <span className="text-white font-semibold block sm:inline mt-1 sm:mt-0">
+              Dominate
+              {' '}
+              <em className="eb-garamond font-semibold">the market.</em>
+            </span>
+          </h1>
 
-        <p className="text-[13px] sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px] text-center">
-          Digital marketing that delivers. <br />
-          Real clicks. Real customers.
-        </p>
+          <p className="text-[13px] sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px] text-center">
+            Digital marketing that delivers. <br />
+            Real clicks. Real customers.
+          </p>
 
-        <Link href="/contact" className={ctaBtn}>
-          <Grid2X2 size={18} />
-          Get a Free Consultation
-        </Link>
-      </div>
+          <button
+            type="button"
+            onClick={() => setIsBookingModalOpen(true)}
+            className={ctaBtn}
+          >
+            <Calendar className="w-4.5 h-4.5 text-white transition-transform group-hover:scale-110" />
+            <span>Get a Free Consultation</span>
+          </button>
+        </div>
 
-      <WaveMarquee />
-    </section>
+        <WaveMarquee />
+      </section>
+
+      {/* Interactive Booking Modal Popup */}
+      {isBookingModalOpen && (
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsBookingModalOpen(false);
+          }}
+        >
+          <div className="relative w-full max-w-[1150px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto rounded-[28px] sm:rounded-[36px] shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setIsBookingModalOpen(false)}
+              className="absolute top-4 right-4 z-50 text-white/70 hover:text-white bg-black/70 hover:bg-black/90 p-2.5 rounded-full border border-white/20 transition-all cursor-pointer shadow-xl backdrop-blur-md"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            <ContactCTA contained={true} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
