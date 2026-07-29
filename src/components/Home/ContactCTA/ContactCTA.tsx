@@ -73,7 +73,7 @@ const availableServices = [
   'Marketing Automation'
 ];
 
-export default function ContactCTA({ contained = false }: { contained?: boolean }) {
+export default function ContactCTA({ contained = false, formOnly = false }: { contained?: boolean; formOnly?: boolean }) {
   const [step, setStep] = useState<'calendar' | 'form'>('calendar');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
@@ -178,6 +178,379 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
     return date.toLocaleDateString('en-US', { weekday: 'short' });
   }, []);
 
+  const bookingCard = (
+    <div className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-4 sm:p-7 w-full max-w-[460px] min-h-[500px] sm:min-h-[520px] mx-auto relative flex flex-col justify-between transition-all duration-300">
+      {/* Top Step Progress Indicator */}
+      <div className="flex items-center justify-between border-b border-[#222222] pb-4 mb-4">
+        <div className="flex items-center gap-2">
+          <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'calendar' ? 'bg-white text-black' : 'bg-[#222222] text-white/50'}`}>
+            1
+          </span>
+          <span className={`text-xs font-semibold ${step === 'calendar' ? 'text-white' : 'text-white/40'}`}>Date &amp; Time</span>
+          <span className="text-white/20 text-xs">/</span>
+          <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'form' ? 'bg-white text-black' : 'bg-[#222222] text-white/50'}`}>
+            2
+          </span>
+          <span className={`text-xs font-semibold ${step === 'form' ? 'text-white' : 'text-white/40'}`}>Your Details</span>
+        </div>
+
+        {step === 'form' && (
+          <button
+            type="button"
+            onClick={handleBack}
+            className="flex items-center gap-1 text-white hover:text-white/80 transition-colors text-xs font-semibold px-3 py-1 rounded-lg bg-[#181818] border border-[#262626] cursor-pointer"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" /> Back
+          </button>
+        )}
+      </div>
+
+      {/* STEP 1: Calendar & Time Slots */}
+      <div className={`flex flex-col flex-1 duration-300 ${step === 'calendar' ? 'block animate-in fade-in slide-in-from-left-4' : 'hidden'}`}>
+        {/* Calendar Header */}
+        <div className="flex items-center justify-between mb-5 px-1">
+          <div className="flex items-center gap-2">
+            <CalendarIcon className="w-4.5 h-4.5 text-white" />
+            <h3 className="font-jakarta text-[17px] font-bold text-white">
+              {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            </h3>
+          </div>
+          <div className="flex items-center gap-1 bg-[#181818] p-1 rounded-xl border border-[#262626] text-white">
+            <button
+              type="button"
+              onClick={handlePrevMonth}
+              aria-label="Previous Month"
+              className="p-1.5 rounded-lg hover:bg-[#222222] text-white transition-colors cursor-pointer border-none"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={handleNextMonth}
+              aria-label="Next Month"
+              className="p-1.5 rounded-lg hover:bg-[#222222] text-white transition-colors cursor-pointer border-none"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        {/* Days of Week Header */}
+        <div className="grid grid-cols-7 gap-1 mb-2 text-center">
+          {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
+            <span key={day} className="text-[10px] font-bold tracking-wider text-white/50 py-1">
+              {day}
+            </span>
+          ))}
+        </div>
+
+        {/* Calendar Grid */}
+        <div className="grid grid-cols-7 gap-1.5 text-center text-[13px] font-medium mb-5">
+          {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+            <div key={`empty-${i}`} className="h-9"></div>
+          ))}
+
+          {Array.from({ length: daysInMonth }).map((_, i) => {
+            const day = i + 1;
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+            dateObj.setHours(0, 0, 0, 0);
+
+            const isPast = dateObj.getTime() < today.getTime();
+            const isSelected = selectedDate ? selectedDate.toDateString() === dateObj.toDateString() : false;
+
+            return (
+              <button
+                key={day}
+                type="button"
+                onClick={() => {
+                  if (!isPast) {
+                    setSelectedDate(dateObj);
+                  }
+                }}
+                disabled={isPast}
+                className={`h-9 w-full flex items-center justify-center rounded-xl transition-colors text-sm font-semibold select-none border ${
+                  isPast
+                    ? 'text-[#444444] cursor-not-allowed border-transparent bg-transparent'
+                    : isSelected
+                    ? 'bg-white text-black font-bold border-white cursor-pointer'
+                    : 'bg-[#181818] text-white border-[#262626] hover:bg-[#222222] hover:border-white/50 cursor-pointer'
+                }`}
+              >
+                {day}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Time Slots Section */}
+        {selectedDate ? (
+          <div className="border-t border-[#222222] pt-4 mt-auto animate-in fade-in slide-in-from-bottom-3 duration-300">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-white" />
+                <span className="text-[13px] font-bold text-white">
+                  {getDayOfWeek(selectedDate)}, {selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                </span>
+              </div>
+
+              {/* 12h / 24h Toggle */}
+              <div className="flex items-center bg-[#141414] border border-[#262626] rounded-full p-0.5 text-[11px] font-semibold">
+                <button
+                  type="button"
+                  onClick={() => setTimeFormat('12h')}
+                  className={`px-3 py-1 rounded-full transition-colors border-none cursor-pointer ${timeFormat === '12h' ? 'bg-white text-black font-bold' : 'text-white/60 hover:text-white bg-transparent'}`}
+                >
+                  12h
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTimeFormat('24h')}
+                  className={`px-3 py-1 rounded-full transition-colors border-none cursor-pointer ${timeFormat === '24h' ? 'bg-white text-black font-bold' : 'text-white/60 hover:text-white bg-transparent'}`}
+                >
+                  24h
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {baseTimeSlots.map(time => {
+                const timeStr = getTimeSlotString(time, timeFormat);
+                return (
+                  <button
+                    key={time}
+                    type="button"
+                    onClick={() => handleTimeSelect(timeStr)}
+                    className="w-full py-2.5 border border-[#262626] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                  >
+                    {timeStr}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        ) : (
+          <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#141414] rounded-xl border border-dashed border-[#262626]">
+            <p className="text-white/50 text-xs font-medium">Select an available date to view time slots</p>
+          </div>
+        )}
+      </div>
+
+      {/* STEP 2: Customer Details Form */}
+      <div className={`flex flex-col h-full duration-300 ${step === 'form' ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
+        <div className="mb-4 bg-[#181818] border border-[#262626] rounded-xl p-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <CalendarIcon className="w-4 h-4 text-white" />
+            <div>
+              <p className="text-[11px] text-white/50 font-medium">Selected Time Slot</p>
+              <p className="text-xs font-bold text-white">
+                {selectedDate && getDayOfWeek(selectedDate)}, {selectedDate?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at {selectedTime}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={handleBack}
+            className="text-xs text-white hover:underline font-semibold bg-transparent border-none cursor-pointer"
+          >
+            Change
+          </button>
+        </div>
+
+        <form className="flex flex-col gap-3.5 flex-1 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar" onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">Full Name *</label>
+              <input
+                type="text" required
+                value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
+                placeholder="John Doe"
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">Work Email *</label>
+              <input
+                type="email" required
+                value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
+                placeholder="john@company.com"
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">Job Title</label>
+              <input
+                type="text"
+                value={formData.jobTitle} onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
+                placeholder="Marketing Director"
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">Country</label>
+              <input
+                type="text"
+                value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })}
+                placeholder="United Arab Emirates"
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
+              />
+            </div>
+          </div>
+
+          {/* Service Selection Toggle Pills */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[11px] font-semibold text-white/90">Services Needed</label>
+            <div className="flex flex-wrap gap-1.5">
+              {availableServices.map(service => {
+                const isSelected = formData.services.includes(service);
+                return (
+                  <button
+                    key={service}
+                    type="button"
+                    onClick={() => handleServiceToggle(service)}
+                    className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer border ${
+                      isSelected
+                        ? 'bg-white text-black font-bold border-white'
+                        : 'bg-[#181818] text-white/70 border-[#262626] hover:border-white/40 hover:text-white'
+                    }`}
+                  >
+                    {isSelected && <Check className="w-3 h-3 inline mr-1 -mt-0.5 text-black stroke-[3]" />}
+                    {service}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">Est. Monthly Budget (AED)</label>
+              <select
+                value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors cursor-pointer"
+              >
+                <option value="" className="bg-[#111111] text-white/50">Select budget</option>
+                <option value="< 3,500 AED" className="bg-[#111111]">Less than 3,500 AED</option>
+                <option value="3,500 AED - 18,000 AED" className="bg-[#111111]">3,500 AED - 18,000 AED</option>
+                <option value="18,000 AED - 35,000 AED" className="bg-[#111111]">18,000 AED - 35,000 AED</option>
+                <option value="> 35,000 AED" className="bg-[#111111]">More than 35,000 AED</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[11px] font-semibold text-white/90">How did you hear about us?</label>
+              <select
+                value={formData.howDidYouHear} onChange={e => setFormData({ ...formData, howDidYouHear: e.target.value })}
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors cursor-pointer"
+              >
+                <option value="" className="bg-[#111111] text-white/50">Select source</option>
+                <option value="Google Search" className="bg-[#111111]">Google Search</option>
+                <option value="Social Media" className="bg-[#111111]">Social Media</option>
+                <option value="Referral" className="bg-[#111111]">Referral</option>
+                <option value="Other" className="bg-[#111111]">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="text-[11px] font-semibold text-white/90">Project Details / Message</label>
+            <textarea
+              rows={2}
+              value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
+              placeholder="Tell us briefly about your goals..."
+              className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30 resize-none"
+            ></textarea>
+          </div>
+
+          {/* reCAPTCHA - Scaled for 100% Mobile Visibility */}
+          <div className="my-1.5 flex justify-center items-center w-full min-h-[78px] overflow-hidden">
+            <div className="transform scale-[0.82] xs:scale-[0.9] sm:scale-100 origin-center flex justify-center items-center max-w-full">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
+                onChange={(token) => {
+                  setCaptchaToken(token);
+                  setErrorMsg('');
+                }}
+                onExpired={() => {
+                  setCaptchaToken(null);
+                  setErrorMsg('reCAPTCHA expired. Please check the box again.');
+                }}
+                onError={() => {
+                  setCaptchaToken(null);
+                  setErrorMsg('reCAPTCHA network error. Please try again.');
+                }}
+                theme="dark"
+              />
+            </div>
+          </div>
+
+          {errorMsg && (
+            <p className="text-white bg-[#181818] border border-white/20 text-[12px] text-center font-medium py-2 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="mt-1 w-full bg-white text-black hover:bg-[#e5e5e5] rounded-xl py-3.5 font-bold text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin text-black" /> Confirming...
+              </>
+            ) : (
+              'Confirm Booking'
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+
+  if (formOnly) {
+    return (
+      <>
+        {bookingCard}
+
+        {/* SUCCESS POP-UP MODAL */}
+        {showSuccessModal && (
+          <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+            <div className="bg-[#111111] border border-[#333333] rounded-3xl p-6 sm:p-8 max-w-[420px] w-full text-center flex flex-col items-center relative animate-in zoom-in-95 duration-200">
+              <button
+                type="button"
+                onClick={handleResetForm}
+                className="absolute top-4 right-4 text-white/50 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors border-none cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center mb-5 border border-white">
+                <Check className="w-8 h-8 text-black stroke-[3]" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Booking Confirmed!</h3>
+              <p className="text-white/70 text-xs sm:text-sm max-w-[320px] leading-relaxed mb-6 font-medium">
+                The booking is confirmed. Our team will connect with you shortly.
+              </p>
+              <button
+                type="button"
+                onClick={handleResetForm}
+                className="w-full bg-white text-black font-bold py-3.5 rounded-xl hover:bg-[#e5e5e5] transition-colors text-sm cursor-pointer border-none"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
   const innerContent = (
     <div className="max-w-[1150px] w-full grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 lg:gap-16 items-center z-10 relative">
       {/* Left Side: Typography & Brand Identity */}
@@ -234,342 +607,8 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
         </div>
       </div>
 
-      {/* Right Side: Interactive Booking Card (Flat Modern Dark Aesthetic - No Shadows) */}
-      <div className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-4 sm:p-7 w-full max-w-[460px] min-h-[500px] sm:min-h-[520px] mx-auto lg:ml-auto relative flex flex-col justify-between transition-all duration-300">
-
-        {/* Top Step Progress Indicator */}
-        <div className="flex items-center justify-between border-b border-[#222222] pb-4 mb-4">
-          <div className="flex items-center gap-2">
-            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'calendar' ? 'bg-white text-black' : 'bg-[#222222] text-white/50'}`}>
-              1
-            </span>
-            <span className={`text-xs font-semibold ${step === 'calendar' ? 'text-white' : 'text-white/40'}`}>Date &amp; Time</span>
-            <span className="text-white/20 text-xs">/</span>
-            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'form' ? 'bg-white text-black' : 'bg-[#222222] text-white/50'}`}>
-              2
-            </span>
-            <span className={`text-xs font-semibold ${step === 'form' ? 'text-white' : 'text-white/40'}`}>Your Details</span>
-          </div>
-
-          {step === 'form' && (
-            <button
-              type="button"
-              onClick={handleBack}
-              className="flex items-center gap-1 text-white hover:text-white/80 transition-colors text-xs font-semibold px-3 py-1 rounded-lg bg-[#181818] border border-[#262626] cursor-pointer"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" /> Back
-            </button>
-          )}
-        </div>
-
-        {/* STEP 1: Calendar & Time Slots */}
-        <div className={`flex flex-col flex-1 duration-300 ${step === 'calendar' ? 'block animate-in fade-in slide-in-from-left-4' : 'hidden'}`}>
-          {/* Calendar Header */}
-          <div className="flex items-center justify-between mb-5 px-1">
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="w-4.5 h-4.5 text-white" />
-              <h3 className="font-jakarta text-[17px] font-bold text-white">
-                {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-              </h3>
-            </div>
-            <div className="flex items-center gap-1 bg-[#181818] p-1 rounded-xl border border-[#262626] text-white">
-              <button
-                type="button"
-                onClick={handlePrevMonth}
-                aria-label="Previous Month"
-                className="p-1.5 rounded-lg hover:bg-[#222222] text-white transition-colors cursor-pointer border-none"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={handleNextMonth}
-                aria-label="Next Month"
-                className="p-1.5 rounded-lg hover:bg-[#222222] text-white transition-colors cursor-pointer border-none"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Days of Week Header */}
-          <div className="grid grid-cols-7 gap-1 mb-2 text-center">
-            {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
-              <span key={day} className="text-[10px] font-bold tracking-wider text-white/50 py-1">
-                {day}
-              </span>
-            ))}
-          </div>
-
-          {/* Calendar Grid */}
-          <div className="grid grid-cols-7 gap-1.5 text-center text-[13px] font-medium mb-5">
-            {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-              <div key={`empty-${i}`} className="h-9"></div>
-            ))}
-
-            {Array.from({ length: daysInMonth }).map((_, i) => {
-              const day = i + 1;
-              const today = new Date();
-              today.setHours(0, 0, 0, 0);
-
-              const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-              dateObj.setHours(0, 0, 0, 0);
-
-              const isPast = dateObj.getTime() < today.getTime();
-              const isSelected = selectedDate ? selectedDate.toDateString() === dateObj.toDateString() : false;
-
-              return (
-                <button
-                  key={day}
-                  type="button"
-                  onClick={() => {
-                    if (!isPast) {
-                      setSelectedDate(dateObj);
-                    }
-                  }}
-                  disabled={isPast}
-                  className={`h-9 w-full flex items-center justify-center rounded-xl transition-colors text-sm font-semibold select-none border ${
-                    isPast
-                      ? 'text-[#444444] cursor-not-allowed border-transparent bg-transparent'
-                      : isSelected
-                      ? 'bg-white text-black font-bold border-white cursor-pointer'
-                      : 'bg-[#181818] text-white border-[#262626] hover:bg-[#222222] hover:border-white/50 cursor-pointer'
-                  }`}
-                >
-                  {day}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Time Slots Section */}
-          {selectedDate ? (
-            <div className="border-t border-[#222222] pt-4 mt-auto animate-in fade-in slide-in-from-bottom-3 duration-300">
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-white" />
-                  <span className="text-[13px] font-bold text-white">
-                    {getDayOfWeek(selectedDate)}, {selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                  </span>
-                </div>
-
-                {/* 12h / 24h Toggle */}
-                <div className="flex items-center bg-[#141414] border border-[#262626] rounded-full p-0.5 text-[11px] font-semibold">
-                  <button
-                    type="button"
-                    onClick={() => setTimeFormat('12h')}
-                    className={`px-3 py-1 rounded-full transition-colors border-none cursor-pointer ${timeFormat === '12h' ? 'bg-white text-black font-bold' : 'text-white/60 hover:text-white bg-transparent'}`}
-                  >
-                    12h
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTimeFormat('24h')}
-                    className={`px-3 py-1 rounded-full transition-colors border-none cursor-pointer ${timeFormat === '24h' ? 'bg-white text-black font-bold' : 'text-white/60 hover:text-white bg-transparent'}`}
-                  >
-                    24h
-                  </button>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {baseTimeSlots.map(time => {
-                  const timeStr = getTimeSlotString(time, timeFormat);
-                  return (
-                    <button
-                      key={time}
-                      type="button"
-                      onClick={() => handleTimeSelect(timeStr)}
-                      className="w-full py-2.5 border border-[#262626] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-colors flex items-center justify-center gap-1 cursor-pointer"
-                    >
-                      {timeStr}
-                    </button>
-                  )
-                })}
-              </div>
-            </div>
-          ) : (
-            <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#141414] rounded-xl border border-dashed border-[#262626]">
-              <p className="text-white/50 text-xs font-medium">Select an available date to view time slots</p>
-            </div>
-          )}
-        </div>
-
-        {/* STEP 2: Customer Details Form */}
-        <div className={`flex flex-col h-full duration-300 ${step === 'form' ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
-          <div className="mb-4 bg-[#181818] border border-[#262626] rounded-xl p-3 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="w-4 h-4 text-white" />
-              <div>
-                <p className="text-[11px] text-white/50 font-medium">Selected Time Slot</p>
-                <p className="text-xs font-bold text-white">
-                  {selectedDate && getDayOfWeek(selectedDate)}, {selectedDate?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at {selectedTime}
-                </p>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={handleBack}
-              className="text-xs text-white hover:underline font-semibold bg-transparent border-none cursor-pointer"
-            >
-              Change
-            </button>
-          </div>
-
-          <form className="flex flex-col gap-3.5 flex-1 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">Full Name *</label>
-                <input
-                  type="text" required
-                  value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="John Doe"
-                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">Work Email *</label>
-                <input
-                  type="email" required
-                  value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@company.com"
-                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">Job Title</label>
-                <input
-                  type="text"
-                  value={formData.jobTitle} onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
-                  placeholder="Marketing Director"
-                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
-                />
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">Country</label>
-                <input
-                  type="text"
-                  value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })}
-                  placeholder="United Arab Emirates"
-                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
-                />
-              </div>
-            </div>
-
-            {/* Service Selection Toggle Pills */}
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[11px] font-semibold text-white/90">Services Needed</label>
-              <div className="flex flex-wrap gap-1.5">
-                {availableServices.map(service => {
-                  const isSelected = formData.services.includes(service);
-                  return (
-                    <button
-                      key={service}
-                      type="button"
-                      onClick={() => handleServiceToggle(service)}
-                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer border ${
-                        isSelected
-                          ? 'bg-white text-black font-bold border-white'
-                          : 'bg-[#181818] text-white/70 border-[#262626] hover:border-white/40 hover:text-white'
-                      }`}
-                    >
-                      {isSelected && <Check className="w-3 h-3 inline mr-1 -mt-0.5 text-black stroke-[3]" />}
-                      {service}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">Est. Monthly Budget (AED)</label>
-                <select
-                  value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors cursor-pointer"
-                >
-                  <option value="" className="bg-[#111111] text-white/50">Select budget</option>
-                  <option value="< 3,500 AED" className="bg-[#111111]">Less than 3,500 AED</option>
-                  <option value="3,500 AED - 18,000 AED" className="bg-[#111111]">3,500 AED - 18,000 AED</option>
-                  <option value="18,000 AED - 35,000 AED" className="bg-[#111111]">18,000 AED - 35,000 AED</option>
-                  <option value="> 35,000 AED" className="bg-[#111111]">More than 35,000 AED</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col gap-1">
-                <label className="text-[11px] font-semibold text-white/90">How did you hear about us?</label>
-                <select
-                  value={formData.howDidYouHear} onChange={e => setFormData({ ...formData, howDidYouHear: e.target.value })}
-                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors cursor-pointer"
-                >
-                  <option value="" className="bg-[#111111] text-white/50">Select source</option>
-                  <option value="Google Search" className="bg-[#111111]">Google Search</option>
-                  <option value="Social Media" className="bg-[#111111]">Social Media</option>
-                  <option value="Referral" className="bg-[#111111]">Referral</option>
-                  <option value="Other" className="bg-[#111111]">Other</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <label className="text-[11px] font-semibold text-white/90">Project Details / Message</label>
-              <textarea
-                rows={2}
-                value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Tell us briefly about your goals..."
-                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30 resize-none"
-              ></textarea>
-            </div>
-
-            {/* reCAPTCHA - Scaled for 100% Mobile Visibility (No Shadows) */}
-            <div className="my-1.5 flex justify-center items-center w-full min-h-[78px] overflow-hidden">
-              <div className="transform scale-[0.82] xs:scale-[0.9] sm:scale-100 origin-center flex justify-center items-center max-w-full">
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
-                  onChange={(token) => {
-                    setCaptchaToken(token);
-                    setErrorMsg('');
-                  }}
-                  onExpired={() => {
-                    setCaptchaToken(null);
-                    setErrorMsg('reCAPTCHA expired. Please check the box again.');
-                  }}
-                  onError={() => {
-                    setCaptchaToken(null);
-                    setErrorMsg('reCAPTCHA network error. Please try again.');
-                  }}
-                  theme="dark"
-                />
-              </div>
-            </div>
-
-            {errorMsg && (
-              <p className="text-white bg-[#181818] border border-white/20 text-[12px] text-center font-medium py-2 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
-            )}
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="mt-1 w-full bg-white text-black hover:bg-[#e5e5e5] rounded-xl py-3.5 font-bold text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin text-black" /> Confirming...
-                </>
-              ) : (
-                'Confirm Booking'
-              )}
-            </button>
-          </form>
-        </div>
-
-      </div>
+      {/* Right Side: Interactive Booking Card */}
+      {bookingCard}
     </div>
   );
 

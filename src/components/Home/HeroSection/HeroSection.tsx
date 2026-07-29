@@ -72,16 +72,16 @@ export default function HeroSection() {
             if (e.target === e.currentTarget) setIsBookingModalOpen(false);
           }}
         >
-          <div className="relative w-full max-w-[1150px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto rounded-[28px] sm:rounded-[36px] shadow-2xl">
+          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto rounded-[24px] sm:rounded-[32px] border border-[#222222]">
             <button
               type="button"
               onClick={() => setIsBookingModalOpen(false)}
-              className="absolute top-4 right-4 z-50 text-white/70 hover:text-white bg-black/70 hover:bg-black/90 p-2.5 rounded-full border border-white/20 transition-all cursor-pointer shadow-xl backdrop-blur-md"
+              className="absolute top-3.5 right-3.5 z-50 text-white/70 hover:text-white bg-black/80 hover:bg-black/95 p-2 rounded-full border border-white/20 transition-all cursor-pointer backdrop-blur-md"
               aria-label="Close modal"
             >
               <X className="w-5 h-5 text-white" />
             </button>
-            <ContactCTA contained={true} />
+            <ContactCTA formOnly={true} />
           </div>
         </div>
       )}
