@@ -29,7 +29,6 @@ const nextConfig = {
   // Disable source maps in production — prevents source code exposure
   productionBrowserSourceMaps: false,
   experimental: {
-    allowedDevOrigins: ['192.168.1.30', 'localhost', '127.0.0.1'],
     optimizePackageImports: ['lucide-react', 'framer-motion', '@gsap/react'],
   },
   images: {
