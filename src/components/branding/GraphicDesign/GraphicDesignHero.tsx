@@ -41,10 +41,15 @@ export default function GraphicDesignHero() {
             We craft visuals that speak your brand's language with designs built to be strategic not just stylish.
           </p>
 
-          <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
+          <a 
+            href="https://wa.me/971586139007?text=Hello%20Hala%20Team!%20I%20am%20contacting%20you%20directly%20from%20your%20website%20to%20inquire%20about%20Graphic%20Design%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20 no-underline"
+          >
             <Grid2X2 size={18} />
             Let's Talk Design
-          </button>
+          </a>
         </div>
       </section>
 
