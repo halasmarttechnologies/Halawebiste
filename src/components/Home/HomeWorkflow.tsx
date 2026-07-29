@@ -62,20 +62,20 @@ export default function HomeWorkflow() {
       <div className="max-w-[1280px] mx-auto">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-12 md:mb-16">
-          <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider mb-4 shadow-sm">
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-12 md:mb-16">
+          <div className="bg-[#007FFF] text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider mb-4 shadow-sm">
             Our Workflow
           </div>
-          <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.1] text-[#111111] tracking-tight mb-5 max-w-3xl">
+          <h2 className="font-bold text-2xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.15] text-[#111111] tracking-tight mb-4 sm:mb-5 max-w-3xl">
             How We Deliver Exponential Growth.
           </h2>
-          <p className="text-[#555555] text-base md:text-lg font-medium max-w-2xl leading-relaxed">
+          <p className="text-[#555555] text-sm sm:text-base md:text-lg font-medium max-w-2xl leading-relaxed">
             A transparent, human-driven methodology designed to elevate your brand and turn audience attention into measurable revenue.
           </p>
         </div>
 
         {/* Workflow Main White Card */}
-        <div className="bg-white rounded-[24px] md:rounded-[32px] border border-[#E5E7EB] p-4 sm:p-6 md:p-10 shadow-sm">
+        <div className="bg-white rounded-[20px] sm:rounded-[24px] md:rounded-[32px] border border-[#E5E7EB] p-3.5 sm:p-6 md:p-10 shadow-sm">
           
           {/* Desktop Layout: 2 Columns */}
           <div className="hidden md:grid md:grid-cols-12 gap-8 lg:gap-12 items-stretch">
@@ -316,7 +316,7 @@ function ExecutionMockup() {
           Live Deployment
         </span>
       </div>
-      <div className="grid grid-cols-3 gap-2 text-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-center">
         <div className="bg-white p-2.5 rounded-lg border border-gray-200">
           <span className="text-[10px] text-gray-500 block font-medium">Active Ads</span>
           <span className="text-xs font-bold text-[#111111]">18 Variants</span>

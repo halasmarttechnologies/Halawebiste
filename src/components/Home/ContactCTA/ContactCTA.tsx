@@ -236,7 +236,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
       </div>
 
       {/* Right Side: Interactive Booking Card (Black & White) */}
-      <div className="bg-[#111111] rounded-[24px] border border-[#222222] p-5 sm:p-7 w-full max-w-[450px] min-h-[520px] shadow-2xl mx-auto lg:ml-auto relative flex flex-col justify-between transition-all duration-300">
+      <div className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-3.5 sm:p-7 w-full max-w-[450px] min-h-[500px] sm:min-h-[520px] shadow-2xl mx-auto lg:ml-auto relative flex flex-col justify-between transition-all duration-300">
 
         {/* Top Progress Header */}
         <div className="flex items-center justify-between border-b border-[#222222] pb-4 mb-4">
@@ -522,25 +522,27 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
               ></textarea>
             </div>
 
-            {/* reCAPTCHA - Rendered Immediately */}
-            <div className="my-1.5 flex justify-center items-center w-full min-h-[78px] overflow-visible">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
-                onChange={(token) => {
-                  setCaptchaToken(token);
-                  setErrorMsg('');
-                }}
-                onExpired={() => {
-                  setCaptchaToken(null);
-                  setErrorMsg('reCAPTCHA expired. Please check the box again.');
-                }}
-                onError={() => {
-                  setCaptchaToken(null);
-                  setErrorMsg('reCAPTCHA network error. Please try again.');
-                }}
-                theme="dark"
-              />
+            {/* reCAPTCHA - Scaled for 100% Mobile Visibility */}
+            <div className="my-1.5 flex justify-center items-center w-full min-h-[78px] overflow-hidden">
+              <div className="transform scale-[0.82] xs:scale-[0.9] sm:scale-100 origin-center flex justify-center items-center max-w-full">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
+                  onChange={(token) => {
+                    setCaptchaToken(token);
+                    setErrorMsg('');
+                  }}
+                  onExpired={() => {
+                    setCaptchaToken(null);
+                    setErrorMsg('reCAPTCHA expired. Please check the box again.');
+                  }}
+                  onError={() => {
+                    setCaptchaToken(null);
+                    setErrorMsg('reCAPTCHA network error. Please try again.');
+                  }}
+                  theme="dark"
+                />
+              </div>
             </div>
 
             {errorMsg && (
