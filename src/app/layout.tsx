@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s | Hala Technologies',
   },
   description:
-    'Hala Technologies is a digital marketing agency that turns clicks into customers. SEO, PPC, Social Media, Content Marketing & Web Development.',
+    'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
   keywords: ['digital marketing', 'SEO', 'web development', 'branding', 'Dubai', 'UAE'],
   authors: [{ name: 'Hala Technologies' }],
   robots: {
@@ -35,13 +35,22 @@ export const metadata: Metadata = {
     siteName: 'Hala Technologies',
     title: 'Hala Technologies – Scale Your Brand, Dominate the Market',
     description:
-      'Hala Technologies is a digital marketing agency that turns clicks into customers. SEO, PPC, Social Media, Content Marketing & Web Development.',
+      'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hala Technologies - Grow your brand. Dominate the market.',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hala Technologies – Scale Your Brand, Dominate the Market',
     description:
-      'Hala Technologies is a digital marketing agency that turns clicks into customers. SEO, PPC, Social Media, Content Marketing & Web Development.',
+      'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: BASE_URL,
