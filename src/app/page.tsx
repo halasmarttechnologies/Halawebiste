@@ -1,20 +1,17 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Home/HeroSection';
 import MarketingSolutions from '@/components/Home/MarketingSolutions';
-
-const OurServices = dynamic(() => import('@/components/Home/Services'));
-const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'));
-const IndustriesWeCover = dynamic(() => import('@/components/Home/IndustriesWeCover'));
-const CaseStudies = dynamic(() => import('@/components/Home/CaseStudies'));
-const WhyChooseHala = dynamic(() => import('@/components/Home/WhyChooseUs'));
-const OurJourney = dynamic(() => import('@/components/Home/OurJourney'));
-
-const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingBlogs = dynamic(() => import('@/components/Home/Blogs'));
-const ContactConsultation = dynamic(() => import('@/components/Home/ContactCTA'));
-const Footer = dynamic(() => import('@/components/Home/Footer'));
+import OurServices from '@/components/Home/Services';
+import HomeWorkflow from '@/components/Home/HomeWorkflow';
+import IndustriesWeCover from '@/components/Home/IndustriesWeCover';
+import CaseStudies from '@/components/Home/CaseStudies';
+import WhyChooseHala from '@/components/Home/WhyChooseUs';
+import OurJourney from '@/components/Home/OurJourney';
+import CustomTestimonials from '@/components/Home/Testimonials';
+import BrandingBlogs from '@/components/Home/Blogs';
+import ContactConsultation from '@/components/Home/ContactCTA';
+import Footer from '@/components/Home/Footer';
 
 export const metadata: Metadata = {
   title: 'Hala Technology | Digital Marketing & Web Development',
@@ -39,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden">
+    <div className="font-jakarta bg-[#111111] text-white overflow-x-hidden">
       <Navbar />
       <main className="bg-[#111111]">
         <Hero />

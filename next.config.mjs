@@ -9,8 +9,8 @@ const CSP = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Fonts: self + Google Fonts CDN
   "font-src 'self' https://fonts.gstatic.com",
-  // Images: self + Unsplash (remote images) + data URIs (inline images)
-  "img-src 'self' data: https://images.unsplash.com",
+  // Images: self + Unsplash + Pravatar (remote images) + data URIs (inline images)
+  "img-src 'self' data: https://images.unsplash.com https://i.pravatar.cc",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
   // Connections: self + Google reCAPTCHA verify endpoint
@@ -41,13 +41,17 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+      },
     ],
   },
   async headers() {
     return [
       {
-        // Security headers on all routes
-        source: '/(.*)',
+        // Security headers on all application routes
+        source: '/:path*',
         headers: [
           { key: 'Content-Security-Policy',    value: CSP },
           { key: 'X-Frame-Options',             value: 'DENY' },
@@ -60,14 +64,14 @@ const nextConfig = {
       },
       {
         // Disallow crawlers on API routes
-        source: '/api/(.*)',
+        source: '/api/:path*',
         headers: [
           { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
           { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate' },
         ],
       },
       {
-        source: '/(.*)\\.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2)',
+        source: '/:path*\\.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
         ],

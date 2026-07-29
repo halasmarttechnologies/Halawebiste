@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import AIAgentHero from '@/components/AIAgent/AIAgentHero';
 import AIAgentCatalog from '@/components/AIAgent/AIAgentCatalog';
@@ -8,11 +7,10 @@ import AIAgentFeatures from '@/components/AIAgent/AIAgentFeatures';
 import AIAgentDesktopShowcase from '@/components/AIAgent/AIAgentDesktopShowcase';
 import AIAgentOfferings from '@/components/AIAgent/AIAgentOfferings';
 import AIAgentWhyChoose from '@/components/AIAgent/AIAgentWhyChoose';
+import CustomTestimonials from '@/components/Home/Testimonials';
+import BrandingBlogs from '@/components/branding/BrandingBlogs';
+import ContactCTA from '@/components/Home/ContactCTA/ContactCTA';
 import Footer from '@/components/Home/Footer';
-
-const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
-const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
   title: 'AI Agents for Smarter Business Growth | Hala Technologies',

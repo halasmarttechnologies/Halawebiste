@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Grid2X2 } from 'lucide-react';
 import WaveMarquee from './WaveMarquee';
 
@@ -9,7 +10,7 @@ const ctaBtn =
   'flex items-center justify-center gap-2 py-2.5 px-6 ' +
   'bg-[#007FFF] text-white rounded-xl text-sm sm:text-[15px] ' +
   'font-semibold cursor-pointer transition-transform transition-colors duration-150 ' +
-  'mb-5 shadow-md shadow-[#007FFF]/20 hover:bg-[#0066CC] hover:scale-[1.02] active:scale-[0.98]';
+  'mb-5 shadow-md shadow-[#007FFF]/20 hover:bg-[#0066CC] hover:scale-[1.02] active:scale-[0.98] no-underline';
 
 export default function HeroSection() {
   return (
@@ -45,10 +46,10 @@ export default function HeroSection() {
           that turns clicks into customers.
         </p>
 
-        <button className={ctaBtn}>
+        <Link href="/contact" className={ctaBtn}>
           <Grid2X2 size={18} />
           Get a Free Consultation
-        </button>
+        </Link>
       </div>
 
       <WaveMarquee />

@@ -216,9 +216,9 @@ export default function Services() {
               </p>
             </div>
             
-            <button className="bg-[#007FFF] text-white font-bold text-[11px] md:text-[12px] tracking-wide px-6 py-3 rounded-full hover:scale-105 transition-transform whitespace-nowrap w-full md:w-auto shadow-md shadow-[#007FFF]/20">
+            <Link href="/contact" className="bg-[#007FFF] text-white font-bold text-[11px] md:text-[12px] tracking-wide px-6 py-3 rounded-full hover:scale-105 transition-transform whitespace-nowrap w-full md:w-auto shadow-md shadow-[#007FFF]/20 no-underline text-center inline-block">
               BOOK A CALL
-            </button>
+            </Link>
           </div>
 
         </div>
