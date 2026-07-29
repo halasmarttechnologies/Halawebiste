@@ -1,17 +1,19 @@
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Home/HeroSection';
 import MarketingSolutions from '@/components/Home/MarketingSolutions';
-import OurServices from '@/components/Home/Services';
-import HomeWorkflow from '@/components/Home/HomeWorkflow';
-import IndustriesWeCover from '@/components/Home/IndustriesWeCover';
-import CaseStudies from '@/components/Home/CaseStudies';
-import WhyChooseHala from '@/components/Home/WhyChooseUs';
-import OurJourney from '@/components/Home/OurJourney';
-import CustomTestimonials from '@/components/Home/Testimonials';
-import BrandingBlogs from '@/components/Home/Blogs';
-import ContactConsultation from '@/components/Home/ContactCTA';
-import Footer from '@/components/Home/Footer';
+
+const OurServices = dynamic(() => import('@/components/Home/Services'), { ssr: true });
+const IndustriesWeCover = dynamic(() => import('@/components/Home/IndustriesWeCover'), { ssr: true });
+const CaseStudies = dynamic(() => import('@/components/Home/CaseStudies'), { ssr: true });
+const WhyChooseHala = dynamic(() => import('@/components/Home/WhyChooseUs'), { ssr: true });
+const OurJourney = dynamic(() => import('@/components/Home/OurJourney'), { ssr: true });
+const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'), { ssr: true });
+const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'), { ssr: true });
+const ContactConsultation = dynamic(() => import('@/components/Home/ContactCTA'), { ssr: true });
+const BrandingBlogs = dynamic(() => import('@/components/Home/Blogs'), { ssr: true });
+const Footer = dynamic(() => import('@/components/Home/Footer'), { ssr: true });
 
 export const metadata: Metadata = {
   title: 'Hala Technology | Digital Marketing & Web Development',
