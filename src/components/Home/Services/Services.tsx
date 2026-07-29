@@ -31,25 +31,25 @@ const categories: ServiceCategory[] = [
         id: 'digital-marketing',
         title: 'Digital Marketing',
         description: 'Are you struggling to reach your target audience or convert clicks into customers? At Hala Smart Technologies, we provide professional digital marketing services in Dubai that help businesses grow smarter and faster. From SEO to PPC, social media marketing to content strategies, our experts use proven methods to increase visibility, drive qualified leads, and maximize ROI.',
-        href: '/marketing/digital'
+        href: '/digital-marketing'
       },
       {
         id: 'seo',
         title: 'Search Engine Optimization',
         description: 'Looking for professional SEO services in Dubai that help your business stand out online? At Hala Smart Technology, we specialize in delivering data-driven, innovative, and strategic SEO solutions that not only improve rankings but also drive real results. Whether you need keyword research, on-page optimization, technical SEO or complete search engine optimization management, our team is here to turn your website into a powerful lead generating platform.',
-        href: '/marketing/seo'
+        href: '/seo'
       },
       {
         id: 'whatsapp-automation',
         title: 'WhatsApp Automation',
         description: 'At Hala Technology, we help businesses transform WhatsApp from a simple chat tool into a powerful automated communication channel. Our WhatsApp Automation solutions streamline customer interactions, boost response times, and allow you to engage your audience around the clock without the need for constant manual effort.',
-        href: '/marketing/whatsapp'
+        href: '/whatsapp-automation'
       },
       {
         id: 'content-creation',
         title: 'Content Creation',
         description: 'Struggling to create content that grabs attention and drives results? At Hala Smart Technologies, we provide professional content creation services in Dubai designed to help businesses communicate their brand story effectively. From website content to social media posts, blogs to video scripts, our creative team ensures your content not only looks great but also performs.',
-        href: '/marketing/content'
+        href: '/branding/content-creation'
       }
     ]
   },
@@ -61,7 +61,7 @@ const categories: ServiceCategory[] = [
         id: 'web-development',
         title: 'Web Development',
         description: 'Looking for professional web development services in Dubai that deliver results? At Hala Smart Technologies, we design and develop websites that don’t just look good they perform, convert, and scale with your business. From custom websites to eCommerce Platforms, our expert developers combine creativity, strategy, and the latest technology to give your brand a strong online presence.',
-        href: '/development/web'
+        href: '/website-development'
       },
       {
         id: 'graphic-designing',
@@ -73,7 +73,7 @@ const categories: ServiceCategory[] = [
         id: 'video-editing',
         title: 'Video Editing',
         description: 'Looking for professional video editing services in Dubai that bring your stories to life? At Hala Smart Technologies, we specialize in transforming your raw footage into polished, engaging, and impactful videos. Whether it’s for social media, corporate presentations, ads, or events, our expert editors use creativity and the latest tools to deliver videos that truly stand out.',
-        href: '/branding/video'
+        href: '/branding/video-editing'
       },
       {
         id: 'ai-agent',
@@ -130,9 +130,13 @@ export default function Services() {
                       {category.title}
                     </h3>
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full border border-[#d5d5d5] flex items-center justify-center bg-white transition-colors hover:border-[#007FFF] group cursor-pointer">
+                      <Link 
+                        href={catIndex === 0 ? '/digital-marketing' : '/website-development'}
+                        className="w-8 h-8 rounded-full border border-[#d5d5d5] flex items-center justify-center bg-white transition-colors hover:border-[#007FFF] group cursor-pointer no-underline"
+                        title={`Explore ${category.title}`}
+                      >
                         <ArrowUpRight className="w-[14px] h-[14px] text-[#555555] group-hover:text-[#007FFF]" />
-                      </div>
+                      </Link>
                       <div className="w-8 h-8 rounded-full bg-[#007FFF] flex items-center justify-center shadow-sm">
                         <category.icon className="w-4 h-4 text-white stroke-[2.5]" />
                       </div>
@@ -185,10 +189,10 @@ export default function Services() {
                                   </p>
                                   <Link 
                                     href={service.href || "#"} 
-                                    className="inline-flex items-center gap-2 text-[12px] font-bold text-[#007FFF] hover:text-white transition-colors self-start"
+                                    className="inline-flex items-center gap-2 text-[13px] font-bold text-[#007FFF] hover:text-white transition-colors self-start py-1 no-underline"
                                     onClick={(e) => e.stopPropagation()}
                                   >
-                                    Explore More <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                                    Explore Page <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                                   </Link>
                                 </div>
                               </motion.div>
