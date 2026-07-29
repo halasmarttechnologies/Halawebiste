@@ -154,7 +154,6 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to submit booking request');
 
-      // Play check sound and trigger full-page pop-up modal
       playSuccessSound();
       setShowSuccessModal(true);
     } catch (err: any) {
@@ -181,11 +180,11 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
 
   const innerContent = (
     <div className="max-w-[1150px] w-full grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 lg:gap-16 items-center z-10 relative">
-      {/* Left Side: Typography & Brand Identity (Strictly Black & White) */}
+      {/* Left Side: Typography & Brand Identity */}
       <div className="flex flex-col relative h-full justify-center items-center lg:items-start text-center lg:text-left">
 
         <div className="flex items-center gap-2 mb-6 sm:mb-8">
-          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert drop-shadow-sm" />
+          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert" />
         </div>
 
         <div className="max-w-[520px] z-10 relative px-2 sm:px-0">
@@ -206,78 +205,79 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
           </p>
         </div>
 
-        {/* Smileys Cluster (Pure Monochrome Black & White) */}
+        {/* Smileys Cluster (Pure Flat Black & White - No Shadows) */}
         <div className="hidden sm:block relative mt-8 lg:mt-14 h-[150px] lg:h-[180px] w-full max-w-[360px] lg:max-w-[450px] scale-90 lg:scale-100 origin-center lg:origin-left select-none pointer-events-none">
-          <div className="absolute bottom-0 left-0 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-10 shadow-2xl border border-[#222]">
+          <div className="absolute bottom-0 left-0 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-10 border border-[#222]">
             <SmileyFace className="w-12 lg:w-16 h-12 lg:h-16 -rotate-[15deg]" />
           </div>
-          <div className="absolute bottom-10 lg:bottom-12 left-12 lg:left-16 w-28 lg:w-32 h-28 lg:h-32 rounded-full bg-[#1A1A1A] flex items-center justify-center z-0 shadow-2xl border border-[#333]">
+          <div className="absolute bottom-10 lg:bottom-12 left-12 lg:left-16 w-28 lg:w-32 h-28 lg:h-32 rounded-full bg-[#1A1A1A] flex items-center justify-center z-0 border border-[#333]">
             <SmileyFace className="w-12 lg:w-16 h-12 lg:h-16 rotate-[10deg]" eyeColor="#FFF" />
           </div>
-          <div className="absolute -bottom-4 lg:-bottom-6 left-20 lg:left-24 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#000000] flex items-center justify-center z-20 shadow-2xl border-4 border-[#222]">
+          <div className="absolute -bottom-4 lg:-bottom-6 left-20 lg:left-24 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#000000] flex items-center justify-center z-20 border-4 border-[#222]">
             <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 rotate-[20deg]" eyeColor="#FFF" />
           </div>
-          <div className="absolute bottom-16 lg:bottom-20 left-28 lg:left-36 w-16 lg:w-20 h-16 lg:h-20 rounded-full bg-white flex items-center justify-center z-30 shadow-xl border border-[#222]">
+          <div className="absolute bottom-16 lg:bottom-20 left-28 lg:left-36 w-16 lg:w-20 h-16 lg:h-20 rounded-full bg-white flex items-center justify-center z-30 border border-[#222]">
             <SmileyFace className="w-8 lg:w-10 h-8 lg:h-10" />
           </div>
-          <div className="absolute bottom-0 left-36 lg:left-44 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 shadow-xl border border-[#333]">
+          <div className="absolute bottom-0 left-36 lg:left-44 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 border border-[#333]">
             <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 -rotate-[10deg]" eyeColor="#FFF" />
           </div>
-          <div className="absolute bottom-12 lg:bottom-16 left-44 lg:left-52 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-[#000000] flex items-center justify-center z-20 shadow-xl border-2 border-[#333]">
+          <div className="absolute bottom-12 lg:bottom-16 left-44 lg:left-52 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-[#000000] flex items-center justify-center z-20 border-2 border-[#333]">
             <SmileyFace className="w-12 lg:w-14 h-12 lg:h-14 rotate-[15deg]" eyeColor="#FFF" />
           </div>
-          <div className="absolute -bottom-2 left-52 lg:left-60 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-40 shadow-xl border border-[#222]">
+          <div className="absolute -bottom-2 left-52 lg:left-60 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-40 border border-[#222]">
             <SmileyFace className="w-12 lg:w-14 h-12 lg:h-14 -rotate-[20deg]" />
           </div>
-          <div className="absolute bottom-0 left-[230px] lg:left-[280px] w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 shadow-xl border border-[#333]">
+          <div className="absolute bottom-0 left-[230px] lg:left-[280px] w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 border border-[#333]">
             <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 rotate-[10deg]" eyeColor="#FFF" />
           </div>
         </div>
       </div>
 
-      {/* Right Side: Interactive Booking Card (Black & White) */}
-      <div className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-3.5 sm:p-7 w-full max-w-[450px] min-h-[500px] sm:min-h-[520px] shadow-2xl mx-auto lg:ml-auto relative flex flex-col justify-between transition-all duration-300">
+      {/* Right Side: Interactive Booking Card (Flat Modern Dark Aesthetic - No Shadows) */}
+      <div className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-4 sm:p-7 w-full max-w-[460px] min-h-[500px] sm:min-h-[520px] mx-auto lg:ml-auto relative flex flex-col justify-between transition-all duration-300">
 
-        {/* Top Progress Header */}
+        {/* Top Step Progress Indicator */}
         <div className="flex items-center justify-between border-b border-[#222222] pb-4 mb-4">
           <div className="flex items-center gap-2">
-            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'calendar' ? 'bg-white text-black' : 'bg-[#222222] text-white/60'}`}>
+            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'calendar' ? 'bg-white text-black' : 'bg-[#222222] text-white/50'}`}>
               1
             </span>
-            <span className={`text-xs font-medium ${step === 'calendar' ? 'text-white font-semibold' : 'text-white/40'}`}>Date & Time</span>
+            <span className={`text-xs font-semibold ${step === 'calendar' ? 'text-white' : 'text-white/40'}`}>Date &amp; Time</span>
             <span className="text-white/20 text-xs">/</span>
-            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'form' ? 'bg-white text-black' : 'bg-[#222222] text-white/60'}`}>
+            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'form' ? 'bg-white text-black' : 'bg-[#222222] text-white/50'}`}>
               2
             </span>
-            <span className={`text-xs font-medium ${step === 'form' ? 'text-white font-semibold' : 'text-white/40'}`}>Your Details</span>
+            <span className={`text-xs font-semibold ${step === 'form' ? 'text-white' : 'text-white/40'}`}>Your Details</span>
           </div>
 
           {step === 'form' && (
             <button
               type="button"
               onClick={handleBack}
-              className="flex items-center gap-1 text-white hover:text-white/70 transition-colors text-xs font-medium px-2.5 py-1 rounded-lg bg-white/10 border border-white/20"
+              className="flex items-center gap-1 text-white hover:text-white/80 transition-colors text-xs font-semibold px-3 py-1 rounded-lg bg-[#181818] border border-[#262626] cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back
             </button>
           )}
         </div>
 
+        {/* STEP 1: Calendar & Time Slots */}
         <div className={`flex flex-col flex-1 duration-300 ${step === 'calendar' ? 'block animate-in fade-in slide-in-from-left-4' : 'hidden'}`}>
           {/* Calendar Header */}
           <div className="flex items-center justify-between mb-5 px-1">
             <div className="flex items-center gap-2">
-              <CalendarIcon className="w-4 h-4 text-white" />
+              <CalendarIcon className="w-4.5 h-4.5 text-white" />
               <h3 className="font-jakarta text-[17px] font-bold text-white">
                 {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
               </h3>
             </div>
-            <div className="flex items-center gap-1.5 bg-[#181818] p-1 rounded-xl border border-[#333333] text-white">
+            <div className="flex items-center gap-1 bg-[#181818] p-1 rounded-xl border border-[#262626] text-white">
               <button
                 type="button"
                 onClick={handlePrevMonth}
                 aria-label="Previous Month"
-                className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg hover:bg-[#222222] text-white transition-colors cursor-pointer border-none"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -285,7 +285,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                 type="button"
                 onClick={handleNextMonth}
                 aria-label="Next Month"
-                className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg hover:bg-[#222222] text-white transition-colors cursor-pointer border-none"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -295,7 +295,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
           {/* Days of Week Header */}
           <div className="grid grid-cols-7 gap-1 mb-2 text-center">
             {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
-              <span key={day} className="text-[10px] font-bold tracking-wider text-white/40 py-1">
+              <span key={day} className="text-[10px] font-bold tracking-wider text-white/50 py-1">
                 {day}
               </span>
             ))}
@@ -328,11 +328,13 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                     }
                   }}
                   disabled={isPast}
-                  className={`h-9 w-full flex items-center justify-center rounded-xl transition-all duration-200 text-sm font-semibold select-none ${isPast ? 'text-[#444444] cursor-not-allowed bg-transparent' :
-                      isSelected
-                        ? 'bg-white text-black font-bold shadow-lg scale-105 cursor-pointer ring-2 ring-white'
-                        : 'bg-[#181818] text-white hover:bg-[#252525] hover:scale-105 cursor-pointer border border-[#333333]'
-                    }`}
+                  className={`h-9 w-full flex items-center justify-center rounded-xl transition-colors text-sm font-semibold select-none border ${
+                    isPast
+                      ? 'text-[#444444] cursor-not-allowed border-transparent bg-transparent'
+                      : isSelected
+                      ? 'bg-white text-black font-bold border-white cursor-pointer'
+                      : 'bg-[#181818] text-white border-[#262626] hover:bg-[#222222] hover:border-white/50 cursor-pointer'
+                  }`}
                 >
                   {day}
                 </button>
@@ -351,19 +353,19 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                   </span>
                 </div>
 
-                {/* Format Toggle */}
-                <div className="flex items-center bg-[#000000] border border-[#222222] rounded-full p-0.5 text-[11px] font-semibold">
+                {/* 12h / 24h Toggle */}
+                <div className="flex items-center bg-[#141414] border border-[#262626] rounded-full p-0.5 text-[11px] font-semibold">
                   <button
                     type="button"
                     onClick={() => setTimeFormat('12h')}
-                    className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '12h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
+                    className={`px-3 py-1 rounded-full transition-colors border-none cursor-pointer ${timeFormat === '12h' ? 'bg-white text-black font-bold' : 'text-white/60 hover:text-white bg-transparent'}`}
                   >
                     12h
                   </button>
                   <button
                     type="button"
                     onClick={() => setTimeFormat('24h')}
-                    className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '24h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
+                    className={`px-3 py-1 rounded-full transition-colors border-none cursor-pointer ${timeFormat === '24h' ? 'bg-white text-black font-bold' : 'text-white/60 hover:text-white bg-transparent'}`}
                   >
                     24h
                   </button>
@@ -378,7 +380,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                       key={time}
                       type="button"
                       onClick={() => handleTimeSelect(timeStr)}
-                      className="w-full py-2.5 border border-[#333333] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-all shadow-sm flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
+                      className="w-full py-2.5 border border-[#262626] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-colors flex items-center justify-center gap-1 cursor-pointer"
                     >
                       {timeStr}
                     </button>
@@ -387,18 +389,19 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
               </div>
             </div>
           ) : (
-            <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#181818]/40 rounded-xl border border-dashed border-[#333333]">
+            <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#141414] rounded-xl border border-dashed border-[#262626]">
               <p className="text-white/50 text-xs font-medium">Select an available date to view time slots</p>
             </div>
           )}
         </div>
 
+        {/* STEP 2: Customer Details Form */}
         <div className={`flex flex-col h-full duration-300 ${step === 'form' ? 'block animate-in fade-in slide-in-from-right-4' : 'hidden'}`}>
-          <div className="mb-4 bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
+          <div className="mb-4 bg-[#181818] border border-[#262626] rounded-xl p-3 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CalendarIcon className="w-4 h-4 text-white" />
               <div>
-                <p className="text-xs text-white/50 font-medium">Selected Slot</p>
+                <p className="text-[11px] text-white/50 font-medium">Selected Time Slot</p>
                 <p className="text-xs font-bold text-white">
                   {selectedDate && getDayOfWeek(selectedDate)}, {selectedDate?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at {selectedTime}
                 </p>
@@ -407,7 +410,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
             <button
               type="button"
               onClick={handleBack}
-              className="text-xs text-white hover:underline font-semibold"
+              className="text-xs text-white hover:underline font-semibold bg-transparent border-none cursor-pointer"
             >
               Change
             </button>
@@ -421,7 +424,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                   type="text" required
                   value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="John Doe"
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
                 />
               </div>
 
@@ -431,7 +434,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                   type="email" required
                   value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
                   placeholder="john@company.com"
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
                 />
               </div>
             </div>
@@ -443,7 +446,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                   type="text"
                   value={formData.jobTitle} onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
                   placeholder="Marketing Director"
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
                 />
               </div>
 
@@ -453,7 +456,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                   type="text"
                   value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })}
                   placeholder="United Arab Emirates"
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30"
                 />
               </div>
             </div>
@@ -469,10 +472,11 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                       key={service}
                       type="button"
                       onClick={() => handleServiceToggle(service)}
-                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${isSelected
-                          ? 'bg-white text-black font-bold shadow-md scale-[1.02]'
-                          : 'bg-[#181818] text-white/70 border border-[#333333] hover:border-white/40 hover:text-white'
-                        }`}
+                      className={`text-[11px] font-semibold px-3 py-1.5 rounded-full transition-colors cursor-pointer border ${
+                        isSelected
+                          ? 'bg-white text-black font-bold border-white'
+                          : 'bg-[#181818] text-white/70 border-[#262626] hover:border-white/40 hover:text-white'
+                      }`}
                     >
                       {isSelected && <Check className="w-3 h-3 inline mr-1 -mt-0.5 text-black stroke-[3]" />}
                       {service}
@@ -487,7 +491,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                 <label className="text-[11px] font-semibold text-white/90">Est. Monthly Budget (AED)</label>
                 <select
                   value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all cursor-pointer"
+                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors cursor-pointer"
                 >
                   <option value="" className="bg-[#111111] text-white/50">Select budget</option>
                   <option value="< 3,500 AED" className="bg-[#111111]">Less than 3,500 AED</option>
@@ -501,7 +505,7 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                 <label className="text-[11px] font-semibold text-white/90">How did you hear about us?</label>
                 <select
                   value={formData.howDidYouHear} onChange={e => setFormData({ ...formData, howDidYouHear: e.target.value })}
-                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all cursor-pointer"
+                  className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors cursor-pointer"
                 >
                   <option value="" className="bg-[#111111] text-white/50">Select source</option>
                   <option value="Google Search" className="bg-[#111111]">Google Search</option>
@@ -518,11 +522,11 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
                 rows={2}
                 value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Tell us briefly about your goals..."
-                className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30 resize-none"
+                className="w-full bg-[#181818] border border-[#262626] rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:border-white focus:outline-none transition-colors placeholder:text-white/30 resize-none"
               ></textarea>
             </div>
 
-            {/* reCAPTCHA - Scaled for 100% Mobile Visibility */}
+            {/* reCAPTCHA - Scaled for 100% Mobile Visibility (No Shadows) */}
             <div className="my-1.5 flex justify-center items-center w-full min-h-[78px] overflow-hidden">
               <div className="transform scale-[0.82] xs:scale-[0.9] sm:scale-100 origin-center flex justify-center items-center max-w-full">
                 <ReCAPTCHA
@@ -546,13 +550,13 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
             </div>
 
             {errorMsg && (
-              <p className="text-white bg-white/10 border border-white/20 text-[12px] text-center font-medium py-1.5 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
+              <p className="text-white bg-[#181818] border border-white/20 text-[12px] text-center font-medium py-2 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
             )}
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="mt-1 w-full bg-white text-black hover:bg-white/90 rounded-xl py-3 font-bold text-[14px] transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none shadow-none"
+              className="mt-1 w-full bg-white text-black hover:bg-[#e5e5e5] rounded-xl py-3.5 font-bold text-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none"
             >
               {isSubmitting ? (
                 <>
@@ -573,8 +577,8 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
     <>
       {/* Main Section */}
       {contained ? (
-        <section className="bg-white w-full px-4 sm:px-8 md:px-12 lg:px-16 py-12 md:py-20 flex justify-center">
-          <div className="w-full bg-[#000000] text-white rounded-[28px] sm:rounded-[36px] md:rounded-[44px] px-4 sm:px-6 md:px-10 py-10 md:py-16 shadow-2xl relative overflow-hidden flex justify-center border border-[#222222]">
+        <section className="bg-white w-full px-3 sm:px-8 md:px-12 lg:px-16 py-8 md:py-16 flex justify-center">
+          <div className="w-full bg-[#000000] text-white rounded-[24px] sm:rounded-[36px] md:rounded-[44px] px-3.5 sm:px-6 md:px-10 py-8 md:py-14 relative overflow-hidden flex justify-center border border-[#222222]">
             {innerContent}
           </div>
         </section>
@@ -584,34 +588,34 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
         </section>
       )}
 
-      {/* SUCCESS POP-UP MODAL (ON TOP OF THE PAGE) WITH AUDIO CHIME */}
+      {/* SUCCESS POP-UP MODAL (FLAT MONOCHROME - NO SHADOWS) */}
       {showSuccessModal && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-[#111111] border border-white/20 rounded-3xl p-6 sm:p-8 max-w-[420px] w-full shadow-2xl text-center flex flex-col items-center relative animate-in zoom-in-95 duration-300">
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-[#111111] border border-[#333333] rounded-3xl p-6 sm:p-8 max-w-[420px] w-full text-center flex flex-col items-center relative animate-in zoom-in-95 duration-200">
 
             {/* Close Button */}
             <button
               type="button"
               onClick={handleResetForm}
-              className="absolute top-4 right-4 text-white/50 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors"
+              className="absolute top-4 right-4 text-white/50 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors border-none cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {/* Checkmark Circle (White & Black) */}
-            <div className="w-20 h-20 bg-white text-black rounded-full flex items-center justify-center mb-6 shadow-xl animate-in bounce-in duration-500">
-              <Check className="w-10 h-10 text-black stroke-[3]" />
+            {/* Checkmark Circle */}
+            <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center mb-5 border border-white">
+              <Check className="w-8 h-8 text-black stroke-[3]" />
             </div>
 
-            <h3 className="text-2xl font-bold text-white mb-3">Booking Confirmed!</h3>
-            <p className="text-white/70 text-sm max-w-[320px] leading-relaxed mb-6">
+            <h3 className="text-2xl font-bold text-white mb-2">Booking Confirmed!</h3>
+            <p className="text-white/70 text-xs sm:text-sm max-w-[320px] leading-relaxed mb-6 font-medium">
               The booking is confirmed. Our team will connect with you shortly.
             </p>
 
             <button
               type="button"
               onClick={handleResetForm}
-              className="w-full bg-white text-black font-bold py-3.5 rounded-xl hover:bg-white/90 transition-all text-sm shadow-md active:scale-98 cursor-pointer"
+              className="w-full bg-white text-black font-bold py-3.5 rounded-xl hover:bg-[#e5e5e5] transition-colors text-sm cursor-pointer border-none"
             >
               Done
             </button>
