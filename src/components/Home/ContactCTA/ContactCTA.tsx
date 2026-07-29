@@ -309,19 +309,28 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
 
             {Array.from({ length: daysInMonth }).map((_, i) => {
               const day = i + 1;
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+
               const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-              const isPast = dateObj < new Date(new Date().setHours(0, 0, 0, 0));
-              const isSelected = selectedDate?.toDateString() === dateObj.toDateString();
+              dateObj.setHours(0, 0, 0, 0);
+
+              const isPast = dateObj.getTime() < today.getTime();
+              const isSelected = selectedDate ? selectedDate.toDateString() === dateObj.toDateString() : false;
 
               return (
                 <button
                   key={day}
                   type="button"
-                  onClick={() => !isPast && setSelectedDate(dateObj)}
+                  onClick={() => {
+                    if (!isPast) {
+                      setSelectedDate(dateObj);
+                    }
+                  }}
                   disabled={isPast}
                   className={`h-9 w-full flex items-center justify-center rounded-xl transition-all duration-200 text-sm font-semibold select-none ${isPast ? 'text-[#444444] cursor-not-allowed bg-transparent' :
                       isSelected
-                        ? 'bg-white text-black font-bold shadow-lg scale-105 cursor-pointer'
+                        ? 'bg-white text-black font-bold shadow-lg scale-105 cursor-pointer ring-2 ring-white'
                         : 'bg-[#181818] text-white hover:bg-[#252525] hover:scale-105 cursor-pointer border border-[#333333]'
                     }`}
                 >
