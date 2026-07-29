@@ -1,4 +1,35 @@
-# Logs
+# ─── Dependencies ─────────────────────────────────────────
+node_modules
+.pnp
+.pnp.js
+
+# ─── Build outputs ────────────────────────────────────────
+.next
+dist
+dist-ssr
+out
+build
+
+# ─── Environment / Secrets (NEVER commit these) ───────────
+.env
+.env.local
+.env.example
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+.env.staging
+.env.*.local
+*.env
+
+# ─── TypeScript build cache ───────────────────────────────
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+tsconfig.check.tsbuildinfo
+
+# ─── Logs ─────────────────────────────────────────────────
 logs
 *.log
 npm-debug.log*
@@ -7,19 +38,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-.next
-
-# Editor directories and files
+# ─── Editor directories ───────────────────────────────────
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
+
+# ─── OS files ─────────────────────────────────────────────
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ─── Vercel ───────────────────────────────────────────────
+.vercel

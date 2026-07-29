@@ -1,274 +1,608 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
+import { useState, useCallback, useRef } from 'react';
+import { ChevronLeft, ChevronRight, ArrowLeft, Check, Calendar as CalendarIcon, Clock, Loader2, Sparkles, X } from 'lucide-react';
 import Image from 'next/image';
+import ReCAPTCHA from 'react-google-recaptcha';
 
-// Reusable SVG for the Smiley Face
+// Reusable SVG for the Smiley Face (Pure Black & White)
 const SmileyFace = ({ className, eyeColor = "#000" }: { className?: string, eyeColor?: string }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={`w-full h-full ${className}`}>
-    {/* Left Eye */}
     <path d="M30 40 C30 35 38 35 38 40" stroke={eyeColor} strokeWidth="6" strokeLinecap="round" />
-    {/* Right Eye */}
     <path d="M62 40 C62 35 70 35 70 40" stroke={eyeColor} strokeWidth="6" strokeLinecap="round" />
-    {/* Smile */}
     <path d="M25 55 Q50 80 75 55" stroke={eyeColor} strokeWidth="6" strokeLinecap="round" />
   </svg>
 );
-const timeSlots = ['09:00 AM', '10:30 AM', '11:15 AM', '01:00 PM', '02:30 PM', '04:15 PM'];
+
+// Synthesize pleasant check chime sound effect via Web Audio API
+const playSuccessSound = () => {
+  try {
+    const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+
+    // First high chime tone (E5 - 659.25Hz)
+    const osc1 = ctx.createOscillator();
+    const gain1 = ctx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(659.25, ctx.currentTime);
+    gain1.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+    osc1.connect(gain1);
+    gain1.connect(ctx.destination);
+    osc1.start(ctx.currentTime);
+    osc1.stop(ctx.currentTime + 0.3);
+
+    // Second higher chime tone (B5 - 987.77Hz)
+    const osc2 = ctx.createOscillator();
+    const gain2 = ctx.createGain();
+    osc2.type = 'sine';
+    osc2.frequency.setValueAtTime(987.77, ctx.currentTime + 0.1);
+    gain2.gain.setValueAtTime(0.2, ctx.currentTime + 0.1);
+    gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+    osc2.connect(gain2);
+    gain2.connect(ctx.destination);
+    osc2.start(ctx.currentTime + 0.1);
+    osc2.stop(ctx.currentTime + 0.5);
+  } catch (e) {
+    // Autoplay restrictions fallback
+  }
+};
+
+const baseTimeSlots = [9, 10.5, 11.25, 13, 14.5, 16.25];
+const getTimeSlotString = (time: number, format: '12h' | '24h') => {
+  const hours = Math.floor(time);
+  const minutes = Math.round((time - hours) * 60);
+  const minsStr = minutes === 0 ? '00' : minutes.toString().padStart(2, '0');
+
+  if (format === '24h') {
+    return `${hours.toString().padStart(2, '0')}:${minsStr}`;
+  } else {
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const hours12 = hours % 12 || 12;
+    return `${hours12.toString().padStart(2, '0')}:${minsStr} ${ampm}`;
+  }
+};
+
+const availableServices = [
+  'Brand Strategy',
+  'Marketing',
+  'SEO Optimization',
+  'Web App Development',
+  'CRM',
+  'Marketing Automation'
+];
 
 export default function ContactCTA({ contained = false }: { contained?: boolean }) {
   const [step, setStep] = useState<'calendar' | 'form'>('calendar');
-  const [selectedDate, setSelectedDate] = useState<number>(7);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  // Calendar State
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [timeFormat, setTimeFormat] = useState<'12h' | '24h'>('12h');
 
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    jobTitle: '',
+    country: '',
+    services: [] as string[],
+    budget: '',
+    howDidYouHear: '',
+    message: ''
+  });
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
+  // Calendar Helpers
+  const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
 
-  const handleTimeSelect = useCallback((time: string) => {
-    setSelectedTime(time);
+  const handlePrevMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+  };
+  const handleNextMonth = () => {
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+  };
+
+  const handleTimeSelect = useCallback((timeStr: string) => {
+    if (!selectedDate) return;
+    setSelectedTime(timeStr);
     setStep('form');
-  }, []);
+  }, [selectedDate]);
 
   const handleBack = useCallback(() => {
     setStep('calendar');
     setSelectedTime(null);
+    setErrorMsg('');
   }, []);
 
-  const getDayOfWeek = useCallback((dateNum: number) => {
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    return days[(dateNum + 2) % 7];
+  const handleServiceToggle = (service: string) => {
+    setFormData(prev => ({
+      ...prev,
+      services: prev.services.includes(service)
+        ? prev.services.filter(s => s !== service)
+        : [...prev.services, service]
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!captchaToken) {
+      setErrorMsg('Please complete the reCAPTCHA verification');
+      return;
+    }
+    setErrorMsg('');
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch('/api/book', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          date: selectedDate?.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }),
+          time: selectedTime,
+          captchaToken
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error('booking_failed');
+
+      // Play check sound and trigger full-page pop-up modal
+      playSuccessSound();
+      setShowSuccessModal(true);
+    } catch {
+      setErrorMsg('Something went wrong. Please try again or contact us directly.');
+      if (recaptchaRef.current) recaptchaRef.current.reset();
+      setCaptchaToken(null);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleResetForm = () => {
+    setShowSuccessModal(false);
+    setStep('calendar');
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setFormData({ name: '', email: '', jobTitle: '', country: '', services: [], budget: '', howDidYouHear: '', message: '' });
+    setCaptchaToken(null);
+  };
+
+  const getDayOfWeek = useCallback((date: Date) => {
+    return date.toLocaleDateString('en-US', { weekday: 'short' });
   }, []);
 
   const innerContent = (
     <div className="max-w-[1150px] w-full grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 lg:gap-16 items-center z-10 relative">
-        
-        {/* Left Side: Typography & Smileys */}
-        <div className="flex flex-col relative h-full justify-center items-center lg:items-start text-center lg:text-left">
-          
-          {/* Real Hala Logo */}
-          <div className="flex items-center gap-2 mb-6 sm:mb-10">
-            <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert" />
-          </div>
+      {/* Left Side: Typography & Brand Identity (Strictly Black & White) */}
+      <div className="flex flex-col relative h-full justify-center items-center lg:items-start text-center lg:text-left">
 
-          {/* Heading */}
-          <div className="max-w-[500px] z-10 relative">
-            <h1 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-[60px] leading-[1.05] tracking-tight mb-2 text-white">
-              See if Hala is<br />
-              the right fit for you
-            </h1>
-            <h2 className="font-ebgaramond italic text-[36px] sm:text-[50px] md:text-[65px] leading-[1] text-white mb-4 sm:mb-6">
-              (it totally is)
-            </h2>
-            
-            <p className="text-white text-sm sm:text-base md:text-lg max-w-[340px] leading-snug font-medium mx-auto lg:mx-0">
-              Schedule a quick, 15 minute guided tour through Hala.
-            </p>
-          </div>
-
-          {/* Smileys Cluster - Hidden on small mobile to avoid overflow, visible on sm and up */}
-          <div className="hidden sm:block relative mt-10 lg:mt-16 h-[160px] lg:h-[200px] w-full max-w-[360px] lg:max-w-[450px] scale-90 lg:scale-100 origin-center lg:origin-left select-none">
-            {/* White */}
-            <div className="absolute bottom-0 left-0 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-10 shadow-lg border border-[#222]">
-              <SmileyFace className="w-12 lg:w-16 h-12 lg:h-16 -rotate-[15deg]" />
-            </div>
-            {/* Azure Blue */}
-            <div className="absolute bottom-10 lg:bottom-12 left-12 lg:left-16 w-28 lg:w-32 h-28 lg:h-32 rounded-full bg-[#007FFF] flex items-center justify-center z-0 shadow-lg">
-              <SmileyFace className="w-12 lg:w-16 h-12 lg:h-16 rotate-[10deg]" eyeColor="#FFF" />
-            </div>
-            {/* Black */}
-            <div className="absolute -bottom-4 lg:-bottom-6 left-20 lg:left-24 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#111111] flex items-center justify-center z-20 shadow-xl border-4 border-[#222]">
-              <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 rotate-[20deg]" eyeColor="#FFF" />
-            </div>
-            {/* White (Small) */}
-            <div className="absolute bottom-16 lg:bottom-20 left-28 lg:left-36 w-16 lg:w-20 h-16 lg:h-20 rounded-full bg-white flex items-center justify-center z-30 shadow-lg border border-[#222]">
-              <SmileyFace className="w-8 lg:w-10 h-8 lg:h-10" />
-            </div>
-            {/* Azure Blue */}
-            <div className="absolute bottom-0 left-36 lg:left-44 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#007FFF] flex items-center justify-center z-10 shadow-lg">
-              <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 -rotate-[10deg]" eyeColor="#FFF" />
-            </div>
-            {/* Black */}
-            <div className="absolute bottom-12 lg:bottom-16 left-44 lg:left-52 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-[#111111] flex items-center justify-center z-20 shadow-lg border-2 border-[#333]">
-              <SmileyFace className="w-12 lg:w-14 h-12 lg:h-14 rotate-[15deg]" eyeColor="#FFF" />
-            </div>
-            {/* White (Large) */}
-            <div className="absolute -bottom-2 left-52 lg:left-60 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-40 shadow-lg border border-[#222]">
-              <SmileyFace className="w-12 lg:w-14 h-12 lg:h-14 -rotate-[20deg]" />
-            </div>
-            {/* Azure Blue (Behind White) */}
-            <div className="absolute bottom-0 left-[230px] lg:left-[280px] w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#007FFF] flex items-center justify-center z-10 shadow-lg">
-              <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 rotate-[10deg]" eyeColor="#FFF" />
-            </div>
-          </div>
+        <div className="flex items-center gap-2 mb-6 sm:mb-8">
+          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert drop-shadow-sm" />
         </div>
 
-        {/* Right Side: Interactive UI Card */}
-        <div className="bg-[#191919] rounded-[20px] sm:rounded-[24px] border border-[#2A2A2A] p-4 sm:p-6 w-full max-w-[420px] min-h-[460px] sm:min-h-[500px] shadow-2xl mx-auto lg:ml-auto overflow-hidden relative">
-          
-          {step === 'calendar' ? (
-            <div className="flex flex-col animate-in fade-in slide-in-from-left-4 duration-300 h-full">
-              {/* Calendar Header */}
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="font-jakarta text-[18px] font-semibold text-white">
-                  July <span className="text-white">2026</span>
-                </h3>
-                <div className="flex items-center gap-4 text-white">
-                  <ChevronLeft className="w-4 h-4 cursor-not-allowed opacity-50" />
-                  <ChevronRight className="w-4 h-4 cursor-pointer hover:text-white/80 transition-colors" />
-                </div>
-              </div>
+        <div className="max-w-[520px] z-10 relative px-2 sm:px-0">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-semibold mb-4 sm:mb-6">
+            <Sparkles className="w-3.5 h-3.5 text-white" /> 15-Minute Free Strategy Call
+          </div>
 
-              {/* Days of Week */}
-              <div className="grid grid-cols-7 gap-1 mb-2 text-center">
-                {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
-                  <span key={day} className="text-[9px] font-bold tracking-wider text-white">
-                    {day}
-                  </span>
-                ))}
-              </div>
+          <h1 className="font-jakarta font-bold text-3xl sm:text-5xl md:text-[58px] leading-[1.08] tracking-tight mb-2 text-white">
+            See if Hala is<br />
+            the right fit for you
+          </h1>
+          <h2 className="font-ebgaramond italic text-[34px] sm:text-[48px] md:text-[62px] leading-[1] text-white/90 mb-4 sm:mb-6">
+            (it totally is)
+          </h2>
 
-              {/* Calendar Grid */}
-              <div className="grid grid-cols-7 gap-1 text-center text-[13px] font-medium mb-6">
-                <div className="h-8"></div>
-                <div className="h-8"></div>
-                <div className="h-8"></div>
-                
-                {/* Past Days (Disabled) */}
-                {[1, 2, 3, 4, 5, 6].map(num => (
-                  <div key={num} className="h-8 w-full flex items-center justify-center text-[#444] select-none">
-                    {num}
-                  </div>
-                ))}
+          <p className="text-white/70 text-sm sm:text-base md:text-lg max-w-[360px] leading-relaxed font-medium mx-auto lg:mx-0">
+            Schedule a quick, 15-minute guided walkthrough with our team.
+          </p>
+        </div>
 
-                {/* Available Days (Clickable) */}
-                {Array.from({ length: 25 }, (_, i) => i + 7).map(num => {
-                  const isSelected = selectedDate === num;
-                  return (
-                    <div 
-                      key={num} 
-                      onClick={() => setSelectedDate(num)}
-                      className={`h-8 w-full flex items-center justify-center rounded-[8px] cursor-pointer transition-colors shadow-sm ${
-                        isSelected 
-                          ? 'bg-white text-black font-bold shadow-md' 
-                          : 'bg-[#2A2A2A] text-white hover:bg-[#3A3A3A]'
-                      }`}
-                    >
-                      {num}
-                    </div>
-                  );
-                })}
-              </div>
+        {/* Smileys Cluster (Pure Monochrome Black & White) */}
+        <div className="hidden sm:block relative mt-8 lg:mt-14 h-[150px] lg:h-[180px] w-full max-w-[360px] lg:max-w-[450px] scale-90 lg:scale-100 origin-center lg:origin-left select-none pointer-events-none">
+          <div className="absolute bottom-0 left-0 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-10 shadow-2xl border border-[#222]">
+            <SmileyFace className="w-12 lg:w-16 h-12 lg:h-16 -rotate-[15deg]" />
+          </div>
+          <div className="absolute bottom-10 lg:bottom-12 left-12 lg:left-16 w-28 lg:w-32 h-28 lg:h-32 rounded-full bg-[#1A1A1A] flex items-center justify-center z-0 shadow-2xl border border-[#333]">
+            <SmileyFace className="w-12 lg:w-16 h-12 lg:h-16 rotate-[10deg]" eyeColor="#FFF" />
+          </div>
+          <div className="absolute -bottom-4 lg:-bottom-6 left-20 lg:left-24 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#000000] flex items-center justify-center z-20 shadow-2xl border-4 border-[#222]">
+            <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 rotate-[20deg]" eyeColor="#FFF" />
+          </div>
+          <div className="absolute bottom-16 lg:bottom-20 left-28 lg:left-36 w-16 lg:w-20 h-16 lg:h-20 rounded-full bg-white flex items-center justify-center z-30 shadow-xl border border-[#222]">
+            <SmileyFace className="w-8 lg:w-10 h-8 lg:h-10" />
+          </div>
+          <div className="absolute bottom-0 left-36 lg:left-44 w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 shadow-xl border border-[#333]">
+            <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 -rotate-[10deg]" eyeColor="#FFF" />
+          </div>
+          <div className="absolute bottom-12 lg:bottom-16 left-44 lg:left-52 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-[#000000] flex items-center justify-center z-20 shadow-xl border-2 border-[#333]">
+            <SmileyFace className="w-12 lg:w-14 h-12 lg:h-14 rotate-[15deg]" eyeColor="#FFF" />
+          </div>
+          <div className="absolute -bottom-2 left-52 lg:left-60 w-24 lg:w-28 h-24 lg:h-28 rounded-full bg-white flex items-center justify-center z-40 shadow-xl border border-[#222]">
+            <SmileyFace className="w-12 lg:w-14 h-12 lg:h-14 -rotate-[20deg]" />
+          </div>
+          <div className="absolute bottom-0 left-[230px] lg:left-[280px] w-20 lg:w-24 h-20 lg:h-24 rounded-full bg-[#1A1A1A] flex items-center justify-center z-10 shadow-xl border border-[#333]">
+            <SmileyFace className="w-10 lg:w-12 h-10 lg:h-12 rotate-[10deg]" eyeColor="#FFF" />
+          </div>
+        </div>
+      </div>
 
-              <div className="border-t border-[#333] pt-5 mt-auto">
-                {/* Time Slots Header */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[14px] font-bold text-white">
-                    {getDayOfWeek(selectedDate)} <span className="text-white"> {selectedDate < 10 ? `0${selectedDate}` : selectedDate}</span>
-                  </span>
-                  <div className="flex items-center bg-[#111111] border border-[#333] rounded-full p-1 text-[10px] font-medium">
-                    <button className="px-2.5 py-1 rounded-full text-white hover:text-white/80 transition-colors">12h</button>
-                    <button className="px-2.5 py-1 rounded-full bg-[#2A2A2A] text-white">24h</button>
-                  </div>
-                </div>
+      {/* Right Side: Interactive Booking Card (Black & White) */}
+      <div className="bg-[#111111] rounded-[24px] border border-[#222222] p-5 sm:p-7 w-full max-w-[450px] min-h-[520px] shadow-2xl mx-auto lg:ml-auto relative flex flex-col justify-between transition-all duration-300">
 
-                {/* Compact Time Slots Grid */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  {timeSlots.map(time => (
-                    <button 
-                      key={time}
-                      onClick={() => handleTimeSelect(time)}
-                      className="w-full py-2 border border-[#3A3A3A] rounded-xl text-[12px] font-semibold text-white bg-[#1E1E1E] hover:bg-[#2A2A2A] hover:border-[#555] transition-all shadow-sm"
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300">
-              <button 
-                onClick={handleBack} 
-                className="flex items-center gap-1.5 text-white hover:text-white/80 mb-5 w-fit transition-colors text-[13px] font-medium"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" /> Back
-              </button>
-              
-              <h3 className="text-[18px] font-bold text-white mb-1">Confirm booking</h3>
-              <p className="text-white text-[12px] mb-6">
-                You selected <span className="font-semibold">{getDayOfWeek(selectedDate)}, July {selectedDate} at {selectedTime}</span>
-              </p>
+        {/* Top Progress Header */}
+        <div className="flex items-center justify-between border-b border-[#222222] pb-4 mb-4">
+          <div className="flex items-center gap-2">
+            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'calendar' ? 'bg-white text-black' : 'bg-[#222222] text-white/60'}`}>
+              1
+            </span>
+            <span className={`text-xs font-medium ${step === 'calendar' ? 'text-white font-semibold' : 'text-white/40'}`}>Date & Time</span>
+            <span className="text-white/20 text-xs">/</span>
+            <span className={`w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center transition-colors ${step === 'form' ? 'bg-white text-black' : 'bg-[#222222] text-white/60'}`}>
+              2
+            </span>
+            <span className={`text-xs font-medium ${step === 'form' ? 'text-white font-semibold' : 'text-white/40'}`}>Your Details</span>
+          </div>
 
-              <form className="flex flex-col gap-3.5 flex-1" onSubmit={(e) => e.preventDefault()}>
-                <div className="flex flex-col gap-1">
-                  <label className="text-[12px] font-medium text-white">Your name</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. John Doe"
-                    required
-                    className="w-full bg-[#111111] border border-[#333] rounded-xl px-3.5 py-2.5 text-[13px] text-white focus:border-[#007FFF] focus:outline-none focus:bg-[#1A1A1A] transition-colors placeholder:text-white/60" 
-                  />
-                </div>
-                
-                <div className="flex flex-col gap-1">
-                  <label className="text-[12px] font-medium text-white">Email address</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@example.com"
-                    required
-                    className="w-full bg-[#111111] border border-[#333] rounded-xl px-3.5 py-2.5 text-[13px] text-white focus:border-[#007FFF] focus:outline-none focus:bg-[#1A1A1A] transition-colors placeholder:text-white/60" 
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label className="text-[12px] font-medium text-white">Meeting topic</label>
-                  <input 
-                    type="text" 
-                    placeholder="e.g. Website redesign"
-                    required
-                    className="w-full bg-[#111111] border border-[#333] rounded-xl px-3.5 py-2.5 text-[13px] text-white focus:border-[#007FFF] focus:outline-none focus:bg-[#1A1A1A] transition-colors placeholder:text-white/60" 
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label className="text-[12px] font-medium text-white">Additional note (optional)</label>
-                  <textarea 
-                    rows={2}
-                    placeholder="Any specific questions?"
-                    className="w-full bg-[#111111] border border-[#333] rounded-xl px-3.5 py-2.5 text-[13px] text-white focus:border-[#007FFF] focus:outline-none focus:bg-[#1A1A1A] transition-colors placeholder:text-white/60 resize-none" 
-                  ></textarea>
-                </div>
-
-                <button 
-                  type="submit"
-                  className="mt-auto w-full bg-white text-[#111111] rounded-xl py-3 font-bold text-[14px] hover:bg-[#007FFF] hover:text-white transition-colors shadow-md"
-                >
-                  Confirm Booking
-                </button>
-              </form>
-            </div>
+          {step === 'form' && (
+            <button
+              type="button"
+              onClick={handleBack}
+              className="flex items-center gap-1 text-white hover:text-white/70 transition-colors text-xs font-medium px-2.5 py-1 rounded-lg bg-white/10 border border-white/20"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" /> Back
+            </button>
           )}
-
         </div>
+
+        {step === 'calendar' && (
+          <div className="flex flex-col flex-1 animate-in fade-in slide-in-from-left-4 duration-300">
+            {/* Calendar Header */}
+            <div className="flex items-center justify-between mb-5 px-1">
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="w-4 h-4 text-white" />
+                <h3 className="font-jakarta text-[17px] font-bold text-white">
+                  {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                </h3>
+              </div>
+              <div className="flex items-center gap-1.5 bg-[#181818] p-1 rounded-xl border border-[#333333] text-white">
+                <button
+                  type="button"
+                  onClick={handlePrevMonth}
+                  aria-label="Previous Month"
+                  className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextMonth}
+                  aria-label="Next Month"
+                  className="p-1.5 rounded-lg hover:bg-[#222222] hover:text-white transition-colors cursor-pointer"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Days of Week Header */}
+            <div className="grid grid-cols-7 gap-1 mb-2 text-center">
+              {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
+                <span key={day} className="text-[10px] font-bold tracking-wider text-white/40 py-1">
+                  {day}
+                </span>
+              ))}
+            </div>
+
+            {/* Calendar Grid */}
+            <div className="grid grid-cols-7 gap-1.5 text-center text-[13px] font-medium mb-5">
+              {Array.from({ length: firstDayOfMonth }).map((_, i) => (
+                <div key={`empty-${i}`} className="h-9"></div>
+              ))}
+
+              {Array.from({ length: daysInMonth }).map((_, i) => {
+                const day = i + 1;
+                const dateObj = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                const isPast = dateObj < new Date(new Date().setHours(0, 0, 0, 0));
+                const isSelected = selectedDate?.toDateString() === dateObj.toDateString();
+
+                return (
+                  <button
+                    key={day}
+                    type="button"
+                    onClick={() => !isPast && setSelectedDate(dateObj)}
+                    disabled={isPast}
+                    className={`h-9 w-full flex items-center justify-center rounded-xl transition-all duration-200 text-sm font-semibold select-none ${isPast ? 'text-[#444444] cursor-not-allowed bg-transparent' :
+                        isSelected
+                          ? 'bg-white text-black font-bold shadow-lg scale-105 cursor-pointer'
+                          : 'bg-[#181818] text-white hover:bg-[#252525] hover:scale-105 cursor-pointer border border-[#333333]'
+                      }`}
+                  >
+                    {day}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Time Slots Section */}
+            {selectedDate ? (
+              <div className="border-t border-[#222222] pt-4 mt-auto animate-in fade-in slide-in-from-bottom-3 duration-300">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-white" />
+                    <span className="text-[13px] font-bold text-white">
+                      {getDayOfWeek(selectedDate)}, {selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    </span>
+                  </div>
+
+                  {/* Format Toggle */}
+                  <div className="flex items-center bg-[#000000] border border-[#222222] rounded-full p-0.5 text-[11px] font-semibold">
+                    <button
+                      type="button"
+                      onClick={() => setTimeFormat('12h')}
+                      className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '12h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
+                    >
+                      12h
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTimeFormat('24h')}
+                      className={`px-2.5 py-0.5 rounded-full transition-all ${timeFormat === '24h' ? 'bg-white text-black' : 'text-white/50 hover:text-white'}`}
+                    >
+                      24h
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {baseTimeSlots.map(time => {
+                    const timeStr = getTimeSlotString(time, timeFormat);
+                    return (
+                      <button
+                        key={time}
+                        type="button"
+                        onClick={() => handleTimeSelect(timeStr)}
+                        className="w-full py-2.5 border border-[#333333] rounded-xl text-[12px] font-semibold text-white bg-[#181818] hover:bg-white hover:border-white hover:text-black transition-all shadow-sm flex items-center justify-center gap-1 active:scale-95 cursor-pointer"
+                      >
+                        {timeStr}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ) : (
+              <div className="border-t border-[#222222] pt-4 mt-auto text-center py-4 bg-[#181818]/40 rounded-xl border border-dashed border-[#333333]">
+                <p className="text-white/50 text-xs font-medium">Select an available date to view time slots</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {step === 'form' && (
+          <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-300">
+            <div className="mb-4 bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="w-4 h-4 text-white" />
+                <div>
+                  <p className="text-xs text-white/50 font-medium">Selected Slot</p>
+                  <p className="text-xs font-bold text-white">
+                    {selectedDate && getDayOfWeek(selectedDate)}, {selectedDate?.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at {selectedTime}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="text-xs text-white hover:underline font-semibold"
+              >
+                Change
+              </button>
+            </div>
+
+            <form className="flex flex-col gap-3.5 flex-1 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] font-semibold text-white/90">Your Name *</label>
+                  <input
+                    type="text" required
+                    value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="e.g. John Doe"
+                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] font-semibold text-white/90">Email Address *</label>
+                  <input
+                    type="email" required
+                    value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="john@example.com"
+                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] font-semibold text-white/90">Job Title</label>
+                  <input
+                    type="text"
+                    value={formData.jobTitle} onChange={e => setFormData({ ...formData, jobTitle: e.target.value })}
+                    placeholder="e.g. Marketing Manager"
+                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] font-semibold text-white/90">Country</label>
+                  <input
+                    type="text"
+                    value={formData.country} onChange={e => setFormData({ ...formData, country: e.target.value })}
+                    placeholder="e.g. United Arab Emirates"
+                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30"
+                  />
+                </div>
+              </div>
+
+              {/* Service Pills (Monochrome White & Black) */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[11px] font-semibold text-white/90">Services of Interest</label>
+                <div className="flex flex-wrap gap-1.5">
+                  {availableServices.map(service => {
+                    const isSelected = formData.services.includes(service);
+                    return (
+                      <button
+                        key={service}
+                        type="button"
+                        onClick={() => handleServiceToggle(service)}
+                        className={`px-3 py-1.5 rounded-lg text-[11px] font-medium transition-all duration-200 flex items-center gap-1.5 border cursor-pointer ${isSelected
+                            ? 'bg-white text-black border-white shadow-md'
+                            : 'bg-[#181818] text-white/70 border-[#333333] hover:bg-[#252525] hover:text-white'
+                          }`}
+                      >
+                        {isSelected && <Check className="w-3 h-3 text-black" />}
+                        {service}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] font-semibold text-white/90">Estimated Monthly Budget</label>
+                  <select
+                    value={formData.budget} onChange={e => setFormData({ ...formData, budget: e.target.value })}
+                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[12px] text-white focus:border-white focus:outline-none transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="" className="bg-[#111111] text-white/50">Select budget</option>
+                    <option value="< 3,500 AED" className="bg-[#111111]">Less than 3,500 AED</option>
+                    <option value="3,500 AED - 18,000 AED" className="bg-[#111111]">3,500 AED - 18,000 AED</option>
+                    <option value="18,000 AED - 35,000 AED" className="bg-[#111111]">18,000 AED - 35,000 AED</option>
+                    <option value="> 35,000 AED" className="bg-[#111111]">More than 35,000 AED</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[11px] font-semibold text-white/90">How did you hear about us?</label>
+                  <select
+                    value={formData.howDidYouHear} onChange={e => setFormData({ ...formData, howDidYouHear: e.target.value })}
+                    className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[12px] text-white focus:border-white focus:outline-none transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="" className="bg-[#111111] text-white/50">Select source</option>
+                    <option value="Google Search" className="bg-[#111111]">Google Search</option>
+                    <option value="Social Media" className="bg-[#111111]">Social Media</option>
+                    <option value="Referral" className="bg-[#111111]">Referral</option>
+                    <option value="Other" className="bg-[#111111]">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1">
+                <label className="text-[11px] font-semibold text-white/90">Project Details / Message</label>
+                <textarea
+                  rows={2}
+                  value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell us briefly about your goals..."
+                  className="w-full bg-[#181818] border border-[#333333] rounded-xl px-3 py-2 text-[13px] text-white focus:border-white focus:outline-none transition-all placeholder:text-white/30 resize-none"
+                ></textarea>
+              </div>
+
+              {/* reCAPTCHA - Scaled & Centered */}
+              <div className="mt-1 flex justify-center w-full overflow-hidden scale-[0.88] xs:scale-95 sm:scale-100 origin-center">
+                {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                    onChange={(token) => setCaptchaToken(token)}
+                    theme="dark"
+                  />
+                ) : (
+                  <div className="text-white/80 text-xs text-center border border-white/20 p-2 rounded-xl bg-white/5 w-full">
+                    reCAPTCHA Site Key missing in .env
+                  </div>
+                )}
+              </div>
+
+              {errorMsg && (
+                <p className="text-white bg-white/10 border border-white/20 text-[12px] text-center font-medium py-1.5 px-3 rounded-lg animate-in fade-in">{errorMsg}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="mt-1 w-full bg-white text-black hover:bg-white/90 rounded-xl py-3 font-bold text-[14px] transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer border-none shadow-none"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-black" /> Confirming...
+                  </>
+                ) : (
+                  'Confirm Booking'
+                )}
+              </button>
+            </form>
+          </div>
+        )}
+
+      </div>
     </div>
   );
 
-  if (contained) {
-    return (
-      <section className="bg-white w-full px-5 sm:px-8 md:px-12 lg:px-16 py-16 md:py-24 flex justify-center">
-        <div className="w-full bg-[#111111] text-white rounded-[32px] md:rounded-[40px] px-4 sm:px-6 md:px-10 py-12 md:py-16 shadow-2xl relative overflow-hidden flex justify-center">
-          {/* Subtle background decoration */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#007FFF]/10 blur-[80px] rounded-full pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#007FFF]/10 blur-[80px] rounded-full pointer-events-none"></div>
-          {innerContent}
-        </div>
-      </section>
-    );
-  }
-
   return (
-    <section className="bg-[#111111] text-white w-full py-12 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden flex items-center justify-center">
-      {innerContent}
-    </section>
+    <>
+      {/* Main Section */}
+      {contained ? (
+        <section className="bg-white w-full px-4 sm:px-8 md:px-12 lg:px-16 py-12 md:py-20 flex justify-center">
+          <div className="w-full bg-[#000000] text-white rounded-[28px] sm:rounded-[36px] md:rounded-[44px] px-4 sm:px-6 md:px-10 py-10 md:py-16 shadow-2xl relative overflow-hidden flex justify-center border border-[#222222]">
+            {innerContent}
+          </div>
+        </section>
+      ) : (
+        <section className="bg-[#000000] text-white w-full py-10 md:py-16 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden flex items-center justify-center border-t border-[#111111]">
+          {innerContent}
+        </section>
+      )}
+
+      {/* SUCCESS POP-UP MODAL (ON TOP OF THE PAGE) WITH AUDIO CHIME */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
+          <div className="bg-[#111111] border border-white/20 rounded-3xl p-6 sm:p-8 max-w-[420px] w-full shadow-2xl text-center flex flex-col items-center relative animate-in zoom-in-95 duration-300">
+
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={handleResetForm}
+              className="absolute top-4 right-4 text-white/50 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Checkmark Circle (White & Black) */}
+            <div className="w-20 h-20 bg-white text-black rounded-full flex items-center justify-center mb-6 shadow-xl animate-in bounce-in duration-500">
+              <Check className="w-10 h-10 text-black stroke-[3]" />
+            </div>
+
+            <h3 className="text-2xl font-bold text-white mb-3">Booking Confirmed!</h3>
+            <p className="text-white/70 text-sm max-w-[320px] leading-relaxed mb-6">
+              The booking is confirmed. Our team will connect with you shortly.
+            </p>
+
+            <button
+              type="button"
+              onClick={handleResetForm}
+              className="w-full bg-white text-black font-bold py-3.5 rounded-xl hover:bg-white/90 transition-all text-sm shadow-md active:scale-98 cursor-pointer"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
