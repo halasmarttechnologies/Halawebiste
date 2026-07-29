@@ -8,53 +8,53 @@ import Link from 'next/link';
 const contentCreationFaqs = [
   {
     number: "01",
-    question: "What is content creation, and why is it important for my business?",
-    answer: "Content creation is the process of generating valuable written, visual, and multimedia assets tailored for your target audience. It builds brand authority, drives organic traffic, educates prospective buyers, and turns casual visitors into loyal customers."
+    question: "What is content creation and why is it important for my business?",
+    answer: "Content creation is the process of producing written visual and multimedia material tailored to your audience. It builds brand authority drives organic traffic educates potential buyers and turns casual visitors into loyal customers."
   },
   {
     number: "02",
     question: "What types of content do you offer?",
-    answer: "We produce website copywriting, blog articles, SEO landing pages, social media captions & carousel scripts, video scripts, email newsletters, case studies, and corporate press releases."
+    answer: "We create website copy blog articles social media content email campaigns and video scripts all tailored to match your brand voice and business goals."
   },
   {
     number: "03",
-    question: "Is the content SEO-optimized?",
-    answer: "Yes, all written content is thoroughly researched and optimized with high-intent keywords, semantic headings, meta tags, and internal link structures to maximize search engine rankings."
+    question: "Is the content SEO optimized?",
+    answer: "Yes every piece of written content we create is optimized for search engines helping your business rank higher and attract the right audience organically."
   },
   {
     number: "04",
-    question: "How do you understand my brand’s tone and audience?",
-    answer: "Before writing, we conduct a brand discovery session to map out your brand persona, target demographics, unique selling propositions, and tone guidelines (whether professional, playful, or authoritative)."
+    question: "Do you write content specific to my industry?",
+    answer: "Yes we research your industry audience and competitors before writing ensuring the content speaks directly to your target market."
   },
   {
     number: "05",
-    question: "Can I request edits or revisions?",
-    answer: "Yes, every content deliverable includes revision rounds so you can provide feedback and refine tone, formatting, or messaging to your exact satisfaction."
+    question: "Can you match my brand's tone and voice?",
+    answer: "Yes we study your existing brand materials and adapt our writing style to stay consistent with your brand's personality and messaging."
   },
   {
     number: "06",
-    question: "How long does it take to deliver the content?",
-    answer: "Standard blog posts or social content sets are delivered within 3 to 5 business days. Full website copywriting or complex technical whitepapers take 7 to 10 business days."
+    question: "How often will I receive new content?",
+    answer: "Content frequency depends on your chosen package but we typically offer weekly bi weekly or monthly delivery schedules based on your needs."
   },
   {
     number: "07",
-    question: "Do you write for specific industries or niches?",
-    answer: "Yes, our experienced copywriters research and create authoritative content for technology, real estate, finance, healthcare, eCommerce, hospitality, legal, and luxury sectors across the Middle East."
+    question: "Do you handle content for social media as well?",
+    answer: "Yes alongside written content we create engaging social media posts and captions designed to boost engagement and brand visibility."
   },
   {
     number: "08",
-    question: "Can you manage our content on an ongoing basis?",
-    answer: "Yes! We offer monthly content retainers including content calendar planning, topic research, writing, editing, graphic design, and CMS publishing."
+    question: "Will I be able to review content before it's published?",
+    answer: "Yes every piece of content goes through a review stage where you can request edits before final approval and publishing."
   },
   {
     number: "09",
-    question: "Will the content be 100% original?",
-    answer: "Yes, guaranteed. All content is 100% human-crafted, unique, and passed through rigorous plagiarism and quality control checks prior to client delivery."
+    question: "Do you provide a content calendar?",
+    answer: "Yes we build a structured content calendar so your publishing stays consistent and aligned with your overall marketing strategy."
   },
   {
     number: "10",
     question: "How do I get started with your content creation services?",
-    answer: "Getting started is easy! Simply reach out via our contact page, email us at Contact@halatechnology.ae, or call +971 58 613 9007 to discuss your content goals with our Dubai team."
+    answer: "Simply reach out to our team with your requirements and we will schedule a quick consultation to understand your brand before creating a tailored content plan."
   }
 ];
 
@@ -77,7 +77,7 @@ export default function ContentCreationFAQ() {
             </h2>
 
             <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our content strategy, copywriting, SEO optimization, and ongoing editorial management.
+              Everything you need to know about our content strategy writing process SEO integration and ongoing content management.
             </p>
 
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">

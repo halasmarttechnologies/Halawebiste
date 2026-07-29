@@ -8,12 +8,12 @@ import { useGSAP } from '@gsap/react';
 import { CheckCircle, Clapperboard, Settings2 } from 'lucide-react';
 
 const strengths = [
-  'Cinematic Storytelling',
-  'Precision Editing',
-  'Brand-Focused Visuals',
-  'Fast Turnaround',
-  'Platform-Optimized Delivery',
-  'Professional Quality',
+  'Story Driven Editing',
+  'Seamless Cuts & Transitions',
+  'Custom Thumbnail Design',
+  'Color Grading & Enhancement',
+  'Motion Graphics & Effects',
+  'Quick Delivery No Compromise',
 ];
 
 export default function VideoEditingStandOut() {
@@ -135,13 +135,11 @@ export default function VideoEditingStandOut() {
 
           <h2 className="font-jakarta text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-[#111] mb-8">
             Why Our Video Editing Services <br className="hidden xl:block" />
-            <em className="eb-garamond italic text-[#007FFF] font-medium pr-2">Stand Out?</em>
+            <em className="eb-garamond italic text-[#007FFF] font-medium pr-2">Truly Deliver?</em>
           </h2>
 
           <p className="font-jakarta text-base md:text-lg lg:text-[19px] text-[#555] leading-[1.8] font-medium mb-10 md:mb-12 max-w-[600px]">
-            At Hala Smart Technologies, our video editing services in Dubai go beyond basic cuts and transitions. We craft stories that connect with your audience. By blending creativity, precision, and the latest editing tools, we deliver videos that are visually stunning, emotionally engaging, and perfectly aligned with your brand identity.
-            <br/><br/>
-            From corporate presentations to social media reels, every project is handled with a focus on quality, originality, and results. What sets us apart is our commitment to detail, quick turnaround, and the ability to transform ideas into impactful visual experiences that help businesses grow.
+            At Hala Smart Technologies our video editing services in Dubai go far beyond simple cuts and transitions. We build stories that resonate with your audience blending creativity precision and modern editing tools to deliver videos that are visually striking emotionally engaging and built to perform.
           </p>
 
           <ul ref={listItemsRef} className="flex flex-col gap-4 md:gap-5">

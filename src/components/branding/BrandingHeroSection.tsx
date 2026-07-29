@@ -53,7 +53,7 @@ export default function BrandingHeroSection() {
                       dur="30s"
                       repeatCount="indefinite"
                     />
-                    {Array(10).fill("STAND OUT FROM THE CROWD — BOLD BRANDING — UNIQUE IDENTITY — ").join(' ')}
+                    {Array(10).fill("STAND OUT FROM THE CROWD • BOLD BRANDING • UNIQUE IDENTITY • ").join(' ')}
                   </textPath>
                 </text>
               </svg>
@@ -83,7 +83,7 @@ export default function BrandingHeroSection() {
                       dur="40s"
                       repeatCount="indefinite"
                     />
-                    {Array(10).fill("STAND OUT FROM THE CROWD — BOLD BRANDING — UNIQUE IDENTITY — DOMINATE THE MARKET — ").join(' ')}
+                    {Array(10).fill("STAND OUT FROM THE CROWD • BOLD BRANDING • UNIQUE IDENTITY • DOMINATE THE MARKET • ").join(' ')}
                   </textPath>
                 </text>
               </svg>
@@ -94,14 +94,14 @@ export default function BrandingHeroSection() {
         {/* Hero Content */}
         <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 -mt-20 sm:-mt-24 md:-mt-24">
           <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold leading-[1.06] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
-            <span className="block md:inline">Branding</span>{' '}
-            <span className="block md:inline">that makes</span>{' '}
-            <span className="block md:inline">you stand</span>{' '}
-            <span className="eb-garamond font-normal italic text-white block md:inline-block">out.</span>
+            <span className="block md:inline">Building</span>{' '}
+            <span className="block md:inline">brands that</span>{' '}
+            <span className="block md:inline">make a lasting</span>{' '}
+            <span className="eb-garamond font-normal italic text-white block md:inline-block">impact.</span>
           </h1>
 
           <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">
-            Build a memorable brand with custom logos,<br className="hidden sm:block" /> brand identity, and strategy that helps you grow.
+            We craft custom logos brand identity and strategy that turn your business into a name people trust.
           </p>
 
           <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
@@ -117,11 +117,11 @@ export default function BrandingHeroSection() {
         <div className="max-w-[900px] text-center relative z-30">
 
           <p className="font-jakarta text-xl md:text-2xl lg:text-3xl leading-[1.6] md:leading-[1.7] mb-10 md:mb-14 text-[#E8E6E1]">
-            At Hala Technologies, we're rethinking the fundamental layer of branding: how your business connects with its audience. We believe a brand should be the most natural, powerful way to communicate your vision — and we're building the identities to make that a reality.
+            At Hala Smart Technologies we're rethinking what branding really means how your business connects with the people it's trying to reach. We believe a strong brand isn't just a logo it's the clearest most natural way to communicate who you are and we build the identities that make that possible.
           </p>
 
           <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.6] mb-12 md:mb-16 text-[#E8E6E1]/80">
-            Our branding strategies are already helping businesses ditch generic looks and express themselves faster, clearer, and more effortlessly. But we're just getting started.
+            Our branding strategies are already helping businesses move away from generic forgettable looks toward identities that feel authentic and instantly recognizable. And this is only the beginning.
           </p>
 
           <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">

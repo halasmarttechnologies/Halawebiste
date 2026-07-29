@@ -10,8 +10,8 @@ const caseStudies = [
     id: 1,
     industry: 'E-COMMERCE',
     flag: '🇦🇪',
-    title: 'High-performance web platform scaling to 10M+ visitors',
-    description: 'We engineered a custom, lightning-fast web architecture that eliminated downtime during peak sales events and delivered a seamless, premium shopping experience.',
+    title: 'From traffic spikes to seamless sales at 10M+ scale',
+    description: 'We delivered a fast reliable ecommerce platform engineered to handle peak season demand without downtime giving customers a smooth experience every time they visit.',
     tags: ['Web Development', 'Next.js'],
     image: '/web.jpg'
   },

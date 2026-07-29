@@ -9,52 +9,52 @@ const graphicDesignFaqs = [
   {
     number: "01",
     question: "Who can avail of your graphic design services?",
-    answer: "Any business or individual looking to strengthen their brand can avail of these services, including startups, retailers, influencers, e-commerce businesses, service providers, corporate entities, and others."
+    answer: "Any business or individual looking to strengthen their brand can avail of these services including startups retailers influencers ecommerce businesses service providers and corporate entities."
   },
   {
     number: "02",
-    question: "Can I ask for edits post-delivery?",
-    answer: "Yes, absolutely! We provide revision rounds with all design packages to ensure the final assets perfectly align with your vision, brand guidelines, and expectations."
+    question: "Can I ask for edits post delivery?",
+    answer: "Yes we offer a set number of revisions with every project so the final design fully matches your expectations before delivery."
   },
   {
     number: "03",
     question: "Do you provide custom design packages?",
-    answer: "Yes, we create custom graphic design packages tailored to your specific scope, deliverables, timeline, and budget—whether you need a single campaign asset or full visual branding."
+    answer: "Yes we tailor every package based on your specific needs whether it's a single design piece or a complete set of brand visuals."
   },
   {
     number: "04",
-    question: "Do I receive source files such as PSD, AI, or SVG?",
-    answer: "Yes. Upon project completion and final sign-off, you receive full ownership and all editable source files (Adobe Illustrator .AI, Photoshop .PSD, vector .SVG, EPS, PDF, and high-res PNG/JPG)."
+    question: "Do I receive source files such as PSD AI or SVG?",
+    answer: "Yes once the project is complete you receive all relevant source files so you have full ownership and flexibility for future use."
   },
   {
     number: "05",
-    question: "What is your turnaround time?",
-    answer: "Standard design tasks are delivered within 24 to 48 hours. Comprehensive brand identities or multi-asset campaigns take 5 to 7 business days depending on project complexity."
+    question: "How long does a typical graphic design project take?",
+    answer: "Turnaround time depends on project complexity but most standard design requests are completed within a few business days."
   },
   {
     number: "06",
-    question: "Do you design in more than one language?",
-    answer: "Yes! We specialize in bilingual design for English and Arabic markets across the GCC, ensuring culturally authentic typography, alignment, and aesthetic appeal."
+    question: "What types of graphic design services do you offer?",
+    answer: "We offer logo design social media graphics marketing materials packaging design UI graphics and complete visual identity design."
   },
   {
     number: "07",
-    question: "Will my designs be optimized for mobile?",
-    answer: "All digital design assets, web banners, and social graphics are precision-optimized for mobile aspect ratios, high-DPI displays, and fast loading speeds."
+    question: "Can you match my existing brand guidelines?",
+    answer: "Yes we work closely with your existing brand colors fonts and style to keep every new design consistent with your current identity."
   },
   {
     number: "08",
-    question: "Can you help create a complete brand identity, not just a logo?",
-    answer: "Yes! We build end-to-end brand identities, including logo systems, color palettes, typography rules, brand guidelines, stationery, packaging, and social media kits."
+    question: "Do you design for both print and digital use?",
+    answer: "Yes our team creates designs optimized for both digital platforms and print materials ensuring quality across every format."
   },
   {
     number: "09",
-    question: "What design software do you use?",
-    answer: "Our senior designers use industry-leading professional software including Adobe Illustrator, Photoshop, InDesign, Premiere Pro, Figma, and After Effects."
+    question: "What software do you use for design work?",
+    answer: "We work with industry standard tools including Adobe Illustrator Photoshop InDesign and Figma to deliver professional high quality results."
   },
   {
     number: "10",
-    question: "Is there a contract or long-term commitment required?",
-    answer: "No long-term commitment is required. You can hire us on a per-project basis or opt for a flexible monthly retainer depending on your ongoing creative needs."
+    question: "How do I get started with a graphic design project?",
+    answer: "Simply reach out to our team with your requirements and we will schedule a quick consultation to understand your goals before starting the design process."
   }
 ];
 
@@ -77,7 +77,7 @@ export default function GraphicDesignFAQ() {
             </h2>
 
             <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our graphic design process, deliverables, source files, and turnaround times.
+              Everything you need to know about our design process file formats revisions and delivery timelines.
             </p>
 
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">

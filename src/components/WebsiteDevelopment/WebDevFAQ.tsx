@@ -8,53 +8,53 @@ import Link from 'next/link';
 const webDevFaqs = [
   {
     number: "01",
-    question: "What makes your web development services top-quality?",
-    answer: "We engineer high-performance web applications using modern frameworks (Next.js, React, Node, Tailwind, TypeScript) with zero-bloat code, sub-second load speeds, enterprise-grade security, and conversion-focused UX architecture."
+    question: "What makes your web development services top quality?",
+    answer: "We build high performance websites using modern frameworks like Next.js React Node and TypeScript delivering fast load speeds strong security and conversion focused design."
   },
   {
     number: "02",
     question: "How can your web development services drive digital innovation?",
-    answer: "We incorporate interactive 3D elements, dynamic micro-interactions, custom API integrations, real-time analytics, and headless CMS capabilities that position your brand light-years ahead of competitors."
+    answer: "By combining clean code architecture with modern design practices we create websites that not only look professional but also perform seamlessly and scale with your business needs."
   },
   {
     number: "03",
     question: "What industries do you cater to with your web development services?",
-    answer: "We build tailored web solutions for real estate conglomerates, eCommerce brands, financial institutions, technology startups, healthcare providers, legal firms, and corporate enterprises across Dubai and globally."
+    answer: "We build websites for a wide range of industries including eCommerce real estate healthcare hospitality and professional service businesses."
   },
   {
     number: "04",
-    question: "How do you ensure website growth and scalability?",
-    answer: "Our modular architecture separates frontend performance from backend data layers, allowing your platform to seamlessly handle spikes in user traffic, expanding product catalogs, and international localization without slowing down."
+    question: "Do you build fully responsive websites?",
+    answer: "Yes every website we develop is fully responsive ensuring a smooth consistent experience across desktops tablets and mobile devices."
   },
   {
     number: "05",
-    question: "Do you build SEO-friendly websites?",
-    answer: "Yes, 100%. Every website we build features clean semantic HTML5 markup, automated schema structured data, SSR (Server-Side Rendering) for instant Google indexing, fast Core Web Vitals, and mobile-first responsiveness."
+    question: "How long does it take to build a website?",
+    answer: "Timelines vary based on project complexity but most standard websites are completed within a few weeks from discovery to launch."
   },
   {
     number: "06",
-    question: "Can you help with website maintenance and updates after launch?",
-    answer: "Yes, we provide ongoing web maintenance retainers including security updates, performance monitoring, cloud hosting management, monthly content updates, and feature expansions."
+    question: "Will my website be optimized for search engines?",
+    answer: "Yes we build websites with SEO friendly structure fast load speeds and clean code giving your site a strong foundation to rank well."
   },
   {
     number: "07",
-    question: "How long does it take to develop a website?",
-    answer: "Standard business websites take 3 to 5 weeks from initial design mockups to launch. Complex web platforms or custom eCommerce portals take 6 to 10 weeks depending on custom features and API integrations."
+    question: "Do you offer website maintenance after launch?",
+    answer: "Yes we provide ongoing support and maintenance packages to keep your website secure updated and running smoothly after launch."
   },
   {
     number: "08",
     question: "Can you redesign my existing website?",
-    answer: "Yes! We specialize in legacy website overhauls, modernizing visual design, upgrading tech stacks, improving mobile usability, and boosting search engine rankings while preserving existing SEO authority."
+    answer: "Yes we specialize in redesigning outdated websites into modern fast and high converting platforms while preserving your existing content and SEO value."
   },
   {
     number: "09",
-    question: "What platforms and technologies do you use?",
-    answer: "We develop using modern tech stacks including Next.js, React, Node.js, TypeScript, Tailwind CSS, GraphQL, WordPress, Shopify, Webflow, and custom serverless architectures on AWS / Vercel."
+    question: "What platforms or technologies do you build with?",
+    answer: "We primarily develop using Next.js React Node.js and Tailwind CSS along with CMS integrations depending on your project's specific requirements."
   },
   {
     number: "10",
-    question: "Will my website be mobile-friendly?",
-    answer: "Yes, every website is engineered with a mobile-first philosophy, ensuring flawless rendering, smooth touch gestures, and ultra-fast loading across all smartphones, tablets, and desktop displays."
+    question: "How do I get started with a web development project?",
+    answer: "Simply reach out with your requirements and our team will schedule a discovery call to understand your goals before building a tailored development plan."
   }
 ];
 
@@ -73,11 +73,11 @@ export default function WebDevFAQ() {
           <div className="lg:col-span-5 flex flex-col items-start lg:sticky lg:top-28">
             <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl text-[#111111] leading-tight mb-6">
               Web Development <br className="hidden sm:inline" />
-              FAQs &amp; Answers.
+              FAQs &amp; Answers
             </h2>
 
             <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our web engineering process, technologies, mobile responsiveness, and post-launch maintenance.
+              Everything you need to know about our development process tech stack mobile responsiveness and post launch support.
             </p>
 
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">

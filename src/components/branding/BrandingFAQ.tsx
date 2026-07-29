@@ -8,43 +8,48 @@ import Link from 'next/link';
 const faqs = [
   {
     number: "01",
-    question: "What is expert branding & marketing, and why is it important?",
-    answer: "Expert branding is the professional process of creating a unique, cohesive identity and strategic search positioning for your business. It builds recognition, long-term trust, and differentiates your brand in competitive UAE markets."
+    question: "What is professional branding and why does it matter?",
+    answer: "Professional branding is the process of creating a unique consistent identity logo colors voice and messaging that helps your business stand out and build lasting recognition in a competitive market."
   },
   {
     number: "02",
-    question: "How do your digital marketing and SEO strategies drive business growth?",
-    answer: "We combine consumer analytics, targeted keyword intent, and high-converting creative execution across Google, Meta, and social platforms to turn search traffic directly into qualified leads and sales."
+    question: "How does strong branding help my business grow?",
+    answer: "A clear consistent brand builds trust faster makes your business memorable and gives customers a reason to choose you over competitors which directly supports long term growth."
   },
   {
     number: "03",
-    question: "What core elements are included in your full-suite services?",
-    answer: "Our full-suite includes SEO (On-page, Off-page, Technical), Pay-Per-Click Ads, Social Media Marketing, Content Creation, and Mobile-first Web Design engineered for maximum conversions."
+    question: "What's included in your branding services?",
+    answer: "Our branding services cover logo design complete visual identity systems brand guidelines and strategy everything needed to present a cohesive brand across every platform."
   },
   {
     number: "04",
-    question: "How long does it take to see measurable results from SEO & Marketing?",
-    answer: "PPC ad campaigns deliver instant traffic and leads on launch. Organic SEO search rankings typically show strong momentum and sustainable traffic increases within 3 to 6 months."
+    question: "How long does the branding process usually take?",
+    answer: "Timelines vary by project scope but most branding packages from concept to final identity are typically completed within a few weeks."
   },
   {
     number: "05",
-    question: "Can your services work for startups and expanding UAE businesses?",
-    answer: "Yes! We tailor our growth strategies specifically for your business scale—whether you are a startup building initial market presence or an established brand scaling regional market share."
+    question: "Do you offer complete rebranding for existing businesses?",
+    answer: "Yes we help businesses refresh outdated branding with a new logo updated visual identity and consistent messaging that better reflects where the business stands today."
   },
   {
     number: "06",
-    question: "How do I know if my business needs a marketing & website upgrade?",
-    answer: "If your website traffic is stagnant, competitors rank higher on Google search results, or your current campaigns fail to produce measurable ROI, a strategic upgrade is recommended."
+    question: "Will my brand look different across social media website and print?",
+    answer: "No we build one unified brand system so your logo colors and messaging stay consistent across every platform from your website to social media and printed materials."
   },
   {
     number: "07",
-    question: "What kind of performance reporting and analytics do you provide?",
-    answer: "We provide complete transparency with real-time reporting dashboards, tracking user behavior, traffic sources, conversion rates, and keyword rankings so you know your exact ROI."
+    question: "Do you provide brand strategy along with design?",
+    answer: "Yes our branding process includes strategy work as well so every design decision from color choices to tone of voice is backed by a clear understanding of your audience and goals."
   },
   {
     number: "08",
-    question: "How do we get started with Hala Technology?",
-    answer: "Getting started is simple. Contact our Dubai strategy team at 1803, Latifa Tower, Sheikh Zayed Road, Dubai, email us at Contact@halatechnology.ae, or call +971 58 613 9007. We will prepare a customized proposal for your brand."
+    question: "Can you create branding for a completely new business?",
+    answer: "Absolutely we regularly build brand identities from scratch helping new businesses establish a strong professional presence right from launch."
+  },
+  {
+    number: "09",
+    question: "What files will I receive after the branding project is complete?",
+    answer: "You'll receive your final logo files brand guidelines color codes and typography details giving you everything needed to maintain a consistent brand across current and future materials."
   }
 ];
 
@@ -70,7 +75,7 @@ export default function BrandingFAQ() {
             </h2>
 
             <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our digital strategies, search engine optimization, content execution, and measurable growth models.
+              Everything you need to know about our branding process logo design identity systems and how it drives real business growth.
             </p>
 
             {/* Human-crafted Help Box */}

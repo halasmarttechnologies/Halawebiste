@@ -27,11 +27,11 @@ export default function BrandingExpertise() {
           className="w-full lg:w-1/2 flex flex-col justify-center"
         >
           <h2 className="font-jakarta text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.15] tracking-tight mb-8">
-            Hala – The Trusted Branding Expertise for <span className="eb-garamond italic pr-2 font-normal">Business Growth</span>
+            Hala Branding Expertise Built for <span className="eb-garamond italic pr-2 font-normal">Business Growth</span>
           </h2>
 
           <p className="font-jakarta text-lg md:text-xl text-[#111111]/70 leading-relaxed font-medium mb-10 max-w-[600px]">
-            We dive deep into your mission to create branding that speaks with purpose. Beyond standing out, we help you truly connect, making your identity unforgettable. By keeping your brand voice consistent across every platform—from logos to websites and packaging—we build enduring trust through clear, cohesive, and thoughtful design.
+            We take the time to understand your mission and turn it into branding that speaks with purpose. Beyond just standing out we help your business build real connections through an identity that people remember. By keeping your brand voice consistent across every platform from logos to websites to packaging we build trust that lasts.
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">

@@ -94,14 +94,14 @@ export default function FeaturedWork() {
               Work
             </div>
             <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl text-[#111111] tracking-tight leading-tight">
-              Featured Work
+              A Look at Our Best Work
             </h2>
           </div>
 
           {/* Right Text & Button Area */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 md:gap-6">
             <p className="text-[#555555] text-sm sm:text-base font-medium max-w-xs leading-relaxed">
-              A look at some of the brands we've helped and the outcomes we've delivered.
+              Interactive high performing websites built with modern frameworks precise design and smooth responsiveness across every device.
             </p>
             <button className="bg-[#007FFF] hover:bg-[#0066CC] text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 whitespace-nowrap self-start sm:self-auto hover:scale-105 active:scale-95">
               See All

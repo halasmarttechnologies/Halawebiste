@@ -11,15 +11,15 @@ export default function TrustedSection() {
         {/* Text Content */}
         <div className="flex-1 text-left flex flex-col items-start max-w-2xl lg:max-w-none">
           <h2 className="font-jakarta text-3xl sm:text-4xl lg:text-5xl font-bold text-[#111111] leading-[1.2] mb-6">
-            Your Trusted Web Design Company in Dubai & UAE
+            Web Design That Works as Hard as Your Business
           </h2>
           
           <p className="font-jakarta text-base sm:text-lg text-[#555555] leading-relaxed mb-6">
-            Your website should stand out, just like your business. We design responsive pages that work seamlessly across all devices and help you stay ahead of the competition. Every site we build delivers a smooth user experience, runs flawlessly, and is optimized to rank higher in search results.
+            Your website should stand out just like your business does. We build responsive pages that perform seamlessly across every device helping you stay ahead of the competition. Every website we deliver runs smoothly offers a clean user experience and is optimized to rank higher in search results.
           </p>
           
           <p className="font-jakarta text-base sm:text-lg text-[#555555] leading-relaxed mb-10">
-            From the first discovery call to the final launch, our team works closely with you to understand your brand, your audience, and your business goals, ensuring every design decision is intentional, informed, and impactful.
+            From the first discovery call to final launch our team works closely with you to understand your brand your audience and your goals ensuring every design decision is intentional informed and built to drive results.
           </p>
 
           <button className="flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.98] transition-all duration-200 text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl">

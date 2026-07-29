@@ -25,14 +25,14 @@ export default function VideoEditing() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 -mt-20 sm:-mt-24 md:-mt-24">
+        <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 mt-6 sm:mt-10 md:mt-12">
           <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold leading-[1.08] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
-            <span className="block">Your Videos</span>
-            <span className="eb-garamond font-normal italic block md:inline-block">Deserve Clicks.</span>
+            <span className="block md:inline">Videos That</span>{' '}
+            <span className="eb-garamond font-normal italic text-white block md:inline-block">Demand Attention.</span>
           </h1>
 
           <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">
-            Custom-designed thumbnails and editing that make your content visually stunning and impossible to ignore.
+            Professional editing and eye catching thumbnails that turn casual viewers into loyal subscribers.
           </p>
 
           <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">

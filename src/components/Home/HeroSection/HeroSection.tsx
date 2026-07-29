@@ -32,18 +32,19 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col items-center justify-center w-full flex-grow px-4 sm:px-6 -mt-16 md:-mt-24">
         <h1 className="font-jakarta text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-[82px] font-extrabold leading-[1.05] tracking-[-1px] mb-6 max-w-[900px] w-full text-white">
           <span className="text-white font-semibold">
-            <em className="eb-garamond">Scale</em>{' '}
+            <em className="eb-garamond">Grow</em>{' '}
             your brand.</span>{' '}
 
-          <span className="text-white font-semibold block sm:inline mt-1 sm:mt-0">Dominate
+          <span className="text-white font-semibold block sm:inline mt-1 sm:mt-0">
+            Dominate
             {' '}
             <em className="eb-garamond font-semibold">the market.</em>
           </span>
         </h1>
 
         <p className="text-[13px] sm:text-base md:text-lg text-white leading-relaxed mb-8 max-w-[420px] text-center">
-          Digital marketing agency <br />
-          that turns clicks into customers.
+          Digital marketing that delivers. <br />
+          Real clicks. Real customers.
         </p>
 
         <Link href="/contact" className={ctaBtn}>

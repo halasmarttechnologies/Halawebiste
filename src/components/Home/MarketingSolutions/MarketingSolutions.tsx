@@ -78,10 +78,10 @@ export default function MarketingSolutions() {
           {/* Description Text & CTA */}
           <div className="flex flex-col bg-zinc-900/50 p-6 md:p-8 rounded-[20px] md:rounded-3xl border border-zinc-800 backdrop-blur-sm">
             <h3 className="font-jakarta font-semibold text-2xl md:text-3xl text-white mb-3 md:mb-4">
-              One agency. Complete growth.
+              Everything you need. One team.
             </h3>
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
-              At Hala Smart Technologies, we specialize in delivering digital marketing services to help your business grow and stand out in today's competitive market. From result-driven SEO services and high-performing PPC campaigns to creative content marketing and strategic social media management, we cover all aspects of online growth.
+              At Hala Smart Technologies, we bring SEO, paid advertising, content creation, and social media under one roof. Instead of running isolated campaigns, we build a connected growth strategy designed to turn your audience into loyal, paying customers.
             </p>
             <Link href="/contact" className="flex items-center justify-center gap-3 w-full sm:w-auto bg-[#007FFF] text-white font-bold py-3.5 md:py-4 px-6 md:px-8 rounded-xl hover:bg-[#0066CC] transition-colors self-start shadow-[0_0_20px_rgba(0,127,255,0.2)] no-underline">
               <Search className="w-5 h-5" />

@@ -101,11 +101,11 @@ export default function ContentCreationServices() {
             What We Offer
           </div>
           <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
-            High-Performing <br className="hidden md:block" />
-            <span className="eb-garamond italic pr-2">Content</span> Services
+            Content Built to <br className="hidden md:block" />
+            <span className="eb-garamond italic pr-2">Perform &amp; Convert</span>
           </h2>
           <p className="text-lg md:text-xl text-[#555555] font-medium max-w-2xl">
-            At Hala Smart Technologies, we specialize in delivering high-performing content that combines creativity with strategy. Original, tailored content aligned with your brand identity.
+            At Hala Smart Technologies we blend creativity with strategy to deliver content that actually works. Every piece is original tailored and aligned with your brand's voice and goals.
           </p>
         </div>
 

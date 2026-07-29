@@ -16,12 +16,12 @@ export default function ContentCreationWhyChoose() {
           
           {/* Title */}
           <h2 className="font-jakarta font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-wide uppercase text-[#111111] mb-6">
-            Why Choose Hala Technology?
+            WHY WORK WITH HALA?
           </h2>
 
           {/* Description */}
           <p className="text-[#333333] text-base md:text-lg font-medium max-w-[900px] leading-[1.7] mb-10">
-            At Hala, we believe content should feel like a conversation, not a sales pitch. That's why we take the time to understand your brand, your goals, and the people you're trying to reach. Whether you're launching something new or trying to grow what you've already built, we create content that feels real, sounds authentic, and delivers results. No copy-paste templates, no generic noise—just strategic, meaningful content tailored for your audience. We're easy to work with, serious about deadlines, and committed to getting it right until you're satisfied.
+            At Hala we believe great content should feel like a conversation not a sales pitch. We take the time to understand your brand your goals and the audience you're trying to reach whether you're launching something new or scaling what you've already built. Every piece we create is original tailored and built around what actually connects with your audience no templates no generic filler. We stay easy to work with committed to deadlines and focused on getting it right until you're happy with the result.
           </p>
 
           {/* Buttons / Pills */}

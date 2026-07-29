@@ -32,13 +32,13 @@ export default function GraphicDesignHero() {
         <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 -mt-20 sm:-mt-24 md:-mt-24">
           <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold leading-[1.06] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
             <span className="block md:inline">Graphic design</span>{' '}
-            <span className="block md:inline">that makes</span>{' '}
-            <span className="block md:inline">you stand</span>{' '}
-            <span className="eb-garamond font-normal italic text-white block md:inline-block">out.</span>
+            <span className="block md:inline">that tells</span>{' '}
+            <span className="block md:inline">your</span>{' '}
+            <span className="eb-garamond font-normal italic text-white block md:inline-block">story.</span>
           </h1>
 
           <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">
-            Communicate your brand's unique message through stunning, purposeful, and strategic visual design.
+            We craft visuals that speak your brand's language with designs built to be strategic not just stylish.
           </p>
 
           <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
@@ -54,11 +54,11 @@ export default function GraphicDesignHero() {
         <div className="max-w-[900px] text-center relative z-30">
 
           <p className="font-jakarta text-xl md:text-2xl lg:text-3xl leading-[1.6] md:leading-[1.7] mb-10 md:mb-14 text-[#E8E6E1]">
-            At Hala Technologies, we believe graphic design is more than just making things look good. It's about translating your brand's core identity into visual experiences that captivate, communicate, and convert.
+            At Hala Smart Technologies we believe graphic design is more than just making things look good. It's about turning your brand's identity into visuals that grab attention communicate clearly and drive real engagement.
           </p>
 
           <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.6] mb-12 md:mb-16 text-[#E8E6E1]/80">
-            From impactful marketing materials to complete visual identities, we create designs that seamlessly bridge the gap between your brand and your audience.
+            From eye-catching marketing materials to complete visual identity systems we create designs that bridge the gap between your brand and the people you're trying to reach.
           </p>
 
           <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">

@@ -25,7 +25,7 @@ export default function VideoEditingReels() {
           Instagram <span className="eb-garamond italic text-[#007FFF]">Reels &amp; Stories</span>
         </h2>
         <p className="text-[#555] font-jakarta text-sm md:text-base max-w-2xl mx-auto">
-          Elevate your brand presence with premium, highly engaging short-form videos designed to capture attention and drive conversions.
+          Boost your brand's presence with scroll stopping short form videos crafted to grab attention fast and turn viewers into customers.
         </p>
       </div>
 

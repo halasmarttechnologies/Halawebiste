@@ -8,53 +8,53 @@ import Link from 'next/link';
 const videoEditingFaqs = [
   {
     number: "01",
-    question: "What video editing services do you offer?",
-    answer: "We offer comprehensive video post-production services including color grading, audio cleaning & mixing, motion graphics, sound design, transitions, visual effects, and format resizing for multi-platform delivery."
+    question: "Who can use your video editing services?",
+    answer: "Any business creator or brand looking to turn raw footage into polished professional content can use our services from small businesses to influencers and corporate teams."
   },
   {
     number: "02",
     question: "Which types of videos can you edit?",
-    answer: "We edit corporate promos, social media reels & TikToks, YouTube content, product showcases, podcast highlights, event recap videos, real estate tours, and paid ad creatives."
+    answer: "We edit a wide range of content including social media reels promotional videos corporate videos product showcases and long form YouTube content."
   },
   {
     number: "03",
     question: "What software do you use for editing?",
-    answer: "Our video editors use industry-leading tools including Adobe Premiere Pro, After Effects, DaVinci Resolve Studio, and Audition to deliver broadcast-quality video content."
+    answer: "Our team works with industry standard tools like Adobe Premiere Pro After Effects and DaVinci Resolve to deliver polished professional results."
   },
   {
     number: "04",
     question: "How long does it take to edit a video?",
-    answer: "Short-form content (Reels/Shorts) takes 24 to 48 hours. Comprehensive corporate promos or long-form videos typically take 3 to 5 business days based on duration and graphic requirements."
+    answer: "Turnaround time depends on video length and complexity but most standard projects are delivered within a few business days."
   },
   {
     number: "05",
     question: "Can you work with raw footage from smartphones or cameras?",
-    answer: "Yes! We work with all footage formats—from 4K/8K cinema camera RAW files (RED, Sony, Canon) to high-quality smartphone videos (iPhone/Android ProRes)."
+    answer: "Yes we work with footage from any source including smartphones DSLRs and professional cameras and enhance it to a polished final result."
   },
   {
     number: "06",
     question: "Do you provide revisions?",
-    answer: "Yes, every video project includes dedicated revision cycles so you can request changes to pacing, audio balance, captions, or color tone until you are completely satisfied."
+    answer: "Yes every project includes a set number of revisions to make sure the final edit matches your vision before delivery."
   },
   {
     number: "07",
-    question: "Can you add captions, subtitles, or animations?",
-    answer: "Yes! We specialize in engaging dynamic captions, animated text overlays, kinetic typography, lower thirds, and custom logo motion graphics."
+    question: "Can you add custom thumbnails to my videos?",
+    answer: "Yes we design custom scroll stopping thumbnails as part of our editing services to boost your video click through rate."
   },
   {
     number: "08",
-    question: "Do you offer social media optimization?",
-    answer: "Yes, we export videos tailored specifically to platform specifications (9:16 vertical for Reels/TikTok, 1:1 square for Instagram, 16:9 widescreen for YouTube/LinkedIn) with optimized compression for maximum reach."
+    question: "Do you offer color grading and sound editing?",
+    answer: "Yes our editing process includes color correction grading and audio enhancement to make sure every video looks and sounds professional."
   },
   {
     number: "09",
-    question: "How do I submit my footage and requirements?",
-    answer: "You can securely upload your raw footage via Google Drive, Dropbox, Frame.io, or WeTransfer. We will provide a dedicated folder link upon project kickoff."
+    question: "Can you optimize videos for different platforms?",
+    answer: "Yes we format and export videos to match the specific requirements of Instagram YouTube TikTok and other platforms."
   },
   {
     number: "10",
-    question: "What makes Hala Smart Technologies different?",
-    answer: "We combine strategic narrative storytelling with high-converting visual pacing. We don't just edit clips; we structure videos designed to capture attention, boost watch time, and drive conversions."
+    question: "How do I get started with a video editing project?",
+    answer: "Simply send us your raw footage along with your requirements and our team will get back to you with a timeline and next steps."
   }
 ];
 
@@ -77,7 +77,7 @@ export default function VideoEditingFAQ() {
             </h2>
 
             <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
-              Everything you need to know about our video editing process, file submissions, revision cycles, and platform optimization.
+              Everything you need to know about our editing workflow file formats revision policy and delivery timelines.
             </p>
 
             <div className="w-full bg-[#f9f9f9] border border-[#e5e5e5] rounded-2xl p-6 sm:p-7 flex flex-col items-start">

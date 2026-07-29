@@ -22,10 +22,10 @@ export default function VideoEditingShowcase() {
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 mb-12 md:mb-16 text-center relative z-20">
         <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#111] mb-4">
-          Featured <span className="eb-garamond italic text-[#007FFF]">Video</span> Projects
+          Our Best <span className="eb-garamond italic text-[#007FFF]">Video Work</span>
         </h2>
         <p className="text-[#555] font-jakarta text-sm md:text-base max-w-2xl mx-auto">
-          Explore our portfolio of premium video editing work, from high-impact commercial campaigns to engaging social media content.
+          Explore our portfolio of premium video editing work from high impact commercial campaigns to engaging social media content.
         </p>
       </div>
 

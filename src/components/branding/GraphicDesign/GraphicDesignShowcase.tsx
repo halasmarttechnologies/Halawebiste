@@ -151,10 +151,10 @@ export default function GraphicDesignShowcase() {
             </span>
           </div>
           <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#111] leading-[1.1] mb-6">
-            Visuals that <span className="eb-garamond italic text-[#007FFF] font-medium pr-2">speak.</span>
+            Visuals with <span className="eb-garamond italic text-[#007FFF] font-medium pr-2">purpose</span>
           </h2>
           <p className="text-[#555] font-jakarta text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            From striking brand identities to pixel-perfect UI designs, explore our premium graphic design showcase. Each piece is crafted to capture attention and elevate your brand.
+            From bold brand identities to clean pixel perfect UI designs explore our graphic design showcase. Every piece is crafted to capture attention and elevate your brand.
           </p>
         </motion.div>
 
