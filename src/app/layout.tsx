@@ -52,6 +52,16 @@ export const metadata: Metadata = {
       'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
     images: ['/og-image.png'],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', type: 'image/png' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png' },
+    ],
+  },
   alternates: {
     canonical: BASE_URL,
   },
