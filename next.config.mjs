@@ -9,8 +9,8 @@ const CSP = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Fonts: self + Google Fonts CDN
   "font-src 'self' https://fonts.gstatic.com",
-  // Images: self + Unsplash + Pravatar (remote images) + data URIs (inline images)
-  "img-src 'self' data: https://images.unsplash.com https://i.pravatar.cc",
+  // Images: self + Unsplash + Pravatar + UI-Avatars (remote images) + data URIs (inline images)
+  "img-src 'self' data: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
   // Connections: self + Google reCAPTCHA verify endpoint

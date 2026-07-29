@@ -62,10 +62,6 @@ export default function RootLayout({
       <body>
         {children}
         <Analytics />
-        <Script
-          src="https://www.google.com/recaptcha/api.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

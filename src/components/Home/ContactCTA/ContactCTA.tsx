@@ -522,20 +522,14 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
               ></textarea>
             </div>
 
-            {/* reCAPTCHA - Scaled & Centered */}
-            <div className="mt-1 flex justify-center w-full overflow-hidden scale-[0.88] xs:scale-95 sm:scale-100 origin-center">
-              {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                  onChange={(token) => setCaptchaToken(token)}
-                  theme="dark"
-                />
-              ) : (
-                <div className="text-white/80 text-xs text-center border border-white/20 p-2 rounded-xl bg-white/5 w-full">
-                  reCAPTCHA Site Key missing in .env
-                </div>
-              )}
+            {/* reCAPTCHA - Rendered Immediately */}
+            <div className="my-1.5 flex justify-center items-center w-full min-h-[78px] overflow-visible">
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
+                onChange={(token) => setCaptchaToken(token)}
+                theme="dark"
+              />
             </div>
 
             {errorMsg && (

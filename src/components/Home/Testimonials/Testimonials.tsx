@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const testimonialsRow1 = [
@@ -7,25 +8,25 @@ const testimonialsRow1 = [
     quote: "Exceeded our expectations with innovative designs that brought our vision to life - a truly remarkable creative agency.",
     name: "Samantha Johnson",
     title: "CEO and Co-founder of ABC Company",
-    image: "https://i.pravatar.cc/150?u=11"
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "Their ability to capture our brand essence in every project is unparalleled - an invaluable creative collaborator.",
     name: "Isabella Rodriguez",
     title: "CEO and Co-founder of ABC Company",
-    image: "https://i.pravatar.cc/150?u=12"
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "Creative geniuses who listen, understand, and craft captivating visuals - an agency that truly understands our needs.",
     name: "Gabrielle Williams",
     title: "CEO and Co-founder of ABC Company",
-    image: "https://i.pravatar.cc/150?u=13"
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "A refreshing and imaginative agency that consistently delivers exceptional results - highly recommended for any project.",
     name: "Victoria Thompson",
     title: "CEO and Co-founder of ABC Company",
-    image: "https://i.pravatar.cc/150?u=14"
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
   }
 ];
 
@@ -34,25 +35,25 @@ const testimonialsRow2 = [
     quote: "Their team's artistic flair and strategic approach resulted in remarkable campaigns - a reliable creative partner.",
     name: "John Peter",
     title: "CEO and Co-founder of ABC Company",
-    image: "https://i.pravatar.cc/150?u=15"
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "From concept to execution, their creativity knows no bounds - a game-changer for our brand's success.",
     name: "Natalie Martinez",
     title: "CEO and Co-founder of ABC Company",
-    image: "https://i.pravatar.cc/150?u=16"
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "Working with Hala has been transformative. They don't just create content; they create experiences that resonate deeply.",
     name: "Michael Chen",
     title: "Marketing Director at XYZ Corp",
-    image: "https://i.pravatar.cc/150?u=17"
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "The attention to detail and strategic foresight they bring to the table is unmatched in the entire creative industry.",
     name: "Sarah Jenkins",
     title: "Founder of Startup Inc",
-    image: "https://i.pravatar.cc/150?u=18"
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
   }
 ];
 
@@ -125,6 +126,8 @@ export default function Testimonials() {
 }
 
 function TestimonialCard({ quote, name, title, image }: { quote: string, name: string, title: string, image: string }) {
+  const [imgSrc, setImgSrc] = useState(image);
+
   return (
     <div className="w-[270px] sm:w-[300px] md:w-[440px] shrink-0 bg-[#F9FAFB] border border-[#EEEEEE] rounded-[20px] md:rounded-[32px] p-5 md:p-10 flex flex-col md:hover:-translate-y-2 transition-transform duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] md:hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
       
@@ -140,8 +143,13 @@ function TestimonialCard({ quote, name, title, image }: { quote: string, name: s
 
       {/* User Info */}
       <div className="flex items-center gap-3 md:gap-4 mt-auto">
-        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden bg-gray-200 shrink-0 border-2 border-white shadow-sm">
-          <img src={image} alt={name} className="w-full h-full object-cover" />
+        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden bg-gray-200 shrink-0 border-2 border-white shadow-sm flex items-center justify-center">
+          <img 
+            src={imgSrc} 
+            alt={name} 
+            className="w-full h-full object-cover" 
+            onError={() => setImgSrc(`https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=007FFF&color=fff`)}
+          />
         </div>
         <div className="flex flex-col">
           <h4 className="font-jakarta font-bold text-[#111111] text-[13.5px] md:text-[16px]">
