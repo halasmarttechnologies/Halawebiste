@@ -152,13 +152,13 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
         })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error('booking_failed');
+      if (!res.ok) throw new Error(data.error || 'Failed to submit booking request');
 
       // Play check sound and trigger full-page pop-up modal
       playSuccessSound();
       setShowSuccessModal(true);
-    } catch {
-      setErrorMsg('Something went wrong. Please try again or contact us directly.');
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Something went wrong. Please try again or contact us directly.');
       if (recaptchaRef.current) recaptchaRef.current.reset();
       setCaptchaToken(null);
     } finally {

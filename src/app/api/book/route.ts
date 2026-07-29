@@ -30,6 +30,11 @@ const RATE_LIMIT_WINDOW   = 15 * 60 * 1000; // 15 minutes in ms
 const ipRequestMap         = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(ip: string): boolean {
+  // Never rate-limit localhost or dev mode testing
+  if (process.env.NODE_ENV === 'development' || ip === '127.0.0.1' || ip === '::1' || ip === 'localhost' || ip === 'unknown') {
+    return false;
+  }
+
   const now   = Date.now();
   const entry = ipRequestMap.get(ip);
 
