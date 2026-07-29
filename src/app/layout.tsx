@@ -76,6 +76,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.google.com" />
         <link rel="preconnect" href="https://www.gstatic.com" crossOrigin="anonymous" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=3" />
+        <link rel="shortcut icon" href="/icon.png?v=3" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png?v=3" />
       </head>
       <body>
         {children}
