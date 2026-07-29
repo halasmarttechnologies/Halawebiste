@@ -136,17 +136,25 @@ export async function POST(request: Request) {
 
     // ── 6. reCAPTCHA verification ───────────────────────────────────────────
     if (process.env.RECAPTCHA_SECRET_KEY && captchaToken) {
+      const verifyParams = new URLSearchParams();
+      verifyParams.append('secret', process.env.RECAPTCHA_SECRET_KEY);
+      verifyParams.append('response', captchaToken);
+
       const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${encodeURIComponent(captchaToken)}`,
+        body: verifyParams.toString(),
       });
       const verifyData = await verifyRes.json();
+      console.log('[reCAPTCHA] Siteverify response:', verifyData);
+
       if (!verifyData.success) {
-        return NextResponse.json({ error: 'reCAPTCHA verification failed' }, { status: 400 });
+        const codes = Array.isArray(verifyData['error-codes']) ? verifyData['error-codes'].join(', ') : 'invalid-token';
+        console.error('[reCAPTCHA] Failed with codes:', codes);
+        return NextResponse.json({ error: `reCAPTCHA verification failed (${codes})` }, { status: 400 });
       }
     } else if (process.env.RECAPTCHA_SECRET_KEY && !captchaToken) {
-      return NextResponse.json({ error: 'reCAPTCHA token missing' }, { status: 400 });
+      return NextResponse.json({ error: 'reCAPTCHA token missing. Please complete verification.' }, { status: 400 });
     }
 
     // ── 7. Build safe email HTML ────────────────────────────────────────────

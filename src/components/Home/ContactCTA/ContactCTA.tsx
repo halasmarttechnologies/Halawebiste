@@ -527,7 +527,18 @@ export default function ContactCTA({ contained = false }: { contained?: boolean 
               <ReCAPTCHA
                 ref={recaptchaRef}
                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
-                onChange={(token) => setCaptchaToken(token)}
+                onChange={(token) => {
+                  setCaptchaToken(token);
+                  setErrorMsg('');
+                }}
+                onExpired={() => {
+                  setCaptchaToken(null);
+                  setErrorMsg('reCAPTCHA expired. Please check the box again.');
+                }}
+                onError={() => {
+                  setCaptchaToken(null);
+                  setErrorMsg('reCAPTCHA network error. Please try again.');
+                }}
                 theme="dark"
               />
             </div>
