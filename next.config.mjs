@@ -9,12 +9,12 @@ const CSP = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Fonts: self + Google Fonts CDN
   "font-src 'self' https://fonts.gstatic.com",
-  // Images: self + Unsplash + Pravatar + UI-Avatars (remote images) + data URIs (inline images)
-  "img-src 'self' data: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com",
+  // Images: self + Unsplash + Pravatar + UI-Avatars + data URIs (base64 uploaded images)
+  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
-  // Connections: self + Google reCAPTCHA verify endpoint
-  "connect-src 'self' https://www.google.com",
+  // Connections: self + GitHub API (for CMS blog persistence) + Google reCAPTCHA
+  "connect-src 'self' https://api.github.com https://www.google.com",
   // Block everything else
   "object-src 'none'",
   "base-uri 'self'",
@@ -63,11 +63,12 @@ const nextConfig = {
         ],
       },
       {
-        // Disallow crawlers on API routes
+        // No caching on API routes — blogs must always be fresh
         source: '/api/:path*',
         headers: [
           { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
           { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate' },
+          { key: 'Pragma', value: 'no-cache' },
         ],
       },
       {
@@ -81,4 +82,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-

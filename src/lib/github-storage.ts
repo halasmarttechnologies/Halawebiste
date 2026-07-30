@@ -1,0 +1,94 @@
+import { BlogPost } from './blogs';
+
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_OWNER = 'halasmarttechnologies';
+const GITHUB_REPO = 'Halawebiste';
+const GITHUB_FILE_PATH = 'src/data/blogs.json';
+const GITHUB_BRANCH = 'main';
+
+interface GitHubFileResponse {
+  content: string;
+  sha: string;
+  encoding: string;
+}
+
+// ---------------------------------------------------------------------------
+// Read blogs.json from GitHub (source of truth in production)
+// ---------------------------------------------------------------------------
+export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: string }> {
+  if (!GITHUB_TOKEN) {
+    throw new Error('GITHUB_TOKEN environment variable is not set');
+  }
+
+  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}?ref=${GITHUB_BRANCH}`;
+
+  const res = await fetch(apiUrl, {
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+      'User-Agent': 'HalaCMS/1.0',
+    },
+    // Always fetch fresh — never use cached
+    cache: 'no-store',
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`GitHub API read failed: ${res.status} ${body}`);
+  }
+
+  const file: GitHubFileResponse = await res.json();
+
+  // GitHub returns base64-encoded content
+  const decoded = Buffer.from(file.content, 'base64').toString('utf-8');
+  const blogs: BlogPost[] = JSON.parse(decoded);
+
+  return { blogs, sha: file.sha };
+}
+
+// ---------------------------------------------------------------------------
+// Write updated blogs.json back to GitHub (auto-commits, triggers redeploy)
+// ---------------------------------------------------------------------------
+export async function writeBlogsToGitHub(blogs: BlogPost[], sha: string): Promise<boolean> {
+  if (!GITHUB_TOKEN) {
+    throw new Error('GITHUB_TOKEN environment variable is not set');
+  }
+
+  const sorted = [...blogs].sort((a, b) => a.priority - b.priority);
+  const content = JSON.stringify(sorted, null, 2);
+
+  // GitHub requires base64 encoded content
+  const encodedContent = Buffer.from(content, 'utf-8').toString('base64');
+
+  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}`;
+
+  const res = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+      'User-Agent': 'HalaCMS/1.0',
+    },
+    body: JSON.stringify({
+      message: `[CMS] Update blogs.json — ${new Date().toISOString()}`,
+      content: encodedContent,
+      sha,
+      branch: GITHUB_BRANCH,
+    }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`GitHub API write failed: ${res.status} ${body}`);
+  }
+
+  return true;
+}
+
+// ---------------------------------------------------------------------------
+// Check if GitHub token is configured (for health checks)
+// ---------------------------------------------------------------------------
+export function isGitHubConfigured(): boolean {
+  return Boolean(GITHUB_TOKEN);
+}
