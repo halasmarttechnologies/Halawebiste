@@ -17,7 +17,7 @@ export default function BlogGrid({ activeCategory }: BlogGridProps) {
   useEffect(() => {
     const fetchLiveBlogs = async () => {
       try {
-        const res = await fetch('/api/blogs?status=published');
+        const res = await fetch(`/api/blogs?status=published&t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
         if (data.success && data.blogs.length > 0) {
           setPosts(data.blogs);

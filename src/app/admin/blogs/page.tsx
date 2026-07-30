@@ -9,8 +9,6 @@ import {
   Star, 
   Edit3, 
   Trash2, 
-  ExternalLink, 
-  FileText,
   AlertCircle,
   LayoutGrid
 } from 'lucide-react';
@@ -27,7 +25,7 @@ export default function ManageBlogsPage() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch('/api/blogs');
+      const res = await fetch(`/api/blogs?t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
       if (data.success) {
         setBlogs(data.blogs);
@@ -46,12 +44,17 @@ export default function ManageBlogsPage() {
   const handlePriorityChange = async (id: string, newPriority: number) => {
     setUpdatingId(id);
     try {
-      await fetch(`/api/blogs/${id}`, {
+      const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ priority: newPriority }),
       });
-      fetchBlogs();
+      const data = await res.json();
+      if (data.success) {
+        await fetchBlogs();
+      } else {
+        alert('Error updating priority: ' + (data.error || 'Failed'));
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -62,12 +65,17 @@ export default function ManageBlogsPage() {
   const handleTargetPageChange = async (id: string, newTarget: string) => {
     setUpdatingId(id);
     try {
-      await fetch(`/api/blogs/${id}`, {
+      const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ targetPage: newTarget }),
       });
-      fetchBlogs();
+      const data = await res.json();
+      if (data.success) {
+        await fetchBlogs();
+      } else {
+        alert('Error updating target page: ' + (data.error || 'Failed'));
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -78,12 +86,17 @@ export default function ManageBlogsPage() {
   const toggleHomepage = async (blog: BlogPost) => {
     setUpdatingId(blog.id);
     try {
-      await fetch(`/api/blogs/${blog.id}`, {
+      const res = await fetch(`/api/blogs/${encodeURIComponent(blog.id)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ showOnHomepage: !blog.showOnHomepage }),
       });
-      fetchBlogs();
+      const data = await res.json();
+      if (data.success) {
+        await fetchBlogs();
+      } else {
+        alert('Error toggling homepage pin: ' + (data.error || 'Failed'));
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -93,11 +106,20 @@ export default function ManageBlogsPage() {
 
   const handleDelete = async (id: string, title: string) => {
     if (confirm(`Are you sure you want to delete "${title}"?`)) {
+      setUpdatingId(id);
       try {
-        await fetch(`/api/blogs/${id}`, { method: 'DELETE' });
-        fetchBlogs();
+        const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+          await fetchBlogs();
+        } else {
+          alert('Error deleting blog: ' + (data.error || 'Failed to delete'));
+        }
       } catch (err) {
         console.error(err);
+        alert('Delete request failed.');
+      } finally {
+        setUpdatingId(null);
       }
     }
   };
@@ -321,7 +343,8 @@ export default function ManageBlogsPage() {
                       </Link>
                       <button
                         onClick={() => handleDelete(blog.id, blog.title)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-rose-600 hover:bg-rose-50 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                        disabled={updatingId === blog.id}
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-rose-600 hover:bg-rose-50 rounded-lg text-xs font-semibold transition-colors cursor-pointer disabled:opacity-50"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>

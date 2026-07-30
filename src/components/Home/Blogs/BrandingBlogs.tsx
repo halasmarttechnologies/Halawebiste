@@ -47,12 +47,19 @@ export default function BrandingBlogs() {
   useEffect(() => {
     const fetchHomeBlogs = async () => {
       try {
-        const res = await fetch('/api/blogs?homepage=true&status=published');
+        const res = await fetch(`/api/blogs?homepage=true&status=published&t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
         if (data.success && data.blogs.length > 0) {
           setBlogs(data.blogs);
         } else {
-          setBlogs(fallbackBlogs);
+          // Fallback to published blogs if no specific homepage-pinned blogs exist
+          const fallbackRes = await fetch(`/api/blogs?status=published&t=${Date.now()}`, { cache: 'no-store' });
+          const fallbackData = await fallbackRes.json();
+          if (fallbackData.success && fallbackData.blogs.length > 0) {
+            setBlogs(fallbackData.blogs.slice(0, 3));
+          } else {
+            setBlogs(fallbackBlogs);
+          }
         }
       } catch (err) {
         setBlogs(fallbackBlogs);

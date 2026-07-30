@@ -23,13 +23,13 @@ export default function ServiceBlogSection({
   useEffect(() => {
     const fetchTargetBlogs = async () => {
       try {
-        const res = await fetch(`/api/blogs?status=published&targetPage=${targetPage}`);
+        const res = await fetch(`/api/blogs?status=published&targetPage=${targetPage}&t=${Date.now()}`, { cache: 'no-store' });
         const data = await res.json();
         if (data.success && data.blogs.length > 0) {
           setBlogs(data.blogs);
         } else {
           // Fallback to all published blogs if none assigned specifically
-          const fallbackRes = await fetch('/api/blogs?status=published');
+          const fallbackRes = await fetch(`/api/blogs?status=published&t=${Date.now()}`, { cache: 'no-store' });
           const fallbackData = await fallbackRes.json();
           if (fallbackData.success) {
             setBlogs(fallbackData.blogs.slice(0, 3));
