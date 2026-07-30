@@ -4,8 +4,23 @@ const AUTH_COOKIE_NAME = 'hala_admin_session';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get('host') || '';
 
-  // Protect ONLY /admin routes
+  // Detect if domain is the CMS Portal (e.g., hala-cms-portal.vercel.app or IS_CMS_PORTAL env variable)
+  const isCmsPortalDomain =
+    host.includes('cms-portal') ||
+    host.includes('cms') ||
+    process.env.IS_CMS_PORTAL === 'true' ||
+    process.env.NEXT_PUBLIC_IS_CMS === 'true';
+
+  // If opening root URL '/' on the CMS Portal Vercel domain -> redirect directly to CMS Login/Admin
+  if (pathname === '/' && isCmsPortalDomain) {
+    const sessionCookie = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+    const targetUrl = new URL(sessionCookie ? '/admin' : '/admin/login', request.url);
+    return NextResponse.redirect(targetUrl);
+  }
+
+  // Protect /admin routes
   if (pathname.startsWith('/admin')) {
     const isLoginPage = pathname === '/admin/login';
     const sessionCookie = request.cookies.get(AUTH_COOKIE_NAME)?.value;
@@ -27,5 +42,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin', '/admin/:path*'],
+  matcher: ['/', '/admin', '/admin/:path*'],
 };
