@@ -1,4 +1,4 @@
-import { BlogPost } from './blogs';
+import { BlogPost, getAllBlogsSync } from './blogs';
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_OWNER = 'halasmarttechnologies';
@@ -91,4 +91,27 @@ export async function writeBlogsToGitHub(blogs: BlogPost[], sha: string): Promis
 // ---------------------------------------------------------------------------
 export function isGitHubConfigured(): boolean {
   return Boolean(GITHUB_TOKEN);
+}
+
+// ---------------------------------------------------------------------------
+// Helper: Get all blogs asynchronously (GitHub primary, local fallback)
+// ---------------------------------------------------------------------------
+export async function getLiveBlogsAsync(): Promise<BlogPost[]> {
+  if (isGitHubConfigured()) {
+    try {
+      const { blogs } = await readBlogsFromGitHub();
+      return blogs;
+    } catch (err) {
+      console.error('[github-storage] GitHub read error:', err);
+    }
+  }
+  return getAllBlogsSync();
+}
+
+// ---------------------------------------------------------------------------
+// Helper: Get a single blog by slug or ID
+// ---------------------------------------------------------------------------
+export async function getLiveBlogBySlugOrIdAsync(identifier: string): Promise<BlogPost | null> {
+  const blogs = await getLiveBlogsAsync();
+  return blogs.find((b) => b.slug === identifier || b.id === identifier) || null;
 }

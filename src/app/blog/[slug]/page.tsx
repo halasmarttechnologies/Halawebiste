@@ -4,8 +4,11 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Home/Footer';
 import OutroMessage from '@/components/About/OutroMessage';
-import { getBlogBySlugOrId, getPublishedBlogs } from '@/lib/blogs';
-import { ArrowLeft, Clock, User, Calendar, Share2, Tag, ArrowRight } from 'lucide-react';
+import { getLiveBlogBySlugOrIdAsync, getLiveBlogsAsync } from '@/lib/github-storage';
+import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -13,7 +16,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const blog = getBlogBySlugOrId(slug);
+  const blog = await getLiveBlogBySlugOrIdAsync(slug);
 
   if (!blog) {
     return {
@@ -24,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = blog.seo?.metaTitle || `${blog.title} | Hala Technologies`;
   const description = blog.seo?.metaDescription || blog.excerpt;
-  const canonical = blog.seo?.canonicalUrl || `https://halatechnologies.com/blog/${blog.slug}`;
+  const canonical = blog.seo?.canonicalUrl || `https://halatechnologies.com/blog/${blog.slug || blog.id}`;
   const ogImage = blog.seo?.ogImage || blog.image;
 
   return {
@@ -54,14 +57,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SingleBlogPage({ params }: Props) {
   const { slug } = await params;
-  const blog = getBlogBySlugOrId(slug);
+  const blog = await getLiveBlogBySlugOrIdAsync(slug);
 
   if (!blog || blog.status !== 'published') {
     notFound();
   }
 
-  const allBlogs = getPublishedBlogs();
-  const relatedPosts = allBlogs.filter((b) => b.id !== blog.id).slice(0, 3);
+  const allBlogs = await getLiveBlogsAsync();
+  const relatedPosts = allBlogs
+    .filter((b) => b.status === 'published' && b.id !== blog.id)
+    .slice(0, 3);
 
   return (
     <div className="font-jakarta bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
@@ -99,11 +104,11 @@ export default async function SingleBlogPage({ params }: Props) {
             <div className="flex items-center gap-4 text-xs text-[#666666] pt-2 border-t border-[#e5e5e5]">
               <div className="flex items-center gap-2 font-medium">
                 <div className="w-8 h-8 rounded-full bg-[#f0f0f0] border border-[#e0e0e0] flex items-center justify-center font-bold text-[#007FFF]">
-                  {blog.author.name.charAt(0)}
+                  {blog.author?.name ? blog.author.name.charAt(0) : 'H'}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#111111]">{blog.author.name}</p>
-                  <p className="text-[10px] text-[#888888]">{blog.author.role || 'Hala Team'}</p>
+                  <p className="font-semibold text-[#111111]">{blog.author?.name || 'Hala Strategy Team'}</p>
+                  <p className="text-[10px] text-[#888888]">{blog.author?.role || 'Content Specialist'}</p>
                 </div>
               </div>
               <span>•</span>
@@ -166,7 +171,7 @@ export default async function SingleBlogPage({ params }: Props) {
                 {relatedPosts.map((related) => (
                   <Link
                     key={related.id}
-                    href={`/blog/${related.slug}`}
+                    href={`/blog/${related.slug || related.id}`}
                     className="group border border-[#e5e5e5] rounded-xl p-4 hover:border-[#007FFF] transition-all bg-white"
                   >
                     <span className="text-[10px] font-bold text-[#007FFF] block mb-2">{related.category}</span>
