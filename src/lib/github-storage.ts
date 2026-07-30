@@ -7,13 +7,15 @@ const GITHUB_FILE_PATH = 'src/data/blogs.json';
 const GITHUB_BRANCH = 'main';
 
 interface GitHubFileResponse {
-  content: string;
+  content?: string;
   sha: string;
-  encoding: string;
+  encoding?: string;
+  download_url?: string;
+  size?: number;
 }
 
 // ---------------------------------------------------------------------------
-// Read blogs.json from GitHub (source of truth in production)
+// Read blogs.json from GitHub (handles files of any size, including >1MB)
 // ---------------------------------------------------------------------------
 export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: string }> {
   if (!GITHUB_TOKEN) {
@@ -28,7 +30,6 @@ export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: s
       Accept: 'application/vnd.github.v3+json',
       'User-Agent': 'HalaCMS/1.0',
     },
-    // Always fetch fresh — never use cached
     cache: 'no-store',
   });
 
@@ -38,12 +39,43 @@ export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: s
   }
 
   const file: GitHubFileResponse = await res.json();
+  const sha = file.sha;
 
-  // GitHub returns base64-encoded content
-  const decoded = Buffer.from(file.content, 'base64').toString('utf-8');
-  const blogs: BlogPost[] = JSON.parse(decoded);
+  let jsonText = '';
 
-  return { blogs, sha: file.sha };
+  // GitHub contents API omits file.content when file size exceeds 1 MB
+  if (file.content && file.content.trim().length > 0) {
+    // Standard base64 decoding (clean whitespace/newlines)
+    const cleanBase64 = file.content.replace(/\s/g, '');
+    jsonText = Buffer.from(cleanBase64, 'base64').toString('utf-8');
+  } else {
+    // Fallback: Fetch raw file via download_url (works for files of any size)
+    const downloadUrl =
+      file.download_url ||
+      `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${GITHUB_FILE_PATH}`;
+
+    const rawRes = await fetch(downloadUrl, {
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        'User-Agent': 'HalaCMS/1.0',
+      },
+      cache: 'no-store',
+    });
+
+    if (!rawRes.ok) {
+      const rawBody = await rawRes.text();
+      throw new Error(`GitHub raw file fetch failed (${rawRes.status}): ${rawBody}`);
+    }
+
+    jsonText = await rawRes.text();
+  }
+
+  if (!jsonText || jsonText.trim().length === 0) {
+    throw new Error('Retrieved blogs.json from GitHub was empty');
+  }
+
+  const blogs: BlogPost[] = JSON.parse(jsonText);
+  return { blogs, sha };
 }
 
 // ---------------------------------------------------------------------------
@@ -54,7 +86,7 @@ export async function writeBlogsToGitHub(blogs: BlogPost[], sha?: string | null)
     throw new Error('GITHUB_TOKEN environment variable is not set in Vercel settings');
   }
 
-  // If SHA is missing, fetch the current SHA from GitHub automatically
+  // If SHA is missing, fetch current SHA from GitHub automatically
   let targetSha = sha;
   if (!targetSha) {
     try {
@@ -89,7 +121,7 @@ export async function writeBlogsToGitHub(blogs: BlogPost[], sha?: string | null)
     }),
   });
 
-  // If status is 409 or 422 (SHA mismatch conflict), retry once with freshly fetched SHA
+  // Handle SHA mismatch conflict automatically by refetching SHA and retrying once
   if (!res.ok && (res.status === 409 || res.status === 422)) {
     console.log('[github-storage] SHA mismatch detected. Refetching latest SHA and retrying...');
     const freshFile = await readBlogsFromGitHub();
