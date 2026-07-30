@@ -12,7 +12,6 @@ const OurJourney = nextDynamic(() => import('@/components/Home/OurJourney'), { s
 const HomeWorkflow = nextDynamic(() => import('@/components/Home/HomeWorkflow'), { ssr: true });
 const CustomTestimonials = nextDynamic(() => import('@/components/Home/Testimonials'), { ssr: true });
 const ContactConsultation = nextDynamic(() => import('@/components/Home/ContactCTA'), { ssr: true });
-const BrandingBlogs = nextDynamic(() => import('@/components/Home/Blogs'), { ssr: true });
 const Footer = nextDynamic(() => import('@/components/Home/Footer'), { ssr: true });
 
 export const dynamic = 'force-dynamic';
@@ -55,7 +54,6 @@ export default function Home() {
         <HomeWorkflow />
         <CustomTestimonials />
         <ContactConsultation contained={true} />
-        <BrandingBlogs />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

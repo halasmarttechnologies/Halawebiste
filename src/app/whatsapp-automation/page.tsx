@@ -10,7 +10,6 @@ import WhatsAppOfferings from '@/components/WhatsApp/WhatsAppOfferings';
 import WhatsAppWhyChoose from '@/components/WhatsApp/WhatsAppWhyChoose';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
-const BrandingBlogs = dynamic(() => import('@/components/Home/Blogs'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA'));
 const Footer = dynamic(() => import('@/components/Home/Footer'));
 
@@ -49,7 +48,6 @@ export default function WhatsAppAutomationPage() {
         <WhatsAppWhyChoose />
         <CustomTestimonials />
         <ContactCTA contained={true} />
-        <BrandingBlogs />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

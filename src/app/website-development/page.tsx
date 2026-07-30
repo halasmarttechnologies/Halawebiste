@@ -9,7 +9,6 @@ import WebDesignGrowth from '@/components/WebsiteDevelopment/WebDesignGrowth';
 import ProcessSection from '@/components/WebsiteDevelopment/ProcessSection';
 import Testimonials from '@/components/Home/Testimonials/Testimonials';
 import WebDevFAQ from '@/components/WebsiteDevelopment/WebDevFAQ';
-import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 import Footer from '@/components/Home/Footer';
 import dynamic from 'next/dynamic';
 
@@ -51,7 +50,6 @@ export default function WebsiteDevelopmentPage() {
         <Testimonials />
         <WebDevFAQ />
         <ContactCTA contained={true} />
-        <ServiceBlogSection targetPage="website-development" title="Website Development Insights" />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

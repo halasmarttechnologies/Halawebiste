@@ -1,7 +1,6 @@
 import BrandingHeroSection from '@/components/branding/BrandingHeroSection';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
-import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 
 const BrandingShowcase = dynamic(() => import('@/components/branding/BrandingShowcase'));
 const BrandingServices = dynamic(() => import('@/components/branding/BrandingServices'));
@@ -54,7 +53,6 @@ export default function BrandingPage() {
       <ContactCTA contained={true} />
 
       {/* Dynamic Target Page Blogs Section */}
-      <ServiceBlogSection targetPage="branding" title="Branding & Design Insights" />
 
       {/* Outro Message */}
       <OutroMessage />

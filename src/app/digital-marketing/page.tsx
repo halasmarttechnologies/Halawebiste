@@ -5,7 +5,6 @@ import DigitalMarketingHero from '@/components/DigitalMarketing/DigitalMarketing
 import DigitalMarketingIntro from '@/components/DigitalMarketing/DigitalMarketingIntro';
 import DigitalMarketingServices from '@/components/DigitalMarketing/DigitalMarketingServices';
 import DigitalMarketingWhyChoose from '@/components/DigitalMarketing/DigitalMarketingWhyChoose';
-import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
@@ -45,7 +44,6 @@ export default function DigitalMarketingPage() {
         <CustomTestimonials />
         <DigitalMarketingFAQ />
         <ContactCTA contained={true} />
-        <ServiceBlogSection targetPage="digital-marketing" title="Digital Marketing Insights" />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

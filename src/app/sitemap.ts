@@ -21,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/whatsapp-automation', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/case-studies', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/careers', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/blog', priority: 0.8, changeFrequency: 'weekly' as const },
   ];
 
   return routes.map((r) => ({

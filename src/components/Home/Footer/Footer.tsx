@@ -25,7 +25,6 @@ const footerColumns = [
   {
     header: 'RESOURCES',
     links: [
-      { name: 'Blog', href: '/blog' },
       { name: 'FAQs', href: '/faqs' },
     ]
   },

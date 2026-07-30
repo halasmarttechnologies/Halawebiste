@@ -212,12 +212,6 @@ export default function Navbar() {
         </button>
         <div className={getDropdownClass(resourcesOpen, isMobile)}>
           <div className="text-[11px] font-semibold text-[#666] tracking-[0.5px] uppercase mb-[2px]">OUR RESOURCES</div>
-          <Link href="/blog" className="flex items-center md:items-start gap-3 md:gap-4 no-underline text-inherit transition-opacity duration-150 hover:opacity-60" onClick={closeAllMenus}>
-            <div>
-              <div className="text-[13.5px] md:text-[14.5px] font-semibold text-[#111] mb-0 md:mb-1">Blog</div>
-              <div className="hidden md:block text-[13px] text-[#666] leading-[1.4]">Latest news and articles</div>
-            </div>
-          </Link>
         </div>
       </li>
     </ul>

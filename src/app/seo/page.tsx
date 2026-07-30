@@ -6,7 +6,6 @@ import SEOIntro from '@/components/DigitalMarketing/SEO/SEOIntro';
 import SEOPerformanceShowcase from '@/components/DigitalMarketing/SEO/SEOPerformanceShowcase';
 import SEOServices from '@/components/DigitalMarketing/SEO/SEOServices';
 import SEOWhyChoose from '@/components/DigitalMarketing/SEO/SEOWhyChoose';
-import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
@@ -48,7 +47,6 @@ export default function SEOPage() {
         <CustomTestimonials />
         <SEOFAQ />
         <ContactCTA contained={true} />
-        <ServiceBlogSection targetPage="seo" title="SEO Growth & Strategy Guides" />
         <OutroMessage />
       </main>
       <div className="bg-white w-full relative z-20">
