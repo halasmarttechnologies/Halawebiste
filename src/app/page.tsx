@@ -1,19 +1,23 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
+import nextDynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import Hero from '@/components/Home/HeroSection';
 import MarketingSolutions from '@/components/Home/MarketingSolutions';
 
-const OurServices = dynamic(() => import('@/components/Home/Services'), { ssr: true });
-const IndustriesWeCover = dynamic(() => import('@/components/Home/IndustriesWeCover'), { ssr: true });
-const CaseStudies = dynamic(() => import('@/components/Home/CaseStudies'), { ssr: true });
-const WhyChooseHala = dynamic(() => import('@/components/Home/WhyChooseUs'), { ssr: true });
-const OurJourney = dynamic(() => import('@/components/Home/OurJourney'), { ssr: true });
-const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'), { ssr: true });
-const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'), { ssr: true });
-const ContactConsultation = dynamic(() => import('@/components/Home/ContactCTA'), { ssr: true });
-const BrandingBlogs = dynamic(() => import('@/components/Home/Blogs'), { ssr: true });
-const Footer = dynamic(() => import('@/components/Home/Footer'), { ssr: true });
+const OurServices = nextDynamic(() => import('@/components/Home/Services'), { ssr: true });
+const IndustriesWeCover = nextDynamic(() => import('@/components/Home/IndustriesWeCover'), { ssr: true });
+const CaseStudies = nextDynamic(() => import('@/components/Home/CaseStudies'), { ssr: true });
+const WhyChooseHala = nextDynamic(() => import('@/components/Home/WhyChooseUs'), { ssr: true });
+const OurJourney = nextDynamic(() => import('@/components/Home/OurJourney'), { ssr: true });
+const HomeWorkflow = nextDynamic(() => import('@/components/Home/HomeWorkflow'), { ssr: true });
+const CustomTestimonials = nextDynamic(() => import('@/components/Home/Testimonials'), { ssr: true });
+const ContactConsultation = nextDynamic(() => import('@/components/Home/ContactCTA'), { ssr: true });
+const BrandingBlogs = nextDynamic(() => import('@/components/Home/Blogs'), { ssr: true });
+const Footer = nextDynamic(() => import('@/components/Home/Footer'), { ssr: true });
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 export const metadata: Metadata = {
   title: 'Hala Technology | Digital Marketing & Web Development',

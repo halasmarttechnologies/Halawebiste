@@ -1,9 +1,12 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar/Navbar';
 import BlogClientWrapper from '@/components/Blog/BlogClientWrapper';
 import OutroMessage from '@/components/About/OutroMessage';
 import Footer from '@/components/Home/Footer';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 export const metadata: Metadata = {
   title: 'Blog & Marketing Insights | Hala Technologies',
