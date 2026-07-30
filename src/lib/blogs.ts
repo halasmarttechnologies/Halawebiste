@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 export interface SEOData {
   metaTitle: string;
   metaDescription: string;
@@ -43,66 +40,6 @@ export interface BlogPost {
   updatedAt: string;
 }
 
-const BLOGS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'blogs.json');
-
-// Global in-memory cache for Vercel Serverless environment
-let inMemoryBlogs: BlogPost[] | null = null;
-
-export function getAllBlogsSync(): BlogPost[] {
-  if (inMemoryBlogs !== null) {
-    return inMemoryBlogs.sort((a, b) => a.priority - b.priority);
-  }
-
-  try {
-    if (fs.existsSync(BLOGS_FILE_PATH)) {
-      const data = fs.readFileSync(BLOGS_FILE_PATH, 'utf-8');
-      inMemoryBlogs = JSON.parse(data);
-      return (inMemoryBlogs || []).sort((a, b) => a.priority - b.priority);
-    }
-  } catch (error) {
-    console.error('Error reading blogs.json:', error);
-  }
-
-  return inMemoryBlogs || [];
-}
-
-export function saveBlogsSync(blogs: BlogPost[]): boolean {
-  const sorted = blogs.sort((a, b) => a.priority - b.priority);
-  inMemoryBlogs = sorted;
-
-  try {
-    fs.writeFileSync(BLOGS_FILE_PATH, JSON.stringify(sorted, null, 2), 'utf-8');
-    return true;
-  } catch (error) {
-    // Fail gracefully on read-only serverless disk (e.g. Vercel)
-    console.log('In-memory cache updated (read-only filesystem environment)');
-    return true;
-  }
-}
-
-export function getPublishedBlogs(): BlogPost[] {
-  const blogs = getAllBlogsSync();
-  return blogs.filter((b) => b.status === 'published');
-}
-
-export function getHomepageBlogs(): BlogPost[] {
-  const blogs = getPublishedBlogs();
-  return blogs
-    .filter((b) => b.showOnHomepage)
-    .sort((a, b) => (a.homepagePriority || a.priority) - (b.homepagePriority || b.priority));
-}
-
-export function getBlogsByTargetPage(pageKey: string): BlogPost[] {
-  const blogs = getPublishedBlogs();
-  if (pageKey === 'all') return blogs;
-  return blogs.filter((b) => b.targetPage === pageKey || b.targetPage === 'all' || !b.targetPage);
-}
-
-export function getBlogBySlugOrId(identifier: string): BlogPost | null {
-  const blogs = getAllBlogsSync();
-  return blogs.find((b) => b.slug === identifier || b.id === identifier) || null;
-}
-
 export function generateSlug(title: string): string {
   return title
     .toLowerCase()
@@ -117,3 +54,4 @@ export function calculateReadTime(content: string): string {
   const minutes = Math.ceil(words / 200);
   return `${minutes} min read`;
 }
+

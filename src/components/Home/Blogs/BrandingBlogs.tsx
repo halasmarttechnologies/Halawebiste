@@ -7,39 +7,6 @@ import { User, MessageCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { BlogPost } from '@/lib/blogs';
 
-const fallbackBlogs = [
-  {
-    id: "local-seo-dubai-guide",
-    slug: "local-seo-dubai-guide",
-    date: "January 28, 2026",
-    category: "Local SEO Services in Dubai",
-    title: "How to Dominate Google Search with Local SEO Services in Dubai",
-    author: "SEO Growth Team",
-    excerpt: "If your business is struggling to generate consistent leads online, local SEO is your highest-ROI channel. Learn how to optimize Google Business Profile, local citations, and geo-targeted keywords.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: "ai-agents-b2b-marketing",
-    slug: "ai-agents-b2b-marketing",
-    date: "February 12, 2026",
-    category: "AI Marketing",
-    title: "How AI Agents Are Revolutionizing B2B Marketing Funnels in 2026",
-    author: "Hala Strategy Team",
-    excerpt: "Artificial intelligence is moving from automated content generation to autonomous decision-making agents. Discover how leading Middle East enterprises are deploying AI agents to personalize client touchpoints.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: "bilingual-seo-uae-strategies",
-    slug: "bilingual-seo-uae-strategies",
-    date: "January 15, 2026",
-    category: "Bilingual SEO Dubai",
-    title: "Bilingual SEO: Optimizing Websites for Arabic & English Search Queries",
-    author: "Hala Technical Team",
-    excerpt: "The UAE market operates seamlessly in two languages. Discover the exact technical hreflang setup and semantic keyword research needed to capture both Arabic and English traffic.",
-    image: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?q=80&w=800&auto=format&fit=crop"
-  }
-];
-
 export default function BrandingBlogs() {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -52,17 +19,17 @@ export default function BrandingBlogs() {
         if (data.success && data.blogs.length > 0) {
           setBlogs(data.blogs);
         } else {
-          // Fallback to published blogs if no specific homepage-pinned blogs exist
+          // Fallback query to published blogs if no specific homepage-pinned blogs exist
           const fallbackRes = await fetch(`/api/blogs?status=published&t=${Date.now()}`, { cache: 'no-store' });
           const fallbackData = await fallbackRes.json();
           if (fallbackData.success && fallbackData.blogs.length > 0) {
             setBlogs(fallbackData.blogs.slice(0, 3));
           } else {
-            setBlogs(fallbackBlogs);
+            setBlogs([]);
           }
         }
       } catch (err) {
-        setBlogs(fallbackBlogs);
+        setBlogs([]);
       } finally {
         setLoading(false);
       }

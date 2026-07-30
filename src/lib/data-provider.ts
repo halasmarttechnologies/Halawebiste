@@ -1,8 +1,18 @@
-import { BlogPost, getAllBlogsSync, saveBlogsSync } from './blogs';
-import { isMongoConfigured, getBlogsFromMongo, createBlogInMongo, updateBlogInMongo, deleteBlogFromMongo, getBlogFromMongoByIdOrSlug } from './mongo-storage';
+import { BlogPost } from './blogs';
+import {
+  isMongoConfigured,
+  getBlogsFromMongo,
+  createBlogInMongo,
+  updateBlogInMongo,
+  deleteBlogFromMongo,
+  getBlogFromMongoByIdOrSlug,
+} from './mongo-storage';
+
+// In-memory fallback array for local dev if MONGODB_URI is not set
+let localInMemoryBlogs: BlogPost[] = [];
 
 // ---------------------------------------------------------------------------
-// Unified Blog Reader (MongoDB primary, local file fallback)
+// Unified Blog Reader (MongoDB Atlas Single Source of Truth)
 // ---------------------------------------------------------------------------
 export async function getAllBlogsData(): Promise<{ blogs: BlogPost[]; source: 'mongodb' | 'local' }> {
   if (isMongoConfigured()) {
@@ -10,12 +20,12 @@ export async function getAllBlogsData(): Promise<{ blogs: BlogPost[]; source: 'm
       const blogs = await getBlogsFromMongo();
       return { blogs, source: 'mongodb' };
     } catch (err) {
-      console.error('[DataProvider] MongoDB read error, falling back to local:', err);
+      console.error('[DataProvider] MongoDB Atlas read error:', err);
+      return { blogs: [], source: 'mongodb' };
     }
   }
 
-  // Local development fallback
-  return { blogs: getAllBlogsSync(), source: 'local' };
+  return { blogs: localInMemoryBlogs.sort((a, b) => a.priority - b.priority), source: 'local' };
 }
 
 // ---------------------------------------------------------------------------
@@ -27,11 +37,11 @@ export async function getSingleBlogData(identifier: string): Promise<BlogPost | 
       return await getBlogFromMongoByIdOrSlug(identifier);
     } catch (err) {
       console.error('[DataProvider] MongoDB single read error:', err);
+      return null;
     }
   }
 
-  const { blogs } = await getAllBlogsData();
-  return blogs.find((b) => b.id === identifier || b.slug === identifier) || null;
+  return localInMemoryBlogs.find((b) => b.id === identifier || b.slug === identifier) || null;
 }
 
 // ---------------------------------------------------------------------------
@@ -42,9 +52,7 @@ export async function createBlogData(newBlog: BlogPost): Promise<BlogPost> {
     return await createBlogInMongo(newBlog);
   }
 
-  // Local development
-  const blogs = getAllBlogsSync();
-  saveBlogsSync([...blogs, newBlog]);
+  localInMemoryBlogs.push(newBlog);
   return newBlog;
 }
 
@@ -56,14 +64,11 @@ export async function updateBlogData(identifier: string, updatedFields: Partial<
     return await updateBlogInMongo(identifier, updatedFields);
   }
 
-  // Local development
-  const blogs = getAllBlogsSync();
-  const idx = blogs.findIndex((b) => b.id === identifier || b.slug === identifier);
+  const idx = localInMemoryBlogs.findIndex((b) => b.id === identifier || b.slug === identifier);
   if (idx === -1) return null;
 
-  const updatedBlog = { ...blogs[idx], ...updatedFields, updatedAt: new Date().toISOString() };
-  blogs[idx] = updatedBlog;
-  saveBlogsSync(blogs);
+  const updatedBlog = { ...localInMemoryBlogs[idx], ...updatedFields, updatedAt: new Date().toISOString() };
+  localInMemoryBlogs[idx] = updatedBlog;
   return updatedBlog;
 }
 
@@ -75,11 +80,7 @@ export async function deleteBlogData(identifier: string): Promise<boolean> {
     return await deleteBlogFromMongo(identifier);
   }
 
-  // Local development
-  const blogs = getAllBlogsSync();
-  const filtered = blogs.filter((b) => b.id !== identifier && b.slug !== identifier);
-  if (filtered.length === blogs.length) return false;
-
-  saveBlogsSync(filtered);
-  return true;
+  const initialLen = localInMemoryBlogs.length;
+  localInMemoryBlogs = localInMemoryBlogs.filter((b) => b.id !== identifier && b.slug !== identifier);
+  return localInMemoryBlogs.length < initialLen;
 }

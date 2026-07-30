@@ -4,6 +4,7 @@ import { getSingleBlogData, updateBlogData, deleteBlogData } from '@/lib/data-pr
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 // ---------------------------------------------------------------------------
 // GET /api/blogs/[id]
@@ -25,8 +26,9 @@ export async function GET(
       { success: true, blog },
       {
         headers: {
-          'Cache-Control': 'no-store, no-cache, must-revalidate',
+          'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
           Pragma: 'no-cache',
+          Expires: '0',
         },
       }
     );

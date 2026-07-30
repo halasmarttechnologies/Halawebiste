@@ -12,9 +12,11 @@ import {
   AlertCircle,
   LayoutGrid
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { BlogPost } from '@/lib/blogs';
 
 export default function ManageBlogsPage() {
+  const router = useRouter();
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
@@ -53,7 +55,9 @@ export default function ManageBlogsPage() {
         body: JSON.stringify({ priority: newPriority }),
       });
       const data = await res.json();
-      if (!data.success) {
+      if (data.success) {
+        router.refresh();
+      } else {
         alert('Error updating priority: ' + (data.error || 'Failed'));
         await fetchBlogs();
       }
@@ -77,7 +81,9 @@ export default function ManageBlogsPage() {
         body: JSON.stringify({ targetPage: newTarget }),
       });
       const data = await res.json();
-      if (!data.success) {
+      if (data.success) {
+        router.refresh();
+      } else {
         alert('Error updating target page: ' + (data.error || 'Failed'));
         await fetchBlogs();
       }
@@ -102,7 +108,9 @@ export default function ManageBlogsPage() {
         body: JSON.stringify({ showOnHomepage: newStatus }),
       });
       const data = await res.json();
-      if (!data.success) {
+      if (data.success) {
+        router.refresh();
+      } else {
         alert('Error toggling homepage pin: ' + (data.error || 'Failed'));
         await fetchBlogs();
       }
@@ -122,7 +130,9 @@ export default function ManageBlogsPage() {
       try {
         const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, { method: 'DELETE' });
         const data = await res.json();
-        if (!data.success) {
+        if (data.success) {
+          router.refresh();
+        } else {
           alert('Error deleting blog: ' + (data.error || 'Failed to delete'));
           await fetchBlogs();
         }
