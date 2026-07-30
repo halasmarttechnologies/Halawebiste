@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateSlug, calculateReadTime, BlogPost } from '@/lib/blogs';
 import { getAllBlogsData, createBlogData } from '@/lib/data-provider';
+import { AUTH_COOKIE_NAME, parseSessionToken } from '@/lib/auth';
 
 // Force dynamic — NEVER cache blog API responses
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const fetchCache = 'force-no-store';
+
+// Helper to sanitize script tags and dangerous HTML injections
+function sanitizeInput(str: string): string {
+  if (typeof str !== 'string') return '';
+  return str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim();
+}
 
 // ---------------------------------------------------------------------------
 // GET /api/blogs
@@ -18,6 +25,15 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category');
     const targetPage = searchParams.get('targetPage');
     const search = searchParams.get('search');
+
+    // If querying drafts, enforce authentication
+    if (status === 'draft') {
+      const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+      const session = token ? parseSessionToken(token) : null;
+      if (!session) {
+        return NextResponse.json({ success: false, error: 'Unauthorized to view draft blogs.' }, { status: 401 });
+      }
+    }
 
     const { blogs: allBlogs, source } = await getAllBlogsData();
     let blogs = allBlogs;
@@ -70,15 +86,27 @@ export async function GET(request: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// POST /api/blogs
+// POST /api/blogs (Protected by RBAC)
 // ---------------------------------------------------------------------------
 export async function POST(request: NextRequest) {
   try {
+    const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+    const session = token ? parseSessionToken(token) : null;
+
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized: Valid session cookie required to create blogs.' },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const { blogs: existingBlogs } = await getAllBlogsData();
 
-    const title = body.title || 'Untitled Blog Post';
-    const slug = body.slug || generateSlug(title);
+    const title = sanitizeInput(body.title) || 'Untitled Blog Post';
+    const slug = body.slug ? sanitizeInput(body.slug) : generateSlug(title);
+    const excerpt = sanitizeInput(body.excerpt || '');
+    const content = sanitizeInput(body.content || '');
 
     // Ensure unique slug
     const slugExists = existingBlogs.some((b) => b.slug === slug);

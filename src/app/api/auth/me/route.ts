@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
       id: parsed.id,
       email: parsed.email,
       role: parsed.role,
+      name: parsed.name,
     },
   });
 }

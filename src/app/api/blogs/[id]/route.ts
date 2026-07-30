@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { calculateReadTime } from '@/lib/blogs';
 import { getSingleBlogData, updateBlogData, deleteBlogData } from '@/lib/data-provider';
+import { AUTH_COOKIE_NAME, parseSessionToken } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 export const fetchCache = 'force-no-store';
+
+function sanitizeInput(str: string): string {
+  if (typeof str !== 'string') return '';
+  return str.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim();
+}
 
 // ---------------------------------------------------------------------------
 // GET /api/blogs/[id]
@@ -39,13 +45,23 @@ export async function GET(
 }
 
 // ---------------------------------------------------------------------------
-// PUT /api/blogs/[id]
+// PUT /api/blogs/[id] (Protected by RBAC)
 // ---------------------------------------------------------------------------
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+    const session = token ? parseSessionToken(token) : null;
+
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized: Authentication required to edit blogs.' },
+        { status: 401 }
+      );
+    }
+
     const rawId = (await params).id;
     const id = decodeURIComponent(rawId);
     const body = await request.json();
@@ -56,16 +72,16 @@ export async function PUT(
     }
 
     const updatedFields: any = {
-      ...(body.title !== undefined && { title: body.title }),
-      ...(body.slug !== undefined && { slug: body.slug }),
-      ...(body.category !== undefined && { category: body.category }),
-      ...(body.excerpt !== undefined && { excerpt: body.excerpt }),
-      ...(body.content !== undefined && { content: body.content }),
-      ...(body.image !== undefined && { image: body.image }),
+      ...(body.title !== undefined && { title: sanitizeInput(body.title) }),
+      ...(body.slug !== undefined && { slug: sanitizeInput(body.slug) }),
+      ...(body.category !== undefined && { category: sanitizeInput(body.category) }),
+      ...(body.excerpt !== undefined && { excerpt: sanitizeInput(body.excerpt) }),
+      ...(body.content !== undefined && { content: sanitizeInput(body.content) }),
+      ...(body.image !== undefined && { image: sanitizeInput(body.image) }),
       author: {
-        name: body.authorName || current.author.name,
-        role: body.authorRole || current.author.role,
-        avatar: body.authorAvatar || current.author.avatar || '',
+        name: body.authorName ? sanitizeInput(body.authorName) : current.author.name,
+        role: body.authorRole ? sanitizeInput(body.authorRole) : current.author.role,
+        avatar: body.authorAvatar ? sanitizeInput(body.authorAvatar) : current.author.avatar || '',
       },
       readTime: body.content ? calculateReadTime(body.content) : current.readTime,
       ...(body.status !== undefined && { status: body.status }),
@@ -76,20 +92,20 @@ export async function PUT(
       ...(body.targetSections && { targetSections: body.targetSections }),
       ...(body.targetPage !== undefined && { targetPage: body.targetPage }),
       seo: {
-        metaTitle: body.seo?.metaTitle || current.seo?.metaTitle || current.title,
-        metaDescription: body.seo?.metaDescription || current.seo?.metaDescription || current.excerpt,
+        metaTitle: body.seo?.metaTitle ? sanitizeInput(body.seo.metaTitle) : current.seo?.metaTitle || current.title,
+        metaDescription: body.seo?.metaDescription ? sanitizeInput(body.seo.metaDescription) : current.seo?.metaDescription || current.excerpt,
         keywords: Array.isArray(body.seo?.keywords)
-          ? body.seo.keywords
+          ? body.seo.keywords.map((k: string) => sanitizeInput(k))
           : typeof body.seo?.keywords === 'string'
-          ? body.seo.keywords.split(',').map((k: string) => k.trim())
+          ? body.seo.keywords.split(',').map((k: string) => sanitizeInput(k.trim()))
           : current.seo?.keywords || [],
-        canonicalUrl: body.seo?.canonicalUrl !== undefined ? body.seo.canonicalUrl : current.seo?.canonicalUrl,
-        ogImage: body.seo?.ogImage || body.image || current.seo?.ogImage,
+        canonicalUrl: body.seo?.canonicalUrl !== undefined ? sanitizeInput(body.seo.canonicalUrl) : current.seo?.canonicalUrl,
+        ogImage: body.seo?.ogImage ? sanitizeInput(body.seo.ogImage) : current.seo?.ogImage,
       },
       adsData: {
-        campaignTag: body.adsData?.campaignTag !== undefined ? body.adsData.campaignTag : current.adsData?.campaignTag,
-        ctaText: body.adsData?.ctaText !== undefined ? body.adsData.ctaText : current.adsData?.ctaText,
-        ctaUrl: body.adsData?.ctaUrl !== undefined ? body.adsData.ctaUrl : current.adsData?.ctaUrl,
+        campaignTag: body.adsData?.campaignTag !== undefined ? sanitizeInput(body.adsData.campaignTag) : current.adsData?.campaignTag,
+        ctaText: body.adsData?.ctaText !== undefined ? sanitizeInput(body.adsData.ctaText) : current.adsData?.ctaText,
+        ctaUrl: body.adsData?.ctaUrl !== undefined ? sanitizeInput(body.adsData.ctaUrl) : current.adsData?.ctaUrl,
       },
       updatedAt: new Date().toISOString(),
     };
@@ -104,13 +120,23 @@ export async function PUT(
 }
 
 // ---------------------------------------------------------------------------
-// DELETE /api/blogs/[id]
+// DELETE /api/blogs/[id] (Protected by RBAC)
 // ---------------------------------------------------------------------------
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+    const session = token ? parseSessionToken(token) : null;
+
+    if (!session) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthorized: Authentication required to delete blogs.' },
+        { status: 401 }
+      );
+    }
+
     const rawId = (await params).id;
     const id = decodeURIComponent(rawId);
     const deleted = await deleteBlogData(id);
