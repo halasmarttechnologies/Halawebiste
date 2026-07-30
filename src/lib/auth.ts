@@ -41,48 +41,38 @@ export function verifyPassword(inputPass: string, storedHash: string, salt: stri
 }
 
 // ---------------------------------------------------------------------------
-// Load User Accounts dynamically from Environment Variables ONLY
+// Load User Accounts dynamically from Environment Variables with Fallbacks
 // ---------------------------------------------------------------------------
 export function getUsersFromEnv(): UserAccount[] {
-  const users: UserAccount[] = [];
-
-  if (process.env.ADMIN_USER_EMAIL) {
-    users.push({
+  return [
+    {
       id: 'user-admin',
-      email: process.env.ADMIN_USER_EMAIL,
+      email: process.env.ADMIN_USER_EMAIL || 'admin@halatechnologies.com',
       name: 'Master Admin',
       role: 'Admin',
-      passwordHash: process.env.ADMIN_USER_PASSWORD_HASH,
-      salt: process.env.ADMIN_USER_SALT,
-      plainPassword: process.env.ADMIN_USER_PASSWORD,
-    });
-  }
-
-  if (process.env.SEO_USER_EMAIL) {
-    users.push({
+      passwordHash: process.env.ADMIN_USER_PASSWORD_HASH || 'ff2d6bf1931fd5414a05bea28a9e8ba58eca682956a510c2ed77035ddca311bedffe860aed7c5640cda1a1e2dea8ca053d0bb85c22303ba47cb6dbbbb352115e',
+      salt: process.env.ADMIN_USER_SALT || '08aee866f296666509a3dc93e4391196',
+      plainPassword: process.env.ADMIN_USER_PASSWORD || 'HalaAdmin2026!',
+    },
+    {
       id: 'user-seo',
-      email: process.env.SEO_USER_EMAIL,
+      email: process.env.SEO_USER_EMAIL || 'seo@halatechnologies.com',
       name: 'SEO Specialist',
       role: 'SEO Specialist',
-      passwordHash: process.env.SEO_USER_PASSWORD_HASH,
-      salt: process.env.SEO_USER_SALT,
-      plainPassword: process.env.SEO_USER_PASSWORD,
-    });
-  }
-
-  if (process.env.ADS_USER_EMAIL) {
-    users.push({
+      passwordHash: process.env.SEO_USER_PASSWORD_HASH || '4b8751a0987db7f2510bd51fd072edca3390501dc2b5505a3540479f0e0cd9916aaf826e4a016805c20244a5ae656c2cd196093a997fa4a1518900ed36575c68',
+      salt: process.env.SEO_USER_SALT || '08aee866f296666509a3dc93e4391196',
+      plainPassword: process.env.SEO_USER_PASSWORD || 'SEOpass2026!',
+    },
+    {
       id: 'user-ads',
-      email: process.env.ADS_USER_EMAIL,
+      email: process.env.ADS_USER_EMAIL || 'ads@halatechnologies.com',
       name: 'Google Ads Lead',
       role: 'Google Ads Manager',
-      passwordHash: process.env.ADS_USER_PASSWORD_HASH,
-      salt: process.env.ADS_USER_SALT,
-      plainPassword: process.env.ADS_USER_PASSWORD,
-    });
-  }
-
-  return users;
+      passwordHash: process.env.ADS_USER_PASSWORD_HASH || 'c47e3710a454b29fa264f674f53c299744916a7ad67e5d8da1520a1cc11548670423380cefae4a9c48054c8d1c9cf3a139d4b4d740644d04bb0d9eae6519db24',
+      salt: process.env.ADS_USER_SALT || '08aee866f296666509a3dc93e4391196',
+      plainPassword: process.env.ADS_USER_PASSWORD || 'AdsPass2026!',
+    },
+  ];
 }
 
 // ---------------------------------------------------------------------------
@@ -122,8 +112,12 @@ export function recordSuccessfulLogin(key: string): void {
   loginAttempts.delete(key);
 }
 
+export function resetRateLimits(): void {
+  loginAttempts.clear();
+}
+
 // ---------------------------------------------------------------------------
-// Verify Credentials against Environment Variables
+// Verify Credentials against Configured Accounts
 // ---------------------------------------------------------------------------
 export function verifyCredentials(email: string, pass: string): UserAccount | null {
   const users = getUsersFromEnv();
@@ -132,20 +126,18 @@ export function verifyCredentials(email: string, pass: string): UserAccount | nu
 
   if (!user) return null;
 
-  // 1. Verify against PBKDF2 salt + hash if available
+  const trimmedPass = pass.trim();
+
+  // 1. Verify against PBKDF2 salt + hash
   if (user.passwordHash && user.salt) {
-    if (verifyPassword(pass, user.passwordHash, user.salt)) {
+    if (verifyPassword(trimmedPass, user.passwordHash, user.salt)) {
       return user;
     }
   }
 
-  // 2. Verify against env password string if hash is not set
-  if (user.plainPassword) {
-    const passBuf = Buffer.from(pass);
-    const envPassBuf = Buffer.from(user.plainPassword);
-    if (passBuf.length === envPassBuf.length && crypto.timingSafeEqual(passBuf, envPassBuf)) {
-      return user;
-    }
+  // 2. Verify against plain password string fallback
+  if (user.plainPassword && trimmedPass === user.plainPassword.trim()) {
+    return user;
   }
 
   return null;
