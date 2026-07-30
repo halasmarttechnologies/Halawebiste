@@ -25,6 +25,7 @@ export default function HeroSection() {
             src="/hero-images/HomeHeroimage.png"
             alt="Hero Background"
             fill
+            sizes="100vw"
             className="object-cover object-center opacity-90"
             priority
           />

@@ -5,7 +5,6 @@ export { default as IndustriesWeCover } from './IndustriesWeCover';
 export { default as CaseStudies } from './CaseStudies';
 export { default as WhyChooseUs } from './WhyChooseUs';
 export { default as OurJourney } from './OurJourney';
-export { default as HowItWorks } from './HowItWorks';
 export { default as Testimonials } from './Testimonials';
 export { default as ContactCTA } from './ContactCTA';
 export { default as Footer } from './Footer';

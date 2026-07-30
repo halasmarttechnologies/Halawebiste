@@ -28,10 +28,11 @@ export default function VideoEditingStandOut() {
     // Register plugin inside the hook — safe for SSR
     gsap.registerPlugin(ScrollTrigger);
 
-    // Parallax effect for the main image — smooth scrub interpolation
+    // Parallax effect for the main image — smooth scrub interpolation with GPU force3D
     gsap.to(imageRef.current, {
       yPercent: 15,
       ease: 'none',
+      force3D: true,
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top bottom',
@@ -53,6 +54,7 @@ export default function VideoEditingStandOut() {
         duration: 0.8,
         stagger: 0.15,
         ease: 'power3.out',
+        force3D: true,
       });
     }
 
@@ -63,6 +65,7 @@ export default function VideoEditingStandOut() {
       yoyo: true,
       repeat: -1,
       ease: 'sine.inOut',
+      force3D: true,
     });
 
     gsap.to(floatingUI2Ref.current, {
@@ -72,6 +75,7 @@ export default function VideoEditingStandOut() {
       repeat: -1,
       ease: 'sine.inOut',
       delay: 0.5,
+      force3D: true,
     });
 
   }, { scope: containerRef });
@@ -88,6 +92,7 @@ export default function VideoEditingStandOut() {
               src="/featureimage.jpg" 
               alt="Video Editing Workspace" 
               fill 
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover group-hover:scale-105 transition-transform duration-[1000ms] ease-out"
             />
             {/* Subtle Gradient Overlay */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
 import {
   ChevronDown, ArrowUpRight, Search, MousePointerClick,
@@ -75,7 +75,7 @@ const SIMPLE_NAV_LINKS = [
 ];
 
 // ─── Sub-components ────────────────────────────────────
-function ServiceLink({ Icon, title, desc, href, subItems, onNavigate }: ServiceItem) {
+const ServiceLink = memo(function ServiceLink({ Icon, title, desc, href, subItems, onNavigate }: ServiceItem) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -127,7 +127,7 @@ function ServiceLink({ Icon, title, desc, href, subItems, onNavigate }: ServiceI
       )}
     </div>
   );
-}
+});
 
 // ─── Main component ────────────────────────────────────
 export default function Navbar() {
@@ -143,10 +143,20 @@ export default function Navbar() {
     setResourcesOpen(false);
   }, []);
 
-  // Track scroll position for dynamic blur effect
+  // Track scroll position for dynamic blur effect with rAF throttling
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 15);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled((prev) => {
+            const isScrolled = window.scrollY > 15;
+            return prev !== isScrolled ? isScrolled : prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     // Check initial position and attach listener

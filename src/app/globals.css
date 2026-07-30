@@ -1,9 +1,6 @@
 /* ─── Fonts ─────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap');
-
 .eb-garamond {
-  font-family: "EB Garamond", serif !important;
+  font-family: var(--font-eb-garamond), 'EB Garamond', serif !important;
   font-optical-sizing: auto;
   font-weight: 300 !important; /* Very light weight globally */
   font-style: italic !important;
@@ -20,7 +17,7 @@
 @theme {
   --font-family-sans: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
   --font-family-jakarta: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
-  --font-family-ebgaramond: 'EB Garamond', serif;
+  --font-family-ebgaramond: var(--font-eb-garamond), 'EB Garamond', serif;
 
   --color-brand-dark: #111111;
   --color-brand-cream: #f5f5e4;
@@ -74,21 +71,25 @@ body {
 
 /* Force EB Garamond for all italic text */
 .italic, i, em {
-  font-family: "EB Garamond", serif !important;
+  font-family: var(--font-eb-garamond), 'EB Garamond', serif !important;
   font-weight: 300 !important; /* Very light weight globally */
 }
 
-/* ─── Performance Hints ──────────────────────────────── */
+/* ─── Performance Hints & Hardware Acceleration ──────────────── */
 
-/* Marquee animations run on GPU composited layer */
+/* Hardware accelerated layer promotion for ultra smooth 120 FPS animations */
+.gpu-accelerated,
 [class*="animate-marquee"],
 [class*="marquee"] {
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Navbar backdrop-blur layer — promote to its own GPU layer */
 header nav > div[class*="absolute"] {
   will-change: opacity, backdrop-filter;
+  transform: translateZ(0);
 }
 
 /* ─── Scrollbar Styling ──────────────────────────────── */

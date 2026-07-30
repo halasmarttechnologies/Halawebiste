@@ -14,10 +14,6 @@ const CustomTestimonials = nextDynamic(() => import('@/components/Home/Testimoni
 const ContactConsultation = nextDynamic(() => import('@/components/Home/ContactCTA'), { ssr: true });
 const Footer = nextDynamic(() => import('@/components/Home/Footer'), { ssr: true });
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-export const fetchCache = 'force-no-store';
-
 export const metadata: Metadata = {
   title: 'Hala Technology | Digital Marketing & Web Development',
   description:

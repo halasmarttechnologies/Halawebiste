@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const testimonialsRow1 = [
   {
@@ -61,11 +62,13 @@ const testimonialsRow2 = [
 const marquee1 = [...testimonialsRow1, ...testimonialsRow1];
 const marquee2 = [...testimonialsRow2, ...testimonialsRow2];
 
-const QuoteIcon = () => (
-  <svg className="w-7 h-7 md:w-[45px] md:h-[45px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 11V17H4V11H7.5C7.5 9.5 6.5 8.5 5 8.5V6C7.5 6 10 7.5 10 11ZM20 11V17H14V11H17.5C17.5 9.5 16.5 8.5 15 8.5V6C17.5 6 20 7.5 20 11Z" fill="#007FFF"/>
-  </svg>
-);
+const QuoteIcon = memo(function QuoteIcon() {
+  return (
+    <svg className="w-7 h-7 md:w-[45px] md:h-[45px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 11V17H4V11H7.5C7.5 9.5 6.5 8.5 5 8.5V6C7.5 6 10 7.5 10 11ZM20 11V17H14V11H17.5C17.5 9.5 16.5 8.5 15 8.5V6C17.5 6 20 7.5 20 11Z" fill="#007FFF"/>
+    </svg>
+  );
+});
 
 export default function Testimonials() {
   return (
@@ -94,6 +97,7 @@ export default function Testimonials() {
               ease: "linear",
               repeatType: "loop"
             }}
+            style={{ transform: 'translateZ(0)' }}
           >
             {marquee1.map((testimonial, idx) => (
               <TestimonialCard key={`row1-${idx}`} {...testimonial} />
@@ -113,6 +117,7 @@ export default function Testimonials() {
               ease: "linear",
               repeatType: "loop"
             }}
+            style={{ transform: 'translateZ(0)' }}
           >
             {marquee2.map((testimonial, idx) => (
               <TestimonialCard key={`row2-${idx}`} {...testimonial} />
@@ -125,11 +130,11 @@ export default function Testimonials() {
   );
 }
 
-function TestimonialCard({ quote, name, title, image }: { quote: string, name: string, title: string, image: string }) {
+const TestimonialCard = memo(function TestimonialCard({ quote, name, title, image }: { quote: string, name: string, title: string, image: string }) {
   const [imgSrc, setImgSrc] = useState(image);
 
   return (
-    <div className="w-[270px] sm:w-[300px] md:w-[440px] shrink-0 bg-[#F9FAFB] border border-[#EEEEEE] rounded-[20px] md:rounded-[32px] p-5 md:p-10 flex flex-col md:hover:-translate-y-2 transition-transform duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] md:hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)]">
+    <div className="w-[270px] sm:w-[300px] md:w-[440px] shrink-0 bg-[#F9FAFB] border border-[#EEEEEE] rounded-[20px] md:rounded-[32px] p-5 md:p-10 flex flex-col md:hover:-translate-y-2 transition-transform duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] md:hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] gpu-accelerated">
       
       {/* Quote Icon */}
       <div className="mb-4 md:mb-6">
@@ -143,12 +148,15 @@ function TestimonialCard({ quote, name, title, image }: { quote: string, name: s
 
       {/* User Info */}
       <div className="flex items-center gap-3 md:gap-4 mt-auto">
-        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden bg-gray-200 shrink-0 border-2 border-white shadow-sm flex items-center justify-center">
-          <img 
+        <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden bg-gray-200 shrink-0 border-2 border-white shadow-sm flex items-center justify-center relative">
+          <Image 
             src={imgSrc} 
             alt={name} 
+            width={56}
+            height={56}
             className="w-full h-full object-cover" 
             onError={() => setImgSrc(`https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=007FFF&color=fff`)}
+            unoptimized={imgSrc.startsWith('http')}
           />
         </div>
         <div className="flex flex-col">
@@ -163,4 +171,4 @@ function TestimonialCard({ quote, name, title, image }: { quote: string, name: s
       
     </div>
   );
-}
+});

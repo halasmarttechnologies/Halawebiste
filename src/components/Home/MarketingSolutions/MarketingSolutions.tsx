@@ -71,6 +71,7 @@ export default function MarketingSolutions() {
               alt="Marketing Illustration"
               width={1280}
               height={720}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="w-full h-auto object-cover"
             />
           </div>
