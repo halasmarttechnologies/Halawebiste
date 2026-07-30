@@ -139,11 +139,25 @@ export async function DELETE(
 
     const rawId = (await params).id;
     const id = decodeURIComponent(rawId);
+
+    const mongoUri = process.env.MONGODB_URI || 'MISSING';
+    const uriFingerprint = mongoUri !== 'MISSING' ? mongoUri.split('@')[1]?.split('/')[0] || 'Unknown Cluster' : 'NO_URI';
+
+    console.log(`\n[API LOG] DELETE /api/blogs/${id}`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+    console.log(`Database: hala_cms_db`);
+    console.log(`Collection: blogs`);
+    console.log(`Mongo URI Fingerprint: ${uriFingerprint}`);
+
     const deleted = await deleteBlogData(id);
 
     if (!deleted) {
+      console.log(`Verified: Failed (Blog not found)\n`);
       return NextResponse.json({ success: false, error: 'Blog post not found or already deleted' }, { status: 404 });
     }
+
+    console.log(`Deleted Count: 1`);
+    console.log(`Verified: Success\n`);
 
     return NextResponse.json({ success: true, message: 'Blog deleted successfully' });
   } catch (error) {

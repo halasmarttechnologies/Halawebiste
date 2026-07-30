@@ -19,6 +19,15 @@ function sanitizeInput(str: string): string {
 // ---------------------------------------------------------------------------
 export async function GET(request: NextRequest) {
   try {
+    const mongoUri = process.env.MONGODB_URI || 'MISSING';
+    const uriFingerprint = mongoUri !== 'MISSING' ? mongoUri.split('@')[1]?.split('/')[0] || 'Unknown Cluster' : 'NO_URI';
+
+    console.log(`\n[API LOG] GET /api/blogs`);
+    console.log(`Environment: ${process.env.NODE_ENV}`);
+    console.log(`Database: hala_cms_db`);
+    console.log(`Collection: blogs`);
+    console.log(`Mongo URI Fingerprint: ${uriFingerprint}`);
+
     const { searchParams } = new URL(request.url);
     const status = searchParams.get('status');
     const homepage = searchParams.get('homepage');
@@ -65,6 +74,8 @@ export async function GET(request: NextRequest) {
           (b.seo?.keywords && b.seo.keywords.some((k) => k.toLowerCase().includes(q)))
       );
     }
+
+    console.log(`Returned: ${blogs.length} blogs\n`);
 
     return NextResponse.json(
       { success: true, count: blogs.length, source, blogs },
