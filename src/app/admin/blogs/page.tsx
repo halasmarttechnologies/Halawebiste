@@ -140,25 +140,25 @@ export default function ManageBlogsPage() {
   return (
     <div className="space-y-6 font-jakarta">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
         <div>
-          <h2 className="text-xl font-bold text-slate-900">Manage & Navigate Website Blogs</h2>
+          <h2 className="text-lg sm:text-xl font-bold text-slate-900">Manage & Navigate Website Blogs</h2>
           <p className="text-xs text-slate-500 mt-1">
             Edit posts, assign blogs to specific website service pages, update priorities, or pin to Homepage.
           </p>
         </div>
         <Link
           href="/admin/blogs/new"
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#007FFF] text-white hover:bg-[#0066CC] transition-all shadow-md shadow-blue-500/20 shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold bg-[#007FFF] text-white hover:bg-[#0066CC] transition-all shadow-md shadow-blue-500/20 shrink-0 w-full sm:w-auto justify-center"
         >
           <PlusCircle className="w-4 h-4" /> Create & Upload New Blog
         </Link>
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
         {/* Search */}
-        <div className="relative w-full md:w-80">
+        <div className="relative w-full lg:w-80">
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
@@ -170,15 +170,11 @@ export default function ManageBlogsPage() {
         </div>
 
         {/* Category & Target Page Filters */}
-        <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
-          <span className="text-xs font-semibold text-slate-400 flex items-center gap-1">
-            <Filter className="w-3.5 h-3.5" /> Filters:
-          </span>
-          
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-wrap items-center gap-2 w-full lg:w-auto">
           <select
             value={activeTargetPage}
             onChange={(e) => setActiveTargetPage(e.target.value)}
-            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF]"
+            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF] w-full lg:w-auto"
           >
             <option value="All">All Target Pages</option>
             <option value="all">Global (/blog)</option>
@@ -193,7 +189,7 @@ export default function ManageBlogsPage() {
           <select
             value={activeCategory}
             onChange={(e) => setActiveCategory(e.target.value)}
-            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF]"
+            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF] w-full lg:w-auto"
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>{cat}</option>
@@ -203,7 +199,7 @@ export default function ManageBlogsPage() {
           <select
             value={activeStatus}
             onChange={(e) => setActiveStatus(e.target.value)}
-            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF]"
+            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF] w-full lg:w-auto"
           >
             <option value="All">All Statuses</option>
             <option value="published">Published</option>
@@ -215,40 +211,40 @@ export default function ManageBlogsPage() {
       {/* Blogs Table */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center text-slate-400 text-sm font-semibold">Loading blog database...</div>
+          <div className="p-8 sm:p-12 text-center text-slate-400 text-sm font-semibold">Loading blog database...</div>
         ) : filteredBlogs.length === 0 ? (
-          <div className="p-12 text-center text-slate-500 space-y-2">
+          <div className="p-8 sm:p-12 text-center text-slate-500 space-y-2">
             <AlertCircle className="w-8 h-8 text-slate-300 mx-auto" />
             <p className="font-semibold text-sm">No blogs matched your search criteria.</p>
             <p className="text-xs text-slate-400">Try clearing your filters or creating a new post.</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-600">
+            <table className="w-full text-left text-xs text-slate-600 min-w-[700px]">
               <thead className="bg-slate-50 text-slate-400 font-semibold uppercase tracking-wider text-[10px] border-b border-slate-200">
                 <tr>
-                  <th className="px-6 py-4">Blog Article</th>
-                  <th className="px-4 py-4">Category</th>
-                  <th className="px-4 py-4">Target Website Page</th>
-                  <th className="px-4 py-4">Status</th>
-                  <th className="px-4 py-4">Homepage Pin</th>
-                  <th className="px-4 py-4">Priority Rank</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
+                  <th className="px-4 sm:px-6 py-4">Blog Article</th>
+                  <th className="px-3 sm:px-4 py-4">Category</th>
+                  <th className="px-3 sm:px-4 py-4">Target Website Page</th>
+                  <th className="px-3 sm:px-4 py-4">Status</th>
+                  <th className="px-3 sm:px-4 py-4">Homepage Pin</th>
+                  <th className="px-3 sm:px-4 py-4">Priority Rank</th>
+                  <th className="px-4 sm:px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 font-medium">
                 {filteredBlogs.map((blog) => (
                   <tr key={blog.id} className="hover:bg-slate-50/80 transition-colors">
                     {/* Article Info */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-4">
                       <div className="flex items-center gap-3">
                         <img
                           src={blog.image}
                           alt={blog.title}
-                          className="w-12 h-12 rounded-lg object-cover bg-slate-100 shrink-0 border border-slate-200"
+                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg object-cover bg-slate-100 shrink-0 border border-slate-200"
                         />
-                        <div className="max-w-md">
-                          <h4 className="font-bold text-slate-900 text-sm line-clamp-1">{blog.title}</h4>
+                        <div className="max-w-xs sm:max-w-md">
+                          <h4 className="font-bold text-slate-900 text-xs sm:text-sm line-clamp-1">{blog.title}</h4>
                           <p className="text-[11px] text-slate-400 line-clamp-1 mt-0.5">{blog.excerpt}</p>
                           <div className="flex items-center gap-2 text-[10px] text-slate-400 mt-1">
                             <span>Author: {blog.author.name}</span>
@@ -260,19 +256,19 @@ export default function ManageBlogsPage() {
                     </td>
 
                     {/* Category */}
-                    <td className="px-4 py-4">
-                      <span className="bg-blue-50 text-[#007FFF] px-2.5 py-1 rounded-md text-[10px] font-bold border border-blue-100">
+                    <td className="px-3 sm:px-4 py-4">
+                      <span className="bg-blue-50 text-[#007FFF] px-2.5 py-1 rounded-md text-[10px] font-bold border border-blue-100 whitespace-nowrap">
                         {blog.category}
                       </span>
                     </td>
 
                     {/* Target Page Destination Selector */}
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4">
                       <select
                         value={blog.targetPage || 'all'}
                         onChange={(e) => handleTargetPageChange(blog.id, e.target.value)}
                         disabled={updatingId === blog.id}
-                        className="bg-slate-50 border border-slate-200 text-[11px] font-bold rounded-lg px-2 py-1 text-slate-700 focus:outline-none focus:border-[#007FFF] cursor-pointer"
+                        className="bg-slate-50 border border-slate-200 text-[11px] font-bold rounded-lg px-2 py-1 text-slate-700 focus:outline-none focus:border-[#007FFF] cursor-pointer max-w-[140px]"
                       >
                         <option value="all">Global (/blog)</option>
                         <option value="homepage">Homepage (/)</option>
@@ -285,9 +281,9 @@ export default function ManageBlogsPage() {
                     </td>
 
                     {/* Status */}
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4">
                       <span
-                        className={`px-2.5 py-1 rounded-md text-[10px] font-bold ${
+                        className={`px-2.5 py-1 rounded-md text-[10px] font-bold whitespace-nowrap ${
                           blog.status === 'published'
                             ? 'bg-emerald-100 text-emerald-700 border border-emerald-200'
                             : 'bg-slate-100 text-slate-600 border border-slate-200'
@@ -298,11 +294,11 @@ export default function ManageBlogsPage() {
                     </td>
 
                     {/* Homepage Toggle */}
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4">
                       <button
                         onClick={() => toggleHomepage(blog)}
                         disabled={updatingId === blog.id}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
                           blog.showOnHomepage
                             ? 'bg-amber-100 text-amber-800 border border-amber-300 hover:bg-amber-200'
                             : 'bg-slate-100 text-slate-500 border border-slate-200 hover:bg-slate-200'
@@ -314,7 +310,7 @@ export default function ManageBlogsPage() {
                     </td>
 
                     {/* Priority Weight Input */}
-                    <td className="px-4 py-4">
+                    <td className="px-3 sm:px-4 py-4">
                       <div className="flex items-center gap-1.5">
                         <span className="text-slate-400 text-xs">#</span>
                         <input
@@ -334,7 +330,7 @@ export default function ManageBlogsPage() {
                     </td>
 
                     {/* Actions */}
-                    <td className="px-6 py-4 text-right space-x-2">
+                    <td className="px-4 sm:px-6 py-4 text-right space-x-2 whitespace-nowrap">
                       <Link
                         href={`/admin/blogs/edit/${blog.id}`}
                         className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-[#007FFF] hover:bg-blue-100 rounded-lg text-xs font-semibold transition-colors"

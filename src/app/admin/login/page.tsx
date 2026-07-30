@@ -47,17 +47,17 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f172a] font-jakarta flex items-center justify-center p-4 text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#0f172a] font-jakarta flex items-center justify-center p-3 sm:p-6 text-white relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#007FFF]/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 sm:w-96 h-72 sm:h-96 bg-[#007FFF]/15 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-xl relative z-10 space-y-6">
+      <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-2xl backdrop-blur-xl relative z-10 space-y-5 sm:space-y-6">
         {/* Brand Header */}
-        <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#007FFF] to-[#00C8FF] flex items-center justify-center text-white font-bold text-2xl mx-auto shadow-lg shadow-[#007FFF]/30">
+        <div className="text-center space-y-1.5 sm:space-y-2">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-[#007FFF] to-[#00C8FF] flex items-center justify-center text-white font-bold text-xl sm:text-2xl mx-auto shadow-lg shadow-[#007FFF]/30">
             H
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">Hala CMS Secure Portal</h1>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Hala CMS Secure Portal</h1>
           <p className="text-xs text-slate-400 font-medium">Team Authentication & Content Control</p>
         </div>
 

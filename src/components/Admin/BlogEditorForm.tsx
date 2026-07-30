@@ -184,60 +184,60 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
   return (
     <form onSubmit={handleSubmit} className="space-y-8 max-w-6xl mx-auto pb-16 font-jakarta">
       {/* Top Header & Actions Bar */}
-      <div className="flex items-center justify-between bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-20 z-10">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-14 md:top-20 z-10">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => router.back()}
-            className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer shrink-0"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
-          <div>
-            <h2 className="text-xl font-bold text-slate-900">
+          <div className="min-w-0">
+            <h2 className="text-base sm:text-xl font-bold text-slate-900 truncate">
               {isEditing ? 'Edit Blog Article' : 'Create & Upload New Blog'}
             </h2>
-            <p className="text-xs text-slate-500">Fill in content below. Changes save instantly to website pages.</p>
+            <p className="text-[11px] sm:text-xs text-slate-500 truncate">Fill in content below. Changes save instantly to website pages.</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between sm:justify-end gap-2.5 sm:gap-3">
           {/* Mode Tabs */}
           <div className="bg-slate-100 p-1 rounded-xl flex items-center text-xs font-semibold">
             <button
               type="button"
               onClick={() => setPreviewTab('editor')}
-              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 previewTab === 'editor' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'
               }`}
             >
-              Write & Edit
+              Editor
             </button>
             <button
               type="button"
               onClick={() => setPreviewTab('preview')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
+              className={`px-2.5 sm:px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
                 previewTab === 'preview' ? 'bg-white text-[#007FFF] shadow-sm' : 'text-slate-500'
               }`}
             >
-              <Eye className="w-3.5 h-3.5" /> Live Preview
+              <Eye className="w-3.5 h-3.5" /> Preview
             </button>
           </div>
 
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-[#007FFF] text-white hover:bg-[#0066CC] transition-all shadow-md shadow-blue-500/20 disabled:opacity-50 cursor-pointer"
+            className="inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-semibold bg-[#007FFF] text-white hover:bg-[#0066CC] transition-all shadow-md shadow-blue-500/20 disabled:opacity-50 cursor-pointer shrink-0"
           >
             <CheckCircle2 className="w-4 h-4" />
-            {submitting ? 'Publishing...' : isEditing ? 'Update & Publish' : 'Publish Blog'}
+            <span>{submitting ? 'Saving...' : isEditing ? 'Update' : 'Publish'}</span>
           </button>
         </div>
       </div>
 
       {previewTab === 'preview' ? (
         /* Live Preview Mode */
-        <div className="bg-white p-8 md:p-12 rounded-2xl border border-slate-200 shadow-sm max-w-4xl mx-auto space-y-6">
+        <div className="bg-white p-4 sm:p-6 md:p-12 rounded-2xl border border-slate-200 shadow-sm max-w-4xl mx-auto space-y-5 sm:space-y-6">
           <div className="flex items-center gap-3">
             <span className="bg-[#007FFF] text-white text-xs font-bold px-3 py-1 rounded-md">
               {category}
@@ -245,35 +245,35 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             <span className="text-xs text-slate-400 font-semibold">• Preview Mode</span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
             {title || 'Untitled Blog Article'}
           </h1>
 
-          <div className="flex items-center gap-4 text-xs font-semibold text-slate-500 pb-6 border-b border-slate-100">
+          <div className="flex items-center gap-4 text-xs font-semibold text-slate-500 pb-4 sm:pb-6 border-b border-slate-100">
             <span>By {authorName} ({authorRole})</span>
           </div>
 
           {image ? (
-            <div className="relative w-full h-80 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
+            <div className="relative w-full h-56 sm:h-80 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
               <img src={image} alt={title} className="w-full h-full object-cover" />
             </div>
           ) : (
-            <div className="w-full h-48 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 text-xs font-semibold">
+            <div className="w-full h-40 sm:h-48 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 text-xs font-semibold">
               No Cover Image Selected
             </div>
           )}
 
-          <p className="text-base text-slate-600 font-medium leading-relaxed italic border-l-4 border-[#007FFF] pl-4 py-1">
+          <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed italic border-l-4 border-[#007FFF] pl-4 py-1">
             {excerpt || 'Blog summary excerpt preview will appear here.'}
           </p>
 
           <div 
-            className="prose prose-slate max-w-none text-slate-800 text-base leading-relaxed space-y-4 pt-4"
+            className="prose prose-slate max-w-none text-slate-800 text-sm sm:text-base leading-relaxed space-y-4 pt-4"
             dangerouslySetInnerHTML={{ __html: content || '<p>Start typing in the editor to populate content.</p>' }}
           />
 
           {ctaText && (
-            <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-2xl flex items-center justify-between">
+            <div className="mt-8 p-4 sm:p-6 bg-blue-50 border border-blue-200 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <h4 className="font-bold text-slate-900 text-sm">Need help implementing this strategy?</h4>
                 <p className="text-xs text-slate-500">Contact the Hala Technologies team today.</p>
@@ -281,7 +281,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
               <a
                 href={ctaUrl}
                 target="_blank"
-                className="px-4 py-2 bg-[#007FFF] text-white text-xs font-bold rounded-xl hover:bg-blue-600"
+                className="px-4 py-2 bg-[#007FFF] text-white text-xs font-bold rounded-xl hover:bg-blue-600 shrink-0"
               >
                 {ctaText}
               </a>
@@ -290,11 +290,11 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
         </div>
       ) : (
         /* Editor Mode Grid */
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Main Column: Content Editor */}
           <div className="lg:col-span-2 space-y-6">
             {/* Basic Info Box */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3">
                 1. Main Article Details
               </h3>
@@ -362,7 +362,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             </div>
 
             {/* Visual Cover Image Uploader */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
                 <ImageIcon className="w-4 h-4 text-[#007FFF]" /> 2. Featured Banner Image
               </h3>
@@ -385,7 +385,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                       type="file"
                       accept="image/*"
                       onChange={handleFileUpload}
-                      className="text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#007FFF] hover:file:bg-blue-100 cursor-pointer"
+                      className="text-xs text-slate-500 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-[#007FFF] hover:file:bg-blue-100 cursor-pointer w-full"
                     />
                   </div>
 
@@ -406,15 +406,15 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             </div>
 
             {/* WYSIWYG Article Body Editor */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
                 <h3 className="text-sm font-bold text-slate-900">3. Article Body Content</h3>
                 {/* Visual Editor Toolbar */}
-                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+                <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl overflow-x-auto max-w-full">
                   <button
                     type="button"
                     onClick={() => insertFormatting('h2')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer shrink-0"
                     title="Insert Heading H2"
                   >
                     <Heading1 className="w-3.5 h-3.5" />
@@ -422,7 +422,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('h3')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer shrink-0"
                     title="Insert Sub-heading H3"
                   >
                     <Heading2 className="w-3.5 h-3.5" />
@@ -430,7 +430,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('bold')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer shrink-0"
                     title="Bold text"
                   >
                     <Bold className="w-3.5 h-3.5" />
@@ -438,7 +438,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('italic')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer shrink-0"
                     title="Italic text"
                   >
                     <Italic className="w-3.5 h-3.5" />
@@ -446,7 +446,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('list')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer shrink-0"
                     title="Bullet List"
                   >
                     <List className="w-3.5 h-3.5" />
@@ -454,7 +454,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('quote')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer shrink-0"
                     title="Quote box"
                   >
                     <Quote className="w-3.5 h-3.5" />
@@ -475,7 +475,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
           {/* Sidebar Column: Target Page, Priority, SEO & Ads */}
           <div className="space-y-6">
             {/* Target Page Destination Selector */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
                 <LayoutGrid className="w-4 h-4 text-[#007FFF]" /> Target Website Page Destination
               </h3>
@@ -512,12 +512,12 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   type="checkbox"
                   checked={showOnHomepage}
                   onChange={(e) => setShowOnHomepage(e.target.checked)}
-                  className="w-5 h-5 accent-[#007FFF] rounded cursor-pointer"
+                  className="w-5 h-5 accent-[#007FFF] rounded cursor-pointer shrink-0"
                 />
               </div>
 
               {/* Priority Inputs */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3">
                 <div>
                   <label className="text-[11px] font-bold text-slate-700 block mb-1">
                     Blog Priority Rank
@@ -551,7 +551,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             </div>
 
             {/* SEO Specialist Panel */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
                 <Search className="w-4 h-4 text-[#007FFF]" /> SEO Specialist Drawer
               </h3>
@@ -606,7 +606,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             </div>
 
             {/* Google Ads Manager Panel */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
                 <Target className="w-4 h-4 text-emerald-600" /> Google Ads & Campaign CTA
               </h3>

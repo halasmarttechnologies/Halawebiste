@@ -78,10 +78,10 @@ export default function SectionManagerPage() {
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-            <LayoutGrid className="w-5 h-5 text-[#007FFF]" /> Homepage & Section Layout Builder
+          <h2 className="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+            <LayoutGrid className="w-5 h-5 text-[#007FFF] shrink-0" /> Homepage & Section Layout Builder
           </h2>
           <p className="text-xs text-slate-500 mt-1">
             Choose which blog posts appear on the main Homepage and reorder their section position.
@@ -91,7 +91,7 @@ export default function SectionManagerPage() {
         <Link
           href="/blog"
           target="_blank"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-colors shrink-0 w-full sm:w-auto"
         >
           <Globe className="w-4 h-4 text-[#007FFF]" /> View Homepage Live <ExternalLink className="w-3.5 h-3.5" />
         </Link>
@@ -99,55 +99,55 @@ export default function SectionManagerPage() {
 
       {successMessage && (
         <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-800 flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600" /> {successMessage}
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" /> {successMessage}
         </div>
       )}
 
       {/* Grid Layout: Homepage Pinned Blogs vs Available Blogs */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         {/* Left Column: Blogs Currently Active on Homepage */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
               <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                <Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Active Homepage Blogs ({homepageBlogs.length})
+                <Star className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" /> Active Homepage Blogs ({homepageBlogs.length})
               </h3>
               <p className="text-[11px] text-slate-500">Live order displayed on website homepage.</p>
             </div>
-            <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">
+            <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md shrink-0">
               Priority Sorted
             </span>
           </div>
 
           {homepageBlogs.length === 0 ? (
-            <div className="p-8 text-center border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-xs">
+            <div className="p-6 sm:p-8 text-center border-2 border-dashed border-slate-200 rounded-xl text-slate-400 text-xs">
               No blogs currently pinned to the Homepage.
             </div>
           ) : (
             <div className="space-y-3">
               {homepageBlogs.map((blog, idx) => (
-                <div key={blog.id} className="p-4 border border-amber-200/80 bg-amber-50/30 rounded-xl space-y-3">
+                <div key={blog.id} className="p-3.5 sm:p-4 border border-amber-200/80 bg-amber-50/30 rounded-xl space-y-3">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-7 h-7 rounded-lg bg-amber-500 text-white font-bold text-xs flex items-center justify-center shrink-0">
                         #{idx + 1}
                       </div>
-                      <div>
-                        <h4 className="font-bold text-slate-900 text-xs line-clamp-1">{blog.title}</h4>
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-slate-900 text-xs truncate">{blog.title}</h4>
                         <span className="text-[10px] text-slate-500 font-semibold">{blog.category}</span>
                       </div>
                     </div>
 
                     <button
                       onClick={() => toggleHomepage(blog.id, true)}
-                      className="text-[10px] font-bold text-rose-600 hover:bg-rose-100 bg-rose-50 px-2 py-1 rounded-md transition-colors"
+                      className="text-[10px] font-bold text-rose-600 hover:bg-rose-100 bg-rose-50 px-2 py-1 rounded-md transition-colors shrink-0 cursor-pointer"
                     >
                       Remove
                     </button>
                   </div>
 
                   {/* Placement & Ranking Config */}
-                  <div className="grid grid-cols-2 gap-3 pt-2 border-t border-amber-200/50">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-amber-200/50">
                     <div>
                       <label className="text-[10px] font-bold text-slate-600 block mb-1">Section Type</label>
                       <select
@@ -183,7 +183,7 @@ export default function SectionManagerPage() {
         </div>
 
         {/* Right Column: Other Available Blogs */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
               <h3 className="text-sm font-bold text-slate-900">Available Blog Articles ({nonHomepageBlogs.length})</h3>
@@ -192,24 +192,24 @@ export default function SectionManagerPage() {
           </div>
 
           {nonHomepageBlogs.length === 0 ? (
-            <div className="p-8 text-center text-slate-400 text-xs">
+            <div className="p-6 sm:p-8 text-center text-slate-400 text-xs">
               All published blogs are currently featured on the Homepage!
             </div>
           ) : (
             <div className="space-y-3">
               {nonHomepageBlogs.map((blog) => (
-                <div key={blog.id} className="p-3 border border-slate-200 bg-slate-50/50 rounded-xl flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <img src={blog.image} alt={blog.title} className="w-10 h-10 rounded-lg object-cover bg-slate-200" />
-                    <div>
-                      <h4 className="font-bold text-slate-900 text-xs line-clamp-1">{blog.title}</h4>
+                <div key={blog.id} className="p-3 border border-slate-200 bg-slate-50/50 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <img src={blog.image} alt={blog.title} className="w-10 h-10 rounded-lg object-cover bg-slate-200 shrink-0" />
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-slate-900 text-xs truncate">{blog.title}</h4>
                       <span className="text-[10px] text-slate-400 font-semibold">{blog.category}</span>
                     </div>
                   </div>
 
                   <button
                     onClick={() => toggleHomepage(blog.id, false)}
-                    className="text-[10px] font-bold text-white bg-[#007FFF] hover:bg-[#0066CC] px-3 py-1.5 rounded-lg transition-colors shadow-sm shrink-0 flex items-center gap-1"
+                    className="text-[10px] font-bold text-white bg-[#007FFF] hover:bg-[#0066CC] px-3 py-1.5 rounded-lg transition-colors shadow-sm shrink-0 flex items-center gap-1 w-full sm:w-auto justify-center cursor-pointer"
                   >
                     <Star className="w-3 h-3 fill-white" /> + Pin to Homepage
                   </button>
