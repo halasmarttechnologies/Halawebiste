@@ -42,30 +42,38 @@ export default function SectionManagerPage() {
   }, []);
 
   const toggleHomepage = async (id: string, current: boolean) => {
+    setBlogs((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, showOnHomepage: !current } : b))
+    );
     try {
       await fetch(`/api/blogs/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ showOnHomepage: !current }),
       });
-      fetchBlogs();
     } catch (err) {
       console.error(err);
+      fetchBlogs();
     }
   };
 
   const updateSectionRole = async (id: string, section: string, priority: number) => {
+    setBlogs((prev) =>
+      prev.map((b) =>
+        b.id === id ? { ...b, homepageSection: section as any, homepagePriority: priority } : b
+      )
+    );
     try {
       await fetch(`/api/blogs/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ homepageSection: section, homepagePriority: priority }),
       });
-      fetchBlogs();
       setSuccessMessage('Updated homepage section assignment!');
       setTimeout(() => setSuccessMessage(''), 3000);
     } catch (err) {
       console.error(err);
+      fetchBlogs();
     }
   };
 

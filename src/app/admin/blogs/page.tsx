@@ -43,6 +43,9 @@ export default function ManageBlogsPage() {
 
   const handlePriorityChange = async (id: string, newPriority: number) => {
     setUpdatingId(id);
+    setBlogs((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, priority: newPriority } : b))
+    );
     try {
       const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, {
         method: 'PUT',
@@ -50,13 +53,13 @@ export default function ManageBlogsPage() {
         body: JSON.stringify({ priority: newPriority }),
       });
       const data = await res.json();
-      if (data.success) {
-        await fetchBlogs();
-      } else {
+      if (!data.success) {
         alert('Error updating priority: ' + (data.error || 'Failed'));
+        await fetchBlogs();
       }
     } catch (err) {
       console.error(err);
+      await fetchBlogs();
     } finally {
       setUpdatingId(null);
     }
@@ -64,6 +67,9 @@ export default function ManageBlogsPage() {
 
   const handleTargetPageChange = async (id: string, newTarget: string) => {
     setUpdatingId(id);
+    setBlogs((prev) =>
+      prev.map((b) => (b.id === id ? { ...b, targetPage: newTarget } : b))
+    );
     try {
       const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, {
         method: 'PUT',
@@ -71,13 +77,13 @@ export default function ManageBlogsPage() {
         body: JSON.stringify({ targetPage: newTarget }),
       });
       const data = await res.json();
-      if (data.success) {
-        await fetchBlogs();
-      } else {
+      if (!data.success) {
         alert('Error updating target page: ' + (data.error || 'Failed'));
+        await fetchBlogs();
       }
     } catch (err) {
       console.error(err);
+      await fetchBlogs();
     } finally {
       setUpdatingId(null);
     }
@@ -85,20 +91,24 @@ export default function ManageBlogsPage() {
 
   const toggleHomepage = async (blog: BlogPost) => {
     setUpdatingId(blog.id);
+    const newStatus = !blog.showOnHomepage;
+    setBlogs((prev) =>
+      prev.map((b) => (b.id === blog.id ? { ...b, showOnHomepage: newStatus } : b))
+    );
     try {
       const res = await fetch(`/api/blogs/${encodeURIComponent(blog.id)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ showOnHomepage: !blog.showOnHomepage }),
+        body: JSON.stringify({ showOnHomepage: newStatus }),
       });
       const data = await res.json();
-      if (data.success) {
-        await fetchBlogs();
-      } else {
+      if (!data.success) {
         alert('Error toggling homepage pin: ' + (data.error || 'Failed'));
+        await fetchBlogs();
       }
     } catch (err) {
       console.error(err);
+      await fetchBlogs();
     } finally {
       setUpdatingId(null);
     }
@@ -107,17 +117,19 @@ export default function ManageBlogsPage() {
   const handleDelete = async (id: string, title: string) => {
     if (confirm(`Are you sure you want to delete "${title}"?`)) {
       setUpdatingId(id);
+      // Optimistic delete: instant UI response!
+      setBlogs((prev) => prev.filter((b) => b.id !== id));
       try {
         const res = await fetch(`/api/blogs/${encodeURIComponent(id)}`, { method: 'DELETE' });
         const data = await res.json();
-        if (data.success) {
-          await fetchBlogs();
-        } else {
+        if (!data.success) {
           alert('Error deleting blog: ' + (data.error || 'Failed to delete'));
+          await fetchBlogs();
         }
       } catch (err) {
         console.error(err);
         alert('Delete request failed.');
+        await fetchBlogs();
       } finally {
         setUpdatingId(null);
       }

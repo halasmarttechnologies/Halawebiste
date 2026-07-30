@@ -42,18 +42,23 @@ export default function AdminDashboardPage() {
   }, []);
 
   const toggleHomepage = async (blog: BlogPost) => {
+    const newStatus = !blog.showOnHomepage;
+    setBlogs((prev) =>
+      prev.map((b) => (b.id === blog.id ? { ...b, showOnHomepage: newStatus } : b))
+    );
     try {
       const res = await fetch(`/api/blogs/${blog.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ showOnHomepage: !blog.showOnHomepage }),
+        body: JSON.stringify({ showOnHomepage: newStatus }),
       });
       const data = await res.json();
-      if (data.success) {
+      if (!data.success) {
         fetchBlogs();
       }
     } catch (err) {
       console.error(err);
+      fetchBlogs();
     }
   };
 

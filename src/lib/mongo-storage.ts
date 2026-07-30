@@ -5,21 +5,33 @@ export { isMongoConfigured };
 
 const COLLECTION_NAME = 'blogs';
 
-// Seed initial blogs into MongoDB if collection is empty
+// Seed initial blogs into MongoDB if collection is empty and never seeded
+let hasCheckedSeed = false;
+
 export async function seedInitialBlogsIfEmpty(): Promise<void> {
+  if (hasCheckedSeed) return;
+
   const db = await getDatabase();
   if (!db) return;
 
-  const collection = db.collection<BlogPost>(COLLECTION_NAME);
-  const count = await collection.countDocuments();
+  const metaCollection = db.collection<{ _id: string; seeded: boolean }>('meta');
+  const seedDoc = await metaCollection.findOne({ _id: 'blog_seed_status' });
 
-  if (count === 0) {
-    const initialBlogs = getAllBlogsSync();
-    if (initialBlogs.length > 0) {
-      await collection.insertMany(initialBlogs);
-      console.log(`[MongoDB] Seeded ${initialBlogs.length} initial blogs into database.`);
+  if (!seedDoc) {
+    const collection = db.collection<BlogPost>(COLLECTION_NAME);
+    const count = await collection.countDocuments();
+
+    if (count === 0) {
+      const initialBlogs = getAllBlogsSync();
+      if (initialBlogs.length > 0) {
+        await collection.insertMany(initialBlogs);
+        console.log(`[MongoDB] Seeded ${initialBlogs.length} initial blogs into database.`);
+      }
     }
+    await metaCollection.insertOne({ _id: 'blog_seed_status', seeded: true });
   }
+
+  hasCheckedSeed = true;
 }
 
 // ---------------------------------------------------------------------------

@@ -49,7 +49,7 @@ const BLOGS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'blogs.json');
 let inMemoryBlogs: BlogPost[] | null = null;
 
 export function getAllBlogsSync(): BlogPost[] {
-  if (inMemoryBlogs && inMemoryBlogs.length > 0) {
+  if (inMemoryBlogs !== null) {
     return inMemoryBlogs.sort((a, b) => a.priority - b.priority);
   }
 
