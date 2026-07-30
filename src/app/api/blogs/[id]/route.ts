@@ -56,6 +56,7 @@ export async function PUT(
       homepageSection: body.homepageSection || current.homepageSection,
       homepagePriority: typeof body.homepagePriority === 'number' ? body.homepagePriority : current.homepagePriority,
       targetSections: body.targetSections || current.targetSections,
+      targetPage: body.targetPage !== undefined ? body.targetPage : current.targetPage,
       seo: {
         metaTitle: body.seo?.metaTitle || current.seo?.metaTitle || current.title,
         metaDescription: body.seo?.metaDescription || current.seo?.metaDescription || current.excerpt,
@@ -69,7 +70,7 @@ export async function PUT(
       },
       adsData: {
         campaignTag: body.adsData?.campaignTag !== undefined ? body.adsData.campaignTag : current.adsData?.campaignTag,
-        ctaText: body.adsData?.ctaText !== undefined ? body.adsData.ctaText : current.adsData?.ctaText,
+        ctaText: body.adsData?.ctaText !== undefined ? body.adsData.ctaText : current.adsData?.ctaUrl,
         ctaUrl: body.adsData?.ctaUrl !== undefined ? body.adsData.ctaUrl : current.adsData?.ctaUrl,
       },
       updatedAt: new Date().toISOString(),

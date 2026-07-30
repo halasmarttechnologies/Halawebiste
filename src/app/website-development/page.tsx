@@ -9,9 +9,10 @@ import WebDesignGrowth from '@/components/WebsiteDevelopment/WebDesignGrowth';
 import ProcessSection from '@/components/WebsiteDevelopment/ProcessSection';
 import Testimonials from '@/components/Home/Testimonials/Testimonials';
 import WebDevFAQ from '@/components/WebsiteDevelopment/WebDevFAQ';
-import BrandingBlogs from '@/components/branding/BrandingBlogs';
+import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 import Footer from '@/components/Home/Footer';
 import dynamic from 'next/dynamic';
+
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
@@ -50,7 +51,7 @@ export default function WebsiteDevelopmentPage() {
         <Testimonials />
         <WebDevFAQ />
         <ContactCTA contained={true} />
-        <BrandingBlogs />
+        <ServiceBlogSection targetPage="website-development" title="Website Development Insights" />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

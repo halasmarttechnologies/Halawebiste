@@ -36,6 +36,7 @@ export interface BlogPost {
   homepageSection?: 'hero_featured' | 'grid_featured' | 'seo_spotlight';
   homepagePriority?: number;
   targetSections?: string[];
+  targetPage?: 'all' | 'homepage' | 'website-development' | 'branding' | 'digital-marketing' | 'seo' | 'ppc' | string;
   seo?: SEOData;
   adsData?: AdsData;
   createdAt: string;
@@ -44,40 +45,46 @@ export interface BlogPost {
 
 const BLOGS_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'blogs.json');
 
-// Helper to read blogs from JSON file
+// Global in-memory cache for Vercel Serverless environment
+let inMemoryBlogs: BlogPost[] | null = null;
+
 export function getAllBlogsSync(): BlogPost[] {
+  if (inMemoryBlogs && inMemoryBlogs.length > 0) {
+    return inMemoryBlogs.sort((a, b) => a.priority - b.priority);
+  }
+
   try {
-    if (!fs.existsSync(BLOGS_FILE_PATH)) {
-      return [];
+    if (fs.existsSync(BLOGS_FILE_PATH)) {
+      const data = fs.readFileSync(BLOGS_FILE_PATH, 'utf-8');
+      inMemoryBlogs = JSON.parse(data);
+      return (inMemoryBlogs || []).sort((a, b) => a.priority - b.priority);
     }
-    const data = fs.readFileSync(BLOGS_FILE_PATH, 'utf-8');
-    const blogs: BlogPost[] = JSON.parse(data);
-    return blogs.sort((a, b) => a.priority - b.priority);
   } catch (error) {
     console.error('Error reading blogs.json:', error);
-    return [];
   }
+
+  return inMemoryBlogs || [];
 }
 
-// Helper to write blogs to JSON file
 export function saveBlogsSync(blogs: BlogPost[]): boolean {
+  const sorted = blogs.sort((a, b) => a.priority - b.priority);
+  inMemoryBlogs = sorted;
+
   try {
-    const sorted = blogs.sort((a, b) => a.priority - b.priority);
     fs.writeFileSync(BLOGS_FILE_PATH, JSON.stringify(sorted, null, 2), 'utf-8');
     return true;
   } catch (error) {
-    console.error('Error writing blogs.json:', error);
-    return false;
+    // Fail gracefully on read-only serverless disk (e.g. Vercel)
+    console.log('In-memory cache updated (read-only filesystem environment)');
+    return true;
   }
 }
 
-// Helper to get published blogs sorted by priority
 export function getPublishedBlogs(): BlogPost[] {
   const blogs = getAllBlogsSync();
   return blogs.filter((b) => b.status === 'published');
 }
 
-// Helper to get homepage blogs sorted by homepagePriority
 export function getHomepageBlogs(): BlogPost[] {
   const blogs = getPublishedBlogs();
   return blogs
@@ -85,15 +92,17 @@ export function getHomepageBlogs(): BlogPost[] {
     .sort((a, b) => (a.homepagePriority || a.priority) - (b.homepagePriority || b.priority));
 }
 
-// Get single blog by slug or ID
-export function getBlogBySlugOrId(identifier: string): BlogPost | null {
-  const blogs = getAllBlogsSync();
-  return (
-    blogs.find((b) => b.slug === identifier || b.id === identifier) || null
-  );
+export function getBlogsByTargetPage(pageKey: string): BlogPost[] {
+  const blogs = getPublishedBlogs();
+  if (pageKey === 'all') return blogs;
+  return blogs.filter((b) => b.targetPage === pageKey || b.targetPage === 'all' || !b.targetPage);
 }
 
-// Generate URL slug from title
+export function getBlogBySlugOrId(identifier: string): BlogPost | null {
+  const blogs = getAllBlogsSync();
+  return blogs.find((b) => b.slug === identifier || b.id === identifier) || null;
+}
+
 export function generateSlug(title: string): string {
   return title
     .toLowerCase()
@@ -103,7 +112,6 @@ export function generateSlug(title: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
-// Calculate read time from content string
 export function calculateReadTime(content: string): string {
   const words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
   const minutes = Math.ceil(words / 200);

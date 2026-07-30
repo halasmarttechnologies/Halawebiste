@@ -10,10 +10,9 @@ import {
   Edit3, 
   Trash2, 
   ExternalLink, 
-  ArrowUpDown, 
-  Check, 
   FileText,
-  AlertCircle
+  AlertCircle,
+  LayoutGrid
 } from 'lucide-react';
 import { BlogPost } from '@/lib/blogs';
 
@@ -22,6 +21,7 @@ export default function ManageBlogsPage() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeStatus, setActiveStatus] = useState('All');
+  const [activeTargetPage, setActiveTargetPage] = useState('All');
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
@@ -50,6 +50,22 @@ export default function ManageBlogsPage() {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ priority: newPriority }),
+      });
+      fetchBlogs();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
+  const handleTargetPageChange = async (id: string, newTarget: string) => {
+    setUpdatingId(id);
+    try {
+      await fetch(`/api/blogs/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetPage: newTarget }),
       });
       fetchBlogs();
     } catch (err) {
@@ -93,19 +109,20 @@ export default function ManageBlogsPage() {
       blog.author.name.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = activeCategory === 'All' || blog.category === activeCategory;
     const matchesStatus = activeStatus === 'All' || blog.status === activeStatus;
-    return matchesSearch && matchesCategory && matchesStatus;
+    const matchesPage = activeTargetPage === 'All' || blog.targetPage === activeTargetPage || (!blog.targetPage && activeTargetPage === 'all');
+    return matchesSearch && matchesCategory && matchesStatus && matchesPage;
   });
 
   const categories = ['All', 'AI Marketing', 'Digital Marketing', 'SEO', 'Social Media', 'Visual Editing'];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-jakarta">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
         <div>
-          <h2 className="text-xl font-bold text-slate-900">Manage Website Blogs</h2>
+          <h2 className="text-xl font-bold text-slate-900">Manage & Navigate Website Blogs</h2>
           <p className="text-xs text-slate-500 mt-1">
-            Search, edit, reorder priority ranking, or pin blogs to the Homepage.
+            Edit posts, assign blogs to specific website service pages, update priorities, or pin to Homepage.
           </p>
         </div>
         <Link
@@ -130,11 +147,27 @@ export default function ManageBlogsPage() {
           />
         </div>
 
-        {/* Category Filters */}
+        {/* Category & Target Page Filters */}
         <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
           <span className="text-xs font-semibold text-slate-400 flex items-center gap-1">
-            <Filter className="w-3.5 h-3.5" /> Filter:
+            <Filter className="w-3.5 h-3.5" /> Filters:
           </span>
+          
+          <select
+            value={activeTargetPage}
+            onChange={(e) => setActiveTargetPage(e.target.value)}
+            className="bg-slate-50 border border-slate-200 text-xs font-semibold rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:border-[#007FFF]"
+          >
+            <option value="All">All Target Pages</option>
+            <option value="all">Global (/blog)</option>
+            <option value="homepage">Homepage (/)</option>
+            <option value="website-development">Web Dev (/website-development)</option>
+            <option value="branding">Branding (/branding)</option>
+            <option value="digital-marketing">Digital Marketing (/digital-marketing)</option>
+            <option value="seo">SEO (/seo)</option>
+            <option value="ppc">PPC (/ppc)</option>
+          </select>
+
           <select
             value={activeCategory}
             onChange={(e) => setActiveCategory(e.target.value)}
@@ -160,7 +193,7 @@ export default function ManageBlogsPage() {
       {/* Blogs Table */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center text-slate-400 text-sm">Loading blog database...</div>
+          <div className="p-12 text-center text-slate-400 text-sm font-semibold">Loading blog database...</div>
         ) : filteredBlogs.length === 0 ? (
           <div className="p-12 text-center text-slate-500 space-y-2">
             <AlertCircle className="w-8 h-8 text-slate-300 mx-auto" />
@@ -174,9 +207,10 @@ export default function ManageBlogsPage() {
                 <tr>
                   <th className="px-6 py-4">Blog Article</th>
                   <th className="px-4 py-4">Category</th>
+                  <th className="px-4 py-4">Target Website Page</th>
                   <th className="px-4 py-4">Status</th>
                   <th className="px-4 py-4">Homepage Pin</th>
-                  <th className="px-4 py-4">Priority Weight</th>
+                  <th className="px-4 py-4">Priority Rank</th>
                   <th className="px-6 py-4 text-right">Actions</th>
                 </tr>
               </thead>
@@ -210,6 +244,24 @@ export default function ManageBlogsPage() {
                       </span>
                     </td>
 
+                    {/* Target Page Destination Selector */}
+                    <td className="px-4 py-4">
+                      <select
+                        value={blog.targetPage || 'all'}
+                        onChange={(e) => handleTargetPageChange(blog.id, e.target.value)}
+                        disabled={updatingId === blog.id}
+                        className="bg-slate-50 border border-slate-200 text-[11px] font-bold rounded-lg px-2 py-1 text-slate-700 focus:outline-none focus:border-[#007FFF] cursor-pointer"
+                      >
+                        <option value="all">Global (/blog)</option>
+                        <option value="homepage">Homepage (/)</option>
+                        <option value="website-development">Web Dev (/website-development)</option>
+                        <option value="branding">Branding (/branding)</option>
+                        <option value="digital-marketing">Digital Marketing (/digital-marketing)</option>
+                        <option value="seo">SEO (/seo)</option>
+                        <option value="ppc">PPC (/ppc)</option>
+                      </select>
+                    </td>
+
                     {/* Status */}
                     <td className="px-4 py-4">
                       <span
@@ -228,7 +280,7 @@ export default function ManageBlogsPage() {
                       <button
                         onClick={() => toggleHomepage(blog)}
                         disabled={updatingId === blog.id}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
                           blog.showOnHomepage
                             ? 'bg-amber-100 text-amber-800 border border-amber-300 hover:bg-amber-200'
                             : 'bg-slate-100 text-slate-500 border border-slate-200 hover:bg-slate-200'
@@ -269,7 +321,7 @@ export default function ManageBlogsPage() {
                       </Link>
                       <button
                         onClick={() => handleDelete(blog.id, blog.title)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-rose-600 hover:bg-rose-50 rounded-lg text-xs font-semibold transition-colors"
+                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-rose-600 hover:bg-rose-50 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>

@@ -17,10 +17,10 @@ import {
   Heading1, 
   Heading2, 
   Quote, 
-  Link2, 
-  Image as ImageIcon,
+  ImageIcon,
   ArrowLeft,
-  Target
+  Target,
+  LayoutGrid
 } from 'lucide-react';
 import { BlogPost } from '@/lib/blogs';
 
@@ -45,7 +45,8 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
   const [status, setStatus] = useState<'published' | 'draft'>(initialData?.status || 'published');
   const [priority, setPriority] = useState<number>(initialData?.priority || 1);
 
-  // Homepage & Placement State
+  // Target Page & Placement State
+  const [targetPage, setTargetPage] = useState<string>(initialData?.targetPage || 'all');
   const [showOnHomepage, setShowOnHomepage] = useState<boolean>(initialData?.showOnHomepage || false);
   const [homepagePriority, setHomepagePriority] = useState<number>(initialData?.homepagePriority || 1);
   const [homepageSection, setHomepageSection] = useState<'hero_featured' | 'grid_featured' | 'seo_spotlight'>(
@@ -62,23 +63,18 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
   const [ctaText, setCtaText] = useState(initialData?.adsData?.ctaText || 'Schedule Consultation');
   const [ctaUrl, setCtaUrl] = useState(initialData?.adsData?.ctaUrl || '/contact');
 
-  // Image File Upload Handler
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Image File Upload Handler converting file directly to Data URL (100% Vercel production ready)
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const res = await fetch('/api/upload', { method: 'POST', body: formData });
-      const data = await res.json();
-      if (data.success) {
-        setImage(data.url);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (event.target?.result) {
+        setImage(event.target.result as string);
       }
-    } catch (err) {
-      console.error('File upload error:', err);
-    }
+    };
+    reader.readAsDataURL(file);
   };
 
   // Insert Rich Formatting Snippets into Content
@@ -116,10 +112,11 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
       showOnHomepage,
       homepagePriority: Number(homepagePriority),
       homepageSection,
+      targetPage,
       seo: {
         metaTitle: metaTitle || title,
         metaDescription: metaDescription || excerpt,
-        keywords: keywords.split(',').map((k) => k.trim()).filter(Boolean),
+        keywords: typeof keywords === 'string' ? keywords.split(',').map((k) => k.trim()).filter(Boolean) : keywords,
       },
       adsData: {
         campaignTag,
@@ -140,27 +137,29 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
 
       const data = await res.json();
       if (data.success) {
+        // Automatically redirect to Blog Section table upon save
         router.push('/admin/blogs');
+        router.refresh();
       } else {
         alert('Error saving blog: ' + data.error);
       }
     } catch (err) {
       console.error(err);
-      alert('Failed to save blog post');
+      alert('Failed to save blog post. Please try again.');
     } finally {
       setSubmitting(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 max-w-6xl mx-auto pb-16">
+    <form onSubmit={handleSubmit} className="space-y-8 max-w-6xl mx-auto pb-16 font-jakarta">
       {/* Top Header & Actions Bar */}
       <div className="flex items-center justify-between bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-20 z-10">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={() => router.back()}
-            className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors"
+            className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
           </button>
@@ -168,7 +167,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             <h2 className="text-xl font-bold text-slate-900">
               {isEditing ? 'Edit Blog Article' : 'Create & Upload New Blog'}
             </h2>
-            <p className="text-xs text-slate-500">Fill in content below. No code knowledge needed.</p>
+            <p className="text-xs text-slate-500">Fill in content below. Changes save instantly to website pages.</p>
           </div>
         </div>
 
@@ -178,7 +177,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             <button
               type="button"
               onClick={() => setPreviewTab('editor')}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 previewTab === 'editor' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'
               }`}
             >
@@ -187,7 +186,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             <button
               type="button"
               onClick={() => setPreviewTab('preview')}
-              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 ${
+              className={`px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
                 previewTab === 'preview' ? 'bg-white text-[#007FFF] shadow-sm' : 'text-slate-500'
               }`}
             >
@@ -201,7 +200,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold bg-[#007FFF] text-white hover:bg-[#0066CC] transition-all shadow-md shadow-blue-500/20 disabled:opacity-50 cursor-pointer"
           >
             <CheckCircle2 className="w-4 h-4" />
-            {submitting ? 'Saving...' : isEditing ? 'Update & Publish' : 'Publish Blog'}
+            {submitting ? 'Publishing...' : isEditing ? 'Update & Publish' : 'Publish Blog'}
           </button>
         </div>
       </div>
@@ -224,13 +223,17 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             <span>By {authorName} ({authorRole})</span>
           </div>
 
-          {image && (
-            <div className="relative w-full h-80 rounded-2xl overflow-hidden bg-slate-100">
+          {image ? (
+            <div className="relative w-full h-80 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200">
               <img src={image} alt={title} className="w-full h-full object-cover" />
+            </div>
+          ) : (
+            <div className="w-full h-48 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 text-xs font-semibold">
+              No Cover Image Selected
             </div>
           )}
 
-          <p className="text-base text-slate-600 font-medium leading-relaxed italic border-l-4 border-slate-300 pl-4 py-1">
+          <p className="text-base text-slate-600 font-medium leading-relaxed italic border-l-4 border-[#007FFF] pl-4 py-1">
             {excerpt || 'Blog summary excerpt preview will appear here.'}
           </p>
 
@@ -305,7 +308,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                     onChange={(e) => setStatus(e.target.value as any)}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs font-semibold text-slate-900 focus:outline-none focus:border-[#007FFF]"
                   >
-                    <option value="published">● Published (Live)</option>
+                    <option value="published">● Published (Live on Site)</option>
                     <option value="draft">○ Draft (Hidden)</option>
                   </select>
                 </div>
@@ -317,7 +320,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="Short engaging 2-sentence summary of the blog post..."
+                  placeholder="Short engaging summary of the blog post..."
                   value={excerpt}
                   onChange={(e) => {
                     setExcerpt(e.target.value);
@@ -381,7 +384,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('h2')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
                     title="Insert Heading H2"
                   >
                     <Heading1 className="w-3.5 h-3.5" />
@@ -389,7 +392,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('h3')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
                     title="Insert Sub-heading H3"
                   >
                     <Heading2 className="w-3.5 h-3.5" />
@@ -397,7 +400,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('bold')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
                     title="Bold text"
                   >
                     <Bold className="w-3.5 h-3.5" />
@@ -405,7 +408,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('italic')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
                     title="Italic text"
                   >
                     <Italic className="w-3.5 h-3.5" />
@@ -413,7 +416,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('list')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
                     title="Bullet List"
                   >
                     <List className="w-3.5 h-3.5" />
@@ -421,7 +424,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                   <button
                     type="button"
                     onClick={() => insertFormatting('quote')}
-                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold"
+                    className="p-1.5 text-slate-700 hover:bg-white rounded-lg text-xs font-bold cursor-pointer"
                     title="Quote box"
                   >
                     <Quote className="w-3.5 h-3.5" />
@@ -439,19 +442,41 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
             </div>
           </div>
 
-          {/* Sidebar Column: Priority, Homepage Placement, SEO & Ads */}
+          {/* Sidebar Column: Target Page, Priority, SEO & Ads */}
           <div className="space-y-6">
-            {/* Homepage & Priority Controls */}
+            {/* Target Page Destination Selector */}
             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-                <Star className="w-4 h-4 text-amber-500 fill-amber-500" /> Homepage Placement & Priority
+                <LayoutGrid className="w-4 h-4 text-[#007FFF]" /> Target Website Page Destination
               </h3>
 
-              {/* Toggle Switch */}
+              <div>
+                <label className="text-xs font-bold text-slate-700 block mb-1.5">
+                  Publish to Page / Section
+                </label>
+                <select
+                  value={targetPage}
+                  onChange={(e) => setTargetPage(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-900 focus:outline-none focus:border-[#007FFF]"
+                >
+                  <option value="all">🌐 All Pages & Main Blog Hub (/blog)</option>
+                  <option value="homepage">🏠 Homepage Blog Section (/)</option>
+                  <option value="website-development">💻 Website Development Page (/website-development)</option>
+                  <option value="branding">🎨 Branding & Content Page (/branding)</option>
+                  <option value="digital-marketing">📈 Digital Marketing Page (/digital-marketing)</option>
+                  <option value="seo">🔍 SEO Services Page (/seo)</option>
+                  <option value="ppc">🚀 PPC & Google Ads Page (/ppc)</option>
+                </select>
+                <span className="text-[10px] text-slate-500 mt-1 block">
+                  Select which page section will feature this blog post.
+                </span>
+              </div>
+
+              {/* Homepage Toggle */}
               <div className="flex items-center justify-between p-3 bg-amber-50/60 border border-amber-200/80 rounded-xl">
                 <div>
-                  <span className="font-bold text-xs text-amber-900 block">Pin to Main Homepage</span>
-                  <span className="text-[10px] text-amber-700">Display this blog on homepage</span>
+                  <span className="font-bold text-xs text-amber-900 block">Pin to Homepage</span>
+                  <span className="text-[10px] text-amber-700">Display in homepage blog carousel</span>
                 </div>
                 <input
                   type="checkbox"
@@ -461,11 +486,11 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                 />
               </div>
 
-              {/* Priority Input */}
+              {/* Priority Inputs */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-[11px] font-bold text-slate-700 block mb-1">
-                    Overall Blog Priority
+                    Blog Priority Rank
                   </label>
                   <input
                     type="number"
@@ -475,7 +500,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                     onChange={(e) => setPriority(parseInt(e.target.value) || 1)}
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-bold text-slate-900 focus:outline-none focus:border-[#007FFF]"
                   />
-                  <span className="text-[10px] text-slate-400 mt-1 block">1 = Highest position</span>
+                  <span className="text-[10px] text-slate-400 mt-1 block">1 = Top rank</span>
                 </div>
 
                 <div>
@@ -501,7 +526,6 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                 <Search className="w-4 h-4 text-[#007FFF]" /> SEO Specialist Drawer
               </h3>
 
-              {/* Google SERP Snippet Preview */}
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
                 <span className="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Google Snippet Preview</span>
                 <p className="text-xs font-medium text-blue-800 truncate">https://halatechnologies.com/blog/...</p>
@@ -544,7 +568,7 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
                 <input
                   type="text"
                   placeholder="Local SEO Dubai, Google Business Profile, SEO UAE"
-                  value={keywords}
+                  value={typeof keywords === 'string' ? keywords : Array.isArray(keywords) ? (keywords as string[]).join(', ') : ''}
                   onChange={(e) => setKeywords(e.target.value)}
                   className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:border-[#007FFF]"
                 />

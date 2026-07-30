@@ -6,11 +6,11 @@ import PPCIntro from '@/components/DigitalMarketing/PPC/PPCIntro';
 import PPCWhyItMatters from '@/components/DigitalMarketing/PPC/PPCWhyItMatters';
 import PPCServices from '@/components/DigitalMarketing/PPC/PPCServices';
 import PPCWhyChoose from '@/components/DigitalMarketing/PPC/PPCWhyChoose';
+import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const PPCFAQ = dynamic(() => import('@/components/DigitalMarketing/PPC/PPCFAQ'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
@@ -48,10 +48,10 @@ export default function PPCPage() {
         <CustomTestimonials />
         <PPCFAQ />
         <ContactCTA contained={true} />
+        <ServiceBlogSection targetPage="ppc" title="PPC & Paid Advertising Guides" />
         <OutroMessage />
-        <BrandingBlogs />
       </main>
-      <div className="bg-white w-full relative z-20">
+      <div className="bg-[#111111] w-full relative z-20">
         <Footer />
       </div>
     </div>

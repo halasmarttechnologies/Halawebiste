@@ -5,11 +5,11 @@ import DigitalMarketingHero from '@/components/DigitalMarketing/DigitalMarketing
 import DigitalMarketingIntro from '@/components/DigitalMarketing/DigitalMarketingIntro';
 import DigitalMarketingServices from '@/components/DigitalMarketing/DigitalMarketingServices';
 import DigitalMarketingWhyChoose from '@/components/DigitalMarketing/DigitalMarketingWhyChoose';
+import ServiceBlogSection from '@/components/Shared/ServiceBlogSection';
 import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const DigitalMarketingFAQ = dynamic(() => import('@/components/DigitalMarketing/DigitalMarketingFAQ'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function DigitalMarketingPage() {
         <CustomTestimonials />
         <DigitalMarketingFAQ />
         <ContactCTA contained={true} />
-        <BrandingBlogs />
+        <ServiceBlogSection targetPage="digital-marketing" title="Digital Marketing Insights" />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

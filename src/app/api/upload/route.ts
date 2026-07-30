@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,21 +11,13 @@ export async function POST(request: NextRequest) {
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
+    const mimeType = file.type || 'image/jpeg';
+    const base64 = buffer.toString('base64');
+    
+    // Construct base64 Data URL (Production ready on Vercel without disk dependencies)
+    const dataUrl = `data:${mimeType};base64,${base64}`;
 
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
-    }
-
-    const safeFilename = file.name.replace(/[^\w.-]/g, '_');
-    const filename = `${Date.now()}_${safeFilename}`;
-    const filePath = path.join(uploadsDir, filename);
-
-    fs.writeFileSync(filePath, buffer);
-
-    const publicUrl = `/uploads/${filename}`;
-
-    return NextResponse.json({ success: true, url: publicUrl });
+    return NextResponse.json({ success: true, url: dataUrl });
   } catch (error) {
     return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
   }

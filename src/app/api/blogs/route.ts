@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const homepage = searchParams.get('homepage');
     const category = searchParams.get('category');
+    const targetPage = searchParams.get('targetPage');
     const search = searchParams.get('search');
 
     let blogs = getAllBlogsSync();
@@ -21,6 +22,10 @@ export async function GET(request: NextRequest) {
 
     if (category && category !== 'All') {
       blogs = blogs.filter((b) => b.category === category);
+    }
+
+    if (targetPage && targetPage !== 'all') {
+      blogs = blogs.filter((b) => b.targetPage === targetPage || b.targetPage === 'all' || !b.targetPage);
     }
 
     if (search) {
@@ -79,6 +84,7 @@ export async function POST(request: NextRequest) {
       homepageSection: body.homepageSection || 'grid_featured',
       homepagePriority: typeof body.homepagePriority === 'number' ? body.homepagePriority : 1,
       targetSections: body.targetSections || ['homepage'],
+      targetPage: body.targetPage || 'all',
       seo: {
         metaTitle: body.seo?.metaTitle || title,
         metaDescription: body.seo?.metaDescription || body.excerpt || '',
