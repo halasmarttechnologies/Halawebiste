@@ -4,7 +4,8 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/Home/Footer';
 import OutroMessage from '@/components/About/OutroMessage';
-import { getLiveBlogBySlugOrIdAsync, getLiveBlogsAsync } from '@/lib/github-storage';
+import { BlogPost } from '@/lib/blogs';
+import { getSingleBlogData, getAllBlogsData } from '@/lib/data-provider';
 import { ArrowLeft, Clock, Calendar, ArrowRight } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -16,7 +17,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const blog = await getLiveBlogBySlugOrIdAsync(slug);
+  const blog = await getSingleBlogData(slug);
 
   if (!blog) {
     return {
@@ -57,15 +58,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SingleBlogPage({ params }: Props) {
   const { slug } = await params;
-  const blog = await getLiveBlogBySlugOrIdAsync(slug);
+  const blog = await getSingleBlogData(slug);
 
   if (!blog || blog.status !== 'published') {
     notFound();
   }
 
-  const allBlogs = await getLiveBlogsAsync();
+  const { blogs: allBlogs } = await getAllBlogsData();
   const relatedPosts = allBlogs
-    .filter((b) => b.status === 'published' && b.id !== blog.id)
+    .filter((b: BlogPost) => b.status === 'published' && b.id !== blog.id)
     .slice(0, 3);
 
   return (
@@ -168,7 +169,7 @@ export default async function SingleBlogPage({ params }: Props) {
             <div className="mt-16 pt-12 border-t border-[#e5e5e5]">
               <h3 className="text-xl font-bold text-[#111111] mb-6">Related Insights</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedPosts.map((related) => (
+                {relatedPosts.map((related: BlogPost) => (
                   <Link
                     key={related.id}
                     href={`/blog/${related.slug || related.id}`}

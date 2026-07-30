@@ -13,8 +13,8 @@ const CSP = [
   "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
-  // Connections: self + GitHub API (for CMS blog persistence) + Google reCAPTCHA
-  "connect-src 'self' https://api.github.com https://www.google.com",
+  // Connections: self + Google reCAPTCHA
+  "connect-src 'self' https://www.google.com",
   // Block everything else
   "object-src 'none'",
   "base-uri 'self'",

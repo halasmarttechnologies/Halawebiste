@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { isMongoConfigured, getBlogsFromMongo } from '@/lib/mongo-storage';
-import { isGitHubConfigured, readBlogsFromGitHub } from '@/lib/github-storage';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,30 +25,9 @@ export async function GET() {
     }
   }
 
-  if (isGitHubConfigured()) {
-    try {
-      const { blogs, sha } = await readBlogsFromGitHub();
-      return NextResponse.json({
-        success: true,
-        provider: 'GitHub API (Fallback Storage)',
-        status: 'GitHub storage connected',
-        blogCount: blogs.length,
-        fileSha: sha,
-        message: 'Blog data is being read and written directly from GitHub. Add MONGODB_URI for instant MongoDB performance.',
-      });
-    } catch (err) {
-      return NextResponse.json({
-        success: false,
-        provider: 'GitHub API',
-        status: 'GitHub connection failed',
-        error: (err as Error).message,
-      }, { status: 500 });
-    }
-  }
-
   return NextResponse.json({
     success: false,
-    status: 'No database or GitHub token configured',
+    status: 'MongoDB Atlas Not Configured',
     message: 'Add MONGODB_URI environment variable in Vercel settings to connect your MongoDB Atlas database.',
-  });
+  }, { status: 500 });
 }
