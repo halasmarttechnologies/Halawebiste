@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     response.cookies.set({
       name: AUTH_COOKIE_NAME,
       value: token,
-      httpOnly: false, // Allowed for JS fallback & middleware check
+      httpOnly: true, // Secure HTTP-Only cookie, unreadable by client JavaScript
       sameSite: 'lax',
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 days
