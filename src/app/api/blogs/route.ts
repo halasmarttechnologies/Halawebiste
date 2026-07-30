@@ -3,9 +3,10 @@ import { generateSlug, calculateReadTime, BlogPost } from '@/lib/blogs';
 import { readBlogsFromGitHub, writeBlogsToGitHub, isGitHubConfigured } from '@/lib/github-storage';
 import { getAllBlogsSync, saveBlogsSync } from '@/lib/blogs';
 
-// Force dynamic — never cache blog API responses
+// Force dynamic — NEVER cache blog API responses
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+export const fetchCache = 'force-no-store';
 
 // ---------------------------------------------------------------------------
 // Unified blog reader: GitHub in production, local file in dev
@@ -29,14 +30,15 @@ async function getBlogs(): Promise<{ blogs: BlogPost[]; sha: string | null }> {
 // Unified blog writer: GitHub in production, local file in dev
 // ---------------------------------------------------------------------------
 async function saveBlogs(blogs: BlogPost[], sha: string | null): Promise<void> {
-  if (isGitHubConfigured() && sha) {
-    try {
-      await writeBlogsToGitHub(blogs, sha);
-      return;
-    } catch (err) {
-      console.error('[CMS] GitHub write failed, falling back to local:', err);
+  if (isGitHubConfigured()) {
+    if (!sha) {
+      throw new Error('GitHub SHA missing — cannot write without a valid file SHA');
     }
+    // Throw on failure so the caller returns a real error to the CMS
+    await writeBlogsToGitHub(blogs, sha);
+    return;
   }
+  // Local development only
   saveBlogsSync(blogs);
 }
 

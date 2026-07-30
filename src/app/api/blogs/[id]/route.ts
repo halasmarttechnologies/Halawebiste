@@ -22,13 +22,12 @@ async function getBlogs(): Promise<{ blogs: BlogPost[]; sha: string | null }> {
 }
 
 async function saveBlogs(blogs: BlogPost[], sha: string | null): Promise<void> {
-  if (isGitHubConfigured() && sha) {
-    try {
-      await writeBlogsToGitHub(blogs, sha);
-      return;
-    } catch (err) {
-      console.error('[CMS] GitHub write failed, falling back to local:', err);
+  if (isGitHubConfigured()) {
+    if (!sha) {
+      throw new Error('GitHub SHA missing — cannot write without a valid file SHA');
     }
+    await writeBlogsToGitHub(blogs, sha);
+    return;
   }
   saveBlogsSync(blogs);
 }
