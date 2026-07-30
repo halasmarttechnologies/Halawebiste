@@ -5,14 +5,7 @@ const AUTH_COOKIE_NAME = 'hala_admin_session';
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Root URL automatically opens the CMS Admin Portal
-  if (pathname === '/') {
-    const sessionCookie = request.cookies.get(AUTH_COOKIE_NAME)?.value;
-    const targetUrl = new URL(sessionCookie ? '/admin' : '/admin/login', request.url);
-    return NextResponse.redirect(targetUrl);
-  }
-
-  // Protect /admin routes
+  // Protect ONLY /admin routes
   if (pathname.startsWith('/admin')) {
     const isLoginPage = pathname === '/admin/login';
     const sessionCookie = request.cookies.get(AUTH_COOKIE_NAME)?.value;
@@ -34,5 +27,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/admin', '/admin/:path*'],
+  matcher: ['/admin', '/admin/:path*'],
 };
