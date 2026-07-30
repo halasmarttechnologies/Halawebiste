@@ -97,13 +97,30 @@ export async function updateBlogInMongo(identifier: string, updatedFields: Parti
 export async function deleteBlogFromMongo(identifier: string): Promise<boolean> {
   const db = await getDatabase();
   if (!db) {
-    throw new Error('MongoDB database not connected.');
+    throw new Error('MongoDB database not connected. Please check MONGODB_URI.');
   }
 
   const collection = db.collection<BlogPost>(COLLECTION_NAME);
+  
+  // 1. Delete Request
   const result = await collection.deleteOne({
     $or: [{ id: identifier }, { slug: identifier }],
   });
 
-  return result.deletedCount > 0;
+  if (result.deletedCount === 0) {
+    return false; // Blog was not found to delete
+  }
+
+  // 2. Database Verification
+  const verify = await collection.findOne({
+    $or: [{ id: identifier }, { slug: identifier }],
+  });
+
+  // 3. Agar blog mil gaya = Delete Fail
+  if (verify) {
+    throw new Error(`CRITICAL ERROR: Delete verification failed. Blog ${identifier} is still present in database.`);
+  }
+
+  // 4. Agar blog nahi mila = Success
+  return true;
 }

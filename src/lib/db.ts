@@ -30,13 +30,16 @@ if (uri) {
 }
 
 export async function getDatabase(): Promise<Db | null> {
+  if (!uri) {
+    throw new Error('CRITICAL: MONGODB_URI environment variable is missing. The application requires MongoDB to function.');
+  }
   if (!clientPromise) {
-    return null;
+    throw new Error('CRITICAL: MongoDB client promise failed to initialize.');
   }
   const connectedClient = await clientPromise;
   return connectedClient.db('hala_cms_db');
 }
 
 export function isMongoConfigured(): boolean {
-  return Boolean(process.env.MONGODB_URI);
+  return Boolean(uri);
 }

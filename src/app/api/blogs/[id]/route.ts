@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { calculateReadTime } from '@/lib/blogs';
 import { getSingleBlogData, updateBlogData, deleteBlogData } from '@/lib/data-provider';
 import { AUTH_COOKIE_NAME, parseSessionToken } from '@/lib/auth';
@@ -156,8 +157,15 @@ export async function DELETE(
       return NextResponse.json({ success: false, error: 'Blog post not found or already deleted' }, { status: 404 });
     }
 
+    // Force Next.js Cache Invalidation
+    revalidatePath('/');
+    revalidatePath('/blog');
+    revalidatePath('/admin/blogs');
+    revalidatePath(`/blog/${id}`);
+
     console.log(`Deleted Count: 1`);
-    console.log(`Verified: Success\n`);
+    console.log(`Verified: Success`);
+    console.log(`Cache: Invalidated\n`);
 
     return NextResponse.json({ success: true, message: 'Blog deleted successfully' });
   } catch (error) {
