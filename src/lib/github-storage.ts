@@ -17,7 +17,7 @@ interface GitHubFileResponse {
 // ---------------------------------------------------------------------------
 export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: string }> {
   if (!GITHUB_TOKEN) {
-    throw new Error('GITHUB_TOKEN environment variable is not set');
+    throw new Error('GITHUB_TOKEN environment variable is not set in Vercel settings');
   }
 
   const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE_PATH}?ref=${GITHUB_BRANCH}`;
@@ -34,7 +34,7 @@ export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: s
 
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`GitHub API read failed: ${res.status} ${body}`);
+    throw new Error(`GitHub API read failed (${res.status}): ${body}`);
   }
 
   const file: GitHubFileResponse = await res.json();
@@ -49,9 +49,20 @@ export async function readBlogsFromGitHub(): Promise<{ blogs: BlogPost[]; sha: s
 // ---------------------------------------------------------------------------
 // Write updated blogs.json back to GitHub (auto-commits, triggers redeploy)
 // ---------------------------------------------------------------------------
-export async function writeBlogsToGitHub(blogs: BlogPost[], sha: string): Promise<boolean> {
+export async function writeBlogsToGitHub(blogs: BlogPost[], sha?: string | null): Promise<boolean> {
   if (!GITHUB_TOKEN) {
-    throw new Error('GITHUB_TOKEN environment variable is not set');
+    throw new Error('GITHUB_TOKEN environment variable is not set in Vercel settings');
+  }
+
+  // If SHA is missing, fetch the current SHA from GitHub automatically
+  let targetSha = sha;
+  if (!targetSha) {
+    try {
+      const currentFile = await readBlogsFromGitHub();
+      targetSha = currentFile.sha;
+    } catch (err) {
+      throw new Error(`Could not retrieve latest GitHub file SHA: ${(err as Error).message}`);
+    }
   }
 
   const sorted = [...blogs].sort((a, b) => a.priority - b.priority);
@@ -73,14 +84,42 @@ export async function writeBlogsToGitHub(blogs: BlogPost[], sha: string): Promis
     body: JSON.stringify({
       message: `[CMS] Update blogs.json — ${new Date().toISOString()}`,
       content: encodedContent,
-      sha,
+      sha: targetSha,
       branch: GITHUB_BRANCH,
     }),
   });
 
+  // If status is 409 or 422 (SHA mismatch conflict), retry once with freshly fetched SHA
+  if (!res.ok && (res.status === 409 || res.status === 422)) {
+    console.log('[github-storage] SHA mismatch detected. Refetching latest SHA and retrying...');
+    const freshFile = await readBlogsFromGitHub();
+    const retryRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json',
+        'User-Agent': 'HalaCMS/1.0',
+      },
+      body: JSON.stringify({
+        message: `[CMS] Update blogs.json — ${new Date().toISOString()}`,
+        content: encodedContent,
+        sha: freshFile.sha,
+        branch: GITHUB_BRANCH,
+      }),
+    });
+
+    if (!retryRes.ok) {
+      const retryBody = await retryRes.text();
+      throw new Error(`GitHub API write retry failed (${retryRes.status}): ${retryBody}`);
+    }
+
+    return true;
+  }
+
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`GitHub API write failed: ${res.status} ${body}`);
+    throw new Error(`GitHub API write failed (${res.status}): ${body}`);
   }
 
   return true;

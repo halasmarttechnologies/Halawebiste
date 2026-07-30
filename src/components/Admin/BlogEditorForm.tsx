@@ -63,15 +63,45 @@ export default function BlogEditorForm({ initialData, isEditing = false }: BlogE
   const [ctaText, setCtaText] = useState(initialData?.adsData?.ctaText || 'Schedule Consultation');
   const [ctaUrl, setCtaUrl] = useState(initialData?.adsData?.ctaUrl || '/contact');
 
-  // Image File Upload Handler converting file directly to Data URL (100% Vercel production ready)
+  // Image File Upload Handler converting file directly to Data URL with canvas compression
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     const reader = new FileReader();
     reader.onload = (event) => {
-      if (event.target?.result) {
-        setImage(event.target.result as string);
+      const rawDataUrl = event.target?.result as string;
+      if (rawDataUrl) {
+        const img = new Image();
+        img.src = rawDataUrl;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxDim = 1200;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            // Compress to JPEG 80% quality (~100-200KB)
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+            setImage(compressedDataUrl);
+          } else {
+            setImage(rawDataUrl);
+          }
+        };
       }
     };
     reader.readAsDataURL(file);

@@ -31,10 +31,6 @@ async function getBlogs(): Promise<{ blogs: BlogPost[]; sha: string | null }> {
 // ---------------------------------------------------------------------------
 async function saveBlogs(blogs: BlogPost[], sha: string | null): Promise<void> {
   if (isGitHubConfigured()) {
-    if (!sha) {
-      throw new Error('GitHub SHA missing — cannot write without a valid file SHA');
-    }
-    // Throw on failure so the caller returns a real error to the CMS
     await writeBlogsToGitHub(blogs, sha);
     return;
   }
