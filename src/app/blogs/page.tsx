@@ -15,6 +15,9 @@ const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 export const metadata: Metadata = {
   title: 'Insights & Resources | Hala Technologies',
   description: 'Explore the latest insights, strategies, and news on digital marketing, development, and branding from Hala Technologies.',
+  alternates: {
+    canonical: 'https://halatechnologies.com/blogs',
+  },
 };
 
 export const revalidate = 60;

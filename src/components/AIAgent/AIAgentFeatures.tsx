@@ -238,7 +238,7 @@ function ContentUI() {
          </div>
       </div>
       <div className="flex-1 bg-[#F8FAFC] rounded-2xl p-6 border border-[#E2E8F0] font-serif">
-         <h1 className="text-2xl font-bold mb-4 text-[#111111]">The Future of Marketing Automation</h1>
+         <h2 className="text-2xl font-bold mb-4 text-[#111111]">The Future of Marketing Automation</h2>
          <p className="text-[#555555] leading-relaxed text-sm mb-2 relative">
            In today's fast-paced digital landscape, reaching your audience at the right time is more critical than ever. <span className="bg-blue-100 text-transparent relative"><span className="absolute w-[2px] h-full bg-[#007FFF] animate-pulse"></span>This is where AI-driven automation steps in to revolutionize how we connect.</span>
          </p>

@@ -15,6 +15,9 @@ const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'
 export const metadata: Metadata = {
   title: 'Video Editing | Branding | Hala Technologies',
   description: 'High-quality video editing services.',
+  alternates: {
+    canonical: 'https://halatechnologies.com/branding/video-editing',
+  },
 };
 
 export default function VideoEditingPage() {

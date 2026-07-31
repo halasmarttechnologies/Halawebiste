@@ -55,9 +55,9 @@ export default function Footer() {
             <div className="flex-1 lg:w-[150px] h-px bg-[#333333]"></div>
             <span className="font-jakarta text-xs sm:text-sm tracking-widest uppercase font-light">Global Reach</span>
           </div>
-          <h1 className="font-jakarta text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight">
+          <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight">
             Driving Digital Growth
-          </h1>
+          </h2>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, User, Calendar, Tag } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
 
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
@@ -78,6 +79,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+      <Script
+        id="blog-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "image": post.mainImage ? [urlForImage(post.mainImage)?.url()] : [],
+            "datePublished": post.publishedAt,
+            "author": [{
+              "@type": "Person",
+              "name": post.authorName || 'Hala Team',
+              "url": "https://halatechnologies.com"
+            }]
+          })
+        }}
+      />
       <Navbar />
 
       <main className="flex-grow w-full bg-white pt-[120px] md:pt-[160px] pb-16">

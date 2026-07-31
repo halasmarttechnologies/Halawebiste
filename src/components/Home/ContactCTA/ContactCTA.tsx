@@ -565,10 +565,10 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
             <Sparkles className="w-3.5 h-3.5 text-white" /> 15-Minute Free Strategy Call
           </div>
 
-          <h1 className="font-jakarta font-bold text-3xl sm:text-5xl md:text-[58px] leading-[1.08] tracking-tight mb-2 text-white">
+          <h2 className="font-jakarta font-bold text-3xl sm:text-5xl md:text-[58px] leading-[1.08] tracking-tight mb-2 text-white">
             See if Hala is<br />
             the right fit for you
-          </h1>
+          </h2>
           <h2 className="font-ebgaramond italic text-[34px] sm:text-[48px] md:text-[62px] leading-[1] text-white/90 mb-4 sm:mb-6">
             (it totally is)
           </h2>

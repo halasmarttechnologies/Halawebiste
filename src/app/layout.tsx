@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, EB_Garamond } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import './globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -89,6 +90,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon.png?v=3" />
       </head>
       <body>
+        <LocalBusinessSchema />
         {children}
         <Analytics />
       </body>

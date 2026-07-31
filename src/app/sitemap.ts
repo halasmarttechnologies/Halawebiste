@@ -1,10 +1,13 @@
 import type { MetadataRoute } from 'next';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+import { client } from '@/sanity/lib/client';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://halatechnologies.com';
   const now = new Date();
 
-  const routes = [
+  // 1. Static Routes
+  const staticRoutes = [
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/contact', priority: 0.9, changeFrequency: 'monthly' as const },
@@ -21,12 +24,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/whatsapp-automation', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/case-studies', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/careers', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/blogs', priority: 0.9, changeFrequency: 'weekly' as const },
   ];
 
-  return routes.map((r) => ({
+  const staticSitemap = staticRoutes.map((r) => ({
     url: `${baseUrl}${r.url}`,
     lastModified: now,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }));
+
+  // 2. Dynamic Blog Routes from Sanity
+  let blogSitemap: MetadataRoute.Sitemap = [];
+  try {
+    const posts = await client.fetch(`*[_type == "post" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`);
+    blogSitemap = posts.map((post: any) => ({
+      url: `${baseUrl}/blogs/${post.slug}`,
+      lastModified: new Date(post._updatedAt || now),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error("Failed to fetch Sanity posts for sitemap", error);
+  }
+
+  return [...staticSitemap, ...blogSitemap];
 }
