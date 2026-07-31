@@ -1,20 +1,22 @@
 /** @type {import('next').NextConfig} */
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 // Content Security Policy — locks down what scripts/styles/fonts can load
 const CSP = [
   "default-src 'self'",
-  // Scripts: self + Google reCAPTCHA
-  "script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com",
+  // Scripts: self + Google reCAPTCHA + unsafe-eval for dev
+  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://www.google.com https://www.gstatic.com`,
   // Styles: self + Google Fonts
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Fonts: self + Google Fonts CDN
   "font-src 'self' https://fonts.gstatic.com",
-  // Images: self + Unsplash + Pravatar + UI-Avatars + data URIs (base64 uploaded images)
-  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com",
+  // Images: self + Unsplash + Pravatar + UI-Avatars + data URIs (base64 uploaded images) + Sanity CDN
+  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com https://cdn.sanity.io",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
-  // Connections: self + Google reCAPTCHA
-  "connect-src 'self' https://www.google.com",
+  // Connections: self + Google reCAPTCHA + Sanity API & WebSockets + NPM Registry (for version checks)
+  "connect-src 'self' https://www.google.com https://*.sanity.io wss://*.sanity.io https://registry.npmjs.org",
   // Block everything else
   "object-src 'none'",
   "base-uri 'self'",
@@ -45,6 +47,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
     ],
   },
   async headers() {
@@ -53,7 +59,7 @@ const nextConfig = {
         // Security headers on all application routes
         source: '/:path*',
         headers: [
-          { key: 'Content-Security-Policy',    value: CSP },
+          ...(isDev ? [] : [{ key: 'Content-Security-Policy', value: CSP }]),
           { key: 'X-Frame-Options',             value: 'DENY' },
           { key: 'X-Content-Type-Options',      value: 'nosniff' },
           { key: 'Referrer-Policy',             value: 'strict-origin-when-cross-origin' },

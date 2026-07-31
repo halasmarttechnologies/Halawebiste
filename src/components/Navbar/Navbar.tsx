@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, memo } from 'react';
 import Image from 'next/image';
 import {
   ChevronDown, ArrowUpRight, Search, MousePointerClick,
-  Share2, PenTool, LayoutTemplate, BarChart3, Menu, X, ChevronRight, Bot, MessageCircle
+  Share2, PenTool, LayoutTemplate, BarChart3, Menu, X, ChevronRight, Bot, MessageCircle, BookOpen
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -222,6 +222,7 @@ export default function Navbar() {
         </button>
         <div className={getDropdownClass(resourcesOpen, isMobile)}>
           <div className="text-[11px] font-semibold text-[#666] tracking-[0.5px] uppercase mb-[2px]">OUR RESOURCES</div>
+          <ServiceLink Icon={BookOpen} title="Blog" desc="Read our latest insights and industry news." href="/blogs" onNavigate={closeAllMenus} />
         </div>
       </li>
     </ul>

@@ -12,8 +12,8 @@ const OurJourney = nextDynamic(() => import('@/components/Home/OurJourney'), { s
 const HomeWorkflow = nextDynamic(() => import('@/components/Home/HomeWorkflow'), { ssr: true });
 const CustomTestimonials = nextDynamic(() => import('@/components/Home/Testimonials'), { ssr: true });
 const ContactConsultation = nextDynamic(() => import('@/components/Home/ContactCTA'), { ssr: true });
+const LatestBlogsSection = nextDynamic(() => import('@/components/Blogs/LatestBlogsSection'), { ssr: true });
 const Footer = nextDynamic(() => import('@/components/Home/Footer'), { ssr: true });
-
 export const metadata: Metadata = {
   title: 'Hala Technology | Digital Marketing & Web Development',
   description:
@@ -49,6 +49,7 @@ export default function Home() {
         <OurJourney />
         <HomeWorkflow />
         <CustomTestimonials />
+        <LatestBlogsSection />
         <ContactConsultation contained={true} />
       </main>
       <div className="bg-white w-full relative z-20">
