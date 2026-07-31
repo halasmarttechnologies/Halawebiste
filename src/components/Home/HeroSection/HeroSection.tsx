@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Calendar, X } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import WaveMarquee from './WaveMarquee';
-import ContactCTA from '@/components/Home/ContactCTA';
+
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA'), {
+  ssr: false,
+});
 
 // ─── Shared class constants ───────────────────────────
 const ctaBtn =

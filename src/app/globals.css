@@ -79,17 +79,24 @@ body {
 
 /* Hardware accelerated layer promotion for ultra smooth 120 FPS animations */
 .gpu-accelerated,
+.gpu-layer,
 [class*="animate-marquee"],
 [class*="marquee"] {
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize image & background rendering */
+img, svg {
+  content-visibility: auto;
 }
 
 /* Navbar backdrop-blur layer — promote to its own GPU layer */
 header nav > div[class*="absolute"] {
   will-change: opacity, backdrop-filter;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* ─── Scrollbar Styling ──────────────────────────────── */
