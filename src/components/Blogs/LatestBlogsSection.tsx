@@ -14,7 +14,7 @@ interface LatestBlogsSectionProps {
 
 export default async function LatestBlogsSection({ 
   category, 
-  title = "Latest Insights", 
+  title = "Our Latest Blogs", 
   subtitle = "Discover our most recent thoughts, news, and strategies."
 }: LatestBlogsSectionProps) {
   
@@ -28,7 +28,7 @@ export default async function LatestBlogsSection({
   }
 
   return (
-    <section className="w-full py-20 md:py-28 bg-[#f8f9fa] border-t border-[#eaeaea]">
+    <section className="w-full py-20 md:py-28 bg-white border-t border-[#eaeaea]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

@@ -23,7 +23,7 @@ export default async function BlogsPage() {
   const posts = await client.fetch(postsQuery);
 
   return (
-    <div className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-jakarta bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
       <Navbar />
       
       <main className="flex-grow w-full">
@@ -130,7 +130,7 @@ export default async function BlogsPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-32 bg-[#f8f9fa] rounded-3xl border border-[#eaeaea] px-4">
+              <div className="text-center py-32 bg-white rounded-3xl border border-[#eaeaea] px-4">
                 <h3 className="text-2xl md:text-3xl font-jakarta font-semibold text-[#111111] mb-4">No insights published yet.</h3>
                 <p className="text-[#666666] font-jakarta text-lg">Check back soon for new articles and resources.</p>
               </div>
