@@ -10,7 +10,7 @@ import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const SMMFAQ = dynamic(() => import('@/components/DigitalMarketing/SMM/SMMFAQ'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
@@ -48,8 +48,8 @@ export default function SMMPage() {
         <CustomTestimonials />
         <SMMFAQ />
         <ContactCTA contained={true} />
+        <LatestBlogsSection />
         <OutroMessage />
-        <BrandingBlogs />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

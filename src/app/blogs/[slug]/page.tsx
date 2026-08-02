@@ -13,6 +13,7 @@ import Navbar from '@/components/Navbar/Navbar';
 
 const Footer = dynamic(() => import('@/components/Home/Footer'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const revalidate = 60;
 
@@ -180,6 +181,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           
         </article>
         
+        <LatestBlogsSection title="More Latest Blogs" />
         <div className="mt-20">
           <OutroMessage />
         </div>

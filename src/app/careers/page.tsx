@@ -8,6 +8,7 @@ import Footer from '@/components/Home/Footer';
 
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
   title: 'Careers & Job Openings in Dubai | Join Our Team | Hala Technologies',
@@ -39,6 +40,7 @@ export default function CareersPage() {
         <CareersOpenings />
         <CareersCulture />
         <ContactCTA contained={true} />
+        <LatestBlogsSection />
         <OutroMessage />
       </main>
       <div className="bg-white w-full relative z-20">

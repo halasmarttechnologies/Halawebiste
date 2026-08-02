@@ -1,115 +1,139 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { User, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
+import { ArrowRight, Calendar, User } from 'lucide-react';
+import { client } from '@/sanity/lib/client';
+import { urlForImage } from '@/sanity/lib/image';
+import { latestPostsQuery, latestPostsByCategoryQuery } from '@/sanity/lib/queries';
 
-const blogs = [
-  {
-    date: "January 31, 2023",
-    category: "Best SEO Company in UAE",
-    title: "Best SEO Company in UAE | Across All Emirates",
-    author: "Hala Team",
-    comments: "1 Comments",
-    excerpt: "In a marketplace as competitive as the UAE, where over 5.5 million people are active internet users, and Dubai alone hosts tens of thousands of...",
-    image: "https://images.unsplash.com/photo-1432821596592-e2c18b78144f?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    date: "January 31, 2023",
-    category: "Local SEO Services in Dubai",
-    title: "How to Get More Leads from Local SEO Services in Dubai?",
-    author: "Hala Team",
-    comments: "1 Comments",
-    excerpt: "If your business is struggling to generate consistent leads online, Local SEO can become one of the most powerful marketing channels available...",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    date: "January 31, 2023",
-    category: "Bilingual SEO Dubai",
-    title: "How Can a Dubai-Based Company Optimize Its Website for Both Arabic and English Search Queries?",
-    author: "Hala Team",
-    comments: "1 Comments",
-    excerpt: "Dubai runs on two languages. Arabic defines the cultural identity of the UAE, and English drives international business across every major sector...",
-    image: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?q=80&w=800&auto=format&fit=crop"
+interface BrandingBlogsProps {
+  category?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export default function BrandingBlogs({
+  category,
+  title = "Our Latest Blogs",
+  subtitle = "Discover our most recent thoughts, news, and strategies."
+}: BrandingBlogsProps) {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchPosts = async () => {
+      try {
+        const query = category ? latestPostsByCategoryQuery : latestPostsQuery;
+        const data = await client.fetch(query, category ? { category } : {});
+        if (isMounted && Array.isArray(data)) {
+          setPosts(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch latest blogs in BrandingBlogs:", err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+    fetchPosts();
+    return () => {
+      isMounted = false;
+    };
+  }, [category]);
+
+  if (!loading && (!posts || posts.length === 0)) {
+    return null;
   }
-];
 
-export default function BrandingBlogs() {
   return (
-    <section className="w-full bg-white text-[#111111] py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
-      
-      <div className="max-w-[1200px] mx-auto relative z-10 px-0">
+    <section className="w-full py-20 md:py-28 bg-white border-t border-[#eaeaea]">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <p className="font-jakarta text-[#007FFF] font-bold tracking-[0.2em] text-xs md:text-sm uppercase mb-4">
-            OUR BLOG
-          </p>
-          <h2 className="font-jakarta text-4xl md:text-5xl lg:text-[56px] font-bold tracking-tight leading-[1.1] mb-6 text-[#111111]">
-            Latest Publications
-          </h2>
-          <p className="font-jakarta text-base md:text-lg text-[#666666] max-w-[600px] mx-auto leading-relaxed font-medium">
-            Stay informed with the latest marketing trends, expert tips, and proven strategies. We provide the knowledge you need to drive smarter and more effective business growth.
-          </p>
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-5xl font-jakarta font-semibold text-[#111111] mb-4 tracking-tight">
+              {title}
+            </h2>
+            <p className="text-[#666666] font-jakarta text-lg">
+              {subtitle}
+            </p>
+          </div>
+          <Link 
+            href="/blogs"
+            className="inline-flex items-center gap-2 text-[#111111] font-jakarta font-semibold hover:text-[#007FFF] transition-colors group whitespace-nowrap"
+          >
+            View all articles <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
-        {/* Blog Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 items-start">
-          {blogs.map((blog, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group relative w-full flex flex-col"
-              style={{ paddingTop: '220px' }}
-            >
-              {/* Image Container (Background) */}
-              <div className="absolute top-0 left-0 right-0 h-[300px] sm:h-[340px] rounded-[32px] overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
-                <Image
-                  src={blog.image}
-                  alt={blog.title}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
-
-              {/* Text Card (Foreground) */}
-              <div className="relative z-10 bg-white rounded-[24px] p-6 sm:p-8 mx-3 sm:mx-5 shadow-[0_15px_40px_rgba(0,0,0,0.08)] flex flex-col flex-grow transition-transform duration-500 group-hover:-translate-y-2">
+        {/* Blogs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          {posts.map((post: any) => (
+            <Link href={`/blogs/${post.slug?.current || post.slug}`} key={post._id} className="group block h-full">
+              <div className="bg-white rounded-xl overflow-hidden border border-[#eaeaea] h-full flex flex-col">
+                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#f4f4f4]">
+                  {post.mainImage ? (
+                    <Image
+                      src={urlForImage(post.mainImage)?.url() as string}
+                      alt={post.title || 'Blog Post'}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-[#888]">
+                      <span className="font-jakarta text-sm">No Image</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
+                </div>
                 
-                <span className="font-jakarta text-sm font-semibold text-[#007FFF] mb-3 inline-block">
-                  {blog.date}
-                </span>
-
-                <h3 className="font-jakarta text-xl font-bold leading-[1.3] text-[#111111] mb-4 group-hover:text-[#007FFF] transition-colors duration-300">
-                  {blog.title}
-                </h3>
-
-                <div className="flex items-center gap-4 mb-4 text-[13px] text-[#777777] font-medium font-jakarta">
-                  <div className="flex items-center gap-1.5">
-                    <User size={14} className="stroke-[2.5] text-[#999]" />
-                    <span>By {blog.author}</span>
+                <div className="p-6 md:p-8 flex-grow flex flex-col">
+                  <h3 className="text-xl md:text-2xl font-jakarta font-semibold text-[#111111] mb-4 line-clamp-2 leading-tight">
+                    {post.title}
+                  </h3>
+                  
+                  <div className="mt-auto pt-6 flex flex-col gap-5">
+                    <div className="flex items-center justify-between border-b border-[#eaeaea] pb-5">
+                      <div className="flex items-center gap-3">
+                        {post.authorImage ? (
+                          <Image
+                            src={urlForImage(post.authorImage)?.width(40).height(40).url() as string}
+                            alt={post.authorName || 'Author'}
+                            width={32}
+                            height={32}
+                            className="rounded-full object-cover border border-[#eaeaea]"
+                          />
+                        ) : (
+                          <div className="w-8 h-8 rounded-full bg-[#f4f4f4] flex items-center justify-center border border-[#eaeaea]">
+                            <User className="w-4 h-4 text-[#888]" />
+                          </div>
+                        )}
+                        <span className="font-jakarta font-medium text-sm text-[#666666]">
+                          {post.authorName || 'Hala Team'}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[#888888]">
+                        <Calendar className="w-3.5 h-3.5" />
+                        <span className="font-jakarta text-xs font-medium">
+                          {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric',
+                          }) : ''}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 text-[#007FFF] font-jakarta text-sm font-semibold group-hover:gap-3 transition-all duration-300">
+                      View full article <ArrowRight className="w-4 h-4" />
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <MessageCircle size={14} className="stroke-[2.5] text-[#999]" />
-                    <span>{blog.comments}</span>
-                  </div>
-                </div>
-
-                <p className="font-jakarta text-[15px] text-[#666666] leading-relaxed mb-6 line-clamp-3">
-                  {blog.excerpt}
-                </p>
-
-                <div className="mt-auto pt-2">
-                  <Link href="#" className="inline-block font-jakarta text-[14px] font-bold text-[#111111] underline underline-offset-4 decoration-2 decoration-[#111111]/30 group-hover:decoration-[#007FFF] group-hover:text-[#007FFF] transition-colors duration-300">
-                    Read More
-                  </Link>
                 </div>
               </div>
-            </motion.div>
+            </Link>
           ))}
         </div>
 

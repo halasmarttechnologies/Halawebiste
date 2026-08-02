@@ -8,6 +8,7 @@ const InteractiveSection = dynamic(() => import('@/components/InteractiveSection
 const AboutValues = dynamic(() => import('@/components/About/AboutValues'));
 const OurTeam = dynamic(() => import('@/components/About/OurTeam'));
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const Footer = dynamic(() => import('@/components/Home/Footer'));
 
@@ -45,6 +46,7 @@ export default function AboutPage() {
         <AboutValues />
         <OurTeam />
         <CustomTestimonials />
+        <LatestBlogsSection />
         <OutroMessage />
       </main>
       <div className="bg-white w-full relative z-20">

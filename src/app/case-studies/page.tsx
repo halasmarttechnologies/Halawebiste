@@ -5,6 +5,7 @@ import CaseStudyHero from '@/components/CaseStudies/CaseStudyHero';
 import Footer from '@/components/Home/Footer';
 
 const CaseStudyStory = dynamic(() => import('@/components/CaseStudies/CaseStudyStory'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function CaseStudiesPage() {
       <main className="flex-grow w-full">
         <CaseStudyHero />
         <CaseStudyStory />
+        <LatestBlogsSection />
         <OutroMessage />
       </main>
       <div className="bg-white w-full relative z-20">

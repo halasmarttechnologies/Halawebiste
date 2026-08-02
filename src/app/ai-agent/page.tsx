@@ -8,7 +8,7 @@ import AIAgentDesktopShowcase from '@/components/AIAgent/AIAgentDesktopShowcase'
 import AIAgentOfferings from '@/components/AIAgent/AIAgentOfferings';
 import AIAgentWhyChoose from '@/components/AIAgent/AIAgentWhyChoose';
 import CustomTestimonials from '@/components/Home/Testimonials';
-import BrandingBlogs from '@/components/branding/BrandingBlogs';
+import LatestBlogsSection from '@/components/Blogs/LatestBlogsSection';
 import ContactCTA from '@/components/Home/ContactCTA/ContactCTA';
 import Footer from '@/components/Home/Footer';
 
@@ -52,7 +52,7 @@ export default function AIAgentPage() {
         <AIAgentWhyChoose />
         <CustomTestimonials />
         <ContactCTA contained={true} />
-        <BrandingBlogs />
+        <LatestBlogsSection />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

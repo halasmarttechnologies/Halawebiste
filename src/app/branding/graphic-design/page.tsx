@@ -6,7 +6,7 @@ import { Metadata } from 'next';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const GraphicDesignFAQ = dynamic(() => import('@/components/branding/GraphicDesignFAQ'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
@@ -40,7 +40,7 @@ export default function GraphicDesignPage() {
       <CustomTestimonials />
       <GraphicDesignFAQ />
       <ContactCTA contained={true} />
-      <BrandingBlogs />
+      <LatestBlogsSection />
       <OutroMessage />
     </div>
   );

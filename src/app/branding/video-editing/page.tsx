@@ -10,7 +10,7 @@ import { Metadata } from 'next';
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const VideoEditingFAQ = dynamic(() => import('@/components/branding/VideoEditingFAQ'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
   title: 'Video Editing | Branding | Hala Technologies',
@@ -32,7 +32,7 @@ export default function VideoEditingPage() {
       <CustomTestimonials />
       <VideoEditingFAQ />
       <ContactCTA contained={true} />
-      <BrandingBlogs />
+      <LatestBlogsSection />
     </div>
   );
 }

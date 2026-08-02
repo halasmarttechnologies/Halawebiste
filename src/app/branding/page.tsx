@@ -9,6 +9,7 @@ const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'
 const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
   title: 'Branding | Hala Technologies',
@@ -53,6 +54,7 @@ export default function BrandingPage() {
       <ContactCTA contained={true} />
 
       {/* Dynamic Target Page Blogs Section */}
+      <LatestBlogsSection />
 
       {/* Outro Message */}
       <OutroMessage />

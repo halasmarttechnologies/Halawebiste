@@ -8,7 +8,7 @@ import Footer from '@/components/Home/Footer';
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactFAQ = dynamic(() => import('@/components/Contact/ContactFAQ'));
-const BrandingBlogs = dynamic(() => import('@/components/branding/BrandingBlogs'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
   title: 'Contact Us | Schedule a Consultation | Hala Technology Dubai',
@@ -52,7 +52,7 @@ export default function ContactPage() {
         <ContactFAQ />
 
         {/* 6. Next Steps & Blog Section */}
-        <BrandingBlogs />
+        <LatestBlogsSection />
       </main>
 
       <div className="bg-white w-full relative z-20">

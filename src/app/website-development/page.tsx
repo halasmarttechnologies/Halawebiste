@@ -13,6 +13,7 @@ import Footer from '@/components/Home/Footer';
 import dynamic from 'next/dynamic';
 
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
   title: 'Website Development | Hala Technology',
@@ -50,6 +51,7 @@ export default function WebsiteDevelopmentPage() {
         <Testimonials />
         <WebDevFAQ />
         <ContactCTA contained={true} />
+        <LatestBlogsSection />
       </main>
       <div className="bg-white w-full relative z-20">
         <Footer />

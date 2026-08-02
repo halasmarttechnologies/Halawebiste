@@ -10,6 +10,7 @@ import Footer from '@/components/Home/Footer';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const PPCFAQ = dynamic(() => import('@/components/DigitalMarketing/PPC/PPCFAQ'));
+const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
@@ -47,6 +48,7 @@ export default function PPCPage() {
         <CustomTestimonials />
         <PPCFAQ />
         <ContactCTA contained={true} />
+        <LatestBlogsSection />
         <OutroMessage />
       </main>
       <div className="bg-[#111111] w-full relative z-20">
