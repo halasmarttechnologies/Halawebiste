@@ -5,7 +5,6 @@ import { apiVersion, dataset, projectId } from './src/sanity/env'
 import { schema } from './src/sanity/schemaTypes'
 import { structure } from './src/sanity/structure'
 import { monochromeTheme } from './src/sanity/theme'
-import { CustomCMSDashboard } from './src/sanity/CustomCMSDashboard'
 
 export default defineConfig({
   name: 'default',
@@ -21,13 +20,8 @@ export default defineConfig({
     structureTool({ structure }),
   ],
 
-  studio: {
-    components: {
-      layout: CustomCMSDashboard,
-    },
-  },
-
   schema,
 
   theme: monochromeTheme,
 })
+
