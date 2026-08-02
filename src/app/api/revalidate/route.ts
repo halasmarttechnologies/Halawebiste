@@ -1,35 +1,40 @@
-import { revalidatePath } from 'next/cache'
-import { type NextRequest, NextResponse } from 'next/server'
-import { parseBody } from 'next-sanity/webhook'
+import { revalidatePath } from 'next/cache';
+import { type NextRequest, NextResponse } from 'next/server';
+import { parseBody } from 'next-sanity/webhook';
 
 export async function POST(req: NextRequest) {
   try {
+    const webhookSecret = process.env.SANITY_REVALIDATE_SECRET;
+
+    if (!webhookSecret) {
+      console.error('[revalidate] SANITY_REVALIDATE_SECRET is missing');
+      return NextResponse.json({ error: 'Server misconfiguration' }, { status: 500 });
+    }
+
     const { isValidSignature, body } = await parseBody<{ _type: string; slug?: string }>(
       req,
-      process.env.SANITY_REVALIDATE_SECRET
-    )
+      webhookSecret
+    );
 
     if (!isValidSignature) {
-      const message = 'Invalid signature'
-      return new Response(JSON.stringify({ message, isValidSignature, body }), { status: 401 })
+      return NextResponse.json({ error: 'Unauthorized request' }, { status: 401 });
     }
 
     if (!body?._type) {
-      const message = 'Bad Request'
-      return new Response({ message, body } as any, { status: 400 })
+      return NextResponse.json({ error: 'Bad Request' }, { status: 400 });
     }
 
     // Revalidate main website layout & home page
-    revalidatePath('/', 'layout')
+    revalidatePath('/', 'layout');
 
     // Revalidate specific blog page if slug provided
     if (body.slug) {
-      revalidatePath(`/blogs/${body.slug}`)
+      revalidatePath(`/blogs/${body.slug}`);
     }
 
-    return NextResponse.json({ success: true, body })
-  } catch (err: any) {
-    console.error('Revalidation error:', err)
-    return new Response(err.message, { status: 500 })
+    return NextResponse.json({ success: true });
+  } catch (err: unknown) {
+    console.error('[revalidate] Internal error occurred during revalidation processing');
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
