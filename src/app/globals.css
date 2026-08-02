@@ -2,7 +2,7 @@
 .eb-garamond {
   font-family: var(--font-eb-garamond), 'EB Garamond', serif !important;
   font-optical-sizing: auto;
-  font-weight: 300 !important; /* Very light weight globally */
+  font-weight: 300 !important;
   font-style: italic !important;
 }
 
@@ -54,16 +54,15 @@
 
 html {
   overflow-x: clip;
-  /* Removed scroll-behavior:smooth — it causes jank during anchor navigation.
-     Use JS-based smooth scroll where needed for precise control. */
-  scroll-padding-top: 80px; /* Offset for fixed navbar */
+  scroll-padding-top: 80px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   font-family: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizeLegibility;
   overflow-x: clip;
   background-color: #111111;
   min-width: 320px;
@@ -72,12 +71,11 @@ body {
 /* Force EB Garamond for all italic text */
 .italic, i, em {
   font-family: var(--font-eb-garamond), 'EB Garamond', serif !important;
-  font-weight: 300 !important; /* Very light weight globally */
+  font-weight: 300 !important;
 }
 
-/* ─── Performance Hints & Hardware Acceleration ──────────────── */
+/* ─── Hardware Acceleration & 120/144 FPS Rendering Hints ─────────────── */
 
-/* Hardware accelerated layer promotion for ultra smooth 120 FPS animations */
 .gpu-accelerated,
 .gpu-layer,
 [class*="animate-marquee"],
@@ -88,12 +86,18 @@ body {
   perspective: 1000px;
 }
 
+/* Offscreen DOM rendering optimization */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
 /* Optimize image & background rendering */
 img, svg {
   content-visibility: auto;
 }
 
-/* Navbar backdrop-blur layer — promote to its own GPU layer */
+/* Navbar backdrop-blur layer — promote to dedicated GPU layer */
 header nav > div[class*="absolute"] {
   will-change: opacity, backdrop-filter;
   transform: translate3d(0, 0, 0);
@@ -121,4 +125,3 @@ header nav > div[class*="absolute"] {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #666666;
 }
-

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Code2, MonitorPlay, Search, Share2, PenTool, MousePointerClick, Smartphone } from 'lucide-react';
@@ -14,19 +14,19 @@ const marketingTags = [
   { name: 'Video Marketing', icon: MonitorPlay },
 ];
 
-export default function MarketingSolutions() {
+function MarketingSolutionsComponent() {
   const [activeTag, setActiveTag] = useState('SEO');
 
-
+  const handleTagClick = useCallback((tagName: string) => {
+    setActiveTag(tagName);
+  }, []);
 
   return (
-    <section className="font-jakarta w-full bg-[#111111] px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden rounded-t-[40px] md:rounded-t-[60px] z-20">
-
-      {/* Background decorative elements (subtle grain/texture would go here in prod) */}
-      <div className="absolute top-0 right-0 w-full h-24 bg-gradient-to-b from-[#f8f6ed] to-transparent opacity-[0.03]"></div>
+    <section className="font-jakarta w-full bg-[#111111] px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden rounded-t-[40px] md:rounded-t-[60px] z-20 content-visibility-auto gpu-layer">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 right-0 w-full h-24 bg-gradient-to-b from-[#f8f6ed] to-transparent opacity-[0.03]" />
 
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
-
         {/* Left Column: Headline and Interactive Tags */}
         <div className="flex flex-col z-10 text-center lg:text-left items-center lg:items-start order-1">
           <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] leading-[1.1] tracking-tight text-[#f0f0f0] mb-4 md:mb-6">
@@ -44,9 +44,10 @@ export default function MarketingSolutions() {
               return (
                 <button
                   key={tag.name}
-                  onClick={() => setActiveTag(tag.name)}
+                  type="button"
+                  onClick={() => handleTagClick(tag.name)}
                   className={`
-                    flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-600 text-sm md:text-base font-semibold transition-all duration-300
+                    flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-600 text-sm md:text-base font-semibold transition-all duration-300 cursor-pointer
                     ${isActive
                       ? 'bg-zinc-100 text-zinc-900 border-zinc-100 shadow-[0_0_15px_rgba(255,255,255,0.15)]'
                       : 'bg-transparent text-zinc-300 hover:border-zinc-400 hover:text-white hover:bg-zinc-800/50'
@@ -63,7 +64,6 @@ export default function MarketingSolutions() {
 
         {/* Right Column: Illustration and Description */}
         <div className="flex flex-col gap-12 z-10 order-2">
-
           {/* Custom Image Illustration */}
           <div className="relative w-full mx-auto lg:ml-auto select-none rounded-[20px] md:rounded-[32px] overflow-hidden drop-shadow-2xl">
             <Image
@@ -73,6 +73,7 @@ export default function MarketingSolutions() {
               height={720}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="w-full h-auto object-cover"
+              loading="lazy"
             />
           </div>
 
@@ -89,9 +90,10 @@ export default function MarketingSolutions() {
               Get a Free Audit
             </Link>
           </div>
-
         </div>
       </div>
     </section>
   );
 }
+
+export default memo(MarketingSolutionsComponent);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import {
   TrendingUp, MonitorSmartphone, Plus, Minus, ArrowRight, ArrowUpRight
 } from 'lucide-react';
@@ -85,22 +85,20 @@ const categories: ServiceCategory[] = [
   }
 ];
 
-export default function Services() {
+function ServicesComponent() {
   const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
 
-  const toggleService = (id: string) => {
+  const toggleService = useCallback((id: string) => {
     setActiveServiceId((prev) => (prev === id ? null : id));
-  };
+  }, []);
 
   return (
-    <section className="font-jakarta bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden rounded-t-[40px] md:rounded-t-[60px]">
-      
-      {/* Background ambient glows similar to the screenshot */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#007FFF]/5 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#007FFF]/5 rounded-full blur-[100px] pointer-events-none"></div>
+    <section className="font-jakarta bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden rounded-t-[40px] md:rounded-t-[60px] content-visibility-auto gpu-layer">
+      {/* Background ambient glows */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#007FFF]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#007FFF]/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-[1200px] mx-auto relative z-10">
-
         {/* Top Section */}
         <div className="flex flex-col items-center justify-center text-center mb-16 md:mb-20">
           <div className="bg-[#007FFF] text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 shadow-sm">
@@ -117,14 +115,10 @@ export default function Services() {
 
         {/* Bottom Section: Accordion */}
         <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-8">
-          
-          {/* Main White Card with Two Columns */}
           <div className="bg-white rounded-[24px] md:rounded-[32px] p-6 sm:p-12 md:p-14 shadow-[0_15px_50px_rgba(0,0,0,0.06)] border border-[#eeeeee]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-              
               {categories.map((category, catIndex) => (
                 <div key={catIndex} className="flex flex-col h-full">
-                  {/* Header Row */}
                   <div className="flex items-center justify-between pb-5 border-b border-[#e5e5e5] mb-2">
                     <h3 className="font-jakarta text-[22px] md:text-[24px] font-medium text-[#111111] tracking-tight">
                       {category.title}
@@ -143,7 +137,6 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Accordion List Items */}
                   <div className="flex flex-col h-full">
                     {category.services.map((service, srvIndex) => {
                       const isActive = activeServiceId === service.id;
@@ -159,7 +152,6 @@ export default function Services() {
                           }`}
                           onClick={() => toggleService(service.id)}
                         >
-                          {/* Accordion Trigger Header */}
                           <div className="flex items-center justify-between w-full focus:outline-none">
                             <span className={`text-[14px] md:text-[15px] font-medium transition-colors duration-500 ${
                               isActive ? 'text-white' : 'text-[#111111] group-hover:text-white'
@@ -173,14 +165,13 @@ export default function Services() {
                             )}
                           </div>
 
-                          {/* Accordion Body */}
                           <AnimatePresence>
                             {isActive && (
                               <motion.div
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: 'auto', opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                                 className="overflow-hidden"
                               >
                                 <div className="pt-3 pb-1 flex flex-col gap-4">
@@ -207,12 +198,11 @@ export default function Services() {
             </div>
           </div>
 
-          {/* Bottom Banner */}
           <div className="w-full bg-[#111111] rounded-[20px] p-5 md:py-5 md:px-8 flex flex-col md:flex-row items-center justify-between border-2 border-[#222222] shadow-[8px_8px_0px_0px_#000000]">
             <div className="flex items-center gap-4 w-full md:w-auto mb-4 md:mb-0">
               <div className="w-10 h-10 rounded-full bg-[#222222] border border-[#333333] flex flex-shrink-0 items-center justify-center">
                 <svg className="w-5 h-5 text-[#007FFF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+                  <path d="M21 12a9 9 0 1 1-6.219-8.56" />
                 </svg>
               </div>
               <p className="text-white text-[14px] md:text-[15px] font-medium">
@@ -224,9 +214,10 @@ export default function Services() {
               BOOK A CALL
             </Link>
           </div>
-
         </div>
       </div>
     </section>
   );
 }
+
+export default memo(ServicesComponent);

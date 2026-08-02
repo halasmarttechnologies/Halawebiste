@@ -28,10 +28,14 @@ const CSP = [
 const nextConfig = {
   compress: true,
   poweredByHeader: false,
-  // Disable source maps in production — prevents source code exposure
+  // Disable source maps in production — prevents source code exposure & reduces bundle size
   productionBrowserSourceMaps: false,
+  compiler: {
+    // Remove console.log in production for maximum execution speed & clean bundle
+    removeConsole: isDev ? false : { exclude: ['error', 'warn'] },
+  },
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion', '@gsap/react'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@gsap/react', 'gsap'],
   },
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -65,11 +69,11 @@ const nextConfig = {
           { key: 'Referrer-Policy',             value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',          value: 'camera=(), microphone=(), geolocation=(), payment=()' },
           { key: 'X-DNS-Prefetch-Control',      value: 'on' },
-          { key: 'X-XSS-Protection',            value: '0' }, // Disable legacy XSS auditor (CSP is the correct mitigation)
+          { key: 'X-XSS-Protection',            value: '0' },
         ],
       },
       {
-        // No caching on API routes — blogs must always be fresh
+        // API routes cache settings
         source: '/api/:path*',
         headers: [
           { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
@@ -78,6 +82,7 @@ const nextConfig = {
         ],
       },
       {
+        // Immutable cache control for static assets & images
         source: '/:path*\\.(png|jpg|jpeg|webp|avif|svg|ico|woff|woff2)',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },

@@ -104,7 +104,7 @@ const ServiceLink = memo(function ServiceLink({ Icon, title, desc, href, subItem
         )}
       </div>
 
-      {/* Desktop Submenu (pop-out right) with enlarged invisible hover bridge to fix diagonal mouse movement */}
+      {/* Desktop Submenu (pop-out right) with enlarged invisible hover bridge */}
       {subItems && (
         <div className="flex flex-col gap-2 absolute top-0 left-[calc(100%+15px)] bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] min-w-[200px] p-4 z-[101] before:absolute before:content-[''] before:w-[60px] before:h-[150%] before:-left-[40px] before:-top-[25%] opacity-0 invisible translate-x-2 md:group-hover/subitem:opacity-100 md:group-hover/subitem:visible md:group-hover/subitem:translate-x-0 transition-all duration-300 ease-out pointer-events-none md:group-hover/subitem:pointer-events-auto">
           {subItems.map(sub => (
@@ -115,7 +115,7 @@ const ServiceLink = memo(function ServiceLink({ Icon, title, desc, href, subItem
         </div>
       )}
 
-      {/* Mobile Submenu (accordion-style togglable) */}
+      {/* Mobile Submenu */}
       {subItems && (
         <div className={`md:hidden flex-col gap-2 pl-7 mt-2 border-l-2 border-[#f0f0f0] ml-2 overflow-hidden transition-all duration-300 ${mobileOpen ? 'flex max-h-[500px] opacity-100 mb-2' : 'max-h-0 opacity-0 !mt-0'}`}>
           {subItems.map(sub => (
@@ -130,7 +130,7 @@ const ServiceLink = memo(function ServiceLink({ Icon, title, desc, href, subItem
 });
 
 // ─── Main component ────────────────────────────────────
-export default function Navbar() {
+function NavbarComponent() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
@@ -143,7 +143,7 @@ export default function Navbar() {
     setResourcesOpen(false);
   }, []);
 
-  // Track scroll position for dynamic blur effect with rAF throttling
+  // Track scroll position with rAF throttling for 120 FPS performance
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -159,14 +159,13 @@ export default function Navbar() {
       }
     };
 
-    // Check initial position and attach listener
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on resize to prevent bugs
+  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -177,10 +176,8 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Shared classes for navigation buttons
   const navBtnClass = 'flex items-center justify-between md:justify-start gap-[3px] text-[13.5px] font-medium text-[#444] bg-transparent border-none cursor-pointer transition-[color,background] duration-150 whitespace-nowrap py-2.5 px-3 rounded-lg hover:text-[#111] hover:bg-[#f4f4f4] w-full md:w-auto text-left';
 
-  // Shared helper for dropdown panels
   const getDropdownClass = useCallback((isOpen: boolean, isMobile: boolean) => {
     const base = 'flex-col gap-4';
     if (isMobile) {
@@ -190,10 +187,8 @@ export default function Navbar() {
     return `flex ${base} absolute top-[calc(100%+10px)] left-0 bg-white border-[1.5px] border-[#111] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] w-[360px] p-6 z-[100] transition-all duration-300 ease-out before:absolute before:content-[""] before:w-[150%] before:-left-[25%] before:h-[40px] before:-top-[30px] ${visibility}`;
   }, []);
 
-  // Reusable NavLinks function so we can render it differently for mobile vs desktop
   const renderNavLinks = (isMobile = false) => (
     <ul className={`flex ${isMobile ? 'flex-col items-start w-full gap-2' : 'flex-row items-center gap-4'} list-none m-0 p-0`}>
-      {/* Services */}
       <li className={`relative group ${isMobile ? 'w-full' : ''}`}>
         <button className={navBtnClass} onClick={() => setServicesOpen(!servicesOpen)}>
           Services
@@ -205,7 +200,6 @@ export default function Navbar() {
         </div>
       </li>
 
-      {/* Simple links */}
       {SIMPLE_NAV_LINKS.map(link => (
         <li key={link.label} className={isMobile ? 'w-full' : ''}>
           <Link href={link.href} className={navBtnClass} onClick={closeAllMenus}>
@@ -214,7 +208,6 @@ export default function Navbar() {
         </li>
       ))}
 
-      {/* Resources */}
       <li className={`relative group ${isMobile ? 'w-full' : ''}`}>
         <button className={navBtnClass} onClick={() => setResourcesOpen(!resourcesOpen)}>
           Resources
@@ -229,11 +222,7 @@ export default function Navbar() {
   );
 
   return (
-    <header className="flex flex-col items-center pt-5 px-4 sm:px-6 fixed top-0 left-0 right-0 z-[9999] w-full transition-all duration-500 pointer-events-none">
-      {/* 
-        Main navbar container.
-        Notice there is NO background color on the nav itself to ensure perfect layering.
-      */}
+    <header className="flex flex-col items-center pt-5 px-4 sm:px-6 fixed top-0 left-0 right-0 z-[9999] w-full transition-all duration-500 pointer-events-none gpu-layer">
       <nav
         className={`flex items-center justify-between py-3 px-4 sm:px-6 w-full max-w-[1080px] relative transition-all duration-500 ease-out rounded-2xl pointer-events-auto ${
           scrolled 
@@ -241,23 +230,17 @@ export default function Navbar() {
             : 'border border-[#e5e5e5] shadow-sm'
         }`}
       >
-        {/* 
-          Background Layer: Absolute sibling
-          This dynamically applies the blur only on scroll WITHOUT causing Safari clipping bugs on the nav content!
-        */}
         <div 
-          className={`absolute inset-0 rounded-2xl -z-10 pointer-events-none transition-all duration-500 ease-out ${
+          className={`absolute inset-0 rounded-2xl -z-10 pointer-events-none transition-all duration-500 ease-out gpu-accelerated ${
             scrolled ? 'bg-white/65 backdrop-blur-lg' : 'bg-white'
           }`} 
         />
 
-        {/* Logo */}
         <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5 z-10 no-underline transition-opacity hover:opacity-80">
           <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority />
           <span className="font-jakarta text-[15px] font-bold tracking-[-0.3px] text-[#111] whitespace-nowrap">Hala Technology</span>
         </Link>
 
-        {/* Desktop Nav (Hidden on Mobile) */}
         <div className="hidden md:flex md:flex-row md:items-center md:gap-4 w-full justify-end z-10">
           {renderNavLinks()}
           <div className="w-px h-8 bg-[#e0e0e0] mx-2" />
@@ -272,7 +255,6 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile Hamburger Button */}
         <div className="flex md:hidden z-10">
           <button
             type="button"
@@ -289,10 +271,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* 
-        Mobile Menu Dropdown
-        Rendered COMPLETELY OUTSIDE the nav container to absolutely guarantee no z-index or clipping bugs.
-      */}
       <div className={`md:hidden absolute top-[calc(100%+15px)] left-4 right-4 bg-white border border-[#e5e5e5] rounded-[18px] shadow-lg z-[9999] p-6 flex flex-col items-start gap-4 transition-all duration-300 ease-out origin-top pointer-events-auto ${menuOpen ? 'opacity-100 visible scale-100 translate-y-0' : 'opacity-0 invisible scale-95 -translate-y-2 pointer-events-none'}`}>
         {renderNavLinks(true)}
         <div className="w-full h-px bg-[#e0e0e0] my-1" />
@@ -310,3 +288,5 @@ export default function Navbar() {
     </header>
   );
 }
+
+export default memo(NavbarComponent);
