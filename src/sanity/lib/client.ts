@@ -9,3 +9,11 @@ export const client = createClient({
   useCdn,
   perspective: 'published',
 })
+
+export const writeClient = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false,
+  token: process.env.SANITY_API_WRITE_TOKEN,
+})
