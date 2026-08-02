@@ -1,33 +1,34 @@
 import { buildLegacyTheme } from 'sanity'
 
 export const monochromeTheme = buildLegacyTheme({
-  /* Color vars */
-  '--black': '#000000',
-  '--white': '#ffffff',
-  '--gray': '#777777',
-  '--gray-base': '#111111',
+  /* Base Theme Colors */
+  '--black': '#0F172A',
+  '--white': '#FFFFFF',
+  '--gray': '#64748B',
+  '--gray-base': '#1E293B',
 
-  '--component-bg': '#ffffff',
-  '--component-text-color': '#000000',
+  /* Component Backgrounds & Text */
+  '--component-bg': '#FFFFFF',
+  '--component-text-color': '#0F172A',
 
-  /* Brand */
-  '--brand-primary': '#000000',
+  /* Brand Primary Accents */
+  '--brand-primary': '#0F172A',
 
-  /* Default button */
-  '--default-button-color': '#000000',
-  '--default-button-primary-color': '#000000',
-  '--default-button-success-color': '#000000',
-  '--default-button-warning-color': '#000000',
-  '--default-button-danger-color': '#000000',
+  /* Default Button Styling */
+  '--default-button-color': '#475569',
+  '--default-button-primary-color': '#0F172A',
+  '--default-button-success-color': '#16A34A',
+  '--default-button-warning-color': '#D97706',
+  '--default-button-danger-color': '#DC2626',
 
-  /* State */
-  '--state-info-color': '#000000',
-  '--state-success-color': '#000000',
-  '--state-warning-color': '#000000',
-  '--state-danger-color': '#000000',
+  /* State Colors */
+  '--state-info-color': '#2563EB',
+  '--state-success-color': '#16A34A',
+  '--state-warning-color': '#D97706',
+  '--state-danger-color': '#DC2626',
 
-  /* Navbar */
-  '--main-navigation-color': '#000000',
-  '--main-navigation-color--inverted': '#ffffff',
-  '--focus-color': '#000000',
+  /* Navigation Bar */
+  '--main-navigation-color': '#0F172A',
+  '--main-navigation-color--inverted': '#FFFFFF',
+  '--focus-color': '#2563EB',
 })
