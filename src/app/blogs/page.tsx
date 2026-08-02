@@ -68,8 +68,8 @@ export default async function BlogsPage() {
             {posts?.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
                 {posts.map((post: any) => {
-                  const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
-                  const postHref = slug ? `/blogs/${slug}` : '/blogs';
+                  const rawSlug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
+                  const postHref = rawSlug ? `/blogs/${encodeURIComponent(rawSlug)}` : '/blogs';
                   return (
                     <Link href={postHref} key={post._id} className="group block h-full">
                     <div className="bg-white rounded-xl overflow-hidden border border-[#eaeaea] h-full flex flex-col">

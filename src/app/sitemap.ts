@@ -37,9 +37,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 2. Dynamic Blog Routes from Sanity
   let blogSitemap: MetadataRoute.Sitemap = [];
   try {
-    const posts = await client.fetch(`*[_type == "post" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`);
+    const posts = await client.fetch(`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))]{ "slug": slug.current, _updatedAt }`);
     blogSitemap = posts.map((post: any) => ({
-      url: `${baseUrl}/blogs/${post.slug}`,
+      url: `${baseUrl}/blogs/${encodeURIComponent(post.slug)}`,
       lastModified: new Date(post._updatedAt || now),
       changeFrequency: 'monthly' as const,
       priority: 0.7,

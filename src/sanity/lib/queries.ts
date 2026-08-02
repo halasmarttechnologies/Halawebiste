@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity'
 
-export const postsQuery = groq`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+export const postsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
   _id,
   title,
   "slug": slug.current,
@@ -10,7 +10,7 @@ export const postsQuery = groq`*[_type == "post" && defined(slug.current)] | ord
   "authorImage": author->image
 }`
 
-export const postQuery = groq`*[_type == "post" && slug.current == $slug][0] {
+export const postQuery = groq`*[_type == "post" && (slug.current == $slug || slug.current == $decodedSlug || slug == $slug || slug == $decodedSlug) && !(_id in path("drafts.**"))][0] {
   _id,
   title,
   "slug": slug.current,
@@ -22,11 +22,11 @@ export const postQuery = groq`*[_type == "post" && slug.current == $slug][0] {
   "categories": categories[]->title
 }`
 
-export const postPathsQuery = groq`*[_type == "post" && defined(slug.current)][]{
-  "params": { "slug": slug.current }
+export const postPathsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))]{
+  "slug": slug.current
 }`
 
-export const latestPostsQuery = groq`*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...3] {
+export const latestPostsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...3] {
   _id,
   title,
   "slug": slug.current,
@@ -36,7 +36,7 @@ export const latestPostsQuery = groq`*[_type == "post" && defined(slug.current)]
   "authorImage": author->image
 }`
 
-export const latestPostsByCategoryQuery = groq`*[_type == "post" && defined(slug.current) && $category in categories[]->title] | order(publishedAt desc)[0...3] {
+export const latestPostsByCategoryQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**")) && $category in categories[]->title] | order(publishedAt desc)[0...3] {
   _id,
   title,
   "slug": slug.current,
@@ -45,4 +45,5 @@ export const latestPostsByCategoryQuery = groq`*[_type == "post" && defined(slug
   "authorName": author->name,
   "authorImage": author->image
 }`
+
 

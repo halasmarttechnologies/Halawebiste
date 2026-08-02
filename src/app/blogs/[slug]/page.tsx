@@ -19,12 +19,16 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
   const posts = await client.fetch(postPathsQuery);
-  return posts;
+  return (posts || []).map((post: { slug: string }) => ({
+    slug: post.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const post = await client.fetch(postQuery, resolvedParams);
+  const rawSlug = resolvedParams.slug;
+  const decodedSlug = decodeURIComponent(rawSlug);
+  const post = await client.fetch(postQuery, { slug: rawSlug, decodedSlug });
   if (!post) {
     return { title: 'Post Not Found' };
   }
@@ -72,7 +76,9 @@ const ptComponents = {
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const post = await client.fetch(postQuery, resolvedParams);
+  const rawSlug = resolvedParams.slug;
+  const decodedSlug = decodeURIComponent(rawSlug);
+  const post = await client.fetch(postQuery, { slug: rawSlug, decodedSlug });
 
   if (!post) {
     notFound();
