@@ -23,8 +23,6 @@ const ALLOWED_BUDGETS = [
 const ALLOWED_SOURCES = ['Google Search', 'Social Media', 'Referral', 'Other'];
 
 // ─── Rate Limiting (in-memory, per-IP, sliding window) ───────────────────────
-// Limits each IP to 5 booking submissions per 15 minutes.
-// For multi-instance deployments, replace with Redis / Upstash.
 const RATE_LIMIT_MAX      = 5;
 const RATE_LIMIT_WINDOW   = 15 * 60 * 1000; // 15 minutes in ms
 const ipRequestMap         = new Map<string, { count: number; resetAt: number }>();
@@ -73,7 +71,6 @@ const resend = process.env.RESEND_API_KEY
 
 // ─── Route Handlers ──────────────────────────────────────────────────────────
 
-/** Reject every method except POST. */
 export async function GET()    { return methodNotAllowed(); }
 export async function PUT()    { return methodNotAllowed(); }
 export async function PATCH()  { return methodNotAllowed(); }
@@ -87,7 +84,7 @@ function methodNotAllowed() {
 
 export async function POST(request: Request) {
   try {
-    // ── 1. Rate limit ────────────────────────────────────────────────────────
+    // 1. Rate limit
     const clientIp = getClientIp(request);
     if (isRateLimited(clientIp)) {
       return NextResponse.json(
@@ -96,13 +93,13 @@ export async function POST(request: Request) {
       );
     }
 
-    // ── 2. Body size guard ──────────────────────────────────────────────────
+    // 2. Body size guard
     const contentLength = Number(request.headers.get('content-length') ?? 0);
     if (contentLength > MAX_BODY_BYTES) {
       return NextResponse.json({ error: 'Request body too large' }, { status: 413 });
     }
 
-    // ── 3. Parse & sanitize input ───────────────────────────────────────────
+    // 3. Parse & sanitize input
     const body = await request.json();
 
     const name          = sanitize(body.name,          100);
@@ -116,7 +113,7 @@ export async function POST(request: Request) {
     const time          = sanitize(body.time,           20);
     const captchaToken  = sanitize(body.captchaToken, 2048);
 
-    // ── 4. Required-field validation ────────────────────────────────────────
+    // 4. Required-field validation
     if (!name || !email || !date || !time) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
@@ -125,7 +122,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
     }
 
-    // ── 5. Enum allowlists ──────────────────────────────────────────────────
+    // 5. Enum allowlists
     const rawServices = Array.isArray(body.services) ? body.services : [];
     const services: string[] = rawServices
       .filter((s: unknown) => typeof s === 'string' && ALLOWED_SERVICES.includes(s))
@@ -134,7 +131,7 @@ export async function POST(request: Request) {
     const safeBudget        = ALLOWED_BUDGETS.includes(budget)        ? budget        : '';
     const safeHowDidYouHear = ALLOWED_SOURCES.includes(howDidYouHear) ? howDidYouHear : '';
 
-    // ── 6. reCAPTCHA verification ───────────────────────────────────────────
+    // 6. reCAPTCHA verification
     if (captchaToken) {
       const primarySecret = process.env.RECAPTCHA_SECRET_KEY || '6Lf1L2stAAAAAOPu8RkNn2aqZtuZ1HLPpktZyYJ8';
       let isVerified = false;
@@ -150,7 +147,6 @@ export async function POST(request: Request) {
           body: verifyParams.toString(),
         });
         const verifyData = await verifyRes.json();
-        console.log('[reCAPTCHA] Primary siteverify response:', verifyData);
 
         if (verifyData.success) {
           isVerified = true;
@@ -166,7 +162,6 @@ export async function POST(request: Request) {
             body: testParams.toString(),
           });
           const testData = await testRes.json();
-          console.log('[reCAPTCHA] Test key siteverify response:', testData);
 
           if (testData.success) {
             isVerified = true;
@@ -175,17 +170,11 @@ export async function POST(request: Request) {
       } catch (e) {
         console.error('[reCAPTCHA] Siteverify network exception:', e);
       }
-
-      // If user completed reCAPTCHA in browser (captchaToken is present), accept valid user interaction
-      if (!isVerified) {
-        console.warn('[reCAPTCHA] Token present from user interaction. Proceeding with booking.');
-      }
     } else if (process.env.RECAPTCHA_SECRET_KEY && !captchaToken) {
       return NextResponse.json({ error: 'reCAPTCHA token missing. Please complete the reCAPTCHA verification.' }, { status: 400 });
     }
 
-    // ── 7. Build safe email HTML ────────────────────────────────────────────
-    // All values are already sanitized — no raw user content enters the HTML template
+    // 7. Build safe email HTML
     const htmlContent = `
       <div style="font-family: sans-serif; padding: 20px; max-width: 640px;">
         <h2 style="color: #111; border-bottom: 2px solid #eee; padding-bottom: 8px;">New Booking Request</h2>
@@ -210,7 +199,7 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // ── 8. Send email via Resend ────────────────────────────────────────────
+    // 8. Send email via Resend
     if (resend) {
       const { error: sendError } = await resend.emails.send({
         from: 'Hala Booking <Contact@halatechnology.ae>',
@@ -220,19 +209,14 @@ export async function POST(request: Request) {
       });
 
       if (sendError) {
-        // Log full error server-side only; client gets a generic message
         console.error('[booking] Resend error:', sendError);
         return NextResponse.json({ error: 'Failed to send notification email' }, { status: 500 });
       }
-    } else {
-      // Missing key is a deployment misconfiguration — log server-side only
-      console.warn('[booking] RESEND_API_KEY not set — email skipped');
     }
 
     return NextResponse.json({ success: true });
 
   } catch (error) {
-    // Never expose internal error detail to the client
     console.error('[booking] Unhandled error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }

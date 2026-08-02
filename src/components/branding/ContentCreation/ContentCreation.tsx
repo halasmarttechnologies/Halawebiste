@@ -6,7 +6,7 @@ import ContentCreationServices from './ContentCreationServices';
 import ContentCreationWhyChoose from './ContentCreationWhyChoose';
 import CustomTestimonials from '../../Home/Testimonials';
 import ContentCreationFAQ from '../ContentCreationFAQ';
-import BrandingBlogs from '../BrandingBlogs';
+import LatestBlogsSection from '@/components/Blogs/LatestBlogsSection';
 import ContactCTA from '../../Home/ContactCTA/ContactCTA';
 
 export default function ContentCreation() {
@@ -124,7 +124,7 @@ export default function ContentCreation() {
       <ContactCTA contained={true} />
 
       {/* Blog Section */}
-      <BrandingBlogs />
+      <LatestBlogsSection />
 
     </div>
   );
