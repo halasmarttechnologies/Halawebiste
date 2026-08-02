@@ -51,8 +51,11 @@ export default async function LatestBlogsSection({
 
         {/* Blogs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {posts.map((post: any) => (
-            <Link href={`/blogs/${post.slug.current}`} key={post._id} className="group block h-full">
+          {posts.map((post: any) => {
+            const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
+            const postHref = slug ? `/blogs/${slug}` : '/blogs';
+            return (
+              <Link href={postHref} key={post._id} className="group block h-full">
               <div className="bg-white rounded-xl overflow-hidden border border-[#eaeaea] h-full flex flex-col">
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#f4f4f4]">
                   {post.mainImage ? (
@@ -114,7 +117,8 @@ export default async function LatestBlogsSection({
                 </div>
               </div>
             </Link>
-          ))}
+          );
+        })}
         </div>
 
       </div>

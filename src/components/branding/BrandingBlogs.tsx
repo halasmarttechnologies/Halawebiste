@@ -71,70 +71,74 @@ export default function BrandingBlogs({
 
         {/* Blogs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {posts.map((post: any) => (
-            <Link href={`/blogs/${post.slug?.current || post.slug}`} key={post._id} className="group block h-full">
-              <div className="bg-white rounded-xl overflow-hidden border border-[#eaeaea] h-full flex flex-col">
-                <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#f4f4f4]">
-                  {post.mainImage ? (
-                    <Image
-                      src={urlForImage(post.mainImage)?.url() as string}
-                      alt={post.title || 'Blog Post'}
-                      fill
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-[#888]">
-                      <span className="font-jakarta text-sm">No Image</span>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
-                </div>
-                
-                <div className="p-6 md:p-8 flex-grow flex flex-col">
-                  <h3 className="text-xl md:text-2xl font-jakarta font-semibold text-[#111111] mb-4 line-clamp-2 leading-tight">
-                    {post.title}
-                  </h3>
+          {posts.map((post: any) => {
+            const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
+            const postHref = slug ? `/blogs/${slug}` : '/blogs';
+            return (
+              <Link href={postHref} key={post._id} className="group block h-full">
+                <div className="bg-white rounded-xl overflow-hidden border border-[#eaeaea] h-full flex flex-col">
+                  <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#f4f4f4]">
+                    {post.mainImage ? (
+                      <Image
+                        src={urlForImage(post.mainImage)?.url() as string}
+                        alt={post.title || 'Blog Post'}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-[#888]">
+                        <span className="font-jakarta text-sm">No Image</span>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60" />
+                  </div>
                   
-                  <div className="mt-auto pt-6 flex flex-col gap-5">
-                    <div className="flex items-center justify-between border-b border-[#eaeaea] pb-5">
-                      <div className="flex items-center gap-3">
-                        {post.authorImage ? (
-                          <Image
-                            src={urlForImage(post.authorImage)?.width(40).height(40).url() as string}
-                            alt={post.authorName || 'Author'}
-                            width={32}
-                            height={32}
-                            className="rounded-full object-cover border border-[#eaeaea]"
-                          />
-                        ) : (
-                          <div className="w-8 h-8 rounded-full bg-[#f4f4f4] flex items-center justify-center border border-[#eaeaea]">
-                            <User className="w-4 h-4 text-[#888]" />
-                          </div>
-                        )}
-                        <span className="font-jakarta font-medium text-sm text-[#666666]">
-                          {post.authorName || 'Hala Team'}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5 text-[#888888]">
-                        <Calendar className="w-3.5 h-3.5" />
-                        <span className="font-jakarta text-xs font-medium">
-                          {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric',
-                          }) : ''}
-                        </span>
-                      </div>
-                    </div>
+                  <div className="p-6 md:p-8 flex-grow flex flex-col">
+                    <h3 className="text-xl md:text-2xl font-jakarta font-semibold text-[#111111] mb-4 line-clamp-2 leading-tight">
+                      {post.title}
+                    </h3>
                     
-                    <div className="flex items-center gap-2 text-[#007FFF] font-jakarta text-sm font-semibold group-hover:gap-3 transition-all duration-300">
-                      View full article <ArrowRight className="w-4 h-4" />
+                    <div className="mt-auto pt-6 flex flex-col gap-5">
+                      <div className="flex items-center justify-between border-b border-[#eaeaea] pb-5">
+                        <div className="flex items-center gap-3">
+                          {post.authorImage ? (
+                            <Image
+                              src={urlForImage(post.authorImage)?.width(40).height(40).url() as string}
+                              alt={post.authorName || 'Author'}
+                              width={32}
+                              height={32}
+                              className="rounded-full object-cover border border-[#eaeaea]"
+                            />
+                          ) : (
+                            <div className="w-8 h-8 rounded-full bg-[#f4f4f4] flex items-center justify-center border border-[#eaeaea]">
+                              <User className="w-4 h-4 text-[#888]" />
+                            </div>
+                          )}
+                          <span className="font-jakarta font-medium text-sm text-[#666666]">
+                            {post.authorName || 'Hala Team'}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[#888888]">
+                          <Calendar className="w-3.5 h-3.5" />
+                          <span className="font-jakarta text-xs font-medium">
+                            {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric',
+                            }) : ''}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-2 text-[#007FFF] font-jakarta text-sm font-semibold group-hover:gap-3 transition-all duration-300">
+                        View full article <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
       </div>
