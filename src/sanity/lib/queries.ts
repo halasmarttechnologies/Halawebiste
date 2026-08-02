@@ -1,11 +1,12 @@
 import { groq } from 'next-sanity'
 
-export const postsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+export const postsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(coalesce(publishedAt, _createdAt) desc) {
   _id,
   title,
   "slug": slug.current,
   mainImage,
   publishedAt,
+  _createdAt,
   "authorName": author->name,
   "authorImage": author->image
 }`
@@ -17,6 +18,7 @@ export const postQuery = groq`*[_type == "post" && (slug.current == $slug || slu
   mainImage,
   body,
   publishedAt,
+  _createdAt,
   "authorName": author->name,
   "authorImage": author->image,
   "categories": categories[]->title
@@ -26,24 +28,24 @@ export const postPathsQuery = groq`*[_type == "post" && defined(slug.current) &&
   "slug": slug.current
 }`
 
-export const latestPostsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(publishedAt desc)[0...3] {
+export const latestPostsQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**"))] | order(coalesce(publishedAt, _createdAt) desc)[0...3] {
   _id,
   title,
   "slug": slug.current,
   mainImage,
   publishedAt,
+  _createdAt,
   "authorName": author->name,
   "authorImage": author->image
 }`
 
-export const latestPostsByCategoryQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**")) && $category in categories[]->title] | order(publishedAt desc)[0...3] {
+export const latestPostsByCategoryQuery = groq`*[_type == "post" && defined(slug.current) && !(_id in path("drafts.**")) && $category in categories[]->title] | order(coalesce(publishedAt, _createdAt) desc)[0...3] {
   _id,
   title,
   "slug": slug.current,
   mainImage,
   publishedAt,
+  _createdAt,
   "authorName": author->name,
   "authorImage": author->image
 }`
-
-

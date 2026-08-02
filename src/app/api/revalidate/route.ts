@@ -19,22 +19,17 @@ export async function POST(req: NextRequest) {
       return new Response({ message, body } as any, { status: 400 })
     }
 
-    // If the `SANITY_REVALIDATE_SECRET` is not set, anyone can revalidate the cache
-    if (!process.env.SANITY_REVALIDATE_SECRET) {
-      console.warn('SANITY_REVALIDATE_SECRET not set. Revalidation endpoint is unauthenticated.')
-    }
+    // Revalidate main website layout & home page
+    revalidatePath('/', 'layout')
 
-    // Revalidate the main blog listing
-    revalidatePath('/blogs')
-
-    // If there is a slug, revalidate the specific post
+    // Revalidate specific blog page if slug provided
     if (body.slug) {
       revalidatePath(`/blogs/${body.slug}`)
     }
 
-    return NextResponse.json({ body })
+    return NextResponse.json({ success: true, body })
   } catch (err: any) {
-    console.error(err)
+    console.error('Revalidation error:', err)
     return new Response(err.message, { status: 500 })
   }
 }
