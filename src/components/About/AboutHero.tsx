@@ -12,13 +12,10 @@ export default function AboutHero() {
 
       {/* Main Content */}
       <div className="text-center px-4 max-w-4xl mx-auto z-10 mb-12 md:mb-16">
-        <h1 className="font-jakarta font-semibold text-5xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.05] tracking-tight mb-6 md:mb-8">
+        <h1 className="font-jakarta font-semibold text-5xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.05] tracking-tight">
           <span className="font-jakarta font-bold text-[#111111]">Your Trusted</span><br />
           <span>Digital Partner</span>
         </h1>
-        <p className="font-jakarta font-medium text-[#555555] text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Hala Technology helps businesses grow through SEO, web development, branding, and digital marketing. We combine creativity and technology to deliver innovative solutions that boost visibility, engagement, and long-term growth.
-        </p>
       </div>
 
       {/* Logo Marquee */}
