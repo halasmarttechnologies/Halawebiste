@@ -8,10 +8,10 @@ const companyLogos = Array.from({ length: 18 }, (_, i) => ({
 
 export default function AboutHero() {
   return (
-    <section className="bg-white text-[#111111] w-full min-h-[90vh] py-20 relative overflow-hidden flex flex-col items-center justify-center pt-[100px]">
+    <section className="bg-white text-[#111111] w-full min-h-[90vh] py-20 relative overflow-hidden flex flex-col items-center justify-center pt-[150px] sm:pt-[180px] md:pt-[220px]">
 
       {/* Main Content */}
-      <div className="text-center px-4 max-w-4xl mx-auto z-10 mb-12 md:mb-16">
+      <div className="text-center px-4 max-w-4xl mx-auto z-10 mt-8 sm:mt-12 md:mt-16 mb-16 md:mb-24">
         <h1 className="font-jakarta font-semibold text-5xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[1.05] tracking-tight mb-6 md:mb-8">
           <span className="font-jakarta font-bold text-[#111111]">Your Trusted</span><br />
           <span>Digital Partner</span>
