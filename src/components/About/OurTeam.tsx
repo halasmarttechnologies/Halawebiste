@@ -36,17 +36,17 @@ const teamMembers = [
   },
   {
     id: 5,
-    name: 'Chaman Shafique',
-    role: 'Content Writer',
-    category: 'Creative',
-    image: '/team-pics/chaman shafiq.png',
-  },
-  {
-    id: 6,
     name: 'Abdur Rafay',
     role: 'Video Editor',
     category: 'Creative',
     image: '/team-pics/rafay.png',
+  },
+  {
+    id: 6,
+    name: 'Chaman Shafique',
+    role: 'Content Writer',
+    category: 'Creative',
+    image: '/team-pics/chaman shafiq.png',
   },
   {
     id: 7,
@@ -76,21 +76,21 @@ export default function OurTeam() {
   };
 
   return (
-    <section className="bg-[#050716] w-full py-16 md:py-24 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none">
+    <section className="bg-white w-full py-16 md:py-24 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none">
       {/* Background ambient lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(30,58,138,0.25),rgba(255,255,255,0))] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.08),rgba(255,255,255,0))] pointer-events-none" />
 
       <div className="max-w-[1400px] w-full mx-auto flex flex-col items-center relative z-10">
         
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 w-full max-w-3xl">
-          <span className="font-jakarta text-[#5e7bf4] uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
+          <span className="font-jakarta text-[#2563eb] uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
             Our World-Class Team
           </span>
-          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-white mb-5">
-            Meet the minds behind <span className="text-[#5e7bf4]">the vision</span>
+          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-[#171a22] mb-5">
+            Meet the minds behind <span className="text-[#2563eb]">the vision</span>
           </h2>
-          <p className="font-jakarta text-gray-400 text-base md:text-lg font-normal px-4 max-w-2xl mx-auto">
+          <p className="font-jakarta text-gray-600 text-base md:text-lg font-normal px-4 max-w-2xl mx-auto">
             A collective of innovative thinkers, creators, and builders pushing the boundaries of digital technology.
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function OurTeam() {
           <button
             onClick={() => handleScroll('left')}
             aria-label="Scroll left"
-            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/15 bg-[#0e1327]/85 hover:bg-[#1b2245] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_8px_25px_rgba(0,0,0,0.6)] cursor-pointer hover:scale-105 active:scale-95"
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_4px_15px_rgba(0,0,0,0.12)] cursor-pointer hover:scale-105 active:scale-95"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
@@ -111,7 +111,7 @@ export default function OurTeam() {
           <button
             onClick={() => handleScroll('right')}
             aria-label="Scroll right"
-            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/15 bg-[#0e1327]/85 hover:bg-[#1b2245] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_8px_25px_rgba(0,0,0,0.6)] cursor-pointer hover:scale-105 active:scale-95"
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_4px_15px_rgba(0,0,0,0.12)] cursor-pointer hover:scale-105 active:scale-95"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
