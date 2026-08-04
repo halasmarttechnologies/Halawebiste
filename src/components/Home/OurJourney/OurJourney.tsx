@@ -32,41 +32,37 @@ export default function OurJourney() {
 
     return (
       <div className="flex w-full overflow-hidden relative group">
-        <div className={`flex items-center ${animationClass} whitespace-nowrap min-w-max shrink-0 group-hover:[animation-play-state:paused]`}>
+        <div className={`flex items-center ${animationClass} [animation-duration:18s] whitespace-nowrap min-w-max shrink-0 group-hover:[animation-play-state:paused]`}>
           {items.map((logo, index) => (
             <div
               key={`track1-${index}`}
-              className="flex items-center justify-center px-8 md:px-12 py-4 transition-all duration-300 group/item cursor-pointer"
+              className="flex items-center justify-center px-8 md:px-14 py-2 transition-transform duration-300 hover:scale-105 cursor-pointer"
             >
-              <div className="relative w-36 sm:w-44 md:w-48 h-16 sm:h-20 md:h-24 flex items-center justify-center p-2 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={180}
-                  height={80}
-                  className="max-h-12 sm:max-h-14 md:max-h-16 w-auto object-contain transition-all duration-300 grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 group-hover/item:scale-105"
-                />
-              </div>
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={180}
+                height={80}
+                className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain"
+              />
             </div>
           ))}
         </div>
 
         {/* Duplicate Track for Smooth Infinity Loop */}
-        <div className={`flex items-center ${animationClass} whitespace-nowrap min-w-max shrink-0 group-hover:[animation-play-state:paused]`} aria-hidden="true">
+        <div className={`flex items-center ${animationClass} [animation-duration:18s] whitespace-nowrap min-w-max shrink-0 group-hover:[animation-play-state:paused]`} aria-hidden="true">
           {items.map((logo, index) => (
             <div
               key={`track2-${index}`}
-              className="flex items-center justify-center px-8 md:px-12 py-4 transition-all duration-300 group/item cursor-pointer"
+              className="flex items-center justify-center px-8 md:px-14 py-2 transition-transform duration-300 hover:scale-105 cursor-pointer"
             >
-              <div className="relative w-36 sm:w-44 md:w-48 h-16 sm:h-20 md:h-24 flex items-center justify-center p-2 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={180}
-                  height={80}
-                  className="max-h-12 sm:max-h-14 md:max-h-16 w-auto object-contain transition-all duration-300 grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 group-hover/item:scale-105"
-                />
-              </div>
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={180}
+                height={80}
+                className="max-h-12 sm:max-h-16 md:max-h-20 w-auto object-contain"
+              />
             </div>
           ))}
         </div>
@@ -87,12 +83,9 @@ export default function OurJourney() {
 
         {/* 2-Row Marquee Container */}
         <div className="w-full relative overflow-hidden flex flex-col py-4">
-          {/* Subtle gradient masks for smooth fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           {/* Row 1 */}
-          <div className="mb-6 md:mb-8">
+          <div className="mb-8 md:mb-12">
             {renderMarqueeTrack(row1Logos, 'reverse')}
           </div>
 
