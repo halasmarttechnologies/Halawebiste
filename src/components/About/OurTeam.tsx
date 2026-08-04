@@ -77,18 +77,15 @@ export default function OurTeam() {
 
   return (
     <section className="bg-white w-full py-16 md:py-24 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none">
-      {/* Background ambient lighting */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(59,130,246,0.08),rgba(255,255,255,0))] pointer-events-none" />
-
       <div className="max-w-[1400px] w-full mx-auto flex flex-col items-center relative z-10">
         
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 w-full max-w-3xl">
-          <span className="font-jakarta text-[#2563eb] uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
+          <span className="font-jakarta text-black uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
             Our World-Class Team
           </span>
-          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-[#171a22] mb-5">
-            Meet the minds behind <span className="text-[#2563eb]">the vision</span>
+          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-black mb-5">
+            Meet the minds behind the vision
           </h2>
           <p className="font-jakarta text-gray-600 text-base md:text-lg font-normal px-4 max-w-2xl mx-auto">
             A collective of innovative thinkers, creators, and builders pushing the boundaries of digital technology.
@@ -102,7 +99,7 @@ export default function OurTeam() {
           <button
             onClick={() => handleScroll('left')}
             aria-label="Scroll left"
-            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_4px_15px_rgba(0,0,0,0.12)] cursor-pointer hover:scale-105 active:scale-95"
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 shadow-none cursor-pointer hover:scale-105 active:scale-95"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
@@ -111,7 +108,7 @@ export default function OurTeam() {
           <button
             onClick={() => handleScroll('right')}
             aria-label="Scroll right"
-            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white/90 hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_4px_15px_rgba(0,0,0,0.12)] cursor-pointer hover:scale-105 active:scale-95"
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 shadow-none cursor-pointer hover:scale-105 active:scale-95"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
@@ -127,7 +124,7 @@ export default function OurTeam() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="shrink-0 snap-start w-[260px] sm:w-[290px] md:w-[310px] lg:w-[calc(25%-18px)] h-[400px] sm:h-[450px] md:h-[480px] rounded-[24px] sm:rounded-[28px] overflow-hidden relative group/card border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.4)] transition-all duration-500 hover:scale-[1.02] hover:border-white/20 hover:shadow-[0_20px_40px_rgba(27,38,94,0.4)] bg-gradient-to-b from-[#1c2459] via-[#0f1437] to-[#07091f]"
+                className="shrink-0 snap-start w-[260px] sm:w-[290px] md:w-[310px] lg:w-[calc(25%-18px)] h-[400px] sm:h-[450px] md:h-[480px] rounded-[24px] sm:rounded-[28px] overflow-hidden relative group/card border border-gray-200 transition-all duration-500 hover:scale-[1.02] bg-gradient-to-b from-[#1c2459] via-[#0f1437] to-[#07091f] shadow-none"
               >
                 {/* Inner radial blue glow behind headshot */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(99,102,241,0.25),transparent_70%)] pointer-events-none" />
