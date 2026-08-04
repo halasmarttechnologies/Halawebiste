@@ -79,7 +79,7 @@ function HeroSectionComponent() {
             if (e.target === e.currentTarget) closeModal();
           }}
         >
-          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto rounded-[24px] sm:rounded-[32px] border border-[#222222]">
+          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
             <button
               type="button"
               onClick={closeModal}

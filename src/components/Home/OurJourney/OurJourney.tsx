@@ -10,10 +10,10 @@ const logosRow1 = [
   { id: 7, src: '/Companies Logos/7.png', alt: 'Company Logo 7' },
   { id: 8, src: '/Companies Logos/8.png', alt: 'Company Logo 8' },
   { id: 9, src: '/Companies Logos/9.png', alt: 'Company Logo 9' },
+  { id: 10, src: '/Companies Logos/10.png', alt: 'Company Logo 10' },
 ];
 
 const logosRow2 = [
-  { id: 10, src: '/Companies Logos/10.png', alt: 'Company Logo 10' },
   { id: 11, src: '/Companies Logos/11.png', alt: 'Company Logo 11' },
   { id: 12, src: '/Companies Logos/12.png', alt: 'Company Logo 12' },
   { id: 13, src: '/Companies Logos/13.png', alt: 'Company Logo 13' },
@@ -22,6 +22,8 @@ const logosRow2 = [
   { id: 16, src: '/Companies Logos/16.png', alt: 'Company Logo 16' },
   { id: 17, src: '/Companies Logos/17.png', alt: 'Company Logo 17' },
   { id: 18, src: '/Companies Logos/18.png', alt: 'Company Logo 18' },
+  { id: 19, src: '/Companies Logos/19.png', alt: 'Company Logo 19' },
+  { id: 20, src: '/Companies Logos/20.png', alt: 'Company Logo 20' },
 ];
 
 // Repeat 4 times to ensure seamless infinite looping on all screen sizes without gaps
