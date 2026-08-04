@@ -1,80 +1,74 @@
 'use client';
 
-import { 
-  Hexagon, Triangle, Box, Command, 
-  Aperture, Activity, Globe, Layers,
-  Cloud, Zap, Shield, Compass
-} from 'lucide-react';
+import Image from 'next/image';
 
 const row1Logos = [
-  { name: 'MIDAD', industry: 'Holding Group', icon: Hexagon },
-  { name: 'ALHAMRANI', industry: 'Universal Company', icon: Triangle },
-  { name: 'Allianz', industry: 'Insurance', icon: Shield },
-  { name: 'al-daawa', industry: 'Pharmacy', icon: Box },
-  { name: 'alkhorayef', industry: 'Petroleum Services', icon: Activity },
-  { name: 'tamimi', industry: 'Markets', icon: Layers },
+  { id: 1, src: '/Companies Logos/1.png', alt: 'Company Logo 1' },
+  { id: 2, src: '/Companies Logos/2.png', alt: 'Company Logo 2' },
+  { id: 3, src: '/Companies Logos/3.png', alt: 'Company Logo 3' },
+  { id: 4, src: '/Companies Logos/4.png', alt: 'Company Logo 4' },
+  { id: 5, src: '/Companies Logos/5.png', alt: 'Company Logo 5' },
+  { id: 6, src: '/Companies Logos/6.png', alt: 'Company Logo 6' },
+  { id: 7, src: '/Companies Logos/7.png', alt: 'Company Logo 7' },
+  { id: 8, src: '/Companies Logos/8.png', alt: 'Company Logo 8' },
+  { id: 9, src: '/Companies Logos/9.png', alt: 'Company Logo 9' },
 ];
 
 const row2Logos = [
-  { name: 'FMCD', industry: 'Supply Chain', icon: Command },
-  { name: 'dmg events', industry: 'Global Events', icon: Aperture },
-  { name: 'zimmo', industry: 'Real Estate', icon: Globe },
-  { name: 'al-kifah', industry: 'Holding', icon: Cloud },
-  { name: 'petro min', industry: 'Energy', icon: Zap },
-  { name: 'sahara', industry: 'Logistics', icon: Compass },
+  { id: 10, src: '/Companies Logos/10.png', alt: 'Company Logo 10' },
+  { id: 11, src: '/Companies Logos/11.png', alt: 'Company Logo 11' },
+  { id: 12, src: '/Companies Logos/12.png', alt: 'Company Logo 12' },
+  { id: 13, src: '/Companies Logos/13.png', alt: 'Company Logo 13' },
+  { id: 14, src: '/Companies Logos/14.png', alt: 'Company Logo 14' },
+  { id: 15, src: '/Companies Logos/15.png', alt: 'Company Logo 15' },
+  { id: 16, src: '/Companies Logos/16.png', alt: 'Company Logo 16' },
+  { id: 17, src: '/Companies Logos/17.png', alt: 'Company Logo 17' },
+  { id: 18, src: '/Companies Logos/18.png', alt: 'Company Logo 18' },
 ];
 
 export default function OurJourney() {
-
-
   const renderMarqueeTrack = (items: typeof row1Logos, direction: 'forward' | 'reverse') => {
     const animationClass = direction === 'forward' ? 'animate-marquee' : 'animate-marquee-reverse';
-    
+
     return (
       <div className="flex w-full overflow-hidden relative group">
         <div className={`flex items-center ${animationClass} whitespace-nowrap min-w-max shrink-0 group-hover:[animation-play-state:paused]`}>
-          {items.map((logo, index) => {
-            const Icon = logo.icon;
-            return (
-              <div
-                key={`track1-${index}`}
-                className="flex flex-col items-center justify-center px-10 md:px-14 py-4 transition-all duration-300 group/item cursor-pointer"
-              >
-                <div className="flex items-center gap-3 text-[#111111]/60 group-hover/item:text-[#007FFF] transition-colors duration-300">
-                  <Icon className="w-6 h-6 md:w-7 md:h-7 stroke-[1.8]" />
-                  <span className="font-jakarta text-xl md:text-2xl font-bold tracking-tight uppercase">
-                    {logo.name}
-                  </span>
-                </div>
-                <span className="text-[10px] md:text-[11px] font-semibold text-[#888888] tracking-widest uppercase mt-1">
-                  {logo.industry}
-                </span>
+          {items.map((logo, index) => (
+            <div
+              key={`track1-${index}`}
+              className="flex items-center justify-center px-8 md:px-12 py-4 transition-all duration-300 group/item cursor-pointer"
+            >
+              <div className="relative w-36 sm:w-44 md:w-48 h-16 sm:h-20 md:h-24 flex items-center justify-center p-2 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={180}
+                  height={80}
+                  className="max-h-12 sm:max-h-14 md:max-h-16 w-auto object-contain transition-all duration-300 grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 group-hover/item:scale-105"
+                />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Duplicate Track for Smooth Infinity Loop */}
         <div className={`flex items-center ${animationClass} whitespace-nowrap min-w-max shrink-0 group-hover:[animation-play-state:paused]`} aria-hidden="true">
-          {items.map((logo, index) => {
-            const Icon = logo.icon;
-            return (
-              <div
-                key={`track2-${index}`}
-                className="flex flex-col items-center justify-center px-10 md:px-14 py-4 transition-all duration-300 group/item cursor-pointer"
-              >
-                <div className="flex items-center gap-3 text-[#111111]/60 group-hover/item:text-[#007FFF] transition-colors duration-300">
-                  <Icon className="w-6 h-6 md:w-7 md:h-7 stroke-[1.8]" />
-                  <span className="font-jakarta text-xl md:text-2xl font-bold tracking-tight uppercase">
-                    {logo.name}
-                  </span>
-                </div>
-                <span className="text-[10px] md:text-[11px] font-semibold text-[#888888] tracking-widest uppercase mt-1">
-                  {logo.industry}
-                </span>
+          {items.map((logo, index) => (
+            <div
+              key={`track2-${index}`}
+              className="flex items-center justify-center px-8 md:px-12 py-4 transition-all duration-300 group/item cursor-pointer"
+            >
+              <div className="relative w-36 sm:w-44 md:w-48 h-16 sm:h-20 md:h-24 flex items-center justify-center p-2 rounded-xl bg-white/50 backdrop-blur-sm border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={180}
+                  height={80}
+                  className="max-h-12 sm:max-h-14 md:max-h-16 w-auto object-contain transition-all duration-300 grayscale opacity-70 group-hover/item:grayscale-0 group-hover/item:opacity-100 group-hover/item:scale-105"
+                />
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -93,6 +87,9 @@ export default function OurJourney() {
 
         {/* 2-Row Marquee Container */}
         <div className="w-full relative overflow-hidden flex flex-col py-4">
+          {/* Subtle gradient masks for smooth fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
           {/* Row 1 */}
           <div className="mb-6 md:mb-8">
