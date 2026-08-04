@@ -23,8 +23,8 @@ export default function AboutHero() {
 
       {/* Logo Marquee */}
       <div className="w-full relative flex flex-col items-center justify-center">
-        <p className="font-jakarta text-sm md:text-base text-[#555555] mb-8">
-          Trusted by teams who put security first:
+        <p className="font-jakarta text-sm md:text-base text-[#555555] mb-8 font-medium">
+          Companies We Work With:
         </p>
 
         <div className="w-full relative flex items-center overflow-hidden">
