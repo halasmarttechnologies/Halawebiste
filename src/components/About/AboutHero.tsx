@@ -70,10 +70,6 @@ export default function AboutHero() {
 
   return (
     <section className="bg-white text-black w-full pt-[130px] sm:pt-[150px] pb-20 md:pb-28 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none border-b border-gray-100">
-      
-      {/* Background Interactive Micro-Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
-
       <div className="max-w-[1340px] w-full mx-auto flex flex-col items-center relative z-10">
         
         {/* Top Agency Status Pill */}
