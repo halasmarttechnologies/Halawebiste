@@ -1,142 +1,175 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const teamMembers = [
   {
-    id: 5,
-    name: 'Taimoor Ali Warraich',
-    role: 'Co-Founder',
-    category: 'Management',
-    image: '/team-pics/Ceo.jpg',
-  },
-  {
     id: 1,
-    name: 'Saif Ali',
-    role: 'UI/UX & Web Developer',
-    category: 'Development',
-    image: '/team-pics/Ui Ux & Web devloepr.jpg',
+    name: 'Taimoor Ali Warraich',
+    role: 'Co-Founder & CEO',
+    category: 'Management',
+    image: '/team-pics/taimooe ali warcih.png',
   },
   {
     id: 2,
-    name: 'Rimza Habib',
-    role: 'SEO Manager',
-    category: 'Marketing',
-    image: '/team-pics/Seo manager.jpg',
-  },
-  {
-    id: 6,
-    name: 'Hasnain Akbar',
-    role: 'SEO Expert',
-    category: 'Marketing',
-    image: '/team-pics/seo expert.jpg',
+    name: 'Saif Ali',
+    role: 'UI/UX & Web Developer',
+    category: 'Development',
+    image: '/team-pics/saif ali.png',
   },
   {
     id: 3,
-    name: 'Chaman shafique',
-    role: 'Content Writer',
-    category: 'Creative',
-    image: '/team-pics/Contetn writer.jpg',
+    name: 'Rimza Habib',
+    role: 'SEO Manager',
+    category: 'Marketing',
+    image: '/team-pics/rimza habib.png',
   },
   {
     id: 4,
+    name: 'Hasnain Akbar',
+    role: 'SEO Expert',
+    category: 'Marketing',
+    image: '/team-pics/husnaain.png',
+  },
+  {
+    id: 5,
+    name: 'Chaman Shafique',
+    role: 'Content Writer',
+    category: 'Creative',
+    image: '/team-pics/chaman shafiq.png',
+  },
+  {
+    id: 6,
     name: 'Abdur Rafay',
     role: 'Video Editor',
     category: 'Creative',
-    image: '/team-pics/videoeditor.jpg',
+    image: '/team-pics/rafay.png',
+  },
+  {
+    id: 7,
+    name: 'Syeda Masoom Zahra',
+    role: 'Graphic Design Intern',
+    category: 'Creative',
+    image: '/team-pics/syeda masoom zahra.png',
   },
 ];
 
-const categories = ['View all', 'Management', 'Development', 'Marketing', 'Creative'];
-
 export default function OurTeam() {
-  const [activeCategory, setActiveCategory] = useState('View all');
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
-  const filteredTeam = teamMembers.filter(member => 
-    activeCategory === 'View all' ? true : member.category === activeCategory
-  );
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = scrollRef.current.clientWidth * 0.75;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handleImageError = (id: number) => {
+    setImageErrors((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
-    <section className="bg-white w-full pt-8 md:pt-12 pb-20 px-4 sm:px-6 md:px-8 lg:px-12 flex justify-center overflow-hidden">
-      <div className="max-w-[1000px] w-full flex flex-col items-center">
+    <section className="bg-[#050716] w-full py-16 md:py-24 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none">
+      {/* Background ambient lighting */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(30,58,138,0.25),rgba(255,255,255,0))] pointer-events-none" />
+
+      <div className="max-w-[1400px] w-full mx-auto flex flex-col items-center relative z-10">
         
         {/* Header */}
-        <div className="text-center mb-10 w-full max-w-3xl">
-          <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-medium leading-[1.05] tracking-tight text-[#111111] mb-6">
-            Meet the team that makes<br />
-            the <span className="font-jakarta font-bold text-[#111111]">magic</span> happen
+        <div className="text-center mb-12 md:mb-16 w-full max-w-3xl">
+          <span className="font-jakarta text-[#5e7bf4] uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
+            Our World-Class Team
+          </span>
+          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-white mb-5">
+            Meet the minds behind <span className="text-[#5e7bf4]">the vision</span>
           </h2>
-          <p className="font-jakarta text-[#666666] text-base md:text-lg font-medium px-4">
-            Meet our diverse team of world-class creators, developers, and problem solvers.
+          <p className="font-jakarta text-gray-400 text-base md:text-lg font-normal px-4 max-w-2xl mx-auto">
+            A collective of innovative thinkers, creators, and builders pushing the boundaries of digital technology.
           </p>
         </div>
 
-        {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12 md:mb-16">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-4 md:px-6 py-2 rounded-full text-[13px] md:text-[14px] font-semibold transition-all duration-300 border ${
-                activeCategory === category
-                  ? 'bg-white border-[#E5E5E5] text-[#111111] shadow-[0_4px_12px_rgba(0,0,0,0.05)]'
-                  : 'bg-transparent border-transparent text-[#777777] hover:text-[#111111] hover:bg-[#F9FAFB]'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        {/* Carousel Container */}
+        <div className="relative w-full flex items-center group">
+          
+          {/* Navigation Arrow Left */}
+          <button
+            onClick={() => handleScroll('left')}
+            aria-label="Scroll left"
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/15 bg-[#0e1327]/85 hover:bg-[#1b2245] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_8px_25px_rgba(0,0,0,0.6)] cursor-pointer hover:scale-105 active:scale-95"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
 
-        {/* Cards Container */}
-        <motion.div 
-          layout
-          className="flex flex-wrap justify-center gap-6 w-full"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredTeam.map((member) => (
+          {/* Navigation Arrow Right */}
+          <button
+            onClick={() => handleScroll('right')}
+            aria-label="Scroll right"
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/15 bg-[#0e1327]/85 hover:bg-[#1b2245] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 backdrop-blur-md shadow-[0_8px_25px_rgba(0,0,0,0.6)] cursor-pointer hover:scale-105 active:scale-95"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+
+          {/* Cards Track */}
+          <div
+            ref={scrollRef}
+            className="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory w-full py-4 px-1"
+          >
+            {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] relative aspect-square rounded-[24px] overflow-hidden group cursor-pointer border border-[#E5E5E5] bg-[#F9FAFB] shadow-[0_8px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-500"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="shrink-0 snap-start w-[260px] sm:w-[290px] md:w-[310px] lg:w-[calc(25%-18px)] h-[400px] sm:h-[450px] md:h-[480px] rounded-[24px] sm:rounded-[28px] overflow-hidden relative group/card border border-white/10 shadow-[0_12px_30px_rgba(0,0,0,0.4)] transition-all duration-500 hover:scale-[1.02] hover:border-white/20 hover:shadow-[0_20px_40px_rgba(27,38,94,0.4)] bg-gradient-to-b from-[#1c2459] via-[#0f1437] to-[#07091f]"
               >
-                {/* Image */}
+                {/* Inner radial blue glow behind headshot */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(99,102,241,0.25),transparent_70%)] pointer-events-none" />
+
+                {/* Portrait Image */}
                 <div className="absolute inset-0 w-full h-full">
-                  {member.image.includes('placeholder') ? (
-                    <div className="w-full h-full flex items-center justify-center text-[#999] font-jakarta text-xs tracking-widest uppercase">
-                      Image {member.id}
-                    </div>
-                  ) : (
-                    <Image 
-                      src={member.image} 
-                      alt={member.name} 
-                      fill 
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  {!imageErrors[member.id] ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 640px) 260px, (max-width: 1024px) 310px, 360px"
+                      quality={90}
+                      onError={() => handleImageError(member.id)}
+                      className="object-cover object-top transition-transform duration-700 group-hover/card:scale-105"
                     />
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#0f1437]">
+                      <div className="w-20 h-20 rounded-full bg-[#1c2459] flex items-center justify-center text-white text-2xl font-bold mb-3 border border-white/10">
+                        {member.name.charAt(0)}
+                      </div>
+                    </div>
                   )}
                 </div>
 
-                {/* Info Panel */}
-                <div className="absolute bottom-4 left-0 right-0 w-[85%] mx-auto">
-                  <div className="bg-white/95 backdrop-blur-md rounded-[16px] py-3 px-4 flex flex-col items-center justify-center text-center shadow-sm border border-white/50">
-                    <h3 className="font-jakarta font-bold text-[#111111] text-[14px] md:text-[15px] leading-tight mb-0.5">
-                      {member.name}
-                    </h3>
-                    <p className="font-jakarta text-[#666666] text-[11px] md:text-[12px] font-medium">
-                      {member.role}
-                    </p>
-                  </div>
+                {/* Bottom dark gradient overlay for text readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07091f] via-[#07091f]/55 to-transparent z-10 pointer-events-none" />
+
+                {/* Info Text Box (Bottom-Left) */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-7 z-20 flex flex-col justify-end text-left">
+                  <h3 className="font-jakarta font-bold text-white text-xl sm:text-[22px] tracking-tight leading-snug mb-1 drop-shadow-md">
+                    {member.name}
+                  </h3>
+                  <p className="font-jakarta font-medium text-[#5c7ceb] text-xs sm:text-[13.5px] tracking-wide drop-shadow-sm">
+                    {member.role}
+                  </p>
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </div>
+
+        </div>
 
       </div>
     </section>

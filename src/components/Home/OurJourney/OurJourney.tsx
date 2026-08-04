@@ -44,13 +44,13 @@ export default function OurJourney() {
         .animate-scroll-right {
           display: flex;
           width: max-content;
-          animation: marquee-to-right 22s linear infinite;
+          animation: marquee-to-right 70s linear infinite;
           will-change: transform;
         }
         .animate-scroll-left {
           display: flex;
           width: max-content;
-          animation: marquee-to-left 22s linear infinite;
+          animation: marquee-to-left 70s linear infinite;
           will-change: transform;
         }
         .marquee-wrapper:hover .animate-scroll-right,
