@@ -55,10 +55,6 @@ export default function OurJourney() {
           animation: marquee-to-left 70s linear infinite;
           will-change: transform;
         }
-        .marquee-wrapper:hover .animate-scroll-right,
-        .marquee-wrapper:hover .animate-scroll-left {
-          animation-play-state: paused;
-        }
       `}</style>
 
       <div className="max-w-[1400px] w-full mx-auto flex flex-col items-center">
