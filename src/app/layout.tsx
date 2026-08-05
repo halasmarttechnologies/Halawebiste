@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, EB_Garamond } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import './globals.css';
 
@@ -91,7 +92,7 @@ export default function RootLayout({
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WXXKH9SV');`,
+})(window,document,'script','dataLayer','GTM-MK9FPPKN');`,
           }}
         />
         <link rel="preconnect" href="https://www.google.com" />
@@ -104,7 +105,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body>
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-WXXKH9SV"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MK9FPPKN"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
@@ -113,6 +114,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <LocalBusinessSchema />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
