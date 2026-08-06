@@ -22,96 +22,6 @@ interface JobPosition {
 
 const POSITIONS: JobPosition[] = [
   {
-    id: 'wordpress-shopify-developer',
-    title: 'WordPress & Shopify Developer',
-    department: 'Development',
-    category: 'Development',
-    location: 'Dubai, UAE (Remote)',
-    type: 'Full-time',
-    experience: '2+ Years',
-    description: 'We are looking for a skilled WordPress & Shopify Developer to build, customize, and optimize high-performing websites and e-commerce stores for clients across the UAE and GCC.',
-    responsibilities: [
-      'Design, build, and customize WordPress websites and Shopify e-commerce stores from scratch.',
-      'Develop and modify themes, plugins, and custom Shopify apps to match client branding and business requirements.',
-      'Optimize store performance, page speed, and SEO for maximum conversions and discoverability.',
-      'Integrate third-party tools, payment gateways, CRM systems, and marketing automation platforms.',
-      'Maintain, troubleshoot, and update existing client websites to ensure uptime and security.',
-    ],
-    requirements: [
-      'Proven hands-on experience with WordPress (custom themes, plugins, Elementor/Divi/ACF) and Shopify (Liquid, themes, apps).',
-      'Strong HTML, CSS, JavaScript, and PHP skills.',
-      'Familiarity with WooCommerce for WordPress-based e-commerce solutions.',
-      'Experience with Shopify Liquid templating and Shopify CLI.',
-      'Good understanding of web performance, on-page SEO, and responsive design best practices.',
-      'Ability to work independently in a remote setup and deliver projects on time.',
-    ],
-    perks: [
-      'Fully remote position with flexible working hours.',
-      'Work with a growing Dubai-based digital agency on exciting regional projects.',
-      'Competitive pay in a tax-free market.',
-    ],
-  },
-  {
-    id: 'digital-marketer-graphic-designer',
-    title: 'Digital Marketer & Graphic Designer',
-    department: 'Marketing & Design',
-    category: 'Marketing & Design',
-    location: 'Dubai, UAE (On-site)',
-    type: 'Full-time',
-    experience: '1+ Years',
-    description: 'We are hiring a versatile Digital Marketer & Graphic Designer to drive online growth for our clients while producing stunning visual content across social media, ads, and branding campaigns.',
-    responsibilities: [
-      'Plan and execute social media marketing campaigns across Instagram, Facebook, LinkedIn, and TikTok.',
-      'Create eye-catching graphic designs for social media posts, stories, ads, banners, and marketing materials.',
-      'Develop and manage paid advertising campaigns (Meta Ads, Google Ads) to drive leads and conversions.',
-      'Produce content calendars, write compelling captions, and schedule posts across client platforms.',
-      'Analyze campaign performance metrics and provide monthly reports with actionable insights.',
-      'Collaborate with the content and video editing team to ensure a cohesive brand presence.',
-    ],
-    requirements: [
-      'Solid understanding of digital marketing principles including SEO, social media marketing, and paid ads.',
-      'Proficiency in Adobe Creative Cloud (Photoshop, Illustrator) and/or Canva for graphic design.',
-      'Experience running Meta Ads or Google Ads campaigns with measurable results.',
-      'Strong aesthetic eye for design, color, and typography.',
-      'Excellent written communication skills in English.',
-      'Self-motivated, organized, and comfortable managing multiple client accounts simultaneously.',
-    ],
-    perks: [
-      'Work on diverse brand campaigns across UAE, GCC, and international markets.',
-      'Access to the latest design tools and marketing software.',
-      'Performance-based bonuses and career growth into a senior marketing role.',
-    ],
-  },
-  {
-    id: 'graphic-design-intern',
-    title: 'Graphic Design Intern',
-    department: 'Design',
-    category: 'Design',
-    location: 'Dubai, UAE (On-site)',
-    type: 'Internship',
-    experience: 'Fresher / Student',
-    description: 'A great opportunity for creative students or fresh graduates to kick-start their design career at a fast-paced Dubai digital agency. You will work directly with our senior designers on real client projects.',
-    responsibilities: [
-      'Assist in designing social media posts, stories, banners, and marketing creatives for client campaigns.',
-      'Support the senior design team in developing brand identity assets including logos, color palettes, and typography.',
-      'Create visual content for presentations, email newsletters, and digital advertisements.',
-      'Learn and apply design feedback from senior designers to continuously improve the quality of work.',
-      'Maintain organized design files and asset libraries for ongoing client projects.',
-    ],
-    requirements: [
-      'Currently enrolled in or recently graduated from a Design, Visual Arts, or related program.',
-      'Basic proficiency in Adobe Photoshop, Illustrator, or Canva.',
-      'A creative eye for layout, color, and typography — portfolio or academic work samples required.',
-      'Eagerness to learn, take feedback positively, and grow in a professional agency environment.',
-      'Good communication skills and the ability to work collaboratively with a team.',
-    ],
-    perks: [
-      'Hands-on experience with real client projects from day one.',
-      'Mentorship from senior designers with industry experience.',
-      'Potential to convert to a full-time role based on performance.',
-    ],
-  },
-  {
     id: 'marketing-intern',
     title: 'Marketing Intern',
     department: 'Marketing & Design',
@@ -378,7 +288,7 @@ export default function CareersOpenings() {
               <div className="px-8 py-6 border-t border-[#f0f0f0] shrink-0">
                 <button
                   onClick={() => {
-                    setActiveFormUrl(selectedJob.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-5978/FDQH2EB4LPZV9RNSJW');
+                    setActiveFormUrl(selectedJob.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-6998/DRWLUKLARL80A3SDAA');
                     setSelectedJob(null);
                   }}
                   className="w-full flex items-center justify-center gap-2 bg-[#111111] text-white font-jakarta font-semibold text-sm py-4 rounded-xl cursor-pointer"
@@ -488,7 +398,7 @@ export default function CareersOpenings() {
               <div className="px-5 py-4 border-t border-[#f0f0f0] shrink-0 bg-white">
                 <button
                   onClick={() => {
-                    setActiveFormUrl(selectedJob.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-5978/FDQH2EB4LPZV9RNSJW');
+                    setActiveFormUrl(selectedJob.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-6998/DRWLUKLARL80A3SDAA');
                     setSelectedJob(null);
                   }}
                   className="w-full flex items-center justify-center gap-2 bg-[#111111] text-white font-jakarta font-semibold text-sm py-4 rounded-xl cursor-pointer"
