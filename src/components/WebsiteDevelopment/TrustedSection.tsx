@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
@@ -22,10 +24,10 @@ export default function TrustedSection() {
             From the first discovery call to final launch our team works closely with you to understand your brand your audience and your goals ensuring every design decision is intentional informed and built to drive results.
           </p>
 
-          <button className="flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.98] transition-all duration-200 text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl">
+          <Link href="/contact" className="inline-flex items-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.98] transition-all duration-200 text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl w-fit">
             Get Started
             <ArrowRight size={18} />
-          </button>
+          </Link>
         </div>
 
         {/* Image / Placeholder Side */}

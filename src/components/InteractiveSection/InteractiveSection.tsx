@@ -2,6 +2,7 @@
 
 import WaveMarquee from './WaveMarquee';
 import PhoneMockup from './PhoneMockup';
+import Link from 'next/link';
 
 export default function InteractiveSection() {
   return (
@@ -24,9 +25,9 @@ export default function InteractiveSection() {
           <p className="hidden md:block text-[#555555] text-lg sm:text-xl font-medium max-w-md leading-relaxed mb-8">
             Connect with Hala Technology wherever you are. Whether you&apos;re looking for digital marketing, SEO, web development, or branding solutions, our team is ready to help you grow your business across every platform.
           </p>
-          <button className="hidden md:block bg-[#111111] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200">
+          <Link href="/contact" className="hidden md:inline-block w-fit bg-[#111111] text-white font-bold text-base px-8 py-3.5 rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 text-center">
             Watch in action
-          </button>
+          </Link>
         </div>
 
         {/* Phone Mockup — desktop/tablet only */}

@@ -17,6 +17,7 @@ interface JobPosition {
   responsibilities: string[];
   requirements: string[];
   perks: string[];
+  formUrl?: string;
 }
 
 const POSITIONS: JobPosition[] = [
@@ -110,6 +111,36 @@ const POSITIONS: JobPosition[] = [
       'Potential to convert to a full-time role based on performance.',
     ],
   },
+  {
+    id: 'marketing-intern',
+    title: 'Marketing Intern',
+    department: 'Marketing & Design',
+    category: 'Marketing & Design',
+    location: 'Dubai, UAE (On-site)',
+    type: 'Internship',
+    experience: 'Fresher / Student',
+    description: 'An exciting opportunity for a motivated marketing enthusiast to learn and grow in a dynamic digital agency environment, focusing on social media, campaigns, and content strategies.',
+    responsibilities: [
+      'Assist with social media management, content scheduling, and community engagement.',
+      'Support the execution of paid advertising campaigns and monitor performance metrics.',
+      'Help brainstorm and create engaging content ideas for various marketing channels.',
+      'Conduct market research and competitor analysis to identify new opportunities.',
+      'Assist in generating monthly marketing reports and organizing campaign assets.',
+    ],
+    requirements: [
+      'Currently enrolled in or recently graduated from a Marketing, Communications, or related program.',
+      'Strong passion for digital marketing and social media trends.',
+      'Excellent written and verbal communication skills.',
+      'Ability to work collaboratively in a fast-paced environment.',
+      'Basic knowledge of marketing tools (e.g., Meta Business Suite, Google Analytics) is a plus.',
+    ],
+    perks: [
+      'Gain hands-on experience with real-world marketing campaigns.',
+      'Work closely with experienced digital marketing professionals.',
+      'Potential to convert to a full-time role based on performance.',
+    ],
+    formUrl: 'https://forms.clickup.com/90181825437/f/2kzm2wwx-6998/DRWLUKLARL80A3SDAA',
+  },
 ];
 
 const CATEGORIES = ['All Roles', 'Development', 'Marketing & Design', 'Design'];
@@ -117,6 +148,7 @@ const CATEGORIES = ['All Roles', 'Development', 'Marketing & Design', 'Design'];
 export default function CareersOpenings() {
   const [activeCategory, setActiveCategory] = useState('All Roles');
   const [selectedJob, setSelectedJob] = useState<JobPosition | null>(null);
+  const [activeFormUrl, setActiveFormUrl] = useState<string | null>(null);
 
   // Lock body scroll when panel is open
   useEffect(() => {
@@ -344,14 +376,16 @@ export default function CareersOpenings() {
 
               {/* Panel Footer — Sticky Apply Button */}
               <div className="px-8 py-6 border-t border-[#f0f0f0] shrink-0">
-                <Link
-                  href="/contact"
-                  onClick={() => setSelectedJob(null)}
+                <button
+                  onClick={() => {
+                    setActiveFormUrl(selectedJob.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-5978/FDQH2EB4LPZV9RNSJW');
+                    setSelectedJob(null);
+                  }}
                   className="w-full flex items-center justify-center gap-2 bg-[#111111] text-white font-jakarta font-semibold text-sm py-4 rounded-xl cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   Apply for This Position
-                </Link>
+                </button>
                 <p className="font-jakarta text-xs text-[#aaaaaa] text-center mt-3">
                   Send your CV or portfolio to our team
                 </p>
@@ -452,17 +486,52 @@ export default function CareersOpenings() {
 
               {/* Mobile Footer — Sticky Apply */}
               <div className="px-5 py-4 border-t border-[#f0f0f0] shrink-0 bg-white">
-                <Link
-                  href="/contact"
-                  onClick={() => setSelectedJob(null)}
+                <button
+                  onClick={() => {
+                    setActiveFormUrl(selectedJob.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-5978/FDQH2EB4LPZV9RNSJW');
+                    setSelectedJob(null);
+                  }}
                   className="w-full flex items-center justify-center gap-2 bg-[#111111] text-white font-jakarta font-semibold text-sm py-4 rounded-xl cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   Apply for This Position
-                </Link>
+                </button>
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* ClickUp Form Modal */}
+      <AnimatePresence>
+        {activeFormUrl && (
+          <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-4xl h-[90vh] sm:h-[85vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            >
+              <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white shrink-0">
+                <h3 className="font-jakarta font-bold text-lg text-[#111111]">Job Application</h3>
+                <button
+                  onClick={() => setActiveFormUrl(null)}
+                  className="p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="flex-1 w-full bg-gray-50/50 relative overflow-hidden">
+                <iframe
+                  className="w-full h-full border-none"
+                  src={activeFormUrl}
+                  allow="camera; microphone"
+                  title="ClickUp Job Application Form"
+                />
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </section>

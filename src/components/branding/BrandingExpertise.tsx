@@ -1,5 +1,5 @@
-
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 export default function BrandingExpertise() {
@@ -35,13 +35,13 @@ export default function BrandingExpertise() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <button className="flex items-center justify-center gap-3 bg-[#111111] text-white hover:bg-black px-8 py-4 rounded-full font-jakarta font-semibold text-base">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-3 bg-[#111111] text-white hover:bg-black px-8 py-4 rounded-full font-jakarta font-semibold text-base">
               Start Your Journey
               <ArrowRight size={18} />
-            </button>
-            <button className="flex items-center justify-center gap-3 bg-transparent hover:bg-black/5 text-[#111111] px-8 py-4 rounded-full font-jakarta font-semibold text-base border border-[#111111]/20">
+            </Link>
+            <Link href="/contact" className="inline-flex items-center justify-center gap-3 bg-transparent hover:bg-black/5 text-[#111111] px-8 py-4 rounded-full font-jakarta font-semibold text-base border border-[#111111]/20">
               View Our Work
-            </button>
+            </Link>
           </div>
         </div>
 

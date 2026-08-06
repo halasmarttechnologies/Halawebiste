@@ -1,10 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import { useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Share2, ArrowRight } from 'lucide-react';
+import { Share2, ArrowRight, X } from 'lucide-react';
+
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'), {
+  ssr: false,
+});
 
 export default function SMMHero() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const openModal = useCallback(() => setIsBookingModalOpen(true), []);
+  const closeModal = useCallback(() => setIsBookingModalOpen(false), []);
+
   return (
     <section className="relative w-full h-[100vh] min-h-[650px] flex flex-col items-center justify-center px-4 sm:px-6 z-10 overflow-hidden pt-20">
       {/* Background Image Setup */}
@@ -37,16 +47,37 @@ export default function SMMHero() {
 
         {/* CTA Button */}
         <div className="flex items-center gap-4 mt-8">
-          <Link
-            href="/contact"
+          <button
+            onClick={openModal}
             className="font-jakarta flex items-center justify-center gap-2.5 bg-white hover:bg-[#f4f4f4] transition-all duration-300 text-[#111111] font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-lg shadow-black/20 group"
           >
             <Share2 className="w-5 h-5 text-[#111111]" />
             <span>Grow Your Social Presence</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+          </button>
         </div>
       </div>
+      {/* Interactive Booking Modal Popup */}
+      {isBookingModalOpen && (
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200 gpu-layer"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
+            <button
+              type="button"
+              onClick={closeModal}
+              className="absolute top-3.5 right-3.5 z-50 text-white/70 hover:text-white bg-black/80 hover:bg-black/95 p-2 rounded-full border border-white/20 transition-all cursor-pointer backdrop-blur-md"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            <ContactCTA formOnly={true} />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

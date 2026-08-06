@@ -1,10 +1,20 @@
 'use client';
 
 import Image from 'next/image';
+import { useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { MessageCircle, ArrowRight } from 'lucide-react';
+import { MessageCircle, ArrowRight, X } from 'lucide-react';
+
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'), {
+  ssr: false,
+});
 
 export default function WhatsAppHero() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const openModal = useCallback(() => setIsBookingModalOpen(true), []);
+  const closeModal = useCallback(() => setIsBookingModalOpen(false), []);
+
   return (
     <div className="font-jakarta w-full relative overflow-hidden bg-[#111111] text-white">
       {/* Hero Section */}
@@ -41,14 +51,14 @@ export default function WhatsAppHero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            <Link
-              href="/contact"
+            <button
+              onClick={openModal}
               className="font-jakarta flex items-center justify-center gap-2.5 bg-[#007FFF] hover:bg-[#0066CC] transition-all duration-300 text-white font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-xl shadow-lg shadow-[#007FFF]/30 group"
             >
               <MessageCircle className="w-5 h-5 text-white" />
               <span>Deploy WhatsApp Bot</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </button>
           </div>
         </div>
       </section>
@@ -71,6 +81,27 @@ export default function WhatsAppHero() {
 
         </div>
       </section>
+      {/* Interactive Booking Modal Popup */}
+      {isBookingModalOpen && (
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200 gpu-layer"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
+            <button
+              type="button"
+              onClick={closeModal}
+              className="absolute top-3.5 right-3.5 z-50 text-white/70 hover:text-white bg-black/80 hover:bg-black/95 p-2 rounded-full border border-white/20 transition-all cursor-pointer backdrop-blur-md"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            <ContactCTA formOnly={true} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

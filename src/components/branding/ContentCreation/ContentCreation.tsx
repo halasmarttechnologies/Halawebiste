@@ -1,7 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { PenTool } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { PenTool, X } from 'lucide-react';
 import ContentCreationServices from './ContentCreationServices';
 import ContentCreationWhyChoose from './ContentCreationWhyChoose';
 import CustomTestimonials from '../../Home/Testimonials';
@@ -10,6 +13,10 @@ import LatestBlogsSection from '@/components/Blogs/LatestBlogsSection';
 import ContactCTA from '../../Home/ContactCTA/ContactCTA';
 
 export default function ContentCreation() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const openModal = useCallback(() => setIsBookingModalOpen(true), []);
+  const closeModal = useCallback(() => setIsBookingModalOpen(false), []);
+
   return (
     <div className="relative w-full bg-[#111111] text-[#F3F0E6] overflow-x-hidden antialiased selection:bg-[#EADCF8] selection:text-[#111] rounded-b-[40px]">
 
@@ -42,7 +49,10 @@ export default function ContentCreation() {
             At Hala Smart Technologies we craft content that gives your brand a voice people actually listen to.
           </p>
 
-          <button className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20">
+          <button 
+            onClick={openModal}
+            className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20"
+          >
             <PenTool size={18} />
             Let's Create Content
           </button>
@@ -62,9 +72,9 @@ export default function ContentCreation() {
             Whether you're launching a startup scaling an eCommerce brand or building a personal presence quality content remains one of the most powerful tools for growth and that's exactly where we come in.
           </p>
 
-          <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
+          <Link href="/contact" className="inline-block bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
             Learn about our Process
-          </button>
+          </Link>
 
         </div>
       </section>
@@ -91,9 +101,9 @@ export default function ContentCreation() {
               Because when content feels real people pay attention and when they pay attention they're far more likely to trust you engage with you and buy from you.
             </p>
 
-            <button className="flex items-center justify-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-xl shadow-md shadow-[#007FFF]/20">
+            <Link href="/contact" className="inline-flex items-center justify-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-xl shadow-md shadow-[#007FFF]/20 w-fit">
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Placeholder Image */}
@@ -126,6 +136,27 @@ export default function ContentCreation() {
       {/* Blog Section */}
       <LatestBlogsSection />
 
+      {/* Interactive Booking Modal Popup */}
+      {isBookingModalOpen && (
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200 gpu-layer"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
+            <button
+              type="button"
+              onClick={closeModal}
+              className="absolute top-3.5 right-3.5 z-50 text-white/70 hover:text-white bg-black/80 hover:bg-black/95 p-2 rounded-full border border-white/20 transition-all cursor-pointer backdrop-blur-md"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            <ContactCTA formOnly={true} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

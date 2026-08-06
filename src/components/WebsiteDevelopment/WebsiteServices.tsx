@@ -231,9 +231,9 @@ export default function WebsiteServices() {
               </p>
             </div>
             
-            <button className="bg-[#007FFF] text-white font-bold text-[11px] md:text-[12px] tracking-wide px-6 py-3 rounded-full hover:scale-105 transition-transform whitespace-nowrap w-full md:w-auto">
+            <Link href="/contact" className="inline-block bg-[#007FFF] text-white font-bold text-[11px] md:text-[12px] tracking-wide px-6 py-3 rounded-full hover:scale-105 transition-transform whitespace-nowrap w-full md:w-auto text-center">
               BOOK A CALL
-            </button>
+            </Link>
           </div>
 
         </div>

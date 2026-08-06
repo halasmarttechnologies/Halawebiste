@@ -1,9 +1,20 @@
 'use client';
 import Image from 'next/image';
-import { Grid2X2 } from 'lucide-react';
+import { useState, useCallback } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { Grid2X2, X } from 'lucide-react';
 import GraphicDesignWaveMarquee from './GraphicDesignWaveMarquee';
 
+const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'), {
+  ssr: false,
+});
+
 export default function GraphicDesignHero() {
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const openModal = useCallback(() => setIsBookingModalOpen(true), []);
+  const closeModal = useCallback(() => setIsBookingModalOpen(false), []);
+
   return (
     <div className="relative w-full bg-[#111111] text-[#F3F0E6] overflow-x-hidden antialiased selection:bg-[#EADCF8] selection:text-[#111] rounded-b-[40px]">
 
@@ -41,15 +52,13 @@ export default function GraphicDesignHero() {
             We craft visuals that speak your brand's language with designs built to be strategic not just stylish.
           </p>
 
-          <a 
-            href="https://wa.me/971586139007?text=Hello%20Hala%20Team!%20I%20am%20contacting%20you%20directly%20from%20your%20website%20to%20inquire%20about%20Graphic%20Design%20services."
-            target="_blank"
-            rel="noopener noreferrer"
+          <button 
+            onClick={openModal}
             className="flex items-center justify-center gap-2 bg-white hover:bg-[#f4f4f4] transition-colors duration-300 text-[#1A1523] font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-3.5 rounded-md shadow-lg shadow-black/20 no-underline"
           >
             <Grid2X2 size={18} />
             Let's Talk Design
-          </a>
+          </button>
         </div>
       </section>
 
@@ -66,12 +75,33 @@ export default function GraphicDesignHero() {
             From eye-catching marketing materials to complete visual identity systems we create designs that bridge the gap between your brand and the people you're trying to reach.
           </p>
 
-          <button className="bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
+          <Link href="/contact" className="inline-block bg-[#222222] hover:bg-[#333333] transition-colors duration-300 text-white font-jakarta font-semibold text-[14px] md:text-[15px] px-8 py-4 rounded-md shadow-md border border-[#333333]">
             Explore Our Designs
-          </button>
+          </Link>
 
         </div>
       </section>
+      {/* Interactive Booking Modal Popup */}
+      {isBookingModalOpen && (
+        <div 
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200 gpu-layer"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div className="relative w-full max-w-[480px] max-h-[92vh] overflow-y-auto custom-scrollbar my-auto">
+            <button
+              type="button"
+              onClick={closeModal}
+              className="absolute top-3.5 right-3.5 z-50 text-white/70 hover:text-white bg-black/80 hover:bg-black/95 p-2 rounded-full border border-white/20 transition-all cursor-pointer backdrop-blur-md"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+            <ContactCTA formOnly={true} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

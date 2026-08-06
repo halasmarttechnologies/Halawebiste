@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -103,9 +105,9 @@ export default function FeaturedWork() {
             <p className="text-[#555555] text-sm sm:text-base font-medium max-w-xs leading-relaxed">
               Interactive high performing websites built with modern frameworks precise design and smooth responsiveness across every device.
             </p>
-            <button className="bg-[#007FFF] hover:bg-[#0066CC] text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 whitespace-nowrap self-start sm:self-auto hover:scale-105 active:scale-95">
+            <Link href="/contact" className="inline-block bg-[#007FFF] hover:bg-[#0066CC] text-white px-7 py-3 rounded-full font-bold text-sm transition-all duration-300 whitespace-nowrap self-start sm:self-auto hover:scale-105 active:scale-95 text-center">
               See All
-            </button>
+            </Link>
           </div>
         </div>
 

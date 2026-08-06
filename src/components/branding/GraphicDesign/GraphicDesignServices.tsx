@@ -235,9 +235,9 @@ export default function GraphicDesignServices() {
               </p>
             </div>
             
-            <button className="bg-[#007FFF] text-white font-bold text-[11px] md:text-[12px] tracking-wide px-6 py-3 rounded-full hover:scale-105 transition-transform whitespace-nowrap w-full md:w-auto shadow-md shadow-[#007FFF]/20">
+            <Link href="/contact" className="inline-flex items-center justify-center bg-[#007FFF] text-white font-bold text-[11px] md:text-[12px] tracking-wide px-6 py-3 rounded-full hover:scale-105 transition-transform whitespace-nowrap w-full md:w-auto shadow-md shadow-[#007FFF]/20">
               GET IN TOUCH
-            </button>
+            </Link>
           </div>
 
         </div>
