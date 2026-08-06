@@ -23,12 +23,21 @@ export const metadata: Metadata = {
     description:
       'Drive engagement and measurable growth with professional social media marketing services in Dubai & UAE.',
     url: 'https://halatechnologies.com/smm',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'Social Media Marketing - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Social Media Marketing in Dubai | SMM Services | Hala Technologies',
     description:
       'Drive engagement and measurable growth with professional social media marketing services in Dubai & UAE.',
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/smm',

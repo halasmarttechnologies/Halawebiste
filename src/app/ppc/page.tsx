@@ -23,12 +23,21 @@ export const metadata: Metadata = {
     description:
       'Generate high-quality leads and instant visibility with data-driven PPC campaigns tailored for the UAE market.',
     url: 'https://halatechnologies.com/ppc',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png',
+        width: 1200,
+        height: 630,
+        alt: 'PPC Services - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'PPC Services in Dubai | Pay Per Click Advertising | Hala Technologies',
     description:
       'Generate high-quality leads and instant visibility with data-driven PPC campaigns tailored for the UAE market.',
+    images: ['https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/ppc',

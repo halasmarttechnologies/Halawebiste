@@ -21,12 +21,21 @@ export const metadata: Metadata = {
     description:
       'Hala Technology is a results-driven digital marketing company in Dubai specializing in SEO, social media marketing, PPC, and web design. Grow your online visibility & leads.',
     url: 'https://halatechnologies.com/digital-marketing',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'Digital Marketing Services - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Digital Marketing Company in Dubai | SEO, SMM & PPC Services | Hala Technologies',
     description:
       'Hala Technology is a results-driven digital marketing company in Dubai specializing in SEO, social media marketing, PPC, and web design. Grow your online visibility & leads.',
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/digital-marketing',

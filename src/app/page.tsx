@@ -23,12 +23,21 @@ export const metadata: Metadata = {
     description:
       'Scale your brand and dominate the market with Hala Technology. The digital marketing agency that turns clicks into customers with SEO, PPC, and Web Development.',
     url: 'https://halatechnologies.com',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hala Technologies - Grow your brand. Dominate the market.',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hala Technology | Digital Marketing & Web Development',
     description:
       'Scale your brand and dominate the market with Hala Technology. The digital marketing agency that turns clicks into customers with SEO, PPC, and Web Development.',
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com',

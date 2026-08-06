@@ -47,7 +47,7 @@ export const metadata: Metadata = {
       'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
         alt: 'Hala Technologies - Grow your brand. Dominate the market.',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     title: 'Hala Technologies – Scale Your Brand, Dominate the Market',
     description:
       'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
-    images: ['/og-image.png'],
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   icons: {
     icon: [

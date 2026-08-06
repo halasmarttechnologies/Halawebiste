@@ -21,12 +21,21 @@ export const metadata: Metadata = {
     description:
       'Empower your business with next-generation AI Agents designed to transform marketing. Understand your audience, deliver targeted messages, and turn prospects into loyal customers.',
     url: 'https://halatechnologies.com/ai-agent',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/AiagentHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'AI Agents - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AI Agents for Smarter Business Growth | Hala Technologies',
     description:
       'Empower your business with next-generation AI Agents designed to transform marketing. Understand your audience, deliver targeted messages, and turn prospects into loyal customers.',
+    images: ['https://halatechnologies.com/hero-images/AiagentHeroimage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/ai-agent',

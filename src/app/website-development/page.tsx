@@ -24,12 +24,21 @@ export const metadata: Metadata = {
     description:
       'We build B2B websites that drive growth. Strategy, design, and performance unified for measurable ROI.',
     url: 'https://halatechnologies.com/website-development',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'Website Development - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Website Development | Hala Technology',
     description:
       'We build B2B websites that drive growth. Strategy, design, and performance unified for measurable ROI.',
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/website-development',

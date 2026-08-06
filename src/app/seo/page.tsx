@@ -23,12 +23,21 @@ export const metadata: Metadata = {
     description:
       'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
     url: 'https://halatechnologies.com/seo',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png',
+        width: 1200,
+        height: 630,
+        alt: 'SEO Services - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
     description:
       'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+    images: ['https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/seo',

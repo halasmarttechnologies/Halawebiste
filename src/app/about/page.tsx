@@ -22,12 +22,21 @@ export const metadata: Metadata = {
     description:
       'Learn about Hala Technology – a Dubai-based digital marketing agency helping businesses grow through SEO, web development, branding, and digital marketing.',
     url: 'https://halatechnologies.com/about',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'Hala Technologies - About Us',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About Us | Hala Technology',
     description:
       'Learn about Hala Technology – a Dubai-based digital marketing agency helping businesses grow through SEO, web development, branding, and digital marketing.',
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/about',

@@ -23,12 +23,21 @@ export const metadata: Metadata = {
     description:
       'Automate customer communication, boost response times, and nurture leads 24/7 with custom WhatsApp Automation by Hala Technology.',
     url: 'https://halatechnologies.com/whatsapp-automation',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/WhatsappHeroImage.png',
+        width: 1200,
+        height: 630,
+        alt: 'WhatsApp Automation - Hala Technologies',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'WhatsApp Automation Solutions | Hala Technology',
     description:
       'Automate customer communication, boost response times, and nurture leads 24/7 with custom WhatsApp Automation by Hala Technology.',
+    images: ['https://halatechnologies.com/hero-images/WhatsappHeroImage.png'],
   },
   alternates: {
     canonical: 'https://halatechnologies.com/whatsapp-automation',
