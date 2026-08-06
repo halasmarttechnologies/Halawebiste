@@ -410,8 +410,6 @@ export default function CareersOpenings() {
           </>
         )}
       </AnimatePresence>
-
-      </AnimatePresence>
     </section>
   );
 }
