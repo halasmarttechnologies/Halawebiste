@@ -38,7 +38,7 @@ export default function CareersHero() {
             </span>
             <span className="font-jakarta text-sm font-semibold text-[#111111] flex items-center gap-2">
               <Briefcase className="w-4 h-4 text-[#007FFF]" />
-              4 Open Positions Available
+              1 Open Position Available
             </span>
           </div>
         </div>

@@ -149,13 +149,24 @@ export default function CareersOpenings() {
                 <span className="font-jakarta text-xs text-[#999999] font-medium">
                   {job.experience}
                 </span>
-                <button
-                  onClick={() => setSelectedJob(job)}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-jakarta font-semibold text-[#111111] cursor-pointer"
-                >
-                  <span>View &amp; Apply</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={job.formUrl || 'https://forms.clickup.com/90181825437/f/2kzm2wwx-6998/DRWLUKLARL80A3SDAA'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-jakarta font-semibold text-[#007FFF] hover:underline cursor-pointer"
+                  >
+                    <span>Apply</span>
+                    <Send className="w-3 h-3" />
+                  </a>
+                  <button
+                    onClick={() => setSelectedJob(job)}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-jakarta font-semibold text-[#111111] hover:text-[#007FFF] transition-colors cursor-pointer"
+                  >
+                    <span>View Details</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
