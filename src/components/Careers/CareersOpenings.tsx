@@ -20,7 +20,7 @@ interface JobPosition {
   formUrl?: string;
 }
 
-const POSITIONS: JobPosition[] = [
+export const POSITIONS: JobPosition[] = [
   {
     id: 'marketing-intern',
     title: 'Marketing Intern',
@@ -50,6 +50,36 @@ const POSITIONS: JobPosition[] = [
       'Potential to convert to a full-time role based on performance.',
     ],
     formUrl: 'https://forms.clickup.com/90181825437/f/2kzm2wwx-6998/DRWLUKLARL80A3SDAA',
+  },
+  {
+    id: 'video-editor-intern',
+    title: 'Video Editor Intern',
+    department: 'Marketing & Design',
+    category: 'Design',
+    location: 'Dubai, UAE (On-site / Hybrid)',
+    type: 'Internship',
+    experience: 'Fresher / Student',
+    description: 'An exciting opportunity for a creative Video Editor Intern to join our team, helping craft engaging short-form reels, promotional videos, client showcases, and social media content.',
+    responsibilities: [
+      'Edit high-impact short-form videos (Reels, TikToks, Shorts) and promotional brand content.',
+      'Assemble raw footage, apply motion graphics, typography, sound design, and color grading.',
+      'Collaborate with content creators and marketing team to brainstorm visual concepts and storytelling angles.',
+      'Keep up with social media video trends, popular audio tracks, and fast-paced editing styles.',
+      'Organize media assets, manage project timelines, and deliver exports optimized for various platforms.',
+    ],
+    requirements: [
+      'Proficiency in video editing tools (Premiere Pro, DaVinci Resolve, After Effects, or CapCut Desktop).',
+      'Keen eye for pacing, visual aesthetics, typography, and sound alignment.',
+      'Strong portfolio or sample reels demonstrating video editing capability.',
+      'Ability to take creative feedback and work in a collaborative environment.',
+      'Passion for social media content creation and digital marketing trends.',
+    ],
+    perks: [
+      'Build an impressive portfolio featuring real client and agency campaigns.',
+      'Hands-on mentorship from senior designers and digital strategists.',
+      'Potential to convert to a full-time role based on performance.',
+    ],
+    formUrl: 'https://forms.clickup.com/90181825437/f/2kzm2wwx-5978/FDQH2EB4LPZV9RNSJW',
   },
 ];
 

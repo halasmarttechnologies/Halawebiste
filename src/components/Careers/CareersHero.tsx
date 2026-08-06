@@ -1,10 +1,13 @@
 'use client';
 
 import { ArrowRight, Sparkles, MapPin, Briefcase } from 'lucide-react';
+import { POSITIONS } from './CareersOpenings';
 
 export default function CareersHero() {
+  const openCount = POSITIONS ? POSITIONS.length : 2;
+
   return (
-    <section className="relative w-full pt-[140px] pb-16 md:pt-[180px] md:pb-24 bg-white border-b border-[#e5e5e5]">
+    <section className="relative w-full pt-[140px] pb-16 md:pt-[180px] md:pb-24 bg-[#FAF9F6] border-b border-[#e5e5e5]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start">
         
         {/* Editorial Top Metadata */}
@@ -38,7 +41,7 @@ export default function CareersHero() {
             </span>
             <span className="font-jakarta text-sm font-semibold text-[#111111] flex items-center gap-2">
               <Briefcase className="w-4 h-4 text-[#007FFF]" />
-              1 Open Position Available
+              {openCount} Open Position{openCount === 1 ? '' : 's'} Available
             </span>
           </div>
         </div>
