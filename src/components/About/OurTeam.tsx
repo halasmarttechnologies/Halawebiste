@@ -1,9 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const teamMembers = [
   {
@@ -57,34 +56,72 @@ const teamMembers = [
   },
 ];
 
-export default function OurTeam() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
-
-  const handleScroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.clientWidth * 0.75;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const handleImageError = (id: number) => {
-    setImageErrors((prev) => ({ ...prev, [id]: true }));
-  };
+function TeamMemberCard({ member, index }: { member: (typeof teamMembers)[0]; index: number }) {
+  const [imageError, setImageError] = useState(false);
 
   return (
-    <section className="bg-white w-full py-16 md:py-24 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none">
-      <div className="max-w-[1400px] w-full mx-auto flex flex-col items-center relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+      className="w-full h-[420px] sm:h-[460px] md:h-[480px] rounded-[24px] sm:rounded-[28px] overflow-hidden relative group/card border border-gray-200 transition-all duration-500 hover:scale-[1.02] bg-gradient-to-b from-[#1c2459] via-[#0f1437] to-[#07091f] shadow-sm hover:shadow-xl"
+    >
+      {/* Inner radial blue glow behind headshot */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(99,102,241,0.25),transparent_70%)] pointer-events-none" />
+
+      {/* Portrait Image */}
+      <div className="absolute inset-0 w-full h-full">
+        {!imageError ? (
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            quality={90}
+            onError={() => setImageError(true)}
+            className="object-cover object-top transition-transform duration-700 group-hover/card:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#0f1437]">
+            <div className="w-20 h-20 rounded-full bg-[#1c2459] flex items-center justify-center text-white text-2xl font-bold mb-3 border border-white/10">
+              {member.name.charAt(0)}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Bottom dark gradient overlay for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#07091f] via-[#07091f]/55 to-transparent z-10 pointer-events-none" />
+
+      {/* Info Text Box (Bottom-Left) */}
+      <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-7 z-20 flex flex-col justify-end text-left">
+        <h3 className="font-jakarta font-bold text-white text-xl sm:text-[22px] tracking-tight leading-snug mb-1 drop-shadow-md">
+          {member.name}
+        </h3>
+        <p className="font-jakarta font-medium text-[#5c7ceb] text-xs sm:text-[13.5px] tracking-wide drop-shadow-sm">
+          {member.role}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+export default function OurTeam() {
+  const row1 = teamMembers.slice(0, 3);
+  const row2 = teamMembers.slice(3, 5);
+  const row3 = teamMembers.slice(5, 7);
+
+  return (
+    <section className="bg-white w-full py-16 md:py-24 px-4 sm:px-6 md:px-10 lg:px-14 relative overflow-hidden select-none border-b border-[#e5e5e5]">
+      <div className="max-w-[1280px] w-full mx-auto flex flex-col items-center relative z-10">
         
         {/* Header */}
         <div className="text-center mb-12 md:mb-16 w-full max-w-3xl">
-          <span className="font-jakarta text-black uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
+          <span className="font-jakarta text-[#007FFF] uppercase tracking-widest text-xs font-semibold mb-3 inline-block">
             Our World-Class Team
           </span>
-          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-black mb-5">
+          <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-[#111111] mb-5">
             Meet the minds behind the vision
           </h2>
           <p className="font-jakarta text-gray-600 text-base md:text-lg font-normal px-4 max-w-2xl mx-auto">
@@ -92,77 +129,27 @@ export default function OurTeam() {
           </p>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative w-full flex items-center group">
-          
-          {/* Navigation Arrow Left */}
-          <button
-            onClick={() => handleScroll('left')}
-            aria-label="Scroll left"
-            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 shadow-none cursor-pointer hover:scale-105 active:scale-95"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
+        {/* Structured Rows Layout */}
+        <div className="w-full space-y-8 md:space-y-12">
 
-          {/* Navigation Arrow Right */}
-          <button
-            onClick={() => handleScroll('right')}
-            aria-label="Scroll right"
-            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-gray-200 bg-white hover:bg-gray-100 text-gray-800 hover:text-black flex items-center justify-center transition-all duration-300 shadow-none cursor-pointer hover:scale-105 active:scale-95"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
+          {/* Row 1: First 3 Teammates */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 w-full">
+            {row1.map((member, index) => (
+              <TeamMemberCard key={member.id} member={member} index={index} />
+            ))}
+          </div>
 
-          {/* Cards Track */}
-          <div
-            ref={scrollRef}
-            className="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory w-full py-4 px-1"
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="shrink-0 snap-start w-[260px] sm:w-[290px] md:w-[310px] lg:w-[calc(25%-18px)] h-[400px] sm:h-[450px] md:h-[480px] rounded-[24px] sm:rounded-[28px] overflow-hidden relative group/card border border-gray-200 transition-all duration-500 hover:scale-[1.02] bg-gradient-to-b from-[#1c2459] via-[#0f1437] to-[#07091f] shadow-none"
-              >
-                {/* Inner radial blue glow behind headshot */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(99,102,241,0.25),transparent_70%)] pointer-events-none" />
+          {/* Row 2: 2 Teammates */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 w-full max-w-[840px] mx-auto">
+            {row2.map((member, index) => (
+              <TeamMemberCard key={member.id} member={member} index={index + 3} />
+            ))}
+          </div>
 
-                {/* Portrait Image */}
-                <div className="absolute inset-0 w-full h-full">
-                  {!imageErrors[member.id] ? (
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      sizes="(max-width: 640px) 260px, (max-width: 1024px) 310px, 360px"
-                      quality={90}
-                      onError={() => handleImageError(member.id)}
-                      className="object-cover object-top transition-transform duration-700 group-hover/card:scale-105"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#0f1437]">
-                      <div className="w-20 h-20 rounded-full bg-[#1c2459] flex items-center justify-center text-white text-2xl font-bold mb-3 border border-white/10">
-                        {member.name.charAt(0)}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* Bottom dark gradient overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07091f] via-[#07091f]/55 to-transparent z-10 pointer-events-none" />
-
-                {/* Info Text Box (Bottom-Left) */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-7 z-20 flex flex-col justify-end text-left">
-                  <h3 className="font-jakarta font-bold text-white text-xl sm:text-[22px] tracking-tight leading-snug mb-1 drop-shadow-md">
-                    {member.name}
-                  </h3>
-                  <p className="font-jakarta font-medium text-[#5c7ceb] text-xs sm:text-[13.5px] tracking-wide drop-shadow-sm">
-                    {member.role}
-                  </p>
-                </div>
-              </motion.div>
+          {/* Row 3: Last 2 Teammates */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 w-full max-w-[840px] mx-auto">
+            {row3.map((member, index) => (
+              <TeamMemberCard key={member.id} member={member} index={index + 5} />
             ))}
           </div>
 
