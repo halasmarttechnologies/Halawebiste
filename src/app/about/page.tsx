@@ -6,6 +6,7 @@ import AboutSolutions from '@/components/About/AboutSolutions';
 
 const InteractiveSection = dynamic(() => import('@/components/InteractiveSection/InteractiveSection'));
 const AboutValues = dynamic(() => import('@/components/About/AboutValues'));
+const AboutPartners = dynamic(() => import('@/components/About/AboutPartners'));
 const OurTeam = dynamic(() => import('@/components/About/OurTeam'));
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
@@ -44,6 +45,7 @@ export default function AboutPage() {
           <InteractiveSection />
         </div>
         <AboutValues />
+        <AboutPartners />
         <OurTeam />
         <CustomTestimonials />
         <LatestBlogsSection />
