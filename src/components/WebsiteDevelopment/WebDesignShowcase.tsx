@@ -215,8 +215,8 @@ export default function WebDesignShowcase() {
               </a>
             </div>
 
-            {/* Right Column: Layered Multi-Device Frames */}
-            <div className="lg:col-span-7 relative min-h-[220px] sm:min-h-[380px] md:min-h-[440px] flex items-center justify-center mt-2 lg:mt-0">
+            {/* Right Column: Main Desktop Frame */}
+            <div className="lg:col-span-7 relative flex items-center justify-center mt-2 lg:mt-0">
               
               {/* Main Desktop Browser Frame */}
               <motion.div 
@@ -232,38 +232,6 @@ export default function WebDesignShowcase() {
                   fill
                   className="object-cover object-top"
                   priority
-                />
-              </motion.div>
-
-              {/* Floating Tablet Frame (Overlay Left) */}
-              <motion.div
-                key={`tablet-${currentProject.id}`}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="absolute -bottom-4 -left-3 sm:-bottom-6 sm:-left-6 w-[45%] aspect-[3/4] bg-[#1A1A1A] rounded-xl overflow-hidden border-2 border-[#333333] shadow-2xl hidden sm:block"
-              >
-                <Image
-                  src={currentProject.tabletImg}
-                  alt="Tablet View"
-                  fill
-                  className="object-cover object-top"
-                />
-              </motion.div>
-
-              {/* Floating Mobile Frame (Overlay Right) */}
-              <motion.div
-                key={`mobile-${currentProject.id}`}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute -bottom-3 -right-2 sm:-bottom-8 sm:-right-4 w-[32%] sm:w-[26%] aspect-[9/18] bg-[#111111] rounded-xl sm:rounded-2xl overflow-hidden border-2 border-[#444444] shadow-2xl"
-              >
-                <Image
-                  src={currentProject.mobileImg}
-                  alt="Mobile View"
-                  fill
-                  className="object-cover object-top"
                 />
               </motion.div>
 

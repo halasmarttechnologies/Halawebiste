@@ -107,32 +107,30 @@ export default function FeaturedWork() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative w-full h-[340px] sm:h-[400px] md:h-[440px] rounded-[24px] sm:rounded-[32px] overflow-hidden group border border-[#E2E8F0] bg-[#0F172A] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer block ${
+              className={`relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-[20px] sm:rounded-[28px] overflow-hidden group border border-[#E4E4E7] bg-[#F4F4F5] shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer block ${
                 project.featured ? 'md:col-span-2 lg:col-span-2' : ''
               }`}
             >
-              {/* Background Mockup Image (Object-contain so full website fits without cutting off) */}
-              <div className="absolute inset-0 p-3 sm:p-5 pb-20 sm:pb-24 flex items-center justify-center">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-              </div>
+              {/* Background Mockup Image (No zoom hover effect, fits picture size directly) */}
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover object-top"
+              />
 
               {/* Gradient overlay for readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-80 transition-opacity duration-300 pointer-events-none" />
 
               {/* Badge top right */}
               {project.badge && (
-                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-md text-[#111111] text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm border border-white/50 z-10">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-md text-[#111111] text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm border border-white/50 z-10">
                   {project.badge}
                 </div>
               )}
 
               {/* Compact Floating Bottom Card Overlay */}
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex items-center justify-between shadow-lg border border-white/60 transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-white z-10">
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex items-center justify-between shadow-lg border border-white/60 transition-all duration-300 group-hover:bg-white z-10">
                 <div className="flex flex-col pr-2 min-w-0">
                   <h3 className="font-jakarta font-bold text-sm sm:text-base text-[#111111] tracking-tight group-hover:text-[#007FFF] transition-colors truncate">
                     {project.title}
@@ -146,7 +144,7 @@ export default function FeaturedWork() {
                   </div>
                 </div>
 
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#007FFF] group-hover:bg-[#0066CC] text-white flex items-center justify-center transition-all duration-300 shrink-0 group-hover:scale-110 shadow-md">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#007FFF] group-hover:bg-[#0066CC] text-white flex items-center justify-center transition-all duration-300 shrink-0 shadow-md">
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
                 </div>
               </div>
