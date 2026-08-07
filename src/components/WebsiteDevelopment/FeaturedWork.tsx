@@ -39,7 +39,7 @@ const projects = [
     id: 4,
     title: 'Royal Costa Cars',
     category: 'Luxury Car Rental Platform',
-    image: '/website mockup images/royalcostacars.png',
+    image: '/website mockup images/royalcosta.png',
     link: 'https://royalcostacars.com/',
     displayUrl: 'royalcostacars.com',
     badge: 'LUXURY',
@@ -107,45 +107,47 @@ export default function FeaturedWork() {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`relative w-full h-[360px] sm:h-[440px] md:h-[480px] rounded-[24px] sm:rounded-[32px] overflow-hidden group border border-[#E5E5E5] bg-[#F5F5F7] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer block ${
+              className={`relative w-full h-[340px] sm:h-[400px] md:h-[440px] rounded-[24px] sm:rounded-[32px] overflow-hidden group border border-[#E2E8F0] bg-[#0F172A] shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer block ${
                 project.featured ? 'md:col-span-2 lg:col-span-2' : ''
               }`}
             >
-              {/* Background Mockup Image */}
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
+              {/* Background Mockup Image (Object-contain so full website fits without cutting off) */}
+              <div className="absolute inset-0 p-3 sm:p-5 pb-20 sm:pb-24 flex items-center justify-center">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-contain object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
 
               {/* Gradient overlay for readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent opacity-75 group-hover:opacity-60 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none" />
 
               {/* Badge top right */}
               {project.badge && (
-                <div className="absolute top-4 right-4 sm:top-5 sm:right-5 bg-white/90 backdrop-blur-md text-[#111111] text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm border border-white/50">
+                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-md text-[#111111] text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase tracking-wider shadow-sm border border-white/50 z-10">
                   {project.badge}
                 </div>
               )}
 
-              {/* Floating Bottom Card / Pill Overlay */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 flex items-center justify-between shadow-lg border border-white/60 transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-white">
+              {/* Compact Floating Bottom Card Overlay */}
+              <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 sm:p-3.5 flex items-center justify-between shadow-lg border border-white/60 transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-white z-10">
                 <div className="flex flex-col pr-2 min-w-0">
-                  <h3 className="font-jakarta font-bold text-base sm:text-lg md:text-xl text-[#111111] tracking-tight group-hover:text-[#007FFF] transition-colors truncate">
+                  <h3 className="font-jakarta font-bold text-sm sm:text-base text-[#111111] tracking-tight group-hover:text-[#007FFF] transition-colors truncate">
                     {project.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#666666] font-medium truncate mt-0.5">
+                  <p className="text-[11px] sm:text-xs text-[#666666] font-medium truncate mt-0.5">
                     {project.category}
                   </p>
-                  <div className="flex items-center gap-1.5 mt-2 text-[#007FFF] text-xs font-semibold">
-                    <Globe className="w-3.5 h-3.5 shrink-0" />
+                  <div className="flex items-center gap-1 mt-1 text-[#007FFF] text-[11px] sm:text-xs font-semibold">
+                    <Globe className="w-3 h-3 shrink-0" />
                     <span className="truncate group-hover:underline">{project.displayUrl}</span>
                   </div>
                 </div>
 
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-[#007FFF] group-hover:bg-[#0066CC] text-white flex items-center justify-center transition-all duration-300 shrink-0 group-hover:scale-110 shadow-md">
-                  <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-[#007FFF] group-hover:bg-[#0066CC] text-white flex items-center justify-center transition-all duration-300 shrink-0 group-hover:scale-110 shadow-md">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
                 </div>
               </div>
             </a>
