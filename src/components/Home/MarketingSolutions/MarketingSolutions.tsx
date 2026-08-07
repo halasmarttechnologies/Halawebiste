@@ -22,7 +22,7 @@ function MarketingSolutionsComponent() {
   }, []);
 
   return (
-    <section className="font-jakarta w-full bg-[#111111] px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden rounded-t-[40px] md:rounded-t-[60px] z-20 content-visibility-auto gpu-layer">
+    <section className="font-jakarta w-full bg-[#111111] px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden z-20 content-visibility-auto gpu-layer">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-full h-24 bg-gradient-to-b from-[#f8f6ed] to-transparent opacity-[0.03]" />
 
