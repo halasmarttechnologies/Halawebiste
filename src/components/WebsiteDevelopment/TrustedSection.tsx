@@ -33,7 +33,13 @@ export default function TrustedSection() {
         {/* Image / Placeholder Side */}
         <div className="flex-1 w-full flex justify-center lg:justify-end relative">
           <div className="relative w-full max-w-[600px] aspect-[4/3] rounded-3xl overflow-hidden border border-gray-100 bg-[#F4F5F7] flex items-center justify-center">
-            <Image src="/website mockup images/fearure iamge.png" alt="Trusted Web Design" fill className="object-cover" />
+            <Image 
+              src="/website mockup images/fearure iamge.png" 
+              alt="Trusted Web Design" 
+              fill 
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover" 
+            />
           </div>
         </div>
 

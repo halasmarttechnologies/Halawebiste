@@ -237,7 +237,7 @@ function NavbarComponent() {
         />
 
         <Link href="/" onClick={() => setMenuOpen(false)} className="flex items-center gap-2.5 z-10 no-underline transition-opacity hover:opacity-80">
-          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority />
+          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} className="w-auto h-[26px]" style={{ width: 'auto', height: 'auto' }} priority />
           <span className="font-jakarta text-[15px] font-bold tracking-[-0.3px] text-[#111] whitespace-nowrap">Hala Technology</span>
         </Link>
 

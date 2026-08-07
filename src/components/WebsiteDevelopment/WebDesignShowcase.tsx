@@ -227,6 +227,7 @@ export default function WebDesignShowcase() {
                   src={currentProject.desktopImg}
                   alt={currentProject.title}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
                   className="object-cover object-top"
                   priority
                 />
