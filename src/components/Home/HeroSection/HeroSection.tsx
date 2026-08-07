@@ -65,9 +65,9 @@ function HeroSectionComponent() {
           </div>
 
           {/* Headline — tighter sizing */}
-          <h1 className="font-jakarta font-bold text-white leading-[1.07] tracking-tight mb-3 max-w-[660px] w-full text-[36px] sm:text-[52px] md:text-[64px] lg:text-[72px]">
-            Grow your brand.<br />
-            Dominate the&nbsp;market.
+          <h1 className="font-jakarta font-bold text-white leading-[1.1] tracking-tight mb-3 w-full text-[32px] sm:text-[48px] md:text-[60px] lg:text-[68px]">
+            <span className="block whitespace-nowrap">Grow your brand.</span>
+            <span className="block whitespace-nowrap">Dominate the market.</span>
           </h1>
 
           {/* Subheadline */}
