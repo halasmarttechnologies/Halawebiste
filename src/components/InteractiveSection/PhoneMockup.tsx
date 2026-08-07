@@ -40,7 +40,7 @@ export default function PhoneMockup() {
 
             {/* Logo */}
             <div className="flex justify-center pt-14 pb-5">
-              <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} className="h-7 w-auto object-contain brightness-0 invert opacity-90" style={{ width: 'auto', height: 'auto' }} priority />
+              <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} className="h-7 w-auto object-contain brightness-0 invert opacity-90" style={{ width: 'auto' }} priority />
             </div>
 
             {/* Chat */}

@@ -557,7 +557,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
       <div className="flex flex-col relative h-full justify-center items-center lg:items-start text-center lg:text-left">
 
         <div className="flex items-center gap-2 mb-6 sm:mb-8">
-          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} className="w-auto h-[26px] brightness-0 invert" style={{ width: 'auto', height: 'auto' }} priority />
+          <Image src="/hala-logo/halalogo.png" alt="Hala Logo" width={80} height={26} style={{ width: 'auto', height: '26px' }} priority className="brightness-0 invert" />
         </div>
 
         <div className="max-w-[520px] z-10 relative px-2 sm:px-0">

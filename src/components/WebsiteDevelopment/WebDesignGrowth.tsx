@@ -50,10 +50,9 @@ export default function WebDesignGrowth() {
           GROWTH BENEFITS
         </span>
 
-        {/* Main Headline */}
         <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] text-[#111111] text-center tracking-tight leading-[1.12] mb-6 max-w-4xl">
           Web Design in UAE{' '}
-          <span className="eb-garamond italic font-normal text-[#111111] inline-block">
+          <span className="text-[#111111] inline-block">
             Built to Fuel Growth
           </span>
         </h2>
