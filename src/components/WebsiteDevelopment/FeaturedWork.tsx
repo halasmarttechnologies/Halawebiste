@@ -87,15 +87,15 @@ export default function FeaturedWork() {
           </div>
         </div>
 
-        {/* Uniform Grid — all cards same size */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {/* Uniform Grid — Centered last row using flex */}
+        <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
           {projects.map((project) => (
             <a
               key={project.id}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden group shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer block border border-[#E4E4E7]"
+              className="relative w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] aspect-[4/3] rounded-2xl overflow-hidden group shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer block border border-[#E4E4E7]"
             >
               {/* Full image — completely visible, no dark overlay, no crop */}
               <Image
