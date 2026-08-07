@@ -42,12 +42,22 @@ function HeroSectionComponent() {
 
         {/* ── Background image ── */}
         <div className="absolute inset-0 z-0">
+          {/* Mobile background */}
+          <Image
+            src="/123 PHONE VIEW.png"
+            alt="Hero Background Mobile"
+            fill
+            sizes="100vw"
+            className="object-cover object-center sm:hidden"
+            priority
+          />
+          {/* Desktop background */}
           <Image
             src="/hero-images/hero-bg.png"
             alt="Hero Background"
             fill
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-center hidden sm:block"
             priority
           />
           <div className="absolute inset-0 bg-black/35" />
