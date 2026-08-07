@@ -89,17 +89,30 @@ function HeroSectionComponent() {
           </form>
 
           {/* ── Logo Grid ── */}
-          <div className="w-full max-w-[680px] mt-6">
-            <p className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.15em] text-white/35 mb-4">
+          <div className="w-full max-w-[960px] mt-6">
+            <p className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.15em] text-white/35 mb-5 text-center">
               Trusted by leading brands
             </p>
-            <div className="grid grid-cols-5 gap-x-4 gap-y-3 place-items-center">
-              {clientLogos.map((src, i) => (
-                <div key={i} className="flex items-center justify-center h-7 sm:h-8 w-full">
+            {/* Row 1 — 5 logos */}
+            <div className="flex items-center justify-between w-full mb-5 px-2">
+              {clientLogos.slice(0, 5).map((src, i) => (
+                <div key={i} className="flex items-center justify-center flex-1">
                   <img
                     src={src}
                     alt={`Client ${i + 1}`}
-                    className="h-5 sm:h-7 w-auto max-w-[90px] object-contain filter brightness-0 invert opacity-50 hover:opacity-80 transition-opacity duration-300"
+                    className="h-8 sm:h-10 md:h-12 w-auto max-w-[120px] object-contain filter brightness-0 invert opacity-50 hover:opacity-85 transition-opacity duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Row 2 — 5 logos */}
+            <div className="flex items-center justify-between w-full px-2">
+              {clientLogos.slice(5, 10).map((src, i) => (
+                <div key={i} className="flex items-center justify-center flex-1">
+                  <img
+                    src={src}
+                    alt={`Client ${i + 6}`}
+                    className="h-8 sm:h-10 md:h-12 w-auto max-w-[120px] object-contain filter brightness-0 invert opacity-50 hover:opacity-85 transition-opacity duration-300"
                   />
                 </div>
               ))}
