@@ -34,7 +34,7 @@ export default function DigitalMarketingHero() {
       <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4">
         <h1 className="font-jakarta text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-6xl text-center">
           <span className="block">Digital Marketing That Drives</span>
-          <span className="font-jakarta font-normal italic text-white block mt-1 sm:mt-2">Growth.</span>
+          <span className="font-jakarta font-normal text-white block mt-1 sm:mt-2">Growth.</span>
         </h1>
 
         {/* Subtitle */}

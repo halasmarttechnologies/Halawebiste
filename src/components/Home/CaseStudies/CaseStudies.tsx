@@ -54,7 +54,7 @@ export default function CaseStudies() {
         <div className="text-center mb-12 md:mb-16 relative z-10 flex flex-col items-center">
           <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.05] tracking-tight text-[#111111]">
             Where great ideas<br />
-            <span className="font-jakarta italic pr-2">became real results.</span>
+            <span className="font-jakarta pr-2">became real results.</span>
           </h2>
         </div>
 

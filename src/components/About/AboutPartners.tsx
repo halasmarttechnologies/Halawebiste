@@ -15,7 +15,7 @@ export default function AboutPartners() {
             Our Strategic Partners
           </span>
           <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold text-[#111111] leading-tight mb-4">
-            Collaborating With <em className="font-jakarta font-normal italic">Industry Leaders</em>
+            Collaborating With <em className="font-jakarta font-normal">Industry Leaders</em>
           </h2>
           <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl font-normal leading-relaxed">
             We partner with innovative technology companies to build scalable digital ecosystems and deliver high-impact solutions for businesses across the GCC.

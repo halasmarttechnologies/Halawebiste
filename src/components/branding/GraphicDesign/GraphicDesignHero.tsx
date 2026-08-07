@@ -45,7 +45,7 @@ export default function GraphicDesignHero() {
             <span className="block md:inline">Graphic design</span>{' '}
             <span className="block md:inline">that tells</span>{' '}
             <span className="block md:inline">your</span>{' '}
-            <span className="font-jakarta font-normal italic text-white block md:inline-block">story.</span>
+            <span className="font-jakarta font-normal text-white block md:inline-block">story.</span>
           </h1>
 
           <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">

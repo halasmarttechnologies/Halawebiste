@@ -106,7 +106,7 @@ function ServicesComponent() {
           </div>
           <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
             Tailored services.<br className="hidden sm:block" />
-            Hala does it <span className="font-jakarta italic pr-2">perfectly.</span>
+            Hala does it <span className="font-jakarta pr-2">perfectly.</span>
           </h2>
           <p className="text-lg md:text-xl text-[#555555] font-medium max-w-xl">
             Hala works wherever you need growth. Any platform, device, or market.

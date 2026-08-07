@@ -50,7 +50,7 @@ export default function DigitalMarketingServices() {
           </div>
           <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
             Explore Our Full-Suite, <br className="hidden sm:block" />
-            <em className="font-jakarta font-normal italic pr-2">Digital Marketing Services</em>
+            <em className="font-jakarta font-normal pr-2">Digital Marketing Services</em>
           </h2>
           <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
             We focus on transparency, performance, and innovation helping businesses in Dubai and across the UAE strengthen their online presence and achieve sustainable success.

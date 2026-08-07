@@ -42,7 +42,7 @@ export default function ContentCreation() {
         <div className="relative z-20 text-center max-w-4xl flex flex-col items-center">
           <h1 className="font-jakarta text-5xl md:text-7xl lg:text-[85px] font-extrabold leading-[1.05] tracking-tight mb-6 text-white drop-shadow-xl">
             Stories That Stick
-            <em className="font-jakarta font-semibold italic"> Content That Converts.</em>
+            <em className="font-jakarta font-semibold"> Content That Converts.</em>
           </h1>
 
           <p className="font-jakarta text-base md:text-lg lg:text-xl mb-10 max-w-[600px] mx-auto font-medium text-white/90 leading-relaxed">

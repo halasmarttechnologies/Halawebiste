@@ -63,7 +63,7 @@ const ptComponents = {
     h4: ({ children }: any) => <h4 className="text-xl md:text-2xl font-jakarta font-bold mt-8 mb-3 text-[#111111]">{children}</h4>,
     normal: ({ children }: any) => <p className="text-lg md:text-[19px] leading-relaxed mb-6 text-[#444444] font-jakarta">{children}</p>,
     blockquote: ({ children }: any) => (
-      <blockquote className="border-l-4 border-[#007FFF] bg-[#f8f9fa] py-4 pr-4 pl-6 italic text-xl my-10 text-[#333333] font-jakarta rounded-r-lg">
+      <blockquote className="border-l-4 border-[#007FFF] bg-[#f8f9fa] py-4 pr-4 pl-6 text-xl my-10 text-[#333333] font-jakarta rounded-r-lg">
         {children}
       </blockquote>
     ),

@@ -106,7 +106,7 @@ export default function AIAgentTransform() {
           {/* Description */}
           <p className="font-jakarta text-base sm:text-lg text-[#555555] leading-relaxed mb-8 font-normal">
             The era of manual campaigns and slow responses is over. Our AI Agents are built to{' '}
-            <span style={garamondStyle} className="font-jakarta italic font-normal text-[#1A1A1A]">
+            <span style={garamondStyle} className="font-jakarta font-normal text-[#1A1A1A]">
               understand your audience
             </span>
             , personalize communication and handle repetitive tasks while providing real-time, data-driven insights. With advanced automation working 24/7, your business can scale faster and compete more effectively, whether you’re a growing startup or an established brand.

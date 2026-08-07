@@ -42,7 +42,7 @@ export default function VideoEditingDetails() {
             </div>
             <div className="flex flex-col gap-3">
               <p className="font-jakarta text-2xl sm:text-3xl leading-[1.4] font-semibold text-[#111] tracking-tight">
-                Editing is where a story truly starts to <em className="font-jakarta italic text-[#007FFF] font-medium pr-2">breathe</em>.
+                Editing is where a story truly starts to <em className="font-jakarta text-[#007FFF] font-medium pr-2">breathe</em>.
               </p>
               <p className="font-jakarta text-lg sm:text-xl text-[#555] leading-[1.8] font-medium">
                 It's not just trimming clips and stitching them together it's the rhythm tone and feeling that turn footage into a story worth watching.

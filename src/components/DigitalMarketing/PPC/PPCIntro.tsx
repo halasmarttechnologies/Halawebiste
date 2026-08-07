@@ -15,7 +15,7 @@ export default function PPCIntro() {
           </span>
 
           <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-white leading-tight mb-8">
-            Targeted Traffic with <em className="font-jakarta font-normal italic">PPC Ads</em>
+            Targeted Traffic with <em className="font-jakarta font-normal">PPC Ads</em>
           </h2>
 
           <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] font-normal max-w-[860px] mx-auto">

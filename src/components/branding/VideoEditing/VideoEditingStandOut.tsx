@@ -140,7 +140,7 @@ export default function VideoEditingStandOut() {
 
           <h2 className="font-jakarta text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.1] tracking-tight text-[#111] mb-8">
             Why Our Video Editing Services <br className="hidden xl:block" />
-            <em className="font-jakarta italic text-[#007FFF] font-medium pr-2">Truly Deliver?</em>
+            <em className="font-jakarta text-[#007FFF] font-medium pr-2">Truly Deliver?</em>
           </h2>
 
           <p className="font-jakarta text-base md:text-lg lg:text-[19px] text-[#555] leading-[1.8] font-medium mb-10 md:mb-12 max-w-[600px]">

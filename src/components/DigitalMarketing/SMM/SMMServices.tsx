@@ -75,7 +75,7 @@ export default function SMMServices() {
             Social Media Services
           </div>
           <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
-            Explore Our <em className="font-jakarta font-normal italic pr-2">all-in-One Services</em>
+            Explore Our <em className="font-jakarta font-normal pr-2">all-in-One Services</em>
           </h2>
           <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-3xl leading-relaxed">
             Grow your brand presence and engage your audience across popular social media platforms. Moreover, we create impactful strategies to boost your reach, drive traffic, and increase conversions. Additionally, our tailored approach ensures your brand stays consistent, relevant, and highly competitive.

@@ -22,7 +22,7 @@ export default function VideoEditingReels() {
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 text-center relative z-20 mb-12 md:mb-20">
         <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 text-[#111]">
-          Instagram <span className="font-jakarta italic text-[#007FFF]">Reels &amp; Stories</span>
+          Instagram <span className="font-jakarta text-[#007FFF]">Reels &amp; Stories</span>
         </h2>
         <p className="text-[#555] font-jakarta text-sm md:text-base max-w-2xl mx-auto">
           Boost your brand's presence with scroll stopping short form videos crafted to grab attention fast and turn viewers into customers.

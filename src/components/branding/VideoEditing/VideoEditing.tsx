@@ -38,7 +38,7 @@ export default function VideoEditing() {
         <div className="relative z-20 text-center max-w-4xl flex flex-col items-center justify-center px-4 mt-6 sm:mt-10 md:mt-12">
           <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[85px] font-bold leading-[1.08] tracking-[-0.02em] mb-5 md:mb-6 text-white drop-shadow-xl text-center">
             <span className="block md:inline">Videos That</span>{' '}
-            <span className="font-jakarta font-normal italic text-white block md:inline-block">Demand Attention.</span>
+            <span className="font-jakarta font-normal text-white block md:inline-block">Demand Attention.</span>
           </h1>
 
           <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">

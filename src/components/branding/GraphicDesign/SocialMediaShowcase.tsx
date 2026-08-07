@@ -10,7 +10,7 @@ export default function SocialMediaShowcase() {
       <div className="sticky top-[100px] md:top-[120px] z-0 w-full bg-white h-[40vh] md:h-[50vh] flex flex-col justify-center items-center">
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 text-center">
           <h2 className="font-jakarta text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4 text-[#111]">
-            Visuals that <span className="font-jakarta italic text-[#007FFF]">speak.</span>
+            Visuals that <span className="font-jakarta text-[#007FFF]">speak.</span>
           </h2>
           <p className="text-[#555] font-jakarta text-sm md:text-base max-w-2xl mx-auto">
             From striking brand identities to pixel-perfect UI designs, explore our premium graphic design showcase. Each piece is crafted to capture attention and elevate your brand.

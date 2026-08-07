@@ -16,7 +16,7 @@ export default function DigitalMarketingIntro() {
           </span>
 
           <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-8">
-            Being Online Isn’t Enough Anymore. <em className="font-jakarta font-normal italic">To Grow, You Must Stand Out.</em>
+            Being Online Isn’t Enough Anymore. <em className="font-jakarta font-normal">To Grow, You Must Stand Out.</em>
           </h2>
 
           <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] mb-8 text-[#E8E6E1] font-normal">
@@ -41,7 +41,7 @@ export default function DigitalMarketingIntro() {
             </span>
 
             <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold text-[#111111] leading-tight mb-6">
-              What is Digital Marketing and <em className="font-jakarta font-normal italic">Why It Matters</em>
+              What is Digital Marketing and <em className="font-jakarta font-normal">Why It Matters</em>
             </h2>
 
             <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8 font-normal">
