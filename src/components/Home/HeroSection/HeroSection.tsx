@@ -70,7 +70,7 @@ function HeroSectionComponent() {
           {/* Email + CTA */}
           <form
             onSubmit={handleEmailSubmit}
-            className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[440px] mb-14"
+            className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[440px] mt-8 mb-14"
           >
             <input
               type="email"
@@ -89,7 +89,7 @@ function HeroSectionComponent() {
           </form>
 
           {/* ── Logo Grid ── */}
-          <div className="w-full max-w-[680px]">
+          <div className="w-full max-w-[680px] mt-6">
             <p className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.15em] text-white/35 mb-4">
               Trusted by leading brands
             </p>
