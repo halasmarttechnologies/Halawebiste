@@ -58,11 +58,7 @@ function HeroSectionComponent() {
         {/* ── All content centred, compact ── */}
         <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-4 sm:px-6 pt-[80px] pb-6 gap-0">
 
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white/85 text-[10px] sm:text-[11px] font-semibold px-3.5 py-1.5 rounded-full mb-4 tracking-widest uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#007FFF] animate-pulse" />
-            Dubai&apos;s #1 Digital Agency
-          </div>
+
 
           {/* Headline — tighter sizing */}
           <h1 className="font-jakarta font-bold text-white leading-[1.1] tracking-tight mb-3 w-full text-[32px] sm:text-[48px] md:text-[60px] lg:text-[68px]">
@@ -79,7 +75,7 @@ function HeroSectionComponent() {
           {/* Email + CTA */}
           <form
             onSubmit={handleEmailSubmit}
-            className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[440px] mb-8"
+            className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[440px] mb-14"
           >
             <input
               type="email"
