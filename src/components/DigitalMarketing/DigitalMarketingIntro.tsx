@@ -16,14 +16,14 @@ export default function DigitalMarketingIntro() {
           </span>
 
           <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-8">
-            Being Online Isn’t Enough Anymore. <span className="font-jakarta font-normal">To Grow, You Must Stand Out.</span>
+            Being Online Isn’t Enough Anymore. <span className="font-jakarta">To Grow, You Must Stand Out.</span>
           </h2>
 
-          <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] mb-8 text-[#E8E6E1] font-normal">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] mb-8 text-[#E8E6E1]">
             Hala Technology is a results-driven digital marketing company in Dubai specializing in SEO, social media marketing, PPC, and web design. We help businesses boost online visibility, attract quality leads, and increase sales through data-driven strategies.
           </p>
 
-          <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] text-[#CCCCCC] font-normal">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl leading-[1.7] text-[#CCCCCC]">
             With expert marketers and proven results, Hala Technology delivers customized digital solutions to help your brand grow and succeed in the UAE market.
           </p>
 
@@ -41,10 +41,10 @@ export default function DigitalMarketingIntro() {
             </span>
 
             <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold text-[#111111] leading-tight mb-6">
-              What is Digital Marketing and <span className="font-jakarta font-normal">Why It Matters</span>
+              What is Digital Marketing and <span className="font-jakarta">Why It Matters</span>
             </h2>
 
-            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8 font-normal">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8">
               Digital marketing helps your business connect with people online. It makes your brand more visible, builds trust with customers, and creates new opportunities for growth. At Hala Smart Technologies, we combine strategy, creativity and analytics to design campaigns that deliver real results. Whether your goal is more traffic, higher sales or stronger brand awareness, our full-service solutions create measurable growth for your business.
             </p>
 

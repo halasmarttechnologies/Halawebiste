@@ -15,10 +15,10 @@ export default function PPCIntro() {
           </span>
 
           <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-white leading-tight mb-8">
-            Targeted Traffic with <span className="font-jakarta font-normal">PPC Ads</span>
+            Targeted Traffic with <span className="font-jakarta">PPC Ads</span>
           </h2>
 
-          <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] font-normal max-w-[860px] mx-auto">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] max-w-[860px] mx-auto">
             Pay Per Click advertising is the fastest way to put your business in front of the right audience. At Hala Technologies, we develop PPC campaigns that provide measurable results, targeted traffic, and instant visibility. From keyword research to ad copy and bidding strategies, we manage every detail to ensure maximum return on investment. Our team concentrates on generating high-quality leads, lowering costs and expanding campaigns that support ongoing company expansion. With the right PPC approach, every click brings you closer to your goals.
           </p>
 

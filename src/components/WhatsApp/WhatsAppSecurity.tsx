@@ -9,7 +9,7 @@ export default function WhatsAppSecurity() {
         
         {/* Main Title */}
         <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.1] text-[#111111] text-center tracking-tight mb-4 max-w-3xl">
-          Automated messaging that <span className="font-jakarta font-normal pr-2">converts leads.</span>
+          Automated messaging that <span className="font-jakarta pr-2">converts leads.</span>
         </h2>
 
         {/* Subtitle */}
@@ -106,7 +106,7 @@ export default function WhatsAppSecurity() {
             <h3 className="font-bold text-lg sm:text-xl text-[#111111] mb-2 tracking-tight">
               Instant Automated Replies
             </h3>
-            <p className="text-sm text-[#666666] font-normal leading-relaxed">
+            <p className="text-sm text-[#666666] leading-relaxed">
               Respond to customer inquiries within seconds with customized chat flows, FAQs, and interactive menu options.
             </p>
           </div>
@@ -119,7 +119,7 @@ export default function WhatsAppSecurity() {
             <h3 className="font-bold text-lg sm:text-xl text-[#111111] mb-2 tracking-tight">
               Smart Lead Qualification
             </h3>
-            <p className="text-sm text-[#666666] font-normal leading-relaxed">
+            <p className="text-sm text-[#666666] leading-relaxed">
               Automatically collect prospect details, ask qualifying questions, and seamlessly route high-intent leads to your sales team.
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function WhatsAppSecurity() {
             <h3 className="font-bold text-lg sm:text-xl text-[#111111] mb-2 tracking-tight">
               Broadcasting & Nurturing
             </h3>
-            <p className="text-sm text-[#666666] font-normal leading-relaxed">
+            <p className="text-sm text-[#666666] leading-relaxed">
               Send targeted promotional broadcasts, order updates, and automated re-engagement campaigns directly on WhatsApp.
             </p>
           </div>

@@ -108,7 +108,7 @@ export default function BrandingHeroSection() {
             <span className="block md:inline">Building</span>{' '}
             <span className="block md:inline">brands that</span>{' '}
             <span className="block md:inline">make a lasting</span>{' '}
-            <span className="font-jakarta font-normal text-white block md:inline-block">impact.</span>
+            <span className="font-jakarta text-white block md:inline-block">impact.</span>
           </h1>
 
           <p className="font-jakarta text-sm sm:text-base md:text-lg lg:text-xl mb-8 md:mb-10 max-w-[600px] mx-auto font-semibold text-white/90 leading-relaxed px-2">

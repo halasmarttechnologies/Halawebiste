@@ -27,7 +27,7 @@ export default function BrandingExpertise() {
           className="w-full lg:w-1/2 flex flex-col justify-center"
         >
           <h2 className="font-jakarta text-4xl md:text-5xl lg:text-[56px] font-bold leading-[1.15] tracking-tight mb-8">
-            Hala Branding Expertise Built for <span className="font-jakarta pr-2 font-normal">Business Growth</span>
+            Hala Branding Expertise Built for <span className="font-jakarta pr-2">Business Growth</span>
           </h2>
 
           <p className="font-jakarta text-lg md:text-xl text-[#111111]/70 leading-relaxed font-medium mb-10 max-w-[600px]">

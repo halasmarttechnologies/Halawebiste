@@ -15,9 +15,9 @@ export default function AboutPartners() {
             Our Strategic Partners
           </span>
           <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold text-[#111111] leading-tight mb-4">
-            Collaborating With <span className="font-jakarta font-normal">Industry Leaders</span>
+            Collaborating With <span className="font-jakarta">Industry Leaders</span>
           </h2>
-          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl font-normal leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl leading-relaxed">
             We partner with innovative technology companies to build scalable digital ecosystems and deliver high-impact solutions for businesses across the GCC.
           </p>
         </div>
@@ -60,7 +60,7 @@ export default function AboutPartners() {
                 </span>
               </div>
 
-              <p className="font-jakarta text-sm text-[#555555] leading-relaxed mb-6 font-normal">
+              <p className="font-jakarta text-sm text-[#555555] leading-relaxed mb-6">
                 Architecting Enterprise AI &amp; Scalable Digital Ecosystems for UAE businesses. Custom software, AI automation, and robust digital infrastructure.
               </p>
             </div>

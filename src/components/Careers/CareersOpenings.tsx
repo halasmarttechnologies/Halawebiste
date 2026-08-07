@@ -114,9 +114,9 @@ export default function CareersOpenings() {
             Open Positions
           </span>
           <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold text-[#111111] leading-tight mb-4">
-            Current Opportunities <span className="font-jakarta font-normal">&amp; Openings</span>
+            Current Opportunities <span className="font-jakarta">&amp; Openings</span>
           </h2>
-          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl font-normal leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl leading-relaxed">
             Explore our open roles below. If your specialty isn&apos;t listed, feel free to reach out to us directly with your portfolio or CV.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function CareersOpenings() {
                 </div>
 
                 {/* Description */}
-                <p className="font-jakarta text-xs sm:text-sm text-[#666666] leading-relaxed font-normal">
+                <p className="font-jakarta text-xs sm:text-sm text-[#666666] leading-relaxed">
                   {job.description}
                 </p>
               </div>

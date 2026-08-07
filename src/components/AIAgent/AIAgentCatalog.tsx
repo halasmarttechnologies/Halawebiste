@@ -63,7 +63,7 @@ export default function AIAgentCatalog() {
             </h2>
           </div>
 
-          <p className="font-jakarta text-sm sm:text-base text-[#555555] max-w-[420px] leading-relaxed font-normal">
+          <p className="font-jakarta text-sm sm:text-base text-[#555555] max-w-[420px] leading-relaxed">
             Tailored AI agents engineered to handle marketing, customer acquisition, content creation, and business growth.
           </p>
         </div>
@@ -98,7 +98,7 @@ export default function AIAgentCatalog() {
                     {card.title}
                   </h3>
 
-                  <p className="font-jakarta text-xs sm:text-sm text-[#555555] leading-relaxed font-normal">
+                  <p className="font-jakarta text-xs sm:text-sm text-[#555555] leading-relaxed">
                     {card.description}
                   </p>
                 </div>

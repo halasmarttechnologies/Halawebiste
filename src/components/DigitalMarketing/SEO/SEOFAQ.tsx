@@ -76,7 +76,7 @@ export default function SEOFAQ() {
               FAQs &amp; Answers.
             </h2>
 
-            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8">
               Everything you need to know about our organic search engine optimization, technical audits, Google compliance, and ranking models.
             </p>
 
@@ -87,7 +87,7 @@ export default function SEOFAQ() {
               <h3 className="font-jakarta font-semibold text-lg text-[#111111] mb-2">
                 Ready to rank higher on Google?
               </h3>
-              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] leading-relaxed mb-6">
                 Our Dubai SEO specialists are ready to audit your website and identify major ranking growth opportunities.
               </p>
               <Link
@@ -149,7 +149,7 @@ export default function SEOFAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
+                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] leading-relaxed pl-16">
                           {faq.answer}
                         </div>
                       </motion.div>

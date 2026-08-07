@@ -70,7 +70,7 @@ export default function AboutHero() {
           <h1 className="font-jakarta font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.1] tracking-tight text-black mb-4 sm:mb-6">
             Engineering Bold Digital Solutions That Drive Growth
           </h1>
-          <p className="font-jakarta text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-relaxed max-w-2xl mx-auto px-2">
+          <p className="font-jakarta text-gray-600 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto px-2">
             Hala Technology helps ambitious companies scale through high-performance web development, SEO, performance marketing, and brand identity.
           </p>
         </motion.div>
@@ -95,7 +95,7 @@ export default function AboutHero() {
                 <h3 className="font-jakarta font-bold text-base sm:text-lg text-black mb-1.5">
                   {item.title}
                 </h3>
-                <p className="font-jakarta text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
+                <p className="font-jakarta text-xs sm:text-sm text-gray-600 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -121,7 +121,7 @@ export default function AboutHero() {
               <span className="font-jakarta text-xs sm:text-sm font-bold text-black mb-0.5">
                 {stat.label}
               </span>
-              <span className="font-jakarta text-[11px] sm:text-xs text-gray-500 font-normal">
+              <span className="font-jakarta text-[11px] sm:text-xs text-gray-500">
                 {stat.desc}
               </span>
             </div>

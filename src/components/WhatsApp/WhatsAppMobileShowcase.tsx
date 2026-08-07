@@ -138,7 +138,7 @@ export default function WhatsAppMobileShowcase() {
                 <h3 className="font-bold text-lg sm:text-xl text-[#111111] tracking-tight mb-1">
                   Zero-Delay Instant Response
                 </h3>
-                <p className="text-sm text-[#555555] font-normal leading-relaxed">
+                <p className="text-sm text-[#555555] leading-relaxed">
                   Engage every single incoming lead under 60 seconds, eliminating drop-off rates and outperforming delayed manual competitors.
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default function WhatsAppMobileShowcase() {
                 <h3 className="font-bold text-lg sm:text-xl text-[#111111] tracking-tight mb-1">
                   One-Tap Interactive Buttons
                 </h3>
-                <p className="text-sm text-[#555555] font-normal leading-relaxed">
+                <p className="text-sm text-[#555555] leading-relaxed">
                   Provide custom interactive menus and quick reply choices so customers can select services or book calls with a single tap.
                 </p>
               </div>
@@ -174,7 +174,7 @@ export default function WhatsAppMobileShowcase() {
                 <h3 className="font-bold text-lg sm:text-xl text-[#111111] tracking-tight mb-1">
                   Qualified CRM Lead Handoff
                 </h3>
-                <p className="text-sm text-[#555555] font-normal leading-relaxed">
+                <p className="text-sm text-[#555555] leading-relaxed">
                   Collect prospect data, budget, and business needs automatically before transferring hot prospects to your live sales team.
                 </p>
               </div>

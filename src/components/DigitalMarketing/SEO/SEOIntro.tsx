@@ -15,10 +15,10 @@ export default function SEOIntro() {
           </span>
 
           <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-white leading-tight mb-8">
-            Maximize Visibility with <span className="font-jakarta font-normal">Strategic SEO</span>
+            Maximize Visibility with <span className="font-jakarta">Strategic SEO</span>
           </h2>
 
-          <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] font-normal max-w-[860px] mx-auto">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] max-w-[860px] mx-auto">
             If your website offers the best products or services but doesn’t appear in top Google search results, your competitors outperform you. In today’s digital world, visibility is everything. Search Engine Optimization (SEO) improves your online presence by optimizing content, technical structure, and authority across on-page, off-page, and technical SEO. Connect with active, high-intent customers in Dubai and turn search queries into sales.
           </p>
 

@@ -76,7 +76,7 @@ export default function PPCFAQ() {
               FAQs &amp; Answers.
             </h2>
 
-            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8">
               Everything you need to know about our Pay-Per-Click strategy, ad platforms, budget optimization, and instant lead conversion models.
             </p>
 
@@ -87,7 +87,7 @@ export default function PPCFAQ() {
               <h3 className="font-jakarta font-semibold text-lg text-[#111111] mb-2">
                 Ready to launch high-ROI ads?
               </h3>
-              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] leading-relaxed mb-6">
                 Our Dubai PPC specialists will audit your target keywords and build a high-converting campaign setup.
               </p>
               <Link
@@ -149,7 +149,7 @@ export default function PPCFAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
+                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] leading-relaxed pl-16">
                           {faq.answer}
                         </div>
                       </motion.div>

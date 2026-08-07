@@ -17,13 +17,13 @@ export default function ContactHero() {
 
         {/* Main Heading with EB Garamond Typography matching Case Study style */}
         <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1050px]">
-          Let’s build something <span className="font-jakarta font-normal">extraordinary</span> together.
+          Let’s build something <span className="font-jakarta">extraordinary</span> together.
         </h1>
 
         {/* Subtitle / Overview Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 w-full pt-8 border-t border-[#f0f0f0]">
           <div className="md:col-span-7 lg:col-span-8">
-            <p className="font-jakarta text-lg sm:text-xl md:text-2xl text-[#555555] leading-relaxed font-normal">
+            <p className="font-jakarta text-lg sm:text-xl md:text-2xl text-[#555555] leading-relaxed">
               Whether you’re looking to scale your digital presence, build a bespoke web platform, or accelerate growth with performance marketing—our team in Dubai is ready to connect.
             </p>
           </div>

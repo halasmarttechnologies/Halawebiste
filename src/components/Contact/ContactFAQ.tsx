@@ -59,7 +59,7 @@ export default function ContactFAQ() {
               &amp; Answers.
             </h2>
 
-            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8">
               Got questions before scheduling a consultation or visiting our office? Here is everything you need to know about reaching our Dubai team.
             </p>
 
@@ -71,7 +71,7 @@ export default function ContactFAQ() {
               <h3 className="font-jakarta font-semibold text-lg text-[#111111] mb-2">
                 Need Immediate Help?
               </h3>
-              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] leading-relaxed mb-6">
                 Call or WhatsApp our direct line for instant project assistance.
               </p>
               <a
@@ -139,7 +139,7 @@ export default function ContactFAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
+                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] leading-relaxed pl-16">
                           {faq.answer}
                         </div>
                       </motion.div>

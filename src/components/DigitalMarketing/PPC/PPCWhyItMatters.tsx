@@ -15,7 +15,7 @@ export default function PPCWhyItMatters() {
             <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-[44px] text-[#111111] leading-tight mb-6">
               What is PPC Advertising and Why It&apos;s Matter?
             </h2>
-            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8">
               PPC stands for Pay-Per-Click, a digital advertising model where you only pay when someone clicks your ad. That means no wasted budget, only real, measurable results. Whether you’re launching a new product, running a special offer, or simply boosting web traffic, PPC gives you fast visibility, focused reach, and clear returns.
               <br /><br />
               At Hala Technology, we manage every part of your PPC campaign, from keywords to ads and daily tracking. You focus on your business while we bring the right audience and deliver measurable results.

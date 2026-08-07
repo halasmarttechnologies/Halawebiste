@@ -15,10 +15,10 @@ export default function SMMIntro() {
           </span>
 
           <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-white leading-tight mb-8">
-            Build Connections with <span className="font-jakarta font-normal">Social Media</span>
+            Build Connections with <span className="font-jakarta">Social Media</span>
           </h2>
 
-          <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] font-normal max-w-[860px] mx-auto">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.7] mb-10 text-[#E8E6E1] max-w-[860px] mx-auto">
             Social media is where today’s customers discover brands, compare their options, and decide who to trust. At Hala Technology, we provide complete social media marketing services designed to put your business in front of the right audience. Our data-driven strategies go beyond likes and followers, we focus on building real connections, driving engagement, and delivering measurable growth. Whether you want to boost brand awareness, generate qualified leads, or increase sales, our team ensures your brand stands out and succeeds where your audience spends their time.
           </p>
 

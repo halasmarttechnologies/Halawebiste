@@ -76,7 +76,7 @@ export default function VideoEditingFAQ() {
               FAQs &amp; Answers.
             </h2>
 
-            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed mb-8">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed mb-8">
               Everything you need to know about our editing workflow file formats revision policy and delivery timelines.
             </p>
 
@@ -87,7 +87,7 @@ export default function VideoEditingFAQ() {
               <h3 className="font-jakarta font-semibold text-lg text-[#111111] mb-2">
                 Ready to edit your video footage?
               </h3>
-              <p className="font-jakarta text-xs md:text-sm text-[#666666] font-normal leading-relaxed mb-6">
+              <p className="font-jakarta text-xs md:text-sm text-[#666666] leading-relaxed mb-6">
                 Send us your raw clips and our Dubai post-production team will transform them into high-converting videos.
               </p>
               <Link
@@ -149,7 +149,7 @@ export default function VideoEditingFAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] font-normal leading-relaxed pl-16">
+                        <div className="px-6 pb-6 pt-1 font-jakarta text-xs sm:text-sm md:text-base text-[#CCCCCC] leading-relaxed pl-16">
                           {faq.answer}
                         </div>
                       </motion.div>

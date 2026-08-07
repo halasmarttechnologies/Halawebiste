@@ -69,9 +69,9 @@ export default function PPCServices() {
             PPC Services
           </div>
           <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
-            Discover Our <span className="font-jakarta font-normal pr-2">Advertising Services</span>
+            Discover Our <span className="font-jakarta pr-2">Advertising Services</span>
           </h2>
-          <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-3xl leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-3xl leading-relaxed">
             Appear exactly where your audience is searching for. Our PPC specialists run targeted campaigns that deliver instant visibility, qualified leads, and measurable ROI.
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function PPCServices() {
                                 className="overflow-hidden"
                               >
                                 <div className="pt-4 pb-2 pl-12">
-                                  <p className="font-jakarta text-xs md:text-sm leading-relaxed text-[#CCCCCC] font-normal">
+                                  <p className="font-jakarta text-xs md:text-sm leading-relaxed text-[#CCCCCC]">
                                     {service.description}
                                   </p>
                                 </div>

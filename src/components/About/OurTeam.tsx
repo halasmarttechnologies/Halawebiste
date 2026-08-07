@@ -124,7 +124,7 @@ export default function OurTeam() {
           <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight text-[#111111] mb-5">
             Meet the minds behind the vision
           </h2>
-          <p className="font-jakarta text-gray-600 text-base md:text-lg font-normal px-4 max-w-2xl mx-auto">
+          <p className="font-jakarta text-gray-600 text-base md:text-lg px-4 max-w-2xl mx-auto">
             A collective of innovative thinkers, creators, and builders pushing the boundaries of digital technology.
           </p>
         </div>

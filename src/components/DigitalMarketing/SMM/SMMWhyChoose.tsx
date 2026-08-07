@@ -58,7 +58,7 @@ export default function SMMWhyChoose() {
         {/* Main Headline */}
         <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] text-center tracking-tight leading-[1.12] mb-14 sm:mb-16 max-w-4xl">
           Why Choose Hala for{' '}
-          <span className="font-jakarta font-normal text-[#111111] inline-block">
+          <span className="font-jakarta text-[#111111] inline-block">
             Social Media Marketing?
           </span>
         </h2>
@@ -102,7 +102,7 @@ export default function SMMWhyChoose() {
                 </h3>
 
                 {/* Card Description */}
-                <p className="font-jakarta text-xs sm:text-sm text-[#666666] font-normal leading-relaxed">
+                <p className="font-jakarta text-xs sm:text-sm text-[#666666] leading-relaxed">
                   {pillar.description}
                 </p>
 

@@ -23,9 +23,9 @@ export default function PhoneMockup() {
         className="relative w-[340px] sm:w-[380px] lg:w-[400px] h-[480px] sm:h-[520px] lg:h-[540px]"
       >
         {/* Side Buttons */}
-        <div className="absolute top-[90px]  -left-[2px]  w-[4px] h-[22px] bg-[#333] rounded-l-md" />
-        <div className="absolute top-[130px] -left-[2px]  w-[4px] h-[44px] bg-[#333] rounded-l-md" />
-        <div className="absolute top-[185px] -left-[2px]  w-[4px] h-[44px] bg-[#333] rounded-l-md" />
+        <div className="absolute top-[90px] -left-[2px] w-[4px] h-[22px] bg-[#333] rounded-l-md" />
+        <div className="absolute top-[130px] -left-[2px] w-[4px] h-[44px] bg-[#333] rounded-l-md" />
+        <div className="absolute top-[185px] -left-[2px] w-[4px] h-[44px] bg-[#333] rounded-l-md" />
         <div className="absolute top-[150px] -right-[2px] w-[4px] h-[60px] bg-[#333] rounded-r-md" />
 
         {/* Frame */}

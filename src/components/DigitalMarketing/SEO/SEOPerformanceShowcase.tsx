@@ -35,7 +35,7 @@ export default function SEOPerformanceShowcase() {
             Effective SEO Growth, Traffic, and Visibility
           </h2>
 
-          <p className="font-jakarta text-sm sm:text-base md:text-lg text-[#555555] font-normal max-w-3xl leading-relaxed px-2">
+          <p className="font-jakarta text-sm sm:text-base md:text-lg text-[#555555] max-w-3xl leading-relaxed px-2">
             At Hala Technology, we are your trusted partner for sustainable SEO growth, driving targeted organic traffic and maximizing search visibility across the UAE. From in-depth keyword research and technical site architecture to high-authority link building, we engineer strategies that outrank competitors and turn search intent into revenue.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function SEOPerformanceShowcase() {
               <h3 className="font-jakarta text-lg sm:text-xl md:text-2xl font-bold text-[#111111] mb-2 leading-snug">
                 {item.title}
               </h3>
-              <p className="font-jakarta text-xs sm:text-sm text-[#666666] font-normal leading-relaxed mb-4 sm:mb-6">
+              <p className="font-jakarta text-xs sm:text-sm text-[#666666] leading-relaxed mb-4 sm:mb-6">
                 {item.subtitle}
               </p>
 

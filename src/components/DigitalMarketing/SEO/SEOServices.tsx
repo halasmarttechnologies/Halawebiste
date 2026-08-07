@@ -75,9 +75,9 @@ export default function SEOServices() {
             SEO Services UAE
           </div>
           <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
-            Our SEO <span className="font-jakarta font-normal pr-2">Services</span>
+            Our SEO <span className="font-jakarta pr-2">Services</span>
           </h2>
-          <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl leading-relaxed">
             Discover how we’ve helped businesses transform through innovative solutions.
           </p>
         </div>
@@ -147,7 +147,7 @@ export default function SEOServices() {
                                 className="overflow-hidden"
                               >
                                 <div className="pt-4 pb-2 pl-12">
-                                  <p className="font-jakarta text-xs md:text-sm leading-relaxed text-[#CCCCCC] font-normal">
+                                  <p className="font-jakarta text-xs md:text-sm leading-relaxed text-[#CCCCCC]">
                                     {service.description}
                                   </p>
                                 </div>

@@ -39,13 +39,13 @@ export default function WhatsAppHero() {
           <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[82px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl text-center">
             WhatsApp Automation For{' '}
             <br className="hidden sm:block" />
-            <span className="font-jakarta font-normal text-white inline-block">
+            <span className="font-jakarta text-white inline-block">
               Customer Engagement.
             </span>
           </h1>
 
           {/* Hero Subheadline */}
-          <p className="font-jakarta text-base sm:text-lg md:text-xl font-normal text-white/90 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10 text-center">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10 text-center">
             At Hala Technologies, we help businesses transform WhatsApp from a simple chat tool into a powerful automated communication channel. Engage leads, boost response times, and drive conversions 24/7.
           </p>
 
@@ -70,12 +70,12 @@ export default function WhatsAppHero() {
           {/* Subheading (h2) */}
           <h2 className="font-jakarta text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] text-white mb-8 text-center">
             Streamline customer interactions, speed up sales, and{' '}
-            <span className="font-jakarta font-normal text-white">
+            <span className="font-jakarta text-white">
               engage your audience around-the-clock
             </span> without constant manual effort.
           </h2>
 
-          <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.7] text-[#E8E6E1]/90 max-w-4xl mx-auto font-normal text-center">
+          <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.7] text-[#E8E6E1]/90 max-w-4xl mx-auto text-center">
             From automated instant replies and interactive chat menus to bulk notifications and CRM integration, our WhatsApp Automation turns every chat into a high-converting customer relationship.
           </p>
 

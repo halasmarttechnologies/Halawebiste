@@ -41,13 +41,13 @@ export default function AIAgentHero() {
           <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl text-center">
             AI Agents For Smarter{' '}
             <br className="hidden sm:block" />
-            <span style={garamondStyle} className="font-jakarta font-normal text-white inline-block">
+            <span style={garamondStyle} className="font-jakarta text-white inline-block">
               Business Growth.
             </span>
           </h1>
 
           {/* Hero Subheadline */}
-          <p className="font-jakarta text-base sm:text-lg md:text-xl font-normal text-white/90 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10 text-center">
+          <p className="font-jakarta text-base sm:text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10 text-center">
             At Hala Technologies, we empower businesses to grow smarter with next-generation AI Agents designed to transform marketing.
           </p>
 
@@ -72,12 +72,12 @@ export default function AIAgentHero() {
           {/* Subheading (h2) */}
           <h2 className="font-jakarta text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] text-white mb-8 text-center">
             These advanced agents don’t just automate tasks—they{' '}
-            <span style={garamondStyle} className="font-jakarta font-normal text-white">
+            <span style={garamondStyle} className="font-jakarta text-white">
               understand your audience
             </span>, deliver the right message at the right time, and build stronger relationships with your customers.
           </h2>
 
-          <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.7] text-[#E8E6E1]/90 max-w-4xl mx-auto font-normal text-center">
+          <p className="font-jakarta text-lg md:text-xl lg:text-2xl leading-[1.7] text-[#E8E6E1]/90 max-w-4xl mx-auto text-center">
             By attracting high-quality traffic and turning prospects into loyal customers, our AI Agents help your brand grow with speed, precision, and measurable results.
           </p>
 

@@ -50,9 +50,9 @@ export default function DigitalMarketingServices() {
           </div>
           <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
             Explore Our Full-Suite, <br className="hidden sm:block" />
-            <span className="font-jakarta font-normal pr-2">Digital Marketing Services</span>
+            <span className="font-jakarta pr-2">Digital Marketing Services</span>
           </h2>
-          <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-2xl leading-relaxed">
+          <p className="font-jakarta text-base md:text-lg text-[#555555] max-w-2xl leading-relaxed">
             We focus on transparency, performance, and innovation helping businesses in Dubai and across the UAE strengthen their online presence and achieve sustainable success.
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function DigitalMarketingServices() {
                           className="overflow-hidden"
                         >
                           <div className="pt-4 pb-2 pl-0 sm:pl-16 flex flex-col gap-4">
-                            <p className="font-jakarta text-[13.5px] sm:text-sm md:text-base leading-relaxed text-[#CCCCCC] font-normal max-w-[750px]">
+                            <p className="font-jakarta text-[13.5px] sm:text-sm md:text-base leading-relaxed text-[#CCCCCC] max-w-[750px]">
                               {service.description}
                             </p>
 

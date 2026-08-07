@@ -14,7 +14,7 @@ export default function SMMWhyItMatters() {
             <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-[44px] text-[#111111] leading-tight mb-6">
               Social Media Marketing and Why It Matters
             </h2>
-            <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal leading-relaxed">
+            <p className="font-jakarta text-base md:text-lg text-[#555555] leading-relaxed">
               Today’s customers discover, compare, and purchase directly on platforms like Facebook, Instagram, LinkedIn, TikTok, and YouTube. That’s why your brand must appear strategically, communicate clearly, and respond quickly.
               <br /><br />
               At Hala Technology, we manage everything from content planning to paid ad campaigns, ensuring your brand connects, engages, and grows. Whether you're a startup or a multinational company, our strategies put you in front of the right audience for measurable growth.
