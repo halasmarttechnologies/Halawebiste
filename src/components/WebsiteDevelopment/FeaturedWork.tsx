@@ -58,49 +58,16 @@ const projects = [
 ];
 
 const clientLogos = [
-  {
-    name: 'Boltshift',
-    icon: (
-      <svg className="w-6 h-6 text-[#007FFF]" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-      </svg>
-    )
-  },
-  {
-    name: 'FeatherDev',
-    icon: (
-      <svg className="w-6 h-6 text-[#007FFF]" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5l6.74-6.76zM13 17.5H7v-6l6.5-6.5a4 4 0 0 1 5.66 5.66L13 17.5z" />
-      </svg>
-    )
-  },
-  {
-    name: 'Spherule',
-    icon: (
-      <svg className="w-6 h-6 text-[#007FFF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 3a9 9 0 0 0 0 18M3 12a9 9 0 0 0 18 0" />
-      </svg>
-    )
-  },
-  {
-    name: 'GlobalBank',
-    icon: (
-      <svg className="w-6 h-6 text-[#007FFF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <path d="M12 7v10M7 12h10" />
-      </svg>
-    )
-  },
-  {
-    name: 'Nietzsche',
-    icon: (
-      <svg className="w-6 h-6 text-[#007FFF]" viewBox="0 0 24 24" fill="currentColor">
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    )
-  }
+  { id: 1, src: '/Companies Logos/1.png', alt: 'Client Partner 1' },
+  { id: 2, src: '/Companies Logos/2.png', alt: 'Client Partner 2' },
+  { id: 3, src: '/Companies Logos/3.png', alt: 'Client Partner 3' },
+  { id: 4, src: '/Companies Logos/4.png', alt: 'Client Partner 4' },
+  { id: 5, src: '/Companies Logos/5.png', alt: 'Client Partner 5' },
+  { id: 6, src: '/Companies Logos/6.png', alt: 'Client Partner 6' },
+  { id: 7, src: '/Companies Logos/7.png', alt: 'Client Partner 7' },
+  { id: 8, src: '/Companies Logos/8.png', alt: 'Client Partner 8' },
+  { id: 9, src: '/Companies Logos/9.png', alt: 'Client Partner 9' },
+  { id: 10, src: '/Companies Logos/10.png', alt: 'Client Partner 10' }
 ];
 
 export default function FeaturedWork() {
@@ -186,18 +153,19 @@ export default function FeaturedWork() {
         </div>
 
         {/* Bottom Logo Bar: Worked With */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-[#E5E5E5] flex flex-col md:flex-row items-center justify-between gap-6">
-          <span className="font-jakarta font-bold text-base sm:text-lg text-[#111111] whitespace-nowrap">
+        <div className="mt-16 sm:mt-20 pt-8 border-t border-[#E5E5E5] flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden">
+          <span className="font-jakarta font-bold text-base sm:text-lg text-[#111111] whitespace-nowrap shrink-0">
             Worked With:
           </span>
 
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-8 sm:gap-12 opacity-80 hover:opacity-100 transition-opacity">
-            {clientLogos.map((client, index) => (
-              <div key={index} className="flex items-center gap-2.5 group cursor-pointer">
-                {client.icon}
-                <span className="font-jakarta font-bold text-base sm:text-lg text-[#333333] group-hover:text-[#007FFF] transition-colors tracking-tight">
-                  {client.name}
-                </span>
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 sm:gap-10 opacity-85 hover:opacity-100 transition-opacity">
+            {clientLogos.map((client) => (
+              <div key={client.id} className="flex items-center justify-center h-10 sm:h-12 px-2 group cursor-pointer transition-transform duration-300 hover:scale-110">
+                <img
+                  src={client.src}
+                  alt={client.alt}
+                  className="h-8 sm:h-10 md:h-12 w-auto object-contain max-w-[120px] filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-75 group-hover:opacity-100"
+                />
               </div>
             ))}
           </div>
