@@ -41,7 +41,7 @@ export default async function BlogsPage() {
             </div>
 
             <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1050px]">
-              Explore our latest <em className="font-jakarta font-normal">insights</em> and strategies.
+              Explore our latest <span className="font-jakarta font-normal">insights</span> and strategies.
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 w-full pt-8 border-t border-[#f0f0f0]">

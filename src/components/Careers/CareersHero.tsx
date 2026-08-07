@@ -25,7 +25,7 @@ export default function CareersHero() {
 
         {/* Main Heading with Classic Typography */}
         <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-bold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1050px]">
-          Shape The Future With <em className="font-jakarta font-normal text-[#111111]">Hala Technologies.</em>
+          Shape The Future With <span className="font-jakarta font-normal text-[#111111]">Hala Technologies.</span>
         </h1>
 
         {/* Subtitle / Overview Grid */}

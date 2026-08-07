@@ -17,7 +17,7 @@ export default function ContactHero() {
 
         {/* Main Heading with EB Garamond Typography matching Case Study style */}
         <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1050px]">
-          Let’s build something <em className="font-jakarta font-normal">extraordinary</em> together.
+          Let’s build something <span className="font-jakarta font-normal">extraordinary</span> together.
         </h1>
 
         {/* Subtitle / Overview Grid */}

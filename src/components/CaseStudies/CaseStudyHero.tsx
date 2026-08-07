@@ -15,7 +15,7 @@ export default function CaseStudyHero() {
 
         {/* Main Heading with Classic Typography */}
         <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-8 max-w-[1000px]">
-          Our <em className="font-jakarta font-normal">Case Studies</em> &amp; Client Stories
+          Our <span className="font-jakarta font-normal">Case Studies</span> &amp; Client Stories
         </h1>
 
         {/* Subtitle / Overview */}
