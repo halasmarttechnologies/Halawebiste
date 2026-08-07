@@ -33,12 +33,7 @@ export default function TrustedSection() {
         {/* Image / Placeholder Side */}
         <div className="flex-1 w-full flex justify-center lg:justify-end relative">
           <div className="relative w-full max-w-[600px] aspect-[4/3] rounded-3xl overflow-hidden border border-gray-100 bg-[#F4F5F7] flex items-center justify-center">
-            {/* Real image if available, else this serves as a beautiful ClickUp-style placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#f0f2f5] to-white flex items-center justify-center">
-              <span className="text-[#A3A8B8] font-jakarta font-medium text-lg">Image Placeholder</span>
-            </div>
-            {/* If the user provides a real image later, they can just swap the src here */}
-            {/* <Image src="/your-image.jpg" alt="Trusted Web Design" fill className="object-cover" /> */}
+            <Image src="/website mockup images/fearure iamge.png" alt="Trusted Web Design" fill className="object-cover" />
           </div>
         </div>
 
