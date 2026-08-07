@@ -127,7 +127,7 @@ export default function GraphicDesignServices() {
           </div>
           <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
             Discover Our Single-Stop <br className="hidden md:block" />
-            <span className="eb-garamond italic pr-2">Graphic Design</span> Services
+            <span className="font-jakarta italic pr-2">Graphic Design</span> Services
           </h2>
           <p className="text-lg md:text-xl text-[#555555] font-medium max-w-2xl">
             At Hala, we specialize in delivering high-converting graphic designs that combine art with strategy. Original designs tailored to your brand goals.

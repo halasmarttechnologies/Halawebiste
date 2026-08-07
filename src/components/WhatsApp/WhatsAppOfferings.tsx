@@ -54,7 +54,7 @@ export default function WhatsAppOfferings() {
             Our Solutions
           </div>
           <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.08] tracking-tight mb-5 text-[#111111]">
-            What We <span className="eb-garamond italic font-normal pr-2">Offer.</span>
+            What We <span className="font-jakarta italic font-normal pr-2">Offer.</span>
           </h2>
           <p className="text-[#555555] text-base md:text-lg font-medium max-w-2xl mx-auto leading-relaxed">
             Comprehensive WhatsApp Automation solutions engineered to elevate customer engagement and streamline your team's communication.

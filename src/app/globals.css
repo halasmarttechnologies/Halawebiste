@@ -1,11 +1,4 @@
 /* ─── Fonts ─────────────────────────────────────────── */
-.eb-garamond {
-  font-family: var(--font-eb-garamond), 'EB Garamond', serif !important;
-  font-optical-sizing: auto;
-  font-weight: 300 !important;
-  font-style: italic !important;
-}
-
 .font-jakarta {
   font-family: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
 }
@@ -17,7 +10,6 @@
 @theme {
   --font-family-sans: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
   --font-family-jakarta: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
-  --font-family-ebgaramond: var(--font-eb-garamond), 'EB Garamond', serif;
 
   --color-brand-dark: #111111;
   --color-brand-cream: #f5f5e4;
@@ -66,12 +58,6 @@ body {
   overflow-x: clip;
   background-color: #111111;
   min-width: 320px;
-}
-
-/* Force EB Garamond for all italic text */
-.italic, i, em {
-  font-family: var(--font-eb-garamond), 'EB Garamond', serif !important;
-  font-weight: 300 !important;
 }
 
 /* ─── Hardware Acceleration & 120/144 FPS Rendering Hints ─────────────── */

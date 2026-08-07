@@ -90,7 +90,7 @@ export default function BrandingServices() {
           </div>
           <h2 className="font-jakarta font-bold text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] leading-[1.05] tracking-tight mb-6 text-[#111111]">
             End-to-End<br className="hidden sm:block" />
-            Branding <span className="eb-garamond italic pr-2">Solutions.</span>
+            Branding <span className="font-jakarta italic pr-2">Solutions.</span>
           </h2>
           <p className="text-lg md:text-xl text-[#555555] font-medium max-w-xl">
             Comprehensive solutions to build, elevate, and transform your brand at every touchpoint.

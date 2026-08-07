@@ -39,7 +39,7 @@ export default function WhatsAppHero() {
           <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[82px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl text-center">
             WhatsApp Automation For{' '}
             <br className="hidden sm:block" />
-            <span className="eb-garamond italic font-normal text-white inline-block">
+            <span className="font-jakarta italic font-normal text-white inline-block">
               Customer Engagement.
             </span>
           </h1>
@@ -70,7 +70,7 @@ export default function WhatsAppHero() {
           {/* Subheading (h2) */}
           <h2 className="font-jakarta text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] text-white mb-8 text-center">
             Streamline customer interactions, speed up sales, and{' '}
-            <span className="eb-garamond italic font-normal text-white">
+            <span className="font-jakarta italic font-normal text-white">
               engage your audience around-the-clock
             </span> without constant manual effort.
           </h2>

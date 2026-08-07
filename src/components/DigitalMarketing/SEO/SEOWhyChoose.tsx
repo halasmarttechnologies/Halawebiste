@@ -58,7 +58,7 @@ export default function SEOWhyChoose() {
         {/* Main Headline */}
         <h2 className="font-jakarta font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] text-center tracking-tight leading-[1.12] mb-14 sm:mb-16 max-w-4xl">
           Why Choose Hala Technology for{' '}
-          <span className="eb-garamond italic font-normal text-[#111111] inline-block">
+          <span className="font-jakarta italic font-normal text-[#111111] inline-block">
             SEO?
           </span>
         </h2>

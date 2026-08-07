@@ -23,7 +23,7 @@ export default function ContactInfoCards() {
               Direct Access &amp; Support
             </span>
             <h2 className="font-jakarta text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111111]">
-              Reach Out <em className="eb-garamond font-normal italic pr-2">Directly</em>
+              Reach Out <em className="font-jakarta font-normal italic pr-2">Directly</em>
             </h2>
           </div>
           <p className="font-jakarta text-base text-[#666666] max-w-md">

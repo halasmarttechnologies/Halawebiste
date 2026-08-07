@@ -69,7 +69,7 @@ export default function PPCServices() {
             PPC Services
           </div>
           <h2 className="font-jakarta font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-[4.2rem] leading-[1.08] tracking-tight mb-6 text-[#111111] max-w-4xl">
-            Discover Our <em className="eb-garamond font-normal italic pr-2">Advertising Services</em>
+            Discover Our <em className="font-jakarta font-normal italic pr-2">Advertising Services</em>
           </h2>
           <p className="font-jakarta text-base md:text-lg text-[#555555] font-normal max-w-3xl leading-relaxed">
             Appear exactly where your audience is searching for. Our PPC specialists run targeted campaigns that deliver instant visibility, qualified leads, and measurable ROI.

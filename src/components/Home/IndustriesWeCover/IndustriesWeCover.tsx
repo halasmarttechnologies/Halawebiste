@@ -26,7 +26,7 @@ export default function IndustriesWeCover() {
       <div className="max-w-[1200px] mx-auto flex flex-col items-center">
 
         {/* Title */}
-        <h3 className="font-ebgaramond font-bold text-[#111111] text-xl md:text-4xl mb-12 text-center px-4">
+        <h3 className="font-jakarta font-bold text-[#111111] text-xl md:text-4xl mb-12 text-center px-4">
           Industries We Cover
         </h3>
 

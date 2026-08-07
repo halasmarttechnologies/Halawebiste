@@ -118,7 +118,7 @@ export default function ProcessSection() {
           </span>
           <h2 className="font-jakarta font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[52px] text-[#111111] tracking-tight leading-[1.15] mb-5">
             A Structured Approach To{' '}
-            <span className="eb-garamond italic font-normal text-[#111111]">
+            <span className="font-jakarta italic font-normal text-[#111111]">
               Digital Excellence
             </span>
           </h2>

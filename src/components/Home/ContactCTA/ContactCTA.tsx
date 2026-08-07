@@ -569,7 +569,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
             See if Hala is<br />
             the right fit for you
           </h2>
-          <h2 className="font-ebgaramond italic text-[34px] sm:text-[48px] md:text-[62px] leading-[1] text-white/90 mb-4 sm:mb-6">
+          <h2 className="font-jakarta italic text-[34px] sm:text-[48px] md:text-[62px] leading-[1] text-white/90 mb-4 sm:mb-6">
             (it totally is)
           </h2>
 

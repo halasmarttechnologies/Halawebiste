@@ -41,7 +41,7 @@ export default function AIAgentHero() {
           <h1 className="font-jakarta text-4xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-semibold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl text-center">
             AI Agents For Smarter{' '}
             <br className="hidden sm:block" />
-            <span style={garamondStyle} className="eb-garamond italic font-normal text-white inline-block">
+            <span style={garamondStyle} className="font-jakarta italic font-normal text-white inline-block">
               Business Growth.
             </span>
           </h1>
@@ -72,7 +72,7 @@ export default function AIAgentHero() {
           {/* Subheading (h2) */}
           <h2 className="font-jakarta text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.3] text-white mb-8 text-center">
             These advanced agents don’t just automate tasks—they{' '}
-            <span style={garamondStyle} className="eb-garamond italic font-normal text-white">
+            <span style={garamondStyle} className="font-jakarta italic font-normal text-white">
               understand your audience
             </span>, deliver the right message at the right time, and build stronger relationships with your customers.
           </h2>

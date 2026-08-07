@@ -9,7 +9,7 @@ export default function WhatsAppSecurity() {
         
         {/* Main Title */}
         <h2 className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.1] text-[#111111] text-center tracking-tight mb-4 max-w-3xl">
-          Automated messaging that <span className="eb-garamond italic font-normal pr-2">converts leads.</span>
+          Automated messaging that <span className="font-jakarta italic font-normal pr-2">converts leads.</span>
         </h2>
 
         {/* Subtitle */}
