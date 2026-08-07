@@ -41,7 +41,7 @@ export default function Website() {
         <h1 className="font-jakarta text-5xl sm:text-6xl md:text-7xl lg:text-[84px] xl:text-[90px] font-bold tracking-[-0.03em] leading-[1.08] sm:leading-[1.06] text-white mb-6 sm:mb-8 max-w-5xl">
           We Build Websites{' '}
           <br className="hidden sm:block" />
-          <span className="eb-garamond italic font-normal text-white inline-block">
+          <span className="text-white inline-block">
             That Convert Visitors.
           </span>
         </h1>
@@ -61,7 +61,7 @@ export default function Website() {
     </section>
 
       {/* Intro Section */}
-      <section className="relative bg-[#111111] z-10 pt-10 pb-24 md:pt-16 md:pb-32 px-6 flex flex-col items-center">
+      <section className="relative bg-[#111111] z-10 pt-10 pb-12 md:pt-16 md:pb-16 px-6 flex flex-col items-center">
         {/* Centered container for perfect alignment */}
         <div className="max-w-[900px] text-center relative z-30">
 

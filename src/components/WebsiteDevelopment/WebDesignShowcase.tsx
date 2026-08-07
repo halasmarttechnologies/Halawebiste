@@ -38,16 +38,16 @@ const showcaseProjects = [
   },
   {
     id: '03',
-    title: 'Marina Byblos Hotel',
-    category: 'Hospitality & Luxury Hotel',
-    description: 'A high-converting luxury hotel booking architecture with direct room reservations, amenity highlights, and responsive mobility.',
-    url: 'https://www.marinabybloshotel.com/',
-    desktopImg: '/website mockup images/marina.png',
-    tabletImg: '/website mockup images/marina.png',
-    mobileImg: '/website mockup images/marina.png',
+    title: 'Green Crystal',
+    category: 'Corporate & Industrial Trading',
+    description: 'A dynamic, immersive web experience engineered for seamless B2B networking and global industrial trade solutions.',
+    url: 'https://greencrystal.ae/',
+    desktopImg: '/website mockup images/greencrystal.png',
+    tabletImg: '/website mockup images/greencrystal.png',
+    mobileImg: '/website mockup images/greencrystal.png',
     metrics: [
       { label: 'Speed Score', val: '97/100' },
-      { label: 'Direct Booking', val: '+195%' },
+      { label: 'Engagement', val: '+195%' },
       { label: 'Tech Stack', val: 'Next.js / Node' }
     ]
   }
@@ -74,7 +74,7 @@ export default function WebDesignShowcase() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-[#111111] text-white py-20 md:py-28 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden border-t border-b border-[#222222]"
+      className="relative w-full bg-[#111111] text-white py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden rounded-t-[40px] md:rounded-t-[60px] border-b border-[#222222]"
     >
       {/* Custom Follow Cursor */}
       {isHovering && (
@@ -104,10 +104,7 @@ export default function WebDesignShowcase() {
           </div>
           
           <h2 className="font-jakarta font-bold text-3xl sm:text-5xl md:text-6xl text-white tracking-tight leading-[1.1] mb-5">
-            A Glimpse of{' '}
-            <span className="eb-garamond italic font-normal text-white inline-block">
-              Our Work
-            </span>
+            A Glimpse of Our Work
           </h2>
 
           <p className="font-jakarta text-base sm:text-lg text-white/70 font-medium leading-relaxed max-w-2xl mx-auto">
