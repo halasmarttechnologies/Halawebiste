@@ -70,8 +70,8 @@ function HeroSectionComponent() {
           {/* Headline */}
           <h1 className="font-jakarta font-bold text-white leading-[1.08] tracking-tight mb-5 w-full max-w-[700px]
             text-[38px] xs:text-[44px] sm:text-[54px] md:text-[64px] lg:text-[72px]">
-            Grow your brand.<br />
-            Dominate the market.
+            <span className="block sm:whitespace-nowrap">Grow your brand.</span>
+            <span className="block sm:whitespace-nowrap">Dominate the market.</span>
           </h1>
 
           {/* Email + CTA — stacked on mobile, side-by-side on sm+ */}
