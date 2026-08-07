@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef, memo } from 'react';
+import { useState, useCallback, memo } from 'react';
 import Image from 'next/image';
 import { X, ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -38,9 +38,9 @@ function HeroSectionComponent() {
   return (
     <>
       {/* ─────────────────── HERO SECTION ─────────────────── */}
-      <section className="relative z-0 flex flex-col items-center justify-center text-center w-full h-[100svh] min-h-[580px] max-h-[900px] overflow-hidden gpu-layer">
+      <section className="relative z-0 flex flex-col items-center justify-start text-center w-full min-h-[100svh] overflow-hidden gpu-layer">
 
-        {/* ── Background image (the 123.png screenshot design) ── */}
+        {/* ── Background image ── */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/hero-images/hero-bg.png"
@@ -50,56 +50,69 @@ function HeroSectionComponent() {
             className="object-cover object-center"
             priority
           />
-          {/* Light dark gradient overlay so text is crisp */}
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/50" />
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
         </div>
 
-        {/* ── All content centred, compact ── */}
-        <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-4 sm:px-6 pt-[80px] pb-6 gap-0">
+        {/* ── Main Content ── */}
+        <div className="relative z-20 flex flex-col items-center justify-center w-full min-h-[100svh] px-5 sm:px-8 pt-24 pb-10">
 
-
-
-          {/* Headline — tighter sizing */}
-          <h1 className="font-jakarta font-bold text-white leading-[1.1] tracking-tight mb-3 w-full text-[32px] sm:text-[48px] md:text-[60px] lg:text-[68px]">
-            <span className="block whitespace-nowrap">Grow your brand.</span>
-            <span className="block whitespace-nowrap">Dominate the market.</span>
+          {/* Headline */}
+          <h1 className="font-jakarta font-bold text-white leading-[1.08] tracking-tight mb-5 w-full max-w-[700px]
+            text-[38px] xs:text-[44px] sm:text-[54px] md:text-[64px] lg:text-[72px]">
+            Grow your brand.<br />
+            Dominate the market.
           </h1>
 
-
-          {/* Email + CTA */}
+          {/* Email + CTA — stacked on mobile, side-by-side on sm+ */}
           <form
             onSubmit={handleEmailSubmit}
-            className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[440px] mt-8 mb-14"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-[460px] mt-6 mb-10 sm:mb-12"
           >
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your work email"
-              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-sm font-medium px-4 py-3 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors"
+              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] font-medium px-4 py-3.5 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors"
             />
             <button
               type="submit"
-              className="w-full sm:w-auto flex items-center justify-center gap-1.5 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.97] text-white font-bold text-sm px-5 py-3 rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg shadow-[#007FFF]/30"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.97] text-white font-bold text-[14px] px-5 py-3.5 rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg shadow-[#007FFF]/30"
             >
               Request a Call
-              <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+              <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </button>
           </form>
 
           {/* ── Logo Grid ── */}
-          <div className="w-full max-w-[680px] mt-6">
-            <p className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.15em] text-white/35 mb-4">
+          <div className="w-full max-w-[680px]">
+            <p className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.15em] text-white/35 mb-4 text-center">
               Trusted by leading brands
             </p>
-            <div className="grid grid-cols-5 gap-x-4 gap-y-3 place-items-center">
+
+            {/* Mobile: 2 col grid — shows 4 logos clean */}
+            {/* Tablet+: 5 col grid — shows all 10 */}
+            <div className="hidden sm:grid grid-cols-5 gap-x-4 gap-y-4 place-items-center">
               {clientLogos.map((src, i) => (
-                <div key={i} className="flex items-center justify-center h-7 sm:h-8 w-full">
+                <div key={i} className="flex items-center justify-center h-8 w-full">
                   <img
                     src={src}
                     alt={`Client ${i + 1}`}
-                    className="h-5 sm:h-7 w-auto max-w-[90px] object-contain filter brightness-0 invert opacity-50 hover:opacity-80 transition-opacity duration-300"
+                    className="h-6 sm:h-7 w-auto max-w-[90px] object-contain filter brightness-0 invert opacity-50 hover:opacity-80 transition-opacity duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile only: 2 rows of 4 logos in a 4-col grid */}
+            <div className="grid sm:hidden grid-cols-4 gap-x-3 gap-y-4 place-items-center">
+              {clientLogos.slice(0, 8).map((src, i) => (
+                <div key={i} className="flex items-center justify-center h-8 w-full">
+                  <img
+                    src={src}
+                    alt={`Client ${i + 1}`}
+                    className="h-5 w-auto max-w-[70px] object-contain filter brightness-0 invert opacity-50 hover:opacity-80 transition-opacity duration-300"
                   />
                 </div>
               ))}
