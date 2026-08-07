@@ -5,7 +5,6 @@ import {
   TrendingUp, MonitorSmartphone, Plus, Minus, ArrowRight, ArrowUpRight
 } from 'lucide-react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 import type { ElementType } from 'react';
 
 // ─── Types ────────────────────────────────────────────
@@ -165,30 +164,26 @@ function ServicesComponent() {
                             )}
                           </div>
 
-                          <AnimatePresence>
-                            {isActive && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                                className="overflow-hidden"
+                          <div
+                            className="overflow-hidden transition-all duration-300 ease-out"
+                            style={{
+                              maxHeight: isActive ? '400px' : '0px',
+                              opacity: isActive ? 1 : 0,
+                            }}
+                          >
+                            <div className="pt-3 pb-1 flex flex-col gap-4">
+                              <p className="text-white/80 text-[13px] md:text-[14px] leading-relaxed font-medium">
+                                {service.description}
+                              </p>
+                              <Link 
+                                href={service.href || "#"} 
+                                className="inline-flex items-center gap-2 text-[13px] font-bold text-[#007FFF] hover:text-white transition-colors self-start py-1 no-underline"
+                                onClick={(e) => e.stopPropagation()}
                               >
-                                <div className="pt-3 pb-1 flex flex-col gap-4">
-                                  <p className="text-white/80 text-[13px] md:text-[14px] leading-relaxed font-medium">
-                                    {service.description}
-                                  </p>
-                                  <Link 
-                                    href={service.href || "#"} 
-                                    className="inline-flex items-center gap-2 text-[13px] font-bold text-[#007FFF] hover:text-white transition-colors self-start py-1 no-underline"
-                                    onClick={(e) => e.stopPropagation()}
-                                  >
-                                    Explore Page <ArrowRight className="w-4 h-4 stroke-[2.5]" />
-                                  </Link>
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+                                Explore Page <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                              </Link>
+                            </div>
+                          </div>
                         </div>
                       );
                     })}

@@ -7,7 +7,7 @@ export default function CareersHero() {
   const openCount = POSITIONS ? POSITIONS.length : 2;
 
   return (
-    <section className="relative w-full pt-[140px] pb-16 md:pt-[180px] md:pb-24 bg-[#FAF9F6] border-b border-[#e5e5e5]">
+    <section className="relative w-full pt-[140px] pb-16 md:pt-[180px] md:pb-24 bg-white border-b border-[#e5e5e5]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start">
         
         {/* Editorial Top Metadata */}
