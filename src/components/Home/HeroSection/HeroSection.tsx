@@ -66,11 +66,6 @@ function HeroSectionComponent() {
             <span className="block whitespace-nowrap">Dominate the market.</span>
           </h1>
 
-          {/* Subheadline */}
-          <p className="font-jakarta text-[13px] sm:text-[15px] text-white/65 leading-relaxed mb-6 max-w-[400px] text-center font-medium">
-            Fast-growing businesses across the UAE trust us with
-            web design, SEO &amp; digital growth. Will you?
-          </p>
 
           {/* Email + CTA */}
           <form
