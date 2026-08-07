@@ -8,47 +8,47 @@ import { ArrowUpRight, Monitor, Globe } from 'lucide-react';
 const showcaseProjects = [
   {
     id: '01',
-    title: 'Apex Global Platform',
-    category: 'Enterprise B2B & Web Architecture',
-    description: 'A high-performance digital ecosystem built with Next.js, handling high concurrency with sub-second page loads.',
-    url: 'https://apex.halatechnologies.com',
-    desktopImg: '/hero-images/webpage.jpg',
-    tabletImg: '/web.jpg',
-    mobileImg: '/hero-images/HomeHeroimage.png',
+    title: 'Rodeo Drive Dubai',
+    category: 'Entertainment & Nightlife Venue',
+    description: 'A dynamic, immersive web experience engineered for Dubai premier nightlife & dining destination with seamless booking and live event showcase.',
+    url: 'https://www.rodeodrivedubai.com/',
+    desktopImg: '/website mockup images/rodeo .jpeg',
+    tabletImg: '/website mockup images/rodeo .jpeg',
+    mobileImg: '/website mockup images/rodeo .jpeg',
     metrics: [
-      { label: 'Speed Score', val: '99/100' },
-      { label: 'Conversion Boost', val: '+240%' },
-      { label: 'Tech Stack', val: 'Next.js 15' }
+      { label: 'Speed Score', val: '98/100' },
+      { label: 'Engagement', val: '+280%' },
+      { label: 'Tech Stack', val: 'Next.js / React' }
     ]
   },
   {
     id: '02',
-    title: 'Luxe Brand Commerce',
-    category: 'E-Commerce & Digital Experience',
-    description: 'Bespoke online shopping experience engineered for premium conversion rates and seamless checkout flows.',
-    url: 'https://luxe.halatechnologies.com',
-    desktopImg: '/design.jpg',
-    tabletImg: '/featureimage.jpg',
-    mobileImg: '/heropic.png',
+    title: 'Mado Abu Dhabi',
+    category: 'Restaurant & Fine Dining',
+    description: 'An elegant culinary web portal highlighting authentic Turkish heritage cuisine, digital menus, and reservation experiences.',
+    url: 'https://www.mado.abudhabi/',
+    desktopImg: '/website mockup images/mado.png',
+    tabletImg: '/website mockup images/mado.png',
+    mobileImg: '/website mockup images/mado.png',
     metrics: [
-      { label: 'Sales Growth', val: '+310%' },
-      { label: 'Cart Retention', val: '88%' },
-      { label: 'Platform', val: 'Shopify / Custom' }
+      { label: 'Speed Score', val: '99/100' },
+      { label: 'Reservations', val: '+320%' },
+      { label: 'Tech Stack', val: 'Next.js / Tailwind' }
     ]
   },
   {
     id: '03',
-    title: 'Nexus Intelligence PWA',
-    category: 'Progressive Web App & Dashboard',
-    description: 'Offline-first, lightning-fast web application delivering native mobile performance directly in the browser.',
-    url: 'https://nexus.halatechnologies.com',
-    desktopImg: '/seo.jpg',
-    tabletImg: '/MS.jpg',
-    mobileImg: '/hero-images/Dell.jpg',
+    title: 'Marina Byblos Hotel',
+    category: 'Hospitality & Luxury Hotel',
+    description: 'A high-converting luxury hotel booking architecture with direct room reservations, amenity highlights, and responsive mobility.',
+    url: 'https://www.marinabybloshotel.com/',
+    desktopImg: '/website mockup images/marina.png',
+    tabletImg: '/website mockup images/marina.png',
+    mobileImg: '/website mockup images/marina.png',
     metrics: [
-      { label: 'Offline Ready', val: '100%' },
-      { label: 'App Load Time', val: '0.4s' },
-      { label: 'Type', val: 'Next.js PWA' }
+      { label: 'Speed Score', val: '97/100' },
+      { label: 'Direct Booking', val: '+195%' },
+      { label: 'Tech Stack', val: 'Next.js / Node' }
     ]
   }
 ];
