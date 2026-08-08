@@ -50,12 +50,12 @@ const CALLOUTS = [
 /* ─── Component ──────────────────────────────────────────── */
 export default memo(function HomeWorkflow() {
   return (
-    <section className="font-jakarta bg-white text-[#111111] py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-[#E5E7EB]">
+    <section className="font-jakarta bg-white text-[#111111] pt-16 md:pt-24 pb-8 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="max-w-[1280px] mx-auto">
 
         {/* ── Header (unchanged) ── */}
         <div className="flex flex-col items-center text-center mb-12 md:mb-20">
-          <div className="bg-[#007FFF] text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider mb-4 shadow-sm">
+          <div className="bg-[#111111] text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider mb-4 shadow-sm">
             Our Workflow
           </div>
           <h2 className="font-bold text-2xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.15] text-[#111111] tracking-tight mb-4 sm:mb-5 max-w-3xl">
@@ -72,26 +72,24 @@ export default memo(function HomeWorkflow() {
             <div key={step.num} className="flex items-center flex-1 min-w-0">
 
               {/* Card */}
-              <div className="flex-1 min-w-0 h-full relative bg-white border border-[#E5E7EB] rounded-2xl p-5 lg:p-6 overflow-hidden
-                              group hover:border-[#007FFF]/40 hover:shadow-lg transition-all duration-300">
+              <div className="flex-1 min-w-0 h-full relative bg-white border border-[#E5E7EB] rounded-2xl p-5 lg:p-6 overflow-hidden">
 
                 {/* Ghost large number — decorative */}
                 <span className="absolute -bottom-3 -right-1 text-[72px] lg:text-[80px] font-black leading-none select-none pointer-events-none"
-                      style={{ color: 'rgba(0,127,255,0.06)' }}>
+                      style={{ color: 'rgba(0,0,0,0.04)' }}>
                   {step.num}
                 </span>
 
                 {/* Step badge */}
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-[#007FFF] shrink-0" />
-                  <span className="text-[10px] font-bold text-[#007FFF] tracking-[0.15em] uppercase">
+                  <span className="w-2 h-2 rounded-full bg-[#111111] shrink-0" />
+                  <span className="text-[10px] font-bold text-[#111111] tracking-[0.15em] uppercase">
                     Step {step.num}
                   </span>
                 </div>
 
                 {/* Blue accent bar */}
-                <div className="w-8 h-[3px] bg-[#007FFF] rounded-full mb-4
-                                group-hover:w-14 transition-all duration-300" />
+                <div className="w-8 h-[3px] bg-[#111111] rounded-full mb-4" />
 
                 {/* Title */}
                 <h3 className="font-bold text-[#111] text-[15px] lg:text-base leading-snug mb-3">
@@ -107,7 +105,7 @@ export default memo(function HomeWorkflow() {
               {/* Arrow connector */}
               {i < STEPS.length - 1 && (
                 <div className="w-6 shrink-0 flex items-center justify-center">
-                  <ArrowRight className="w-3.5 h-3.5 text-[#007FFF]/30" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#111111]/30" />
                 </div>
               )}
             </div>
@@ -120,11 +118,11 @@ export default memo(function HomeWorkflow() {
             <div key={step.num} className="flex gap-4">
               {/* Track */}
               <div className="flex flex-col items-center">
-                <div className="w-9 h-9 rounded-full bg-[#007FFF] flex items-center justify-center shrink-0 shadow-md shadow-[#007FFF]/25">
+                <div className="w-9 h-9 rounded-full bg-[#111111] flex items-center justify-center shrink-0">
                   <span className="text-white text-[11px] font-bold">{step.num}</span>
                 </div>
                 {i < STEPS.length - 1 && (
-                  <div className="w-px flex-1 min-h-[40px] bg-[#007FFF]/20 my-1" />
+                  <div className="w-px flex-1 min-h-[40px] bg-[#111111]/15 my-1" />
                 )}
               </div>
 
