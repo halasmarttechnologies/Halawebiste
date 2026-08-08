@@ -36,7 +36,7 @@ export default function BrandingHeroSection() {
         {/* ── Background image ── */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/3.png"
+            src="/hero-images/Brandingheropage.png"
             alt="Branding Hero Background"
             fill
             sizes="100vw"
