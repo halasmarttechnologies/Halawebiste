@@ -23,7 +23,7 @@ const DESCRIPTIONS = [
 
 function Pill({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center border border-[#2a2a2a] rounded-full px-4 lg:px-5 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.1em] text-[#111] bg-[#E8E5DE] whitespace-nowrap shrink-0">
+    <span className="inline-flex items-center border border-[#2a2a2a] rounded-full px-4 lg:px-5 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.1em] text-[#111] bg-white whitespace-nowrap shrink-0">
       {label}
     </span>
   );
@@ -31,7 +31,7 @@ function Pill({ label }: { label: string }) {
 
 function JunctionDot() {
   return (
-    <span className="inline-block w-[7px] h-[7px] rounded-full border border-[#2a2a2a] bg-[#E8E5DE] shrink-0 mx-0.5" />
+    <span className="inline-block w-[7px] h-[7px] rounded-full border border-[#2a2a2a] bg-white shrink-0 mx-0.5" />
   );
 }
 
@@ -58,17 +58,17 @@ function DesktopPipeline() {
       {/* ── Start indicator ── */}
       <div className="flex flex-col items-start pl-1 mb-0">
         {/* Orange target circle */}
-        <div className="w-5 h-5 rounded-full border-2 border-[#FF4500] flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-[#FF4500]" />
+        <div className="w-5 h-5 rounded-full border-2 border-[#007FFF] flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-[#007FFF]" />
         </div>
         {/* Short vertical drop */}
         <div className="w-px h-5 bg-[#2a2a2a] ml-[9px]" />
         {/* Orange arrows going right */}
         <div className="flex items-center">
           <div className="w-3 border-t border-[#2a2a2a]" />
-          <span className="text-[#FF4500] text-[11px] font-bold mx-0.5 leading-none">→</span>
-          <span className="text-[#FF4500] text-[11px] font-bold mx-0.5 leading-none">→</span>
-          <span className="text-[#FF4500] text-[11px] font-bold mx-0.5 leading-none">→</span>
+          <span className="text-[#007FFF] text-[11px] font-bold mx-0.5 leading-none">→</span>
+          <span className="text-[#007FFF] text-[11px] font-bold mx-0.5 leading-none">→</span>
+          <span className="text-[#007FFF] text-[11px] font-bold mx-0.5 leading-none">→</span>
         </div>
       </div>
 
@@ -172,8 +172,8 @@ function MobilePipeline() {
   return (
     <div className="flex flex-col items-start pl-2">
       {/* Start dot */}
-      <div className="w-5 h-5 rounded-full border-2 border-[#FF4500] flex items-center justify-center mb-0">
-        <div className="w-2 h-2 rounded-full bg-[#FF4500]" />
+      <div className="w-5 h-5 rounded-full border-2 border-[#007FFF] flex items-center justify-center mb-0">
+        <div className="w-2 h-2 rounded-full bg-[#007FFF]" />
       </div>
 
       {MOBILE_STEPS.map((label, i) => (
@@ -181,7 +181,7 @@ function MobilePipeline() {
           {/* Vertical track */}
           <div className="flex flex-col items-center pt-0" style={{ width: 20 }}>
             <div className="w-px bg-[#2a2a2a]" style={{ height: 16 }} />
-            <div className="w-[7px] h-[7px] rounded-full border border-[#2a2a2a] bg-[#E8E5DE] shrink-0" />
+            <div className="w-[7px] h-[7px] rounded-full border border-[#2a2a2a] bg-white shrink-0" />
             {i < MOBILE_STEPS.length - 1 && (
               <div className="w-px bg-[#2a2a2a] flex-1" style={{ minHeight: 36 }} />
             )}
@@ -189,7 +189,7 @@ function MobilePipeline() {
 
           {/* Pill */}
           <div className="pt-[10px] pb-6">
-            <span className="inline-flex items-center border border-[#2a2a2a] rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.1em] text-[#111] bg-[#E8E5DE] whitespace-nowrap">
+            <span className="inline-flex items-center border border-[#2a2a2a] rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.1em] text-[#111] bg-white whitespace-nowrap">
               {label}
             </span>
           </div>
@@ -219,7 +219,7 @@ function HomeWorkflow() {
         </div>
 
         {/* ── Pipeline diagram ── */}
-        <div className="bg-[#E8E5DE] rounded-2xl px-6 md:px-10 py-8 md:py-12 mb-10 overflow-hidden">
+        <div className="bg-white border border-[#E5E7EB] rounded-2xl px-6 md:px-10 py-8 md:py-12 mb-10 overflow-hidden">
           <div className="hidden md:block">
             <DesktopPipeline />
           </div>
