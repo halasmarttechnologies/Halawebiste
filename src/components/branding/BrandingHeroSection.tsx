@@ -35,39 +35,39 @@ export default function BrandingHeroSection() {
         </div>
 
         {/* Social Icons (Right side, lower corner) */}
-        <div className="absolute bottom-10 right-5 sm:right-8 lg:right-16 z-20 flex gap-5 text-white/30">
-          <Link href="https://instagram.com" target="_blank" className="hover:text-white/70 transition-colors"><Instagram className="w-6 h-6" /></Link>
-          <Link href="https://facebook.com" target="_blank" className="hover:text-white/70 transition-colors"><Facebook className="w-6 h-6" /></Link>
-          <Link href="https://linkedin.com" target="_blank" className="hover:text-white/70 transition-colors"><Linkedin className="w-6 h-6" /></Link>
+        <div className="absolute bottom-6 sm:bottom-10 right-5 sm:right-8 lg:right-16 z-20 flex gap-4 sm:gap-5 text-white/30">
+          <Link href="https://instagram.com" target="_blank" className="hover:text-white/70 transition-colors"><Instagram className="w-5 h-5 sm:w-6 sm:h-6" /></Link>
+          <Link href="https://facebook.com" target="_blank" className="hover:text-white/70 transition-colors"><Facebook className="w-5 h-5 sm:w-6 sm:h-6" /></Link>
+          <Link href="https://linkedin.com" target="_blank" className="hover:text-white/70 transition-colors"><Linkedin className="w-5 h-5 sm:w-6 sm:h-6" /></Link>
         </div>
 
         {/* ── Main Content ── */}
-        <div className="relative z-20 flex flex-col items-start justify-center w-full max-w-[1400px] mx-auto min-h-[100svh] px-5 sm:px-8 lg:px-16 pt-24 pb-10 text-left">
+        <div className="relative z-20 flex flex-col items-start justify-center w-full max-w-[1400px] mx-auto min-h-[100svh] px-5 sm:px-8 lg:px-16 pt-24 pb-16 sm:pb-10 text-left">
 
           {/* Headline */}
-          <h1 className="font-jakarta font-bold text-white leading-[1.08] tracking-tight mb-5 w-full max-w-[800px]
-            text-[38px] xs:text-[44px] sm:text-[54px] md:text-[64px] lg:text-[72px]">
+          <h1 className="font-jakarta font-bold text-white leading-[1.1] tracking-tight mb-4 sm:mb-5 w-full max-w-[800px]
+            text-[34px] xs:text-[40px] sm:text-[54px] md:text-[64px] lg:text-[72px]">
             <span className="block">Building brands that</span>
             <span className="block">make a lasting impact.</span>
           </h1>
 
-          <p className="font-jakarta text-sm sm:text-base md:text-lg mb-8 max-w-[600px] font-medium text-white/80 leading-relaxed">
+          <p className="font-jakarta text-[15px] xs:text-base md:text-lg mb-8 max-w-[600px] font-medium text-white/80 leading-relaxed pr-4 sm:pr-0">
             We craft custom logos, brand identity, and strategy that turn your business into a name people trust.
           </p>
 
           {/* Email + CTA — stacked on mobile, side-by-side on sm+ */}
           <form
             onSubmit={(e) => { e.preventDefault(); openModal(); }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-[460px] mt-2 mb-10 sm:mb-12"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full max-w-[460px] mb-8 sm:mb-12"
           >
             <input
               type="email"
               placeholder="Enter your work email"
-              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] font-medium px-4 py-3.5 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors text-left"
+              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] sm:text-[15px] font-medium px-4 py-3.5 sm:py-4 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors text-left"
             />
             <button
               type="submit"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.97] text-white font-bold text-[14px] px-5 py-3.5 rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg shadow-[#007FFF]/30"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#007FFF] hover:bg-[#0066CC] active:scale-[0.97] text-white font-bold text-[14px] sm:text-[15px] px-6 py-3.5 sm:py-4 rounded-xl transition-all duration-200 whitespace-nowrap shadow-lg shadow-[#007FFF]/30"
             >
               Let's Talk Branding
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
