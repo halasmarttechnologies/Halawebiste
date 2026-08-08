@@ -32,7 +32,7 @@ const row2Repeated = [...logosRow2, ...logosRow2, ...logosRow2, ...logosRow2];
 
 export default function OurJourney() {
   return (
-    <section className="bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 pt-4 md:pt-6 pb-16 md:pb-24 relative overflow-hidden">
+    <section className="bg-white text-[#111111] w-full px-4 sm:px-6 md:px-8 lg:px-12 pt-16 md:pt-24 pb-6 md:pb-8 relative overflow-hidden">
 
       {/* ── Keyframe animations — plain <style> works in App Router client components ── */}
       <style>{`
