@@ -1,10 +1,38 @@
 'use client';
 
 import { memo } from 'react';
+import { ArrowRight } from 'lucide-react';
 
-/* ─── Content ─────────────────────────────────────────────── */
+/* ─── Content ────────────────────────────────────────────── */
+const STEPS = [
+  {
+    num: '01',
+    title: 'Discovery & Audit',
+    desc: 'We deep-dive into your market, competitors, and audience data to uncover your biggest growth opportunities.',
+  },
+  {
+    num: '02',
+    title: 'Strategy & Roadmap',
+    desc: 'A tailored channel-by-channel growth blueprint with clear KPIs, timelines, and targeting definitions.',
+  },
+  {
+    num: '03',
+    title: 'Execution & Launch',
+    desc: 'High-converting ads, landing pages, and funnels crafted by our team and deployed with precision.',
+  },
+  {
+    num: '04',
+    title: 'Continuous Optimization',
+    desc: 'Real-time bid adjustments, copy variations, and targeting refinements to squeeze every dirham of value.',
+  },
+  {
+    num: '05',
+    title: 'Reporting & Scaling',
+    desc: 'Transparent ROI dashboards and strategic scaling on your top-performing channels for compounding growth.',
+  },
+];
 
-const DESCRIPTIONS = [
+const CALLOUTS = [
   {
     bold: 'Achieve instant market visibility',
     rest: ' with a data-driven discovery process and precise audience targeting across every channel.',
@@ -19,194 +47,14 @@ const DESCRIPTIONS = [
   },
 ];
 
-/* ─── Reusable primitives ─────────────────────────────────── */
-
-function Pill({ label }: { label: string }) {
-  return (
-    <span className="inline-flex items-center border border-[#2a2a2a] rounded-full px-4 lg:px-5 py-2 lg:py-2.5 text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.1em] text-[#111] bg-white whitespace-nowrap shrink-0">
-      {label}
-    </span>
-  );
-}
-
-function JunctionDot() {
-  return (
-    <span className="inline-block w-[7px] h-[7px] rounded-full border border-[#2a2a2a] bg-white shrink-0 mx-0.5" />
-  );
-}
-
-function HLine({ flex = 1 }: { flex?: number }) {
-  return <div className="border-t border-[#2a2a2a]" style={{ flex }} />;
-}
-
-/* ─── Desktop snake diagram ───────────────────────────────── */
-// Layout constants (px)
-const ROW_H = 56;
-const GAP   = 30;
-const CONN_W = 52; // width of the side connector U-bends
-
-function DesktopPipeline() {
-  // Vertical centre of each row from the top of the rows-container div
-  const r1c = ROW_H / 2;                         // 28
-  const r2c = ROW_H + GAP + ROW_H / 2;           // 114
-  const r3c = 2 * ROW_H + 2 * GAP + ROW_H / 2;  // 200
-
-  const connH = r2c - r1c; // = ROW_H + GAP = 86 — same for both connectors
-
-  return (
-    <div>
-      {/* ── Start indicator ── */}
-      <div className="flex flex-col items-start pl-1 mb-0">
-        {/* Orange target circle */}
-        <div className="w-5 h-5 rounded-full border-2 border-[#007FFF] flex items-center justify-center">
-          <div className="w-2 h-2 rounded-full bg-[#007FFF]" />
-        </div>
-        {/* Short vertical drop */}
-        <div className="w-px h-5 bg-[#2a2a2a] ml-[9px]" />
-        {/* Orange arrows going right */}
-        <div className="flex items-center">
-          <div className="w-3 border-t border-[#2a2a2a]" />
-          <span className="text-[#007FFF] text-[11px] font-bold mx-0.5 leading-none">→</span>
-          <span className="text-[#007FFF] text-[11px] font-bold mx-0.5 leading-none">→</span>
-          <span className="text-[#007FFF] text-[11px] font-bold mx-0.5 leading-none">→</span>
-        </div>
-      </div>
-
-      {/* ── Rows container (connectors sit in the padding zones) ── */}
-      <div
-        className="relative"
-        style={{ paddingLeft: CONN_W, paddingRight: CONN_W }}
-      >
-        {/* RIGHT connector: ⊃ shape — top border at r1c, bottom border at r2c */}
-        <div
-          className="absolute right-0 pointer-events-none"
-          style={{
-            top:    r1c,
-            height: connH,
-            width:  CONN_W,
-            borderTop:    '1px solid #2a2a2a',
-            borderRight:  '1px solid #2a2a2a',
-            borderBottom: '1px solid #2a2a2a',
-            borderLeft:   'none',
-            borderRadius: '0 36px 36px 0',
-          }}
-        />
-
-        {/* LEFT connector: ⊂ shape — top border at r2c, bottom border at r3c */}
-        <div
-          className="absolute left-0 pointer-events-none"
-          style={{
-            top:    r2c,
-            height: connH,
-            width:  CONN_W,
-            borderTop:    '1px solid #2a2a2a',
-            borderLeft:   '1px solid #2a2a2a',
-            borderBottom: '1px solid #2a2a2a',
-            borderRight:  'none',
-            borderRadius: '36px 0 0 36px',
-          }}
-        />
-
-        {/* ROW 1 — left → right: Pill1 then Pill2 */}
-        <div
-          className="flex items-center relative z-10"
-          style={{ height: ROW_H }}
-        >
-          <HLine flex={1} />
-          <Pill label="Discovery &amp; Audit" />
-          <HLine flex={2} />
-          <JunctionDot />
-          <HLine flex={1} />
-          <Pill label="Strategy &amp; Roadmap" />
-          <HLine flex={1} />
-        </div>
-
-        {/* Gap */}
-        <div style={{ height: GAP }} />
-
-        {/* ROW 2 — right → left: Pill3 on right, long line to left */}
-        <div
-          className="flex items-center relative z-10"
-          style={{ height: ROW_H }}
-        >
-          <HLine flex={5} />
-          <JunctionDot />
-          <HLine flex={1} />
-          <Pill label="Execution &amp; Launch" />
-          <HLine flex={1} />
-        </div>
-
-        {/* Gap */}
-        <div style={{ height: GAP }} />
-
-        {/* ROW 3 — left → right: Pill4 then Pill5 */}
-        <div
-          className="flex items-center relative z-10"
-          style={{ height: ROW_H }}
-        >
-          <HLine flex={1} />
-          <JunctionDot />
-          <HLine flex={1} />
-          <Pill label="Continuous Optimization" />
-          <HLine flex={2} />
-          <JunctionDot />
-          <HLine flex={1} />
-          <Pill label="Reporting &amp; Scaling" />
-          <HLine flex={1} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ─── Mobile vertical flow ────────────────────────────────── */
-const MOBILE_STEPS = [
-  'Discovery & Audit',
-  'Strategy & Roadmap',
-  'Execution & Launch',
-  'Continuous Optimization',
-  'Reporting & Scaling',
-];
-
-function MobilePipeline() {
-  return (
-    <div className="flex flex-col items-start pl-2">
-      {/* Start dot */}
-      <div className="w-5 h-5 rounded-full border-2 border-[#007FFF] flex items-center justify-center mb-0">
-        <div className="w-2 h-2 rounded-full bg-[#007FFF]" />
-      </div>
-
-      {MOBILE_STEPS.map((label, i) => (
-        <div key={i} className="flex items-start gap-4">
-          {/* Vertical track */}
-          <div className="flex flex-col items-center pt-0" style={{ width: 20 }}>
-            <div className="w-px bg-[#2a2a2a]" style={{ height: 16 }} />
-            <div className="w-[7px] h-[7px] rounded-full border border-[#2a2a2a] bg-white shrink-0" />
-            {i < MOBILE_STEPS.length - 1 && (
-              <div className="w-px bg-[#2a2a2a] flex-1" style={{ minHeight: 36 }} />
-            )}
-          </div>
-
-          {/* Pill */}
-          <div className="pt-[10px] pb-6">
-            <span className="inline-flex items-center border border-[#2a2a2a] rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.1em] text-[#111] bg-white whitespace-nowrap">
-              {label}
-            </span>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ─── Main export ─────────────────────────────────────────── */
-function HomeWorkflow() {
+/* ─── Component ──────────────────────────────────────────── */
+export default memo(function HomeWorkflow() {
   return (
     <section className="font-jakarta bg-white text-[#111111] py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-12 border-b border-[#E5E7EB]">
       <div className="max-w-[1280px] mx-auto">
 
         {/* ── Header (unchanged) ── */}
-        <div className="flex flex-col items-center text-center mb-10 sm:mb-12 md:mb-16">
+        <div className="flex flex-col items-center text-center mb-12 md:mb-20">
           <div className="bg-[#007FFF] text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider mb-4 shadow-sm">
             Our Workflow
           </div>
@@ -218,22 +66,85 @@ function HomeWorkflow() {
           </p>
         </div>
 
-        {/* ── Pipeline diagram ── */}
-        <div className="bg-white border border-[#E5E7EB] rounded-2xl px-6 md:px-10 py-8 md:py-12 mb-10 overflow-hidden">
-          <div className="hidden md:block">
-            <DesktopPipeline />
-          </div>
-          <div className="md:hidden">
-            <MobilePipeline />
-          </div>
+        {/* ── Desktop: 5 step cards ── */}
+        <div className="hidden md:flex items-stretch mb-16">
+          {STEPS.map((step, i) => (
+            <div key={step.num} className="flex items-center flex-1 min-w-0">
+
+              {/* Card */}
+              <div className="flex-1 min-w-0 h-full relative bg-white border border-[#E5E7EB] rounded-2xl p-5 lg:p-6 overflow-hidden
+                              group hover:border-[#007FFF]/40 hover:shadow-lg transition-all duration-300">
+
+                {/* Ghost large number — decorative */}
+                <span className="absolute -bottom-3 -right-1 text-[72px] lg:text-[80px] font-black leading-none select-none pointer-events-none"
+                      style={{ color: 'rgba(0,127,255,0.06)' }}>
+                  {step.num}
+                </span>
+
+                {/* Step badge */}
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#007FFF] shrink-0" />
+                  <span className="text-[10px] font-bold text-[#007FFF] tracking-[0.15em] uppercase">
+                    Step {step.num}
+                  </span>
+                </div>
+
+                {/* Blue accent bar */}
+                <div className="w-8 h-[3px] bg-[#007FFF] rounded-full mb-4
+                                group-hover:w-14 transition-all duration-300" />
+
+                {/* Title */}
+                <h3 className="font-bold text-[#111] text-[15px] lg:text-base leading-snug mb-3">
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[#666] text-[12px] lg:text-[13px] leading-relaxed">
+                  {step.desc}
+                </p>
+              </div>
+
+              {/* Arrow connector */}
+              {i < STEPS.length - 1 && (
+                <div className="w-6 shrink-0 flex items-center justify-center">
+                  <ArrowRight className="w-3.5 h-3.5 text-[#007FFF]/30" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* ── 3-column descriptions ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 px-1">
-          {DESCRIPTIONS.map((d, i) => (
+        {/* ── Mobile: vertical numbered list ── */}
+        <div className="md:hidden flex flex-col mb-12">
+          {STEPS.map((step, i) => (
+            <div key={step.num} className="flex gap-4">
+              {/* Track */}
+              <div className="flex flex-col items-center">
+                <div className="w-9 h-9 rounded-full bg-[#007FFF] flex items-center justify-center shrink-0 shadow-md shadow-[#007FFF]/25">
+                  <span className="text-white text-[11px] font-bold">{step.num}</span>
+                </div>
+                {i < STEPS.length - 1 && (
+                  <div className="w-px flex-1 min-h-[40px] bg-[#007FFF]/20 my-1" />
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="pb-8 pt-1.5">
+                <h3 className="font-bold text-[#111] text-base leading-snug mb-1.5">
+                  {step.title}
+                </h3>
+                <p className="text-[#666] text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Bottom 3-column callouts ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-[#E5E7EB] pt-10">
+          {CALLOUTS.map((c, i) => (
             <p key={i} className="text-[#333] text-sm leading-relaxed">
-              <span className="font-bold">{d.bold}</span>
-              {d.rest}
+              <span className="font-bold">{c.bold}</span>
+              {c.rest}
             </p>
           ))}
         </div>
@@ -241,6 +152,4 @@ function HomeWorkflow() {
       </div>
     </section>
   );
-}
-
-export default memo(HomeWorkflow);
+});
