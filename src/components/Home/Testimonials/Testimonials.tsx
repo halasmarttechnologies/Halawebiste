@@ -65,7 +65,7 @@ const marquee2 = [...testimonialsRow2, ...testimonialsRow2];
 const QuoteIcon = memo(function QuoteIcon() {
   return (
     <svg className="w-7 h-7 md:w-[45px] md:h-[45px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 11V17H4V11H7.5C7.5 9.5 6.5 8.5 5 8.5V6C7.5 6 10 7.5 10 11ZM20 11V17H14V11H17.5C17.5 9.5 16.5 8.5 15 8.5V6C17.5 6 20 7.5 20 11Z" fill="#007FFF"/>
+      <path d="M10 11V17H4V11H7.5C7.5 9.5 6.5 8.5 5 8.5V6C7.5 6 10 7.5 10 11ZM20 11V17H14V11H17.5C17.5 9.5 16.5 8.5 15 8.5V6C17.5 6 20 7.5 20 11Z" fill="#FFFFFF"/>
     </svg>
   );
 });
@@ -134,7 +134,7 @@ const TestimonialCard = memo(function TestimonialCard({ quote, name, title, imag
   const [imgSrc, setImgSrc] = useState(image);
 
   return (
-    <div className="w-[270px] sm:w-[300px] md:w-[440px] shrink-0 bg-[#F9FAFB] border border-[#EEEEEE] rounded-[20px] md:rounded-[32px] p-5 md:p-10 flex flex-col md:hover:-translate-y-2 transition-transform duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.02)] md:hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] gpu-accelerated">
+    <div className="w-[270px] sm:w-[300px] md:w-[440px] shrink-0 bg-[#111111] border border-[#333333] rounded-[20px] md:rounded-[32px] p-5 md:p-10 flex flex-col gpu-accelerated">
       
       {/* Quote Icon */}
       <div className="mb-4 md:mb-6">
@@ -142,7 +142,7 @@ const TestimonialCard = memo(function TestimonialCard({ quote, name, title, imag
       </div>
 
       {/* Quote Text */}
-      <p className="font-jakarta text-[13.5px] sm:text-[14.5px] md:text-[18px] text-[#333333] leading-[1.5] md:leading-[1.6] font-medium mb-6 md:mb-12 flex-grow">
+      <p className="font-jakarta text-[13.5px] sm:text-[14.5px] md:text-[18px] text-white/90 leading-[1.5] md:leading-[1.6] font-medium mb-6 md:mb-12 flex-grow">
         {quote}
       </p>
 
@@ -160,10 +160,10 @@ const TestimonialCard = memo(function TestimonialCard({ quote, name, title, imag
           />
         </div>
         <div className="flex flex-col">
-          <h4 className="font-jakarta font-bold text-[#111111] text-[13.5px] md:text-[16px]">
+          <h4 className="font-jakarta font-bold text-white text-[13.5px] md:text-[16px]">
             {name}
           </h4>
-          <span className="font-jakarta text-[11.5px] md:text-[14px] text-[#777777] font-medium mt-0.5">
+          <span className="font-jakarta text-[11.5px] md:text-[14px] text-white/60 font-medium mt-0.5">
             {title}
           </span>
         </div>
