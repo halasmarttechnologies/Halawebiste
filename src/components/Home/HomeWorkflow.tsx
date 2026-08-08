@@ -50,7 +50,7 @@ const CALLOUTS = [
 /* ─── Component ──────────────────────────────────────────── */
 export default memo(function HomeWorkflow() {
   return (
-    <section className="font-jakarta bg-white text-[#111111] pt-6 md:pt-8 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12">
+    <section className="font-jakarta bg-white text-[#111111] pt-12 md:pt-16 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="max-w-[1280px] mx-auto">
 
         {/* ── Header (unchanged) ── */}
