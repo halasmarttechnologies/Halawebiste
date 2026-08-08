@@ -3,20 +3,7 @@ import Image from 'next/image';
 import { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { Grid2X2, X, ArrowRight } from 'lucide-react';
-
-const clientLogos = [
-  '/Companies Logos/1.png',
-  '/Companies Logos/2.png',
-  '/Companies Logos/3.png',
-  '/Companies Logos/4.png',
-  '/Companies Logos/5.png',
-  '/Companies Logos/6.png',
-  '/Companies Logos/7.png',
-  '/Companies Logos/8.png',
-  '/Companies Logos/9.png',
-  '/Companies Logos/10.png',
-];
+import { Grid2X2, X, ArrowRight, Instagram, Facebook, Linkedin } from 'lucide-react';
 
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'), {
   ssr: false,
@@ -31,7 +18,7 @@ export default function BrandingHeroSection() {
     <div className="relative w-full bg-[#111111] text-[#F3F0E6] overflow-x-hidden antialiased selection:bg-[#EADCF8] selection:text-[#111] rounded-b-[40px]">
 
       {/* ─────────────────── HERO SECTION ─────────────────── */}
-      <section className="relative z-0 flex flex-col items-center justify-start text-center w-full min-h-[100svh] overflow-hidden gpu-layer">
+      <section className="relative z-0 flex flex-col items-center justify-start w-full min-h-[100svh] overflow-hidden gpu-layer">
 
         {/* ── Background image ── */}
         <div className="absolute inset-0 z-0">
@@ -47,8 +34,15 @@ export default function BrandingHeroSection() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60" />
         </div>
 
+        {/* Social Icons (Right side, lower corner) */}
+        <div className="absolute bottom-10 right-5 sm:right-8 lg:right-16 z-20 flex gap-5 text-white/30">
+          <Link href="https://instagram.com" target="_blank" className="hover:text-white/70 transition-colors"><Instagram className="w-6 h-6" /></Link>
+          <Link href="https://facebook.com" target="_blank" className="hover:text-white/70 transition-colors"><Facebook className="w-6 h-6" /></Link>
+          <Link href="https://linkedin.com" target="_blank" className="hover:text-white/70 transition-colors"><Linkedin className="w-6 h-6" /></Link>
+        </div>
+
         {/* ── Main Content ── */}
-        <div className="relative z-20 flex flex-col items-center justify-center w-full min-h-[100svh] px-5 sm:px-8 pt-24 pb-10">
+        <div className="relative z-20 flex flex-col items-start justify-center w-full max-w-[1400px] mx-auto min-h-[100svh] px-5 sm:px-8 lg:px-16 pt-24 pb-10 text-left">
 
           {/* Headline */}
           <h1 className="font-jakarta font-bold text-white leading-[1.08] tracking-tight mb-5 w-full max-w-[800px]
@@ -57,7 +51,7 @@ export default function BrandingHeroSection() {
             <span className="block">make a lasting impact.</span>
           </h1>
 
-          <p className="font-jakarta text-sm sm:text-base md:text-lg mb-8 max-w-[600px] font-medium text-white/80 leading-relaxed px-2">
+          <p className="font-jakarta text-sm sm:text-base md:text-lg mb-8 max-w-[600px] font-medium text-white/80 leading-relaxed">
             We craft custom logos, brand identity, and strategy that turn your business into a name people trust.
           </p>
 
@@ -69,7 +63,7 @@ export default function BrandingHeroSection() {
             <input
               type="email"
               placeholder="Enter your work email"
-              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] font-medium px-4 py-3.5 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors text-center sm:text-left"
+              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] font-medium px-4 py-3.5 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors text-left"
             />
             <button
               type="submit"
@@ -79,39 +73,6 @@ export default function BrandingHeroSection() {
               <ArrowRight className="w-4 h-4 stroke-[2.5]" />
             </button>
           </form>
-
-          {/* ── Logo Grid ── */}
-          <div className="w-full max-w-[680px]">
-            <p className="font-jakarta text-[10px] font-semibold uppercase tracking-[0.15em] text-white/35 mb-4 text-center">
-              Trusted by leading brands
-            </p>
-
-            {/* Tablet+: 5 col grid — shows all 10 */}
-            <div className="hidden sm:grid grid-cols-5 gap-x-4 gap-y-4 place-items-center">
-              {clientLogos.map((src, i) => (
-                <div key={i} className="flex items-center justify-center h-8 w-full">
-                  <img
-                    src={src}
-                    alt={`Client ${i + 1}`}
-                    className="h-6 sm:h-7 w-auto max-w-[90px] object-contain filter brightness-0 invert opacity-50 hover:opacity-80 transition-opacity duration-300"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile only: 6 logos — 2 rows of 3 (3-col grid), bigger */}
-            <div className="grid sm:hidden grid-cols-3 gap-x-4 gap-y-5 place-items-center px-4">
-              {clientLogos.slice(0, 6).map((src, i) => (
-                <div key={i} className="flex items-center justify-center h-10 w-full">
-                  <img
-                    src={src}
-                    alt={`Client ${i + 1}`}
-                    className="h-8 w-auto max-w-[100px] object-contain filter brightness-0 invert opacity-55 hover:opacity-85 transition-opacity duration-300"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
 
         </div>
       </section>
