@@ -110,6 +110,7 @@ export const POSITIONS: JobPosition[] = [
       'Flexible remote work environment.',
       'Potential to convert to a full-time role based on performance.',
     ],
+    formUrl: 'https://forms.clickup.com/90181825437/f/2kzm2wwx-7038/8BQLQ6972IRNCE1VCJ',
   },
 ];
 
