@@ -81,6 +81,36 @@ export const POSITIONS: JobPosition[] = [
     ],
     formUrl: 'https://forms.clickup.com/90181825437/f/2kzm2wwx-5978/FDQH2EB4LPZV9RNSJW',
   },
+  {
+    id: 'social-media-executive-intern',
+    title: 'Social Media Executive Intern',
+    department: 'Marketing & Design',
+    category: 'Marketing & Design',
+    location: 'Remote',
+    type: 'Internship',
+    experience: 'Fresher / Student',
+    description: 'A great opportunity for a creative and organized individual to help manage and grow social media channels for our clients and our agency.',
+    responsibilities: [
+      'Assist in planning, creating, and scheduling content across social media platforms (Instagram, LinkedIn, TikTok, X).',
+      'Monitor and engage with online communities, responding to comments and messages.',
+      'Help develop social media strategies to increase brand awareness and engagement.',
+      'Track social media performance and prepare basic analytics reports.',
+      'Stay updated with the latest social media trends, tools, and best practices.',
+    ],
+    requirements: [
+      'Strong understanding of various social media platforms and their algorithms.',
+      'Excellent written communication and copywriting skills.',
+      'Creative mindset with the ability to brainstorm fresh ideas.',
+      'Basic knowledge of Canva or other design tools is a plus.',
+      'Highly organized, proactive, and able to work independently in a remote setting.',
+    ],
+    perks: [
+      'Gain hands-on experience in managing professional social media accounts.',
+      'Work closely with experienced digital marketers and strategists.',
+      'Flexible remote work environment.',
+      'Potential to convert to a full-time role based on performance.',
+    ],
+  },
 ];
 
 const CATEGORIES = ['All Roles', 'Development', 'Marketing & Design', 'Design'];
