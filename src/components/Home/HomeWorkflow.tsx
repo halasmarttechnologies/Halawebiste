@@ -50,7 +50,7 @@ const CALLOUTS = [
 /* ─── Component ──────────────────────────────────────────── */
 export default memo(function HomeWorkflow() {
   return (
-    <section className="font-jakarta bg-white text-[#111111] pt-16 md:pt-24 pb-8 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-12">
+    <section className="font-jakarta bg-white text-[#111111] pt-16 md:pt-24 pb-0 md:pb-0 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="max-w-[1280px] mx-auto">
 
         {/* ── Header (unchanged) ── */}
@@ -138,7 +138,7 @@ export default memo(function HomeWorkflow() {
         </div>
 
         {/* ── Bottom 3-column callouts ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-[#E5E7EB] pt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-[#E5E7EB] pt-6 md:pt-8">
           {CALLOUTS.map((c, i) => (
             <p key={i} className="text-[#333] text-sm leading-relaxed">
               <span className="font-bold">{c.bold}</span>
