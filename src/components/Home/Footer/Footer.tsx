@@ -33,10 +33,17 @@ const footerColumns = [
 export default function Footer() {
   return (
     <div className="pt-10">
-      <footer 
-        className="bg-[#111111] bg-cover bg-center font-jakarta text-white flex flex-col w-full px-6 pt-16 pb-8 md:px-16 md:pt-20 md:pb-10 relative rounded-t-[40px] md:rounded-t-[60px]"
-        style={{ backgroundImage: "url('/website mockup images/123.png')" }}
-      >
+      <style>{`
+        .footer-bg {
+          background-image: url('/123 PHONE VIEW.png');
+        }
+        @media (min-width: 768px) {
+          .footer-bg {
+            background-image: url('/website mockup images/123.png');
+          }
+        }
+      `}</style>
+      <footer className="footer-bg bg-[#111111] bg-cover bg-center font-jakarta text-white flex flex-col w-full px-6 pt-16 pb-8 md:px-16 md:pt-20 md:pb-10 relative rounded-t-[40px] md:rounded-t-[60px]">
         
         {/* TOP SECTION: Logo + Driving Digital Growth */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center w-full border-b border-[#222222] pb-12 md:pb-16 mb-12 md:mb-16 gap-10 lg:gap-0 max-w-[1400px] mx-auto">
