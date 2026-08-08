@@ -28,6 +28,14 @@
     0% { transform: translate3d(-100%, 0, 0); }
     100% { transform: translate3d(0%, 0, 0); }
   }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
+
+  --animate-float: float 6s ease-in-out infinite;
 }
 
 /* ─── CSS Variables (Design Tokens) ─────────────────── */
@@ -46,6 +54,7 @@
 
 html {
   overflow-x: clip;
+  scroll-behavior: smooth;
   scroll-padding-top: 80px;
   -webkit-tap-highlight-color: transparent;
 }
@@ -58,6 +67,7 @@ body {
   overflow-x: clip;
   background-color: #111111;
   min-width: 320px;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ─── Hardware Acceleration & 120/144 FPS Rendering Hints ─────────────── */
@@ -65,7 +75,8 @@ body {
 .gpu-accelerated,
 .gpu-layer,
 [class*="animate-marquee"],
-[class*="marquee"] {
+[class*="marquee"],
+[class*="animate-float"] {
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;

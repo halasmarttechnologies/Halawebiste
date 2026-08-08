@@ -33,7 +33,7 @@ export default function VideoEditingShowcase() {
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 mx-auto max-w-[1600px] mb-16 md:mb-24">
         <div className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group cursor-pointer border border-black/5">
           <Image 
-            src="/featureimage.jpg" 
+            src="/website mockup images/123.png" 
             alt="Featured Video Placeholder" 
             fill 
             className="object-cover transition-transform duration-700 group-hover:scale-105" 

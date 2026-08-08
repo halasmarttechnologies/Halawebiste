@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function BrandingShowcase() {
   return (
-    <section className="w-full bg-[#111111] text-[#F3F0E6] mt-8 md:mt-16 rounded-t-[40px] md:rounded-t-[60px] pt-24 pb-24 md:pb-32 px-4 md:px-6">
+    <section className="w-full relative z-30 bg-white text-[#111111] rounded-t-[40px] md:rounded-t-[60px] -mt-8 md:-mt-12 pt-24 pb-24 md:pb-32 px-4 md:px-6">
       <div className="max-w-[1400px] mx-auto flex flex-col items-center">
         
         {/* Header */}
@@ -13,7 +13,7 @@ export default function BrandingShowcase() {
           <h2 className="font-jakarta text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5">
             Branding Shows Class
           </h2>
-          <p className="font-jakarta text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+          <p className="font-jakarta text-lg md:text-xl text-black/70 max-w-2xl mx-auto">
             Discover the artistry behind our premium brand identities.
           </p>
         </div>

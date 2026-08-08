@@ -1,4 +1,5 @@
 import ContentCreation from '@/components/branding/ContentCreation/ContentCreation';
+import LatestBlogsSection from '@/components/Blogs/LatestBlogsSection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export default function ContentCreationPage() {
   return (
     <div className="w-full">
       <ContentCreation />
+      <LatestBlogsSection />
     </div>
   );
 }

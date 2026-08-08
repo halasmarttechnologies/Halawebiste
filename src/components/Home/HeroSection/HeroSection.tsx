@@ -44,7 +44,7 @@ function HeroSectionComponent() {
         <div className="absolute inset-0 z-0">
           {/* Mobile background */}
           <Image
-            src="/123 PHONE VIEW.png"
+            src="/hero-images/herohomepagephoneview.png"
             alt="Hero Background Mobile"
             fill
             sizes="100vw"
@@ -53,7 +53,7 @@ function HeroSectionComponent() {
           />
           {/* Desktop background */}
           <Image
-            src="/hero-images/hero-bg.png"
+            src="/hero-images/herosectionhomepage.png"
             alt="Hero Background"
             fill
             sizes="100vw"
