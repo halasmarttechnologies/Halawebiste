@@ -84,7 +84,7 @@ function HeroSectionComponent() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your work email"
-              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] font-medium px-4 py-3.5 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors"
+              className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-white/45 text-[14px] font-medium px-4 py-3.5 rounded-xl outline-none focus:border-[#007FFF]/70 transition-colors text-center sm:text-left"
             />
             <button
               type="submit"
