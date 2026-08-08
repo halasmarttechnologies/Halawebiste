@@ -115,14 +115,14 @@ function HeroSectionComponent() {
               ))}
             </div>
 
-            {/* Mobile only: 6 logos — 3 rows of 2 (2-col grid), bigger */}
-            <div className="grid sm:hidden grid-cols-2 gap-x-6 gap-y-6 place-items-center px-4">
+            {/* Mobile only: 6 logos — 2 rows of 3 (3-col grid), bigger */}
+            <div className="grid sm:hidden grid-cols-3 gap-x-4 gap-y-5 place-items-center px-4">
               {clientLogos.slice(0, 6).map((src, i) => (
                 <div key={i} className="flex items-center justify-center h-10 w-full">
                   <img
                     src={src}
                     alt={`Client ${i + 1}`}
-                    className="h-8 w-auto max-w-[130px] object-contain filter brightness-0 invert opacity-55 hover:opacity-85 transition-opacity duration-300"
+                    className="h-8 w-auto max-w-[100px] object-contain filter brightness-0 invert opacity-55 hover:opacity-85 transition-opacity duration-300"
                   />
                 </div>
               ))}
