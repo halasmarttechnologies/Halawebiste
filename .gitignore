@@ -11,9 +11,10 @@ out
 build
 
 # ─── Environment / Secrets (NEVER commit these) ───────────
+# .env.example IS intentionally committed — it contains only placeholder values.
+# All files below contain REAL secrets and must never be committed.
 .env
 .env.local
-.env.example
 .env.development
 .env.development.local
 .env.test

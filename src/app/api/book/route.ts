@@ -152,23 +152,12 @@ export async function POST(request: Request) {
           const verifyData = await verifyRes.json();
 
           if (!verifyData.success) {
-            // In development allow the well-known Google test secret as a fallback
-            if (process.env.NODE_ENV === 'development') {
-              const testParams = new URLSearchParams();
-              testParams.append('secret', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
-              testParams.append('response', captchaToken);
-              const testRes  = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: testParams.toString(),
-              });
-              const testData = await testRes.json();
-              if (!testData.success) {
-                return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 400 });
-              }
-            } else {
+            // In development, skip blocking on reCAPTCHA failure to ease local testing.
+            // In production, always enforce reCAPTCHA.
+            if (process.env.NODE_ENV !== 'development') {
               return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 400 });
             }
+            console.warn('[reCAPTCHA] Verification failed in dev mode — allowing request through for local testing.');
           }
         } catch (e) {
           console.error('[reCAPTCHA] Siteverify network exception:', e);

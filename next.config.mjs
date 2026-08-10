@@ -3,21 +3,25 @@
 const isDev = process.env.NODE_ENV !== 'production';
 
 // Content Security Policy — locks down what scripts/styles/fonts can load
+// In development: uses 'unsafe-eval' (required by Next.js HMR) and is set as
+// Content-Security-Policy-Report-Only so it never blocks dev workflow.
+// In production: strict CSP is enforced with no unsafe-eval.
 const CSP = [
   "default-src 'self'",
-  // Scripts: self + Google reCAPTCHA + unsafe-eval for dev
-  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ""} https://www.google.com https://www.gstatic.com`,
-  // Styles: self + Google Fonts
+  // Scripts: self + inline (GTM/reCAPTCHA inject inline scripts) + Google services
+  // unsafe-eval is dev-only (Next.js HMR requires it)
+  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''} https://www.google.com https://www.gstatic.com https://www.googletagmanager.com`,
+  // Styles: self + Google Fonts (inline styles needed for styled-jsx / framer-motion)
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   // Fonts: self + Google Fonts CDN
   "font-src 'self' https://fonts.gstatic.com",
-  // Images: self + Unsplash + Pravatar + UI-Avatars + data URIs (base64 uploaded images) + Sanity CDN
-  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com https://cdn.sanity.io",
+  // Images: self + Sanity CDN + Unsplash + Pravatar + data/blob URIs
+  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com https://cdn.sanity.io https://www.googletagmanager.com",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
-  // Connections: self + Google reCAPTCHA + Sanity API & WebSockets
-  `connect-src 'self' https://www.google.com https://*.sanity.io wss://*.sanity.io${isDev ? ' https://registry.npmjs.org' : ''}`,
-  // Block everything else
+  // Connections: self + Google services + Sanity API & WebSockets + GTM
+  `connect-src 'self' https://www.google.com https://www.googleapis.com https://*.sanity.io wss://*.sanity.io https://www.googletagmanager.com https://analytics.google.com${isDev ? ' https://registry.npmjs.org' : ''}`,
+  // Block object/embed/base hijacking
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -63,23 +67,40 @@ const nextConfig = {
         // Security headers on all application routes
         source: '/:path*',
         headers: [
-          ...(isDev ? [] : [{ key: 'Content-Security-Policy', value: CSP }]),
-          { key: 'Strict-Transport-Security',  value: 'max-age=31536000; includeSubDomains' },
-          { key: 'X-Frame-Options',             value: 'DENY' },
-          { key: 'X-Content-Type-Options',      value: 'nosniff' },
-          { key: 'Referrer-Policy',             value: 'strict-origin-when-cross-origin' },
-          { key: 'Permissions-Policy',          value: 'camera=(), microphone=(), geolocation=(), payment=()' },
-          { key: 'X-DNS-Prefetch-Control',      value: 'on' },
-          { key: 'X-XSS-Protection',            value: '0' },
+          // In dev: report-only so CSP issues surface in the console without blocking.
+          // In prod: fully enforced.
+          isDev
+            ? { key: 'Content-Security-Policy-Report-Only', value: CSP }
+            : { key: 'Content-Security-Policy', value: CSP },
+          // HSTS: tell browsers to always use HTTPS (includeSubDomains + preload for HSTS preload list)
+          { key: 'Strict-Transport-Security',        value: 'max-age=63072000; includeSubDomains; preload' },
+          // Prevent clickjacking
+          { key: 'X-Frame-Options',                  value: 'DENY' },
+          // Prevent MIME-type sniffing
+          { key: 'X-Content-Type-Options',            value: 'nosniff' },
+          // Control referrer information
+          { key: 'Referrer-Policy',                   value: 'strict-origin-when-cross-origin' },
+          // Restrict browser feature access
+          { key: 'Permissions-Policy',                value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()' },
+          // DNS prefetching
+          { key: 'X-DNS-Prefetch-Control',            value: 'on' },
+          // Disable legacy XSS auditor (modern browsers ignore it; CSP is the right tool)
+          { key: 'X-XSS-Protection',                  value: '0' },
+          // Isolate browsing context from other origins (protects against Spectre)
+          { key: 'Cross-Origin-Opener-Policy',        value: 'same-origin-allow-popups' },
+          // Prevent cross-origin resource embedding
+          { key: 'Cross-Origin-Resource-Policy',      value: 'same-site' },
+          // Opt out of FLoC / Topics API tracking
+          { key: 'Permissions-Policy',                value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), interest-cohort=()' },
         ],
       },
       {
-        // API routes cache settings
+        // API routes: no caching, no indexing
         source: '/api/:path*',
         headers: [
-          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
-          { key: 'Cache-Control', value: 'no-store, no-cache, must-revalidate' },
-          { key: 'Pragma', value: 'no-cache' },
+          { key: 'X-Robots-Tag',   value: 'noindex, nofollow' },
+          { key: 'Cache-Control',  value: 'no-store, no-cache, must-revalidate, private' },
+          { key: 'Pragma',         value: 'no-cache' },
         ],
       },
       {
@@ -94,3 +115,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
