@@ -15,8 +15,8 @@ const CSP = [
   "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com https://cdn.sanity.io",
   // Frames: Google reCAPTCHA only
   "frame-src https://www.google.com https://recaptcha.google.com",
-  // Connections: self + Google reCAPTCHA + Sanity API & WebSockets + NPM Registry (for version checks)
-  "connect-src 'self' https://www.google.com https://*.sanity.io wss://*.sanity.io https://registry.npmjs.org",
+  // Connections: self + Google reCAPTCHA + Sanity API & WebSockets
+  `connect-src 'self' https://www.google.com https://*.sanity.io wss://*.sanity.io${isDev ? ' https://registry.npmjs.org' : ''}`,
   // Block everything else
   "object-src 'none'",
   "base-uri 'self'",
@@ -64,6 +64,7 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           ...(isDev ? [] : [{ key: 'Content-Security-Policy', value: CSP }]),
+          { key: 'Strict-Transport-Security',  value: 'max-age=31536000; includeSubDomains' },
           { key: 'X-Frame-Options',             value: 'DENY' },
           { key: 'X-Content-Type-Options',      value: 'nosniff' },
           { key: 'Referrer-Policy',             value: 'strict-origin-when-cross-origin' },

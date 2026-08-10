@@ -474,7 +474,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
             <div className="transform scale-[0.82] xs:scale-[0.9] sm:scale-100 origin-center flex justify-center items-center max-w-full">
               <ReCAPTCHA
                 ref={recaptchaRef}
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || '6Lf1L2stAAAAAHaepiWGNH2vLb_VhRiLfWT8rfvP'}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
                 onChange={(token) => {
                   setCaptchaToken(token);
                   setErrorMsg('');

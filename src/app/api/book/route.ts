@@ -133,42 +133,46 @@ export async function POST(request: Request) {
 
     // 6. reCAPTCHA verification
     if (captchaToken) {
-      const primarySecret = process.env.RECAPTCHA_SECRET_KEY || '6Lf1L2stAAAAAOPu8RkNn2aqZtuZ1HLPpktZyYJ8';
-      let isVerified = false;
+      const primarySecret = process.env.RECAPTCHA_SECRET_KEY;
 
-      try {
-        const verifyParams = new URLSearchParams();
-        verifyParams.append('secret', primarySecret);
-        verifyParams.append('response', captchaToken);
+      if (!primarySecret) {
+        // Secret not configured — log server-side, skip verification gracefully
+        console.warn('[reCAPTCHA] RECAPTCHA_SECRET_KEY env var is not set. Skipping verification.');
+      } else {
+        try {
+          const verifyParams = new URLSearchParams();
+          verifyParams.append('secret', primarySecret);
+          verifyParams.append('response', captchaToken);
 
-        const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: verifyParams.toString(),
-        });
-        const verifyData = await verifyRes.json();
-
-        if (verifyData.success) {
-          isVerified = true;
-        } else {
-          // Fallback check with official Google reCAPTCHA test secret
-          const testParams = new URLSearchParams();
-          testParams.append('secret', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
-          testParams.append('response', captchaToken);
-
-          const testRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+          const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: testParams.toString(),
+            body: verifyParams.toString(),
           });
-          const testData = await testRes.json();
+          const verifyData = await verifyRes.json();
 
-          if (testData.success) {
-            isVerified = true;
+          if (!verifyData.success) {
+            // In development allow the well-known Google test secret as a fallback
+            if (process.env.NODE_ENV === 'development') {
+              const testParams = new URLSearchParams();
+              testParams.append('secret', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe');
+              testParams.append('response', captchaToken);
+              const testRes  = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: testParams.toString(),
+              });
+              const testData = await testRes.json();
+              if (!testData.success) {
+                return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 400 });
+              }
+            } else {
+              return NextResponse.json({ error: 'reCAPTCHA verification failed.' }, { status: 400 });
+            }
           }
+        } catch (e) {
+          console.error('[reCAPTCHA] Siteverify network exception:', e);
         }
-      } catch (e) {
-        console.error('[reCAPTCHA] Siteverify network exception:', e);
       }
     } else if (process.env.RECAPTCHA_SECRET_KEY && !captchaToken) {
       return NextResponse.json({ error: 'reCAPTCHA token missing. Please complete the reCAPTCHA verification.' }, { status: 400 });
