@@ -38,7 +38,7 @@ const teamMembers = [
     name: 'Abdur Rafay',
     role: 'Video Editor',
     category: 'Creative',
-    image: '/team-pics/rafay.jpg',
+    image: '/team-pics/rafayy.jpg',
   },
   {
     id: 6,
