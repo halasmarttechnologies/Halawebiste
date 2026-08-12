@@ -111,6 +111,40 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/our-team',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/team',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/about-us',
+        destination: '/about',
+        permanent: true,
+      },
+      {
+        source: '/contact-us',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/services',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/services/:path+',
+        destination: '/:path+',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
