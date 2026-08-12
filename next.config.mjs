@@ -8,19 +8,18 @@ const isDev = process.env.NODE_ENV !== 'production';
 // In production: strict CSP is enforced with no unsafe-eval.
 const CSP = [
   "default-src 'self'",
-  // Scripts: self + inline (GTM/reCAPTCHA inject inline scripts) + Google services
-  // unsafe-eval is dev-only (Next.js HMR requires it)
-  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''} https://www.google.com https://www.gstatic.com https://www.googletagmanager.com`,
-  // Styles: self + Google Fonts (inline styles needed for styled-jsx / framer-motion)
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  // Fonts: self + Google Fonts CDN
-  "font-src 'self' https://fonts.gstatic.com",
-  // Images: self + Sanity CDN + Unsplash + Pravatar + data/blob URIs
-  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com https://cdn.sanity.io https://www.googletagmanager.com",
-  // Frames: Google reCAPTCHA only
-  "frame-src https://www.google.com https://recaptcha.google.com",
-  // Connections: self + Google services + Sanity API & WebSockets + GTM
-  `connect-src 'self' https://www.google.com https://www.googleapis.com https://*.sanity.io wss://*.sanity.io https://www.googletagmanager.com https://analytics.google.com${isDev ? ' https://registry.npmjs.org' : ''}`,
+  // Scripts: self + inline (GTM/reCAPTCHA inject inline scripts) + Google services + LeadConnector / GoHighLevel
+  `script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval'" : ''} https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://widgets.leadconnectorhq.com https://*.leadconnectorhq.com https://*.msgsndr.com`,
+  // Styles: self + Google Fonts (inline styles needed for styled-jsx / framer-motion) + LeadConnector / GoHighLevel
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://widgets.leadconnectorhq.com https://*.leadconnectorhq.com https://*.msgsndr.com",
+  // Fonts: self + Google Fonts CDN + LeadConnector / GoHighLevel
+  "font-src 'self' data: https://fonts.gstatic.com https://widgets.leadconnectorhq.com https://*.leadconnectorhq.com https://*.msgsndr.com",
+  // Images: self + Sanity CDN + Unsplash + Pravatar + data/blob URIs + LeadConnector / GoHighLevel
+  "img-src 'self' data: blob: https://images.unsplash.com https://i.pravatar.cc https://ui-avatars.com https://*.unsplash.com https://cdn.sanity.io https://www.googletagmanager.com https://widgets.leadconnectorhq.com https://*.leadconnectorhq.com https://*.msgsndr.com",
+  // Frames: Google reCAPTCHA + LeadConnector / GoHighLevel
+  "frame-src 'self' https://www.google.com https://recaptcha.google.com https://widgets.leadconnectorhq.com https://*.leadconnectorhq.com https://*.msgsndr.com",
+  // Connections: self + Google services + Sanity API & WebSockets + GTM + LeadConnector / GoHighLevel
+  `connect-src 'self' https://www.google.com https://www.googleapis.com https://*.sanity.io wss://*.sanity.io https://www.googletagmanager.com https://analytics.google.com https://widgets.leadconnectorhq.com https://*.leadconnectorhq.com https://services.leadconnectorhq.com wss://*.leadconnectorhq.com https://*.msgsndr.com wss://*.msgsndr.com${isDev ? ' https://registry.npmjs.org' : ''}`,
   // Block object/embed/base hijacking
   "object-src 'none'",
   "base-uri 'self'",
