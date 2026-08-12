@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
+import CookieBanner from '@/components/CookieBanner/CookieBanner';
 import './globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -107,6 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {children}
         <Analytics />
         <SpeedInsights />
+        <CookieBanner />
         
         {/* GoHighLevel Chat Widget */}
         <script
