@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
+import Script from 'next/script';
 import './globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -107,6 +108,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {children}
         <Analytics />
         <SpeedInsights />
+        
+        {/* GoHighLevel Chat Widget */}
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6a29d9d08eebf2dcc67d51e9"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
