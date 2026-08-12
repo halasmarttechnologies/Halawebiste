@@ -111,7 +111,7 @@ export async function POST(request: Request) {
     const message       = sanitize(body.message,      1000);
     const date          = sanitize(body.date,           60);
     const time          = sanitize(body.time,           20);
-    const captchaToken  = sanitize(body.captchaToken, 2048);
+    const captchaToken  = typeof body.captchaToken === 'string' ? body.captchaToken : '';
 
     // 4. Required-field validation
     if (!name || !email || !date || !time) {
