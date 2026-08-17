@@ -121,13 +121,23 @@ header nav > div[class*="absolute"] {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #666666;
-}
-
 /* ─── Fix for Google Tag Assistant UI ────────────────── */
 iframe[src*="tagassistant"], 
 iframe[src*="googletagmanager"], 
-div[id^="tag-assistant"], 
-div[id^="__tag_assistant"] {
+iframe[id*="gtm"],
+div[id*="tag_assistant"],
+div[id*="tag-assistant"],
+div[id*="gtm_debug"] {
   background-color: white !important;
+  color: black !important;
   color-scheme: light !important;
+  z-index: 2147483647 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+div[id*="tag_assistant"] *,
+div[id*="tag-assistant"] *,
+div[id*="gtm_debug"] * {
+  all: revert !important;
 }
