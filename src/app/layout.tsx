@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Script from 'next/script';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
 import './globals.css';
@@ -79,7 +80,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakarta.variable}`}>
       <head>
-        <script
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -111,12 +114,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <CookieBanner />
         
         {/* GoHighLevel Chat Widget */}
-        <script
+        <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
           data-widget-id="6a29d9d08eebf2dcc67d51e9"
-          async
-        ></script>
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

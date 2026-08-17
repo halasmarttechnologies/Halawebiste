@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function InteractiveSection() {
   return (
-    <section className="relative w-full bg-white overflow-hidden pt-12 pb-[160px] md:pt-16 md:pb-32 flex justify-center rounded-t-[40px] md:rounded-t-[60px]">
+    <section className="relative w-full bg-white overflow-hidden pt-4 pb-[160px] md:pt-8 md:pb-32 flex justify-center rounded-t-[40px] md:rounded-t-[60px]">
       <WaveMarquee />
 
       <div className="max-w-[1200px] w-full px-6 sm:px-8 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center relative z-10">
