@@ -143,6 +143,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/marketing-services',
+        destination: '/digital-marketing',
+        permanent: true,
+      },
+      {
+        source: '/marketing',
+        destination: '/digital-marketing',
+        permanent: true,
+      },
+      {
         source: '/services/:path+',
         destination: '/:path+',
         permanent: true,
