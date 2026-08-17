@@ -122,3 +122,12 @@ header nav > div[class*="absolute"] {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #666666;
 }
+
+/* ─── Fix for Google Tag Assistant UI ────────────────── */
+iframe[src*="tagassistant"], 
+iframe[src*="googletagmanager"], 
+div[id^="tag-assistant"], 
+div[id^="__tag_assistant"] {
+  background-color: white !important;
+  color-scheme: light !important;
+}
