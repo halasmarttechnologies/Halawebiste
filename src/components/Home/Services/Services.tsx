@@ -165,12 +165,13 @@ function ServicesComponent() {
                           </div>
 
                           <div
-                            className="overflow-hidden transition-all duration-300 ease-out"
+                            className="grid transition-all duration-300 ease-out"
                             style={{
-                              maxHeight: isActive ? '400px' : '0px',
+                              gridTemplateRows: isActive ? '1fr' : '0fr',
                               opacity: isActive ? 1 : 0,
                             }}
                           >
+                            <div className="overflow-hidden">
                             <div className="pt-3 pb-1 flex flex-col gap-4">
                               <p className="text-white/80 text-[13px] md:text-[14px] leading-relaxed font-medium">
                                 {service.description}
@@ -182,6 +183,7 @@ function ServicesComponent() {
                               >
                                 Explore Page <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                               </Link>
+                            </div>
                             </div>
                           </div>
                         </div>
