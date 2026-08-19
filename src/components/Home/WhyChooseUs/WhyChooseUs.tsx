@@ -1,49 +1,72 @@
-import { Target, Users, Headset } from 'lucide-react';
-
-const reasons = [
-  { title: 'Real Results', icon: Target },
-  { title: 'Real Partner', icon: Users },
-  { title: 'Reliable Support', icon: Headset },
-];
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-white w-full px-4 sm:px-6 md:px-8 lg:px-12 pt-8 md:pt-10 pb-16 md:pb-20 flex justify-center">
-      <div className="max-w-[1200px] w-full bg-white rounded-[32px] border-2 border-[#111111] p-8 md:p-14 lg:p-16 relative shadow-[8px_8px_0px_0px_#111111] md:shadow-[12px_12px_0px_0px_#111111]">
+    <section className="w-full relative overflow-hidden" style={{ height: 'clamp(480px, 65vw, 780px)' }}>
 
-        {/* Content Container */}
-        <div className="flex flex-col items-center text-center relative z-10">
+      {/* Full-width background image */}
+      <Image
+        src="/AIimage.png"
+        alt="Hala Smart Technologies — AI Solutions"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
 
-          {/* Title */}
-          <h2 className="font-jakarta font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight tracking-wide uppercase text-[#111111] mb-6">
+      {/* Gradient overlay — left dark, right transparent */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.50) 40%, rgba(0,0,0,0.05) 68%, transparent 100%)',
+        }}
+      />
+
+      {/* Left-side text overlay */}
+      <div className="absolute inset-0 flex items-center">
+        <div className="px-8 sm:px-14 md:px-20 lg:px-28" style={{ maxWidth: 640 }}>
+
+          {/* Eyebrow badge */}
+          <span className="font-jakarta inline-block text-[11px] font-bold tracking-[0.22em] uppercase text-white/60 mb-5">
             Why Choose Us
+          </span>
+
+          {/* Headline — "the Best AI Solutions" locked on one line */}
+          <h2 className="font-jakarta font-bold text-white leading-[1.1] tracking-tight mb-6">
+            <span className="block" style={{ fontSize: 'clamp(30px, 3.8vw, 62px)' }}>
+              We Provide
+            </span>
+            <span className="block whitespace-nowrap" style={{ fontSize: 'clamp(30px, 3.8vw, 62px)' }}>
+              the Best AI Solutions
+            </span>
           </h2>
 
-          {/* Description */}
-          <p className="text-[#333333] text-base md:text-lg font-medium max-w-3xl leading-[1.6] mb-10">
-            At Hala Technology, we combine strategy, creativity, and data-driven execution to help businesses grow with confidence. Our focus is on delivering real results, innovative solutions, and reliable support that drive long-term success.
+          {/* Sub-copy */}
+          <p
+            className="font-jakarta text-white/70 leading-relaxed mb-10"
+            style={{ fontSize: 'clamp(14px, 1.15vw, 17px)', maxWidth: 440 }}
+          >
+            At Hala Technology, we combine strategy, creativity, and data-driven execution to help
+            businesses grow with confidence — delivering real results and reliable support.
           </p>
 
-          {/* Buttons / Pills */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            {reasons.map((reason, index) => {
-              const Icon = reason.icon;
-              return (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 bg-[#007FFF] border border-[#007FFF] rounded-full px-6 py-3 shadow-[2px_2px_0px_0px_#111111] hover:shadow-[4px_4px_0px_0px_#111111] hover:-translate-y-0.5 transition-all cursor-default"
-                >
-                  <Icon className="w-5 h-5 text-white stroke-[2]" />
-                  <span className="font-jakarta font-semibold text-white text-sm md:text-base whitespace-nowrap">
-                    {reason.title}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          {/* CTA button */}
+          <Link
+            href="/services"
+            className="font-jakarta inline-flex items-center gap-2 font-semibold text-sm md:text-base rounded-full bg-white text-[#111] hover:bg-white/20 hover:text-white border border-transparent hover:border-white/40 transition-all duration-200"
+            style={{ padding: '13px 30px' }}
+          >
+            See more
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
 
         </div>
       </div>
+
     </section>
   );
 }

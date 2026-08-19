@@ -1,11 +1,8 @@
 'use client';
 
 import { useRef, useEffect, memo } from 'react';
-import { ArrowRight } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-/* ─── Content ────────────────────────────────────────────── */
+/* ─── Content ─────────────────────────────────────────────── */
 const STEPS = [
   {
     num: '01',
@@ -34,198 +31,264 @@ const STEPS = [
   },
 ];
 
-const CALLOUTS = [
-  {
-    bold: 'Achieve instant market visibility',
-    rest: ' with a data-driven discovery process and precise audience targeting across every channel.',
-  },
-  {
-    bold: 'Convert attention into revenue',
-    rest: ' through high-converting campaigns, landing pages, and strategic execution.',
-  },
-  {
-    bold: 'Maximize ROI continuously',
-    rest: ' with smart bid adjustments, A/B testing, and transparent growth reporting.',
-  },
-];
+const isPattern = (i: number) => i % 2 === 0;
 
-/* ─── Component ──────────────────────────────────────────── */
+/* ─── Scroll-driven card stack ─────────────────────────────
+   Outer div is tall (100vh + N * 500px).
+   Inner sticky panel stays in view.
+   Cards are absolute, each starts translateX(110%).
+   Scroll progress [i/N → (i+1)/N] slides card i to x=0,
+   revealing it on top of the previous (z-index = i+1).
+   Previous cards peek out from behind because each card
+   is slightly inset (left offset) when settled.
+──────────────────────────────────────────────────────────── */
+
+const PEEK      = 32;   // px of previous card visible behind current
+const SCROLL_PX = 600;  // px of vertical scroll consumed per card transition
+
 export default memo(function HomeWorkflow() {
-  // Refs for the elements we'll animate
-  const sectionRef    = useRef<HTMLElement>(null);
-  const desktopRowRef = useRef<HTMLDivElement>(null);
-  const mobileRowRef  = useRef<HTMLDivElement>(null);
-  const calloutsRef   = useRef<HTMLDivElement>(null);
+  const outerRef  = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const cardRefs  = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    // Register the plugin once — safe to call multiple times per GSAP docs
-    gsap.registerPlugin(ScrollTrigger);
+    const outer  = outerRef.current;
+    const sticky = stickyRef.current;
+    if (!outer || !sticky) return;
 
-    // Create a scoped GSAP context so all animations and ScrollTriggers
-    // created inside are automatically killed when this component unmounts.
-    const ctx = gsap.context(() => {
+    const totalScroll = STEPS.length * SCROLL_PX;
 
-      // ── Desktop step cards — staggered slide-up + fade-in ──────────
-      // Each card starts 40px below its natural position, invisible.
-      // Cards animate in with a 0.12s stagger for a cascading reveal.
-      if (desktopRowRef.current) {
-        gsap.from(desktopRowRef.current.querySelectorAll<HTMLElement>(':scope > div'), {
-          scrollTrigger: {
-            trigger: desktopRowRef.current,
-            start: 'top 82%',      // trigger when the row is 82% from the top of viewport
-            toggleActions: 'play none none none',  // play once, never reverse
-          },
-          y: 40,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.12,
-          ease: 'power3.out',
-          force3D: true,
-          clearProps: 'all',        // clean up inline styles after animation so CSS takes over
-        });
-      }
+    // Make outer tall enough to drive the full animation
+    outer.style.height = `calc(100vh + ${totalScroll}px)`;
 
-      // ── Mobile step rows — simple fade-up, no stagger ──────────────
-      if (mobileRowRef.current) {
-        gsap.from(mobileRowRef.current.querySelectorAll<HTMLElement>(':scope > div'), {
-          scrollTrigger: {
-            trigger: mobileRowRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
-          force3D: true,
-          clearProps: 'all',
-        });
-      }
+    const animate = () => {
+      const rect     = outer.getBoundingClientRect();
+      const scrolled = -rect.top;                              // px past outer top
+      const maxScroll = outer.offsetHeight - window.innerHeight; // total range
+      const progress  = Math.min(1, Math.max(0, scrolled / maxScroll)); // 0→1
 
-      // ── Bottom callout paragraphs — subtle fade-in ──────────────────
-      if (calloutsRef.current) {
-        gsap.from(calloutsRef.current.querySelectorAll<HTMLElement>(':scope > p'), {
-          scrollTrigger: {
-            trigger: calloutsRef.current,
-            start: 'top 88%',
-            toggleActions: 'play none none none',
-          },
-          y: 20,
-          opacity: 0,
-          duration: 0.55,
-          stagger: 0.1,
-          ease: 'power2.out',
-          force3D: true,
-          clearProps: 'all',
-        });
-      }
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
 
-    }, sectionRef); // ← scope: only selects elements inside sectionRef
+        // Each card's entry window: [i/N … (i+1)/N] of total progress
+        const segSize  = 1 / STEPS.length;
+        const segStart = i * segSize;
+        const segEnd   = (i + 1) * segSize;
 
-    // Cleanup: kills all ScrollTriggers and tweens created in this context
-    return () => ctx.revert();
+        // Local progress for this card (0 = not yet in, 1 = fully arrived)
+        const local = Math.min(1, Math.max(0, (progress - segStart) / (segSize)));
+
+        // Cards that haven't arrived yet stay off-screen right
+        // Cards that have arrived sit at their stacked offset
+        if (local <= 0) {
+          // Not yet — stay off-screen right
+          card.style.transform = 'translateX(110%)';
+          card.style.opacity   = '1';
+        } else {
+          // Slide in: ease out cubic for silky feel
+          const eased = 1 - Math.pow(1 - local, 3);
+          // Final x position: card i settles at offset i*PEEK
+          // so previous cards peek from behind on the left
+          const finalX = i * PEEK;
+          const startX = sticky.offsetWidth; // full width to the right
+          const currentX = startX + (finalX - startX) * eased;
+
+          card.style.transform = `translateX(${currentX}px)`;
+          card.style.opacity   = '1';
+        }
+      });
+    };
+
+    animate(); // sync on mount
+
+    window.addEventListener('scroll', animate, { passive: true });
+    window.addEventListener('resize', animate);
+
+    return () => {
+      window.removeEventListener('scroll', animate);
+      window.removeEventListener('resize', animate);
+    };
   }, []);
 
   return (
-    <section ref={sectionRef} className="font-jakarta bg-white text-[#111111] pt-12 md:pt-16 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12">
-      <div className="max-w-[1280px] mx-auto">
+    <>
+      {/* ────────────── DESKTOP ────────────── */}
+      <div ref={outerRef} className="hidden md:block relative" style={{ height: '100vh' }}>
 
-        {/* ── Header (unchanged) ── */}
-        <div className="flex flex-col items-center text-center mb-12 md:mb-20">
-          <div className="bg-[#111111] text-white px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs md:text-sm font-semibold uppercase tracking-wider mb-4 shadow-sm">
-            Our Workflow
+        {/* Sticky viewport-tall panel */}
+        <div
+          ref={stickyRef}
+          className="sticky top-0 h-screen overflow-hidden bg-white flex flex-col font-jakarta"
+        >
+
+          {/* Header — centered */}
+          <div className="text-center px-14 pt-16 pb-10 shrink-0">
+            <h2 className="font-bold text-7xl lg:text-[82px] leading-[0.92] text-[#111] tracking-tighter">
+              Our workflow
+            </h2>
+            <p className="mt-4 text-[#555] text-lg font-medium leading-relaxed mx-auto max-w-xl">
+              A transparent, human-driven methodology designed to deliver exponential growth.
+            </p>
           </div>
-          <h2 className="font-bold text-2xl sm:text-4xl md:text-5xl lg:text-[52px] leading-[1.15] text-[#111111] tracking-tight mb-4 sm:mb-5 max-w-3xl">
-            How We Deliver Exponential Growth.
-          </h2>
-          <p className="text-[#555555] text-sm sm:text-base md:text-lg font-medium max-w-2xl leading-relaxed">
-            A transparent, human-driven methodology designed to elevate your brand and turn audience attention into measurable revenue.
-          </p>
+
+          {/* Card stack arena — cards are absolutely positioned here */}
+          <div className="flex-1 relative">
+            {STEPS.map((step, i) => {
+              const pattern = isPattern(i);
+              // Each card fills the arena minus the peek strips to its left
+              // so you can always see the left edge of cards behind it
+              const cardLeft = i * PEEK;
+
+              return (
+                <div
+                  key={step.num}
+                  ref={el => { cardRefs.current[i] = el; }}
+                  className="absolute top-0 bottom-0 flex flex-col"
+                  style={{
+                    // Cards occupy from their peek offset to the right edge
+                    left: cardLeft,
+                    right: 0,
+                    zIndex: i + 1,
+                    willChange: 'transform',
+                    transform: 'translateX(110%)', // start off-screen right
+                    borderTop: '1px solid rgba(0,0,0,0.08)',
+                    borderLeft: i > 0 ? '1px solid rgba(0,0,0,0.10)' : 'none',
+                    ...(pattern
+                      ? {
+                          backgroundImage: 'url(/patttren.png)',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                        }
+                      : { backgroundColor: '#fff' }),
+                  }}
+                >
+                  {/* Dark scrim for pattern cards */}
+                  <div
+                    className="flex flex-col h-full p-10 lg:p-12 relative"
+                    style={pattern ? { backgroundColor: 'rgba(0,0,0,0.28)' } : {}}
+                  >
+                    {/* Dot — top right */}
+                    <span
+                      className="absolute rounded-full"
+                      style={{
+                        width: 10, height: 10, top: 36, right: 36,
+                        backgroundColor: pattern ? 'rgba(255,255,255,0.6)' : '#222',
+                      }}
+                    />
+
+                    {/* Step label */}
+                    <span
+                      className="text-[10px] font-bold tracking-[0.22em] uppercase mb-5 block"
+                      style={{ color: pattern ? 'rgba(255,255,255,0.55)' : '#aaa' }}
+                    >
+                      Step {step.num}
+                    </span>
+
+                    {/* Title */}
+                    <h3
+                      className="font-bold leading-tight tracking-tight mb-5"
+                      style={{
+                        fontSize: 'clamp(24px, 2.4vw, 34px)',
+                        maxWidth: 500,
+                        color: pattern ? '#fff' : '#111',
+                      }}
+                    >
+                      {step.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p
+                      className="leading-relaxed"
+                      style={{
+                        fontSize: 14,
+                        maxWidth: 480,
+                        color: pattern ? 'rgba(255,255,255,0.78)' : '#555',
+                      }}
+                    >
+                      {step.desc}
+                    </p>
+
+                    {/* Footer meta row */}
+                    <div
+                      className="mt-auto flex items-center justify-between"
+                      style={{
+                        paddingTop: 24,
+                        borderTop: `1px solid ${pattern ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.07)'}`,
+                      }}
+                    >
+                      <span
+                        className="text-xs font-semibold tracking-wide"
+                        style={{ color: pattern ? 'rgba(255,255,255,0.65)' : '#666' }}
+                      >
+                        Growth
+                      </span>
+                      <span
+                        className="text-xs font-medium flex items-center gap-1 cursor-pointer hover:opacity-70 transition-opacity"
+                        style={{ color: pattern ? '#fff' : '#111' }}
+                      >
+                        Learn more <span className="text-sm leading-none">›</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Bottom strip */}
+          <div className="shrink-0 h-6 bg-white" />
         </div>
+      </div>
 
-        {/* ── Desktop: 5 step cards ── */}
-        <div ref={desktopRowRef} className="hidden md:flex items-stretch mb-16">
-          {STEPS.map((step, i) => (
-            <div key={step.num} className="flex items-center flex-1 min-w-0">
-
-              {/* Card */}
-              <div className="flex-1 min-w-0 h-full relative bg-white border border-[#E5E7EB] rounded-2xl p-5 lg:p-6 overflow-hidden">
-
-                {/* Ghost large number — decorative */}
-                <span className="absolute -bottom-3 -right-1 text-[72px] lg:text-[80px] font-black leading-none select-none pointer-events-none"
-                      style={{ color: 'rgba(0,0,0,0.04)' }}>
-                  {step.num}
-                </span>
-
-                {/* Step badge */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-[#111111] shrink-0" />
-                  <span className="text-[10px] font-bold text-[#111111] tracking-[0.15em] uppercase">
+      {/* ────────────── MOBILE ────────────── */}
+      <section className="md:hidden bg-white font-jakarta px-6 pt-14 pb-12">
+        <h2 className="font-bold text-5xl leading-[0.95] text-center text-[#111] tracking-tighter mb-4">
+          Our workflow
+        </h2>
+        <p className="text-[#555] text-base font-medium text-center max-w-md mx-auto leading-relaxed mb-10">
+          A transparent, human-driven methodology designed to deliver exponential growth.
+        </p>
+        <div className="flex flex-col gap-0">
+          {STEPS.map((step, i) => {
+            const pattern = isPattern(i);
+            return (
+              <div
+                key={step.num}
+                style={{
+                  borderTop: '1px solid rgba(0,0,0,0.08)',
+                  ...(pattern
+                    ? { backgroundImage: 'url(/patttren.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+                    : { backgroundColor: '#fff' }),
+                }}
+              >
+                <div
+                  className="p-7 relative"
+                  style={pattern ? { backgroundColor: 'rgba(0,0,0,0.30)' } : {}}
+                >
+                  <span
+                    className="text-[10px] font-bold tracking-[0.22em] uppercase mb-3 block"
+                    style={{ color: pattern ? 'rgba(255,255,255,0.55)' : '#aaa' }}
+                  >
                     Step {step.num}
                   </span>
+                  <h3
+                    className="font-bold text-xl leading-snug tracking-tight mb-3"
+                    style={{ color: pattern ? '#fff' : '#111' }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    className="text-sm leading-relaxed"
+                    style={{ color: pattern ? 'rgba(255,255,255,0.75)' : '#555' }}
+                  >
+                    {step.desc}
+                  </p>
                 </div>
-
-                {/* Blue accent bar */}
-                <div className="w-8 h-[3px] bg-[#111111] rounded-full mb-4" />
-
-                {/* Title */}
-                <h3 className="font-bold text-[#111] text-[15px] lg:text-base leading-snug mb-3">
-                  {step.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-[#666] text-[12px] lg:text-[13px] leading-relaxed">
-                  {step.desc}
-                </p>
               </div>
-
-              {/* Arrow connector */}
-              {i < STEPS.length - 1 && (
-                <div className="w-6 shrink-0 flex items-center justify-center">
-                  <ArrowRight className="w-3.5 h-3.5 text-[#111111]/30" />
-                </div>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
-
-        {/* ── Mobile: vertical numbered list ── */}
-        <div ref={mobileRowRef} className="md:hidden flex flex-col mb-12">
-          {STEPS.map((step, i) => (
-            <div key={step.num} className="flex gap-4">
-              {/* Track */}
-              <div className="flex flex-col items-center">
-                <div className="w-9 h-9 rounded-full bg-[#111111] flex items-center justify-center shrink-0">
-                  <span className="text-white text-[11px] font-bold">{step.num}</span>
-                </div>
-                {i < STEPS.length - 1 && (
-                  <div className="w-px flex-1 min-h-[40px] bg-[#111111]/15 my-1" />
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="pb-8 pt-1.5">
-                <h3 className="font-bold text-[#111] text-base leading-snug mb-1.5">
-                  {step.title}
-                </h3>
-                <p className="text-[#666] text-sm leading-relaxed">{step.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Bottom 3-column callouts ── */}
-        <div ref={calloutsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-[#E5E7EB] pt-6 md:pt-8">
-          {CALLOUTS.map((c, i) => (
-            <p key={i} className="text-[#333] text-sm leading-relaxed">
-              <span className="font-bold">{c.bold}</span>
-              {c.rest}
-            </p>
-          ))}
-        </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 });
