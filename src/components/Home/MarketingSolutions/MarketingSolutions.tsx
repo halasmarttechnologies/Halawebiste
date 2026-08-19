@@ -22,7 +22,7 @@ function MarketingSolutionsComponent() {
   }, []);
 
   return (
-    <section className="font-jakarta w-full bg-[#111111] px-4 sm:px-6 md:px-8 lg:px-12 py-16 md:py-20 relative overflow-hidden z-20 content-visibility-auto gpu-layer">
+    <section className="font-jakarta w-full bg-[#111111] px-4 sm:px-6 md:px-8 lg:px-12 py-10 md:py-14 relative overflow-x-hidden z-20 gpu-layer">
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-full h-24 bg-gradient-to-b from-[#f8f6ed] to-transparent opacity-[0.03]" />
 
@@ -63,7 +63,7 @@ function MarketingSolutionsComponent() {
         </div>
 
         {/* Right Column: Illustration and Description */}
-        <div className="flex flex-col gap-12 z-10 order-2">
+        <div className="flex flex-col gap-6 z-10 order-2">
           {/* Custom Image Illustration */}
           <div className="relative w-full mx-auto lg:ml-auto select-none rounded-[20px] md:rounded-[32px] overflow-hidden drop-shadow-2xl">
             <Image
@@ -78,11 +78,11 @@ function MarketingSolutionsComponent() {
           </div>
 
           {/* Description Text & CTA */}
-          <div className="flex flex-col bg-zinc-900/50 p-6 md:p-8 rounded-[20px] md:rounded-3xl border border-zinc-800 backdrop-blur-sm">
-            <h3 className="font-jakarta font-semibold text-2xl md:text-3xl text-white mb-3 md:mb-4">
+          <div className="flex flex-col bg-zinc-900/50 p-5 md:p-6 rounded-[20px] md:rounded-3xl border border-zinc-800 backdrop-blur-sm">
+            <h3 className="font-jakarta font-semibold text-2xl md:text-3xl text-white mb-2 md:mb-3">
               Everything you need. One team.
             </h3>
-            <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
+            <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
               At Hala Smart Technologies, we bring SEO, paid advertising, content creation, and social media under one roof. Instead of running isolated campaigns, we build a connected growth strategy designed to turn your audience into loyal, paying customers.
             </p>
             <Link href="/contact" className="flex items-center justify-center gap-3 w-full sm:w-auto bg-[#007FFF] text-white font-bold py-3.5 md:py-4 px-6 md:px-8 rounded-xl hover:bg-[#0066CC] transition-colors self-start shadow-[0_0_20px_rgba(0,127,255,0.2)] no-underline">

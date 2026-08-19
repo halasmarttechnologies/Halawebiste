@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="font-jakarta bg-[#111111] text-white overflow-x-hidden">
+    <div className="font-jakarta bg-[#111111] text-white">
       <Navbar />
       <main className="bg-[#111111]">
         <Hero />

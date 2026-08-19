@@ -1,7 +1,9 @@
 'use client';
 
-import { memo } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import { ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 /* ─── Content ────────────────────────────────────────────── */
 const STEPS = [
@@ -49,8 +51,84 @@ const CALLOUTS = [
 
 /* ─── Component ──────────────────────────────────────────── */
 export default memo(function HomeWorkflow() {
+  // Refs for the elements we'll animate
+  const sectionRef    = useRef<HTMLElement>(null);
+  const desktopRowRef = useRef<HTMLDivElement>(null);
+  const mobileRowRef  = useRef<HTMLDivElement>(null);
+  const calloutsRef   = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Register the plugin once — safe to call multiple times per GSAP docs
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Create a scoped GSAP context so all animations and ScrollTriggers
+    // created inside are automatically killed when this component unmounts.
+    const ctx = gsap.context(() => {
+
+      // ── Desktop step cards — staggered slide-up + fade-in ──────────
+      // Each card starts 40px below its natural position, invisible.
+      // Cards animate in with a 0.12s stagger for a cascading reveal.
+      if (desktopRowRef.current) {
+        gsap.from(desktopRowRef.current.querySelectorAll<HTMLElement>(':scope > div'), {
+          scrollTrigger: {
+            trigger: desktopRowRef.current,
+            start: 'top 82%',      // trigger when the row is 82% from the top of viewport
+            toggleActions: 'play none none none',  // play once, never reverse
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: 'power3.out',
+          force3D: true,
+          clearProps: 'all',        // clean up inline styles after animation so CSS takes over
+        });
+      }
+
+      // ── Mobile step rows — simple fade-up, no stagger ──────────────
+      if (mobileRowRef.current) {
+        gsap.from(mobileRowRef.current.querySelectorAll<HTMLElement>(':scope > div'), {
+          scrollTrigger: {
+            trigger: mobileRowRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
+          force3D: true,
+          clearProps: 'all',
+        });
+      }
+
+      // ── Bottom callout paragraphs — subtle fade-in ──────────────────
+      if (calloutsRef.current) {
+        gsap.from(calloutsRef.current.querySelectorAll<HTMLElement>(':scope > p'), {
+          scrollTrigger: {
+            trigger: calloutsRef.current,
+            start: 'top 88%',
+            toggleActions: 'play none none none',
+          },
+          y: 20,
+          opacity: 0,
+          duration: 0.55,
+          stagger: 0.1,
+          ease: 'power2.out',
+          force3D: true,
+          clearProps: 'all',
+        });
+      }
+
+    }, sectionRef); // ← scope: only selects elements inside sectionRef
+
+    // Cleanup: kills all ScrollTriggers and tweens created in this context
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="font-jakarta bg-white text-[#111111] pt-12 md:pt-16 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12">
+    <section ref={sectionRef} className="font-jakarta bg-white text-[#111111] pt-12 md:pt-16 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="max-w-[1280px] mx-auto">
 
         {/* ── Header (unchanged) ── */}
@@ -67,7 +145,7 @@ export default memo(function HomeWorkflow() {
         </div>
 
         {/* ── Desktop: 5 step cards ── */}
-        <div className="hidden md:flex items-stretch mb-16">
+        <div ref={desktopRowRef} className="hidden md:flex items-stretch mb-16">
           {STEPS.map((step, i) => (
             <div key={step.num} className="flex items-center flex-1 min-w-0">
 
@@ -113,7 +191,7 @@ export default memo(function HomeWorkflow() {
         </div>
 
         {/* ── Mobile: vertical numbered list ── */}
-        <div className="md:hidden flex flex-col mb-12">
+        <div ref={mobileRowRef} className="md:hidden flex flex-col mb-12">
           {STEPS.map((step, i) => (
             <div key={step.num} className="flex gap-4">
               {/* Track */}
@@ -138,7 +216,7 @@ export default memo(function HomeWorkflow() {
         </div>
 
         {/* ── Bottom 3-column callouts ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-[#E5E7EB] pt-6 md:pt-8">
+        <div ref={calloutsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 border-t border-[#E5E7EB] pt-6 md:pt-8">
           {CALLOUTS.map((c, i) => (
             <p key={i} className="text-[#333] text-sm leading-relaxed">
               <span className="font-bold">{c.bold}</span>

@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
 import LocalBusinessSchema from '@/components/SEO/LocalBusinessSchema';
 import CookieBanner from '@/components/CookieBanner/CookieBanner';
+import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
 import './globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -108,6 +109,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         <LocalBusinessSchema />
+        <SmoothScroll />
         {children}
         <Analytics />
         <SpeedInsights />

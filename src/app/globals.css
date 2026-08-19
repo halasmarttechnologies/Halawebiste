@@ -54,7 +54,8 @@
 
 html {
   overflow-x: clip;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth is intentionally removed — Lenis handles smooth
+     scrolling globally. Leaving it enabled would cause double-smoothing. */
   scroll-padding-top: 80px;
   -webkit-tap-highlight-color: transparent;
 }
