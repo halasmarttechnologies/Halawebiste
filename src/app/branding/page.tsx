@@ -10,6 +10,7 @@ const BrandingFAQ = dynamic(() => import('@/components/branding/BrandingFAQ'));
 const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
+const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'));
 
 export const metadata: Metadata = {
   title: 'Branding | Hala Technologies',
@@ -41,6 +42,22 @@ export const metadata: Metadata = {
   },
 };
 
+const BRANDING_IMAGES = [
+  '/Branding Section Images/3.png',
+  '/Branding Section Images/4.png',
+  '/Branding Section Images/7.png',
+  '/Branding Section Images/11.png',
+  '/Branding Section Images/10.png',
+  '/Branding Section Images/13.png',
+  '/Branding Section Images/16.png',
+  '/Branding Section Images/18.png',
+  '/Branding Section Images/17.png',
+  '/Branding Section Images/1.png',
+  '/Branding Section Images/9.png',
+  '/Branding Section Images/12.png',
+  '/Branding Section Images/15.png'
+];
+
 export default function BrandingPage() {
   return (
     <div className="w-full">
@@ -51,6 +68,9 @@ export default function BrandingPage() {
       
       {/* Branding Services Section */}
       <BrandingServices />
+      
+      {/* Workflow Section */}
+      <HomeWorkflow forceMobileView={true} images={BRANDING_IMAGES} />
       
       {/* Branding Expertise Section */}
       <BrandingExpertise />

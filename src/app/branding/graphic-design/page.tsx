@@ -1,6 +1,7 @@
 import GraphicDesignHero from '@/components/branding/GraphicDesign/GraphicDesignHero';
 import GraphicDesignServices from '@/components/branding/GraphicDesign/GraphicDesignServices';
-import SocialMediaShowcase from '@/components/branding/GraphicDesign/SocialMediaShowcase';
+import BrandingShowcase from '@/components/branding/BrandingShowcase';
+import HomeWorkflow from '@/components/Home/HomeWorkflow';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 
@@ -31,12 +32,33 @@ export const metadata: Metadata = {
   },
 };
 
+const BRANDING_IMAGES = [
+  '/Branding Section Images/3.png',
+  '/Branding Section Images/4.png',
+  '/Branding Section Images/7.png',
+  '/Branding Section Images/11.png',
+  '/Branding Section Images/10.png',
+  '/Branding Section Images/13.png',
+  '/Branding Section Images/16.png',
+  '/Branding Section Images/18.png',
+  '/Branding Section Images/17.png',
+  '/Branding Section Images/1.png',
+  '/Branding Section Images/9.png',
+  '/Branding Section Images/12.png',
+  '/Branding Section Images/15.png'
+];
+
 export default function GraphicDesignPage() {
   return (
     <div className="w-full">
       <GraphicDesignHero />
-      <SocialMediaShowcase />
+      <BrandingShowcase 
+        mainImageDesktop="/Graphisc desgin images/mainimage.png"
+        mainImageMobile="/Graphisc desgin images/mainimage.png"
+        desktopObjectFit="contain"
+      />
       <GraphicDesignServices />
+      <HomeWorkflow forceMobileView={true} images={BRANDING_IMAGES} />
       <CustomTestimonials />
       <GraphicDesignFAQ />
       <ContactCTA contained={true} />

@@ -3,8 +3,11 @@ import Link from 'next/link';
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full relative overflow-hidden" style={{ height: 'clamp(480px, 65vw, 780px)' }}>
-
+    <section className="w-full bg-white px-4 md:px-8 lg:px-16 py-12 md:py-20">
+      <div 
+        className="w-full relative overflow-hidden rounded-[2rem] md:rounded-[3rem] shadow-2xl mx-auto" 
+        style={{ height: 'clamp(480px, 65vw, 780px)', maxWidth: '1400px' }}
+      >
       {/* Full-width background image */}
       <Image
         src="/AIimage.png"
@@ -82,6 +85,7 @@ export default function WhyChooseUs() {
         </div>
       </div>
 
+      </div>
     </section>
   );
 }

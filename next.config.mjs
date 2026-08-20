@@ -85,7 +85,7 @@ const nextConfig = {
           // Control referrer information
           { key: 'Referrer-Policy',                   value: 'strict-origin-when-cross-origin' },
           // Restrict browser feature access
-          { key: 'Permissions-Policy',                value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=()' },
+          { key: 'Permissions-Policy',                value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), interest-cohort=()' },
           // DNS prefetching
           { key: 'X-DNS-Prefetch-Control',            value: 'on' },
           // Disable legacy XSS auditor (modern browsers ignore it; CSP is the right tool)
@@ -94,8 +94,7 @@ const nextConfig = {
           { key: 'Cross-Origin-Opener-Policy',        value: 'same-origin-allow-popups' },
           // Prevent cross-origin resource embedding
           { key: 'Cross-Origin-Resource-Policy',      value: 'same-site' },
-          // Opt out of FLoC / Topics API tracking
-          { key: 'Permissions-Policy',                value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), interest-cohort=()' },
+          // Opt out of FLoC / Topics API tracking — merged into the Permissions-Policy above
         ],
       },
       {

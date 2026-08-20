@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, memo } from 'react';
+import Image from 'next/image';
 
 /* ─── Content ─────────────────────────────────────────────── */
 const STEPS = [
@@ -210,44 +211,33 @@ function DesktopWorkflow() {
    Previous card exits LEFT, next card enters from RIGHT.
    No overlap. One card fully visible at a time.
 ═══════════════════════════════════════════════════════════ */
-function MobileWorkflow() {
+function MobileWorkflow({ hideHeader = false, images }: { hideHeader?: boolean; images?: string[] }) {
   const outerRef  = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const cardRefs  = useRef<(HTMLDivElement | null)[]>([]);
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  // If we want more cards to fill the screen on desktop
+  const extendedSteps = [...STEPS, ...STEPS];
 
   useEffect(() => {
-    const outer  = outerRef.current;
+    const outer = outerRef.current;
     const sticky = stickyRef.current;
-    if (!outer || !sticky) return;
+    const row = rowRef.current;
+    if (!outer || !sticky || !row) return;
 
-    const totalScroll = STEPS.length * SCROLL_PX;
+    const itemsCount = images ? images.length : extendedSteps.length;
+    const totalScroll = itemsCount * SCROLL_PX;
     outer.style.height = `calc(100vh + ${totalScroll}px)`;
 
-    const N = STEPS.length;
-
     const animate = () => {
-      const rect      = outer.getBoundingClientRect();
-      const scrolled  = -rect.top;
+      const rect = outer.getBoundingClientRect();
+      const scrolled = -rect.top;
       const maxScroll = outer.offsetHeight - window.innerHeight;
-      const progress  = Math.min(1, Math.max(0, scrolled / maxScroll));
+      const progress = Math.min(1, Math.max(0, scrolled / maxScroll));
 
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return;
-
-        // Each card i is "centered" (fully visible) at progress = i / (N - 1)
-        // Cards to the right (not yet arrived): positive translateX
-        // Cards to the left (already passed): negative translateX
-        // One card-width spacing between each card
-        const center  = N === 1 ? 0 : i / (N - 1);
-        const delta   = center - progress;           // positive = right of current, negative = left
-        // Map: delta = 1/(N-1) → 100%, delta = -1/(N-1) → -100%
-        const span    = N === 1 ? 1 : 1 / (N - 1);
-        const rawPct  = (delta / span) * 100;
-        const pct     = Math.max(-100, Math.min(100, rawPct));
-
-        // Smooth ease only for the entering card
-        card.style.transform = `translateX(${pct}%)`;
-      });
+      // Calculate how far we need to translate the row
+      const maxTranslate = Math.max(0, row.scrollWidth - window.innerWidth + 100); 
+      row.style.transform = `translateX(-${progress * maxTranslate}px)`;
     };
 
     animate();
@@ -263,14 +253,16 @@ function MobileWorkflow() {
     <div ref={outerRef} className="relative w-full" style={{ height: '100vh' }}>
       <div ref={stickyRef} className="sticky top-0 h-screen overflow-hidden bg-white flex flex-col font-jakarta">
         {/* Header */}
-        <div className="text-center px-6 pt-12 pb-6 shrink-0">
-          <h2 className="font-bold text-[42px] leading-[0.95] text-[#111] tracking-tighter">
-            Our workflow
-          </h2>
-          <p className="mt-3 text-[#555] text-sm font-medium leading-relaxed max-w-xs mx-auto">
-            A transparent, human-driven methodology designed to deliver exponential growth.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="text-center px-6 pt-12 pb-6 shrink-0">
+            <h2 className="font-bold text-[42px] leading-[0.95] text-[#111] tracking-tighter">
+              Our workflow
+            </h2>
+            <p className="mt-3 text-[#555] text-sm font-medium leading-relaxed max-w-xs mx-auto">
+              A transparent, human-driven methodology designed to deliver exponential growth.
+            </p>
+          </div>
+        )}
 
         {/* Scroll progress dots */}
         <div className="flex justify-center gap-1.5 pb-3 shrink-0">
@@ -279,28 +271,42 @@ function MobileWorkflow() {
           ))}
         </div>
 
-        {/* Card carousel viewport */}
-        <div className="flex-1 relative overflow-hidden">
-          {STEPS.map((step, i) => {
-            const pattern = isPattern(i);
-            return (
-              <div
-                key={step.num}
-                ref={el => { cardRefs.current[i] = el; }}
-                className="absolute top-0 left-0 right-0 bottom-0 flex flex-col"
-                style={{
-                  willChange: 'transform',
-                  transform: `translateX(${i === 0 ? '0%' : '100%'})`,
-                  borderTop: '1px solid rgba(0,0,0,0.08)',
-                  ...(pattern
-                    ? { backgroundImage: 'url(/patttren.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
-                    : { backgroundColor: '#fff' }),
-                }}
-              >
-                <CardContent step={step} pattern={pattern} mobile />
-              </div>
-            );
-          })}
+        {/* Card horizontal scroll viewport */}
+        <div className="flex-1 relative overflow-hidden flex items-center pl-6 md:pl-12">
+          <div 
+            ref={rowRef}
+            className="flex h-[80%] md:h-[500px]"
+            style={{ willChange: 'transform' }}
+          >
+            {images ? (
+              images.map((src, i) => (
+                <div
+                  key={i}
+                  className="w-[85vw] md:w-[380px] shrink-0 h-full relative overflow-hidden"
+                >
+                  <Image src={src} alt={`Workflow image ${i}`} fill style={{ objectFit: 'cover' }} />
+                </div>
+              ))
+            ) : (
+              extendedSteps.map((step, i) => {
+                const pattern = isPattern(i);
+                return (
+                  <div
+                    key={i}
+                    className="w-[85vw] md:w-[380px] shrink-0 h-full relative flex flex-col shadow-xl"
+                    style={{
+                      borderTop: '1px solid rgba(0,0,0,0.08)',
+                      ...(pattern
+                        ? { backgroundImage: 'url(/patttren.png)', backgroundSize: 'cover', backgroundPosition: 'center' }
+                        : { backgroundColor: '#fff' }),
+                    }}
+                  >
+                    <CardContent step={step} pattern={pattern} mobile />
+                  </div>
+                );
+              })
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -310,7 +316,11 @@ function MobileWorkflow() {
 /* ═══════════════════════════════════════════════════════════
    Main export — renders the correct version per screen size
 ═══════════════════════════════════════════════════════════ */
-export default memo(function HomeWorkflow() {
+export default memo(function HomeWorkflow({ forceMobileView = false, images }: { forceMobileView?: boolean; images?: string[] }) {
+  if (forceMobileView) {
+    return <MobileWorkflow hideHeader={true} images={images} />;
+  }
+  
   return (
     <>
       <div className="hidden md:block"><DesktopWorkflow /></div>
