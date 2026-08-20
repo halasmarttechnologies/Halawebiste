@@ -82,25 +82,16 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
   // Freeze background scrolling when rendered as a modal (formOnly)
   useEffect(() => {
     if (formOnly) {
-      // Pause Lenis smooth scrolling globally
-      if (typeof window !== 'undefined' && (window as any).__lenis) {
-        (window as any).__lenis.stop();
-      }
-
+      // Pause Lenis properly by stopping it from listening, or just lock body.
+      // We will just lock body, but NOT html to allow zoom panning.
       const originalBodyOverflow = document.body.style.overflow;
-      const originalHtmlOverflow = document.documentElement.style.overflow;
-      
       document.body.style.setProperty('overflow', 'hidden', 'important');
-      document.documentElement.style.setProperty('overflow', 'hidden', 'important');
+
+      // We don't call lenis.stop() because it might leave preventDefault active on wheel events,
+      // which breaks touchpad scrolling on nested elements. We use data-lenis-prevent instead.
 
       return () => {
-        // Resume Lenis smooth scrolling globally
-        if (typeof window !== 'undefined' && (window as any).__lenis) {
-          (window as any).__lenis.start();
-        }
-
         document.body.style.overflow = originalBodyOverflow;
-        document.documentElement.style.overflow = originalHtmlOverflow;
       };
     }
   }, [formOnly]);
@@ -207,7 +198,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
   }, []);
 
   const bookingCard = (
-    <div className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-4 sm:p-7 w-full max-w-[460px] min-h-[500px] sm:min-h-[520px] mx-auto relative flex flex-col justify-between transition-all duration-300">
+    <div data-lenis-prevent="true" className="bg-[#111111] rounded-[20px] sm:rounded-[24px] border border-[#222222] p-4 sm:p-7 w-full max-w-[460px] min-h-[500px] sm:min-h-[520px] mx-auto relative flex flex-col justify-between transition-all duration-300">
       {/* Top Step Progress Indicator */}
       <div className="flex items-center justify-between border-b border-[#222222] pb-4 mb-4">
         <div className="flex items-center gap-2">
@@ -387,7 +378,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
           </button>
         </div>
 
-        <form className="flex flex-col gap-3.5 flex-1 overflow-y-auto max-h-[460px] pr-1 custom-scrollbar" onSubmit={handleSubmit}>
+        <form data-lenis-prevent="true" className="flex flex-col gap-3.5 flex-1 overflow-y-auto max-h-[460px] pr-1 custom-scrollbar" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-[11px] font-semibold text-white/90">Full Name *</label>
