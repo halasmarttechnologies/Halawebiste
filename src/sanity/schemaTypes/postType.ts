@@ -28,6 +28,11 @@ export const postType = defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        slugify: (input) => input
+                         .toLowerCase()
+                         .replace(/\s+/g, '-')
+                         .replace(/[^\w-]+/g, '')
+                         .slice(0, 96)
       },
       validation: (rule) => rule.required(),
     }),
