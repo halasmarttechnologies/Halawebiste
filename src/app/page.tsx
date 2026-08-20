@@ -15,28 +15,37 @@ const ContactConsultation = nextDynamic(() => import('@/components/Home/ContactC
 const LatestBlogsSection = nextDynamic(() => import('@/components/Blogs/LatestBlogsSection'), { ssr: true });
 const Footer = nextDynamic(() => import('@/components/Home/Footer'), { ssr: true });
 export const metadata: Metadata = {
-  title: 'Hala Technology | Digital Marketing & Web Development',
+  title: 'Digital Marketing Agency Dubai | Marketing Agency',
   description:
-    'Scale your brand and dominate the market with Hala Technology. The digital marketing agency that turns clicks into customers with SEO, PPC, and Web Development.',
+    'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
+  keywords: [
+    'digital marketing agency dubai',
+    'digital marketing agency',
+    'marketing agency dubai',
+    'SEO services dubai',
+    'PPC agency dubai',
+    'web development dubai',
+    'branding agency dubai',
+  ],
   openGraph: {
-    title: 'Hala Technology | Digital Marketing & Web Development',
+    title: 'Digital Marketing Agency Dubai | Marketing Agency',
     description:
-      'Scale your brand and dominate the market with Hala Technology. The digital marketing agency that turns clicks into customers with SEO, PPC, and Web Development.',
+      'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
     url: 'https://halatechnologies.com',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
-        alt: 'Hala Technologies - Grow your brand. Dominate the market.',
+        alt: 'Hala Technology - Digital Marketing Agency Dubai',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hala Technology | Digital Marketing & Web Development',
+    title: 'Digital Marketing Agency Dubai | Marketing Agency',
     description:
-      'Scale your brand and dominate the market with Hala Technology. The digital marketing agency that turns clicks into customers with SEO, PPC, and Web Development.',
+      'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {

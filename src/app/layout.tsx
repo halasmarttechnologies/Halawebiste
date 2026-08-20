@@ -20,8 +20,8 @@ const BASE_URL = 'https://halatechnologies.com';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Hala Technologies – Scale Your Brand, Dominate the Market',
-    template: '%s | Hala Technologies',
+    default: 'Digital Marketing Agency Dubai | Marketing Agency',
+    template: '%s',
   },
   description:
     'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',

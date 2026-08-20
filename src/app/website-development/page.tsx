@@ -11,33 +11,42 @@ import Testimonials from '@/components/Home/Testimonials/Testimonials';
 import WebDevFAQ from '@/components/WebsiteDevelopment/WebDevFAQ';
 import Footer from '@/components/Home/Footer';
 import dynamic from 'next/dynamic';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
-  title: 'Website Development | Hala Technology',
+  title: 'Web Development Services in Dubai',
   description:
-    'We build B2B websites that drive growth. Strategy, design, and performance unified for measurable ROI.',
+    'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
+  keywords: [
+    'web development services in dubai',
+    'web development dubai',
+    'website design dubai',
+    'custom web development uae',
+    'e-commerce website development dubai',
+    'responsive web design dubai',
+  ],
   openGraph: {
-    title: 'Website Development | Hala Technology',
+    title: 'Web Development Services in Dubai',
     description:
-      'We build B2B websites that drive growth. Strategy, design, and performance unified for measurable ROI.',
+      'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
     url: 'https://halatechnologies.com/website-development',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
-        alt: 'Website Development - Hala Technologies',
+        alt: 'Web Development Services in Dubai - Hala Technology',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Website Development | Hala Technology',
+    title: 'Web Development Services in Dubai',
     description:
-      'We build B2B websites that drive growth. Strategy, design, and performance unified for measurable ROI.',
+      'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
@@ -48,6 +57,12 @@ export const metadata: Metadata = {
 export default function WebsiteDevelopmentPage() {
   return (
     <div className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+      <ServiceSchema
+        name="Web Development Services in Dubai"
+        description="Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites."
+        url="https://halatechnologies.com/website-development"
+        serviceType="Web Development Services"
+      />
       <Navbar />
       <main className="flex-grow w-full">
         <Website />

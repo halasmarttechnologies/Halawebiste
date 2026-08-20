@@ -11,30 +11,39 @@ import CustomTestimonials from '@/components/Home/Testimonials';
 import LatestBlogsSection from '@/components/Blogs/LatestBlogsSection';
 import ContactCTA from '@/components/Home/ContactCTA/ContactCTA';
 import Footer from '@/components/Home/Footer';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 export const metadata: Metadata = {
-  title: 'AI Agents for Smarter Business Growth | Hala Technologies',
+  title: 'AI Agent Services | AI Chatbots & Automation',
   description:
-    'Empower your business with next-generation AI Agents designed to transform marketing. Understand your audience, deliver targeted messages, and turn prospects into loyal customers.',
+    'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
+  keywords: [
+    'AI agent services',
+    'AI chatbots dubai',
+    'AI automation uae',
+    'customer service automation',
+    'intelligent agents dubai',
+    'AI workflow automation',
+  ],
   openGraph: {
-    title: 'AI Agents for Smarter Business Growth | Hala Technologies',
+    title: 'AI Agent Services | AI Chatbots & Automation',
     description:
-      'Empower your business with next-generation AI Agents designed to transform marketing. Understand your audience, deliver targeted messages, and turn prospects into loyal customers.',
+      'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
     url: 'https://halatechnologies.com/ai-agent',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/AiagentHeroimage.png',
         width: 1200,
         height: 630,
-        alt: 'AI Agents - Hala Technologies',
+        alt: 'AI Agent Services - Hala Technology',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Agents for Smarter Business Growth | Hala Technologies',
+    title: 'AI Agent Services | AI Chatbots & Automation',
     description:
-      'Empower your business with next-generation AI Agents designed to transform marketing. Understand your audience, deliver targeted messages, and turn prospects into loyal customers.',
+      'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
     images: ['https://halatechnologies.com/hero-images/AiagentHeroimage.png'],
   },
   alternates: {
@@ -50,6 +59,12 @@ export default function AIAgentPage() {
       style={jakartaStyle}
       className="font-jakarta bg-[#111111] text-[#111] overflow-x-hidden min-h-screen flex flex-col"
     >
+      <ServiceSchema
+        name="AI Agent Services"
+        description="Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently."
+        url="https://halatechnologies.com/ai-agent"
+        serviceType="AI Agent and Automation Services"
+      />
       <Navbar />
       <main className="flex-grow w-full">
         <AIAgentHero />

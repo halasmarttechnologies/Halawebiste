@@ -7,6 +7,7 @@ import SEOPerformanceShowcase from '@/components/DigitalMarketing/SEO/SEOPerform
 import SEOServices from '@/components/DigitalMarketing/SEO/SEOServices';
 import SEOWhyChoose from '@/components/DigitalMarketing/SEO/SEOWhyChoose';
 import Footer from '@/components/Home/Footer';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const SEOFAQ = dynamic(() => import('@/components/DigitalMarketing/SEO/SEOFAQ'));
@@ -15,28 +16,36 @@ const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
-  title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
+  title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
   description:
-    'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+    'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
+  keywords: [
+    'best seo services in dubai',
+    'SEO services dubai',
+    'technical SEO dubai',
+    'on-page SEO services',
+    'search engine optimization dubai',
+    'local SEO dubai',
+  ],
   openGraph: {
-    title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
+    title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
     description:
-      'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+      'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
     url: 'https://halatechnologies.com/seo',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png',
         width: 1200,
         height: 630,
-        alt: 'SEO Services - Hala Technologies',
+        alt: 'Best SEO Services in Dubai - Hala Technology',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SEO Services in Dubai | Organic Search Engine Optimization | Hala Technologies',
+    title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
     description:
-      'Boost Google search rankings, traffic, and sales with professional SEO services in Dubai & UAE. On-page, off-page, and technical search engine optimization.',
+      'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
     images: ['https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png'],
   },
   alternates: {
@@ -47,6 +56,12 @@ export const metadata: Metadata = {
 export default function SEOPage() {
   return (
     <div className="font-jakarta bg-white text-[#111] overflow-x-hidden min-h-screen flex flex-col">
+      <ServiceSchema
+        name="SEO Services in Dubai"
+        description="Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization."
+        url="https://halatechnologies.com/seo"
+        serviceType="Search Engine Optimization Services"
+      />
       <Navbar />
       <main className="flex-grow w-full">
         <SEOHero />

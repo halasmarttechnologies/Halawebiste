@@ -8,6 +8,7 @@ import WhatsAppMobileShowcase from '@/components/WhatsApp/WhatsAppMobileShowcase
 import WhatsAppComparison from '@/components/WhatsApp/WhatsAppComparison';
 import WhatsAppOfferings from '@/components/WhatsApp/WhatsAppOfferings';
 import WhatsAppWhyChoose from '@/components/WhatsApp/WhatsAppWhyChoose';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA'));
@@ -15,28 +16,36 @@ const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsS
 const Footer = dynamic(() => import('@/components/Home/Footer'));
 
 export const metadata: Metadata = {
-  title: 'WhatsApp Automation Solutions | Hala Technology',
+  title: 'WhatsApp Automation Services | Chatbots & Workflows',
   description:
-    'Automate customer communication, boost response times, and nurture leads 24/7 with custom WhatsApp Automation by Hala Technology.',
+    'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
+  keywords: [
+    'whatsapp automation services',
+    'whatsapp chatbot dubai',
+    'whatsapp business automation',
+    'whatsapp marketing automation uae',
+    'customer support automation',
+    'lead generation chatbots',
+  ],
   openGraph: {
-    title: 'WhatsApp Automation Solutions | Hala Technology',
+    title: 'WhatsApp Automation Services | Chatbots & Workflows',
     description:
-      'Automate customer communication, boost response times, and nurture leads 24/7 with custom WhatsApp Automation by Hala Technology.',
+      'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
     url: 'https://halatechnologies.com/whatsapp-automation',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/WhatsappHeroImage.png',
         width: 1200,
         height: 630,
-        alt: 'WhatsApp Automation - Hala Technologies',
+        alt: 'WhatsApp Automation Services - Hala Technology',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'WhatsApp Automation Solutions | Hala Technology',
+    title: 'WhatsApp Automation Services | Chatbots & Workflows',
     description:
-      'Automate customer communication, boost response times, and nurture leads 24/7 with custom WhatsApp Automation by Hala Technology.',
+      'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
     images: ['https://halatechnologies.com/hero-images/WhatsappHeroImage.png'],
   },
   alternates: {
@@ -47,6 +56,12 @@ export const metadata: Metadata = {
 export default function WhatsAppAutomationPage() {
   return (
     <div className="font-jakarta bg-[#111111] text-[#111111] overflow-x-hidden min-h-screen">
+      <ServiceSchema
+        name="WhatsApp Automation Services"
+        description="Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7."
+        url="https://halatechnologies.com/whatsapp-automation"
+        serviceType="WhatsApp Automation and Chatbot Services"
+      />
       <Navbar />
       <main className="bg-[#111111]">
         <WhatsAppHero />

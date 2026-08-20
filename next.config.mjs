@@ -159,6 +159,58 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/branding-services',
+        destination: '/branding',
+      },
+      {
+        source: '/graphic-design-services-in-dubai',
+        destination: '/branding/graphic-design',
+      },
+      {
+        source: '/video-editing-services-dubai',
+        destination: '/branding/video-editing',
+      },
+      {
+        source: '/content-creation-services',
+        destination: '/branding/content-creation',
+      },
+      {
+        source: '/web-development-services-in-dubai',
+        destination: '/website-development',
+      },
+      {
+        source: '/best-digital-marketing-services-in-dubai',
+        destination: '/digital-marketing',
+      },
+      {
+        source: '/best-seo-services-in-dubai',
+        destination: '/seo',
+      },
+      {
+        source: '/social-media-marketing-services-in-dubai',
+        destination: '/smm',
+      },
+      {
+        source: '/ppc-service-in-dubai',
+        destination: '/ppc',
+      },
+      {
+        source: '/digital-marketing-services',
+        destination: '/digital-marketing',
+      },
+      {
+        source: '/ai-agent-services',
+        destination: '/ai-agent',
+      },
+      {
+        source: '/whatsapp-automation-services',
+        destination: '/whatsapp-automation',
+      },
+    ];
+  },
 };
 
 export default withSentryConfig(

@@ -6,6 +6,7 @@ import VideoEditingServices from '@/components/branding/VideoEditing/VideoEditin
 import VideoEditingStandOut from '@/components/branding/VideoEditing/VideoEditingStandOut';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const VideoEditingFAQ = dynamic(() => import('@/components/branding/VideoEditingFAQ'));
@@ -13,8 +14,38 @@ const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA
 const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
-  title: 'Video Editing | Branding | Hala Technologies',
-  description: 'High-quality video editing services.',
+  title: 'Video Editing Services Dubai | Video Editing Agency',
+  description:
+    'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
+  keywords: [
+    'video editing services dubai',
+    'video editing agency dubai',
+    'corporate video editing dubai',
+    'social media video editing',
+    'reels editing services uae',
+    'video production dubai',
+  ],
+  openGraph: {
+    title: 'Video Editing Services Dubai | Video Editing Agency',
+    description:
+      'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
+    url: 'https://halatechnologies.com/branding/video-editing',
+    images: [
+      {
+        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        width: 1200,
+        height: 630,
+        alt: 'Video Editing Services Dubai - Hala Technology',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Video Editing Services Dubai | Video Editing Agency',
+    description:
+      'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
+    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+  },
   alternates: {
     canonical: 'https://halatechnologies.com/branding/video-editing',
   },
@@ -23,6 +54,12 @@ export const metadata: Metadata = {
 export default function VideoEditingPage() {
   return (
     <div className="w-full">
+      <ServiceSchema
+        name="Video Editing Services Dubai"
+        description="Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact."
+        url="https://halatechnologies.com/branding/video-editing"
+        serviceType="Video Editing Services"
+      />
       <VideoEditing />
       <VideoEditingShowcase />
       <VideoEditingReels />

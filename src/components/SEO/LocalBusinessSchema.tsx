@@ -5,15 +5,18 @@ export default function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Hala Technologies",
-    "image": "https://halatechnologies.com/og-image.png",
+    "alternateName": "Hala Smart Technologies",
+    "image": "https://halatechnologies.com/hero-images/HomeHeroimage.png",
     "url": "https://halatechnologies.com",
     "telephone": "+971 58 613 9007",
     "email": "Contact@halatechnology.ae",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1803, Latifa Tower, Sheikh Zayed Road",
       "addressLocality": "Dubai",
-      "addressCountry": "UAE"
+      "addressRegion": "Dubai",
+      "addressCountry": "AE"
     },
     "geo": {
       "@type": "GeoCoordinates",
@@ -31,6 +34,22 @@ export default function LocalBusinessSchema() {
       ],
       "opens": "09:00",
       "closes": "18:00"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Digital Marketing & Technology Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SEO Services in Dubai" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPC Management Services" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Social Media Marketing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development Services" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding & Identity Design" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design Services" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Video Editing Services" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Content Creation Services" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Agent Solutions" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "WhatsApp Automation Services" } }
+      ]
     },
     "sameAs": [
       "https://www.linkedin.com/company/halatechnologies",

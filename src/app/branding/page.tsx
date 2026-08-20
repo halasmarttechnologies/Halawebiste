@@ -1,6 +1,7 @@
 import BrandingHeroSection from '@/components/branding/BrandingHeroSection';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 const BrandingShowcase = dynamic(() => import('@/components/branding/BrandingShowcase'));
 const BrandingServices = dynamic(() => import('@/components/branding/BrandingServices'));
@@ -13,28 +14,36 @@ const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsS
 const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'));
 
 export const metadata: Metadata = {
-  title: 'Branding | Hala Technologies',
+  title: 'Branding Services in Dubai | best branding agency UAE',
   description:
-    'Build a memorable brand with custom logos, brand identity, and strategy that help your business stand out and grow.',
+    'Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out. Book a free consultation.',
+  keywords: [
+    'branding services',
+    'branding services in dubai',
+    'best branding agency UAE',
+    'brand identity dubai',
+    'corporate branding',
+    'brand strategy dubai',
+  ],
   openGraph: {
-    title: 'Branding | Hala Technologies',
+    title: 'Branding Services in Dubai | best branding agency UAE',
     description:
-      'Build a memorable brand with custom logos, brand identity, and strategy that help your business stand out and grow.',
+      'Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out. Book a free consultation.',
     url: 'https://halatechnologies.com/branding',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
-        alt: 'Branding - Hala Technologies',
+        alt: 'Branding Services in Dubai - Hala Technology',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Branding | Hala Technologies',
+    title: 'Branding Services in Dubai | best branding agency UAE',
     description:
-      'Build a memorable brand with custom logos, brand identity, and strategy that help your business stand out and grow.',
+      'Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out. Book a free consultation.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
@@ -61,6 +70,12 @@ const BRANDING_IMAGES = [
 export default function BrandingPage() {
   return (
     <div className="w-full">
+      <ServiceSchema
+        name="Branding Services in Dubai"
+        description="Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out."
+        url="https://halatechnologies.com/branding"
+        serviceType="Branding Services"
+      />
       <BrandingHeroSection />
       
       {/* Branding Showcase Section */}

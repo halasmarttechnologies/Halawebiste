@@ -7,6 +7,7 @@ import PPCWhyItMatters from '@/components/DigitalMarketing/PPC/PPCWhyItMatters';
 import PPCServices from '@/components/DigitalMarketing/PPC/PPCServices';
 import PPCWhyChoose from '@/components/DigitalMarketing/PPC/PPCWhyChoose';
 import Footer from '@/components/Home/Footer';
+import ServiceSchema from '@/components/SEO/ServiceSchema';
 
 const CustomTestimonials = dynamic(() => import('@/components/Home/Testimonials'));
 const PPCFAQ = dynamic(() => import('@/components/DigitalMarketing/PPC/PPCFAQ'));
@@ -15,28 +16,36 @@ const OutroMessage = dynamic(() => import('@/components/About/OutroMessage'));
 const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA'));
 
 export const metadata: Metadata = {
-  title: 'PPC Services in Dubai | Pay Per Click Advertising | Hala Technologies',
+  title: 'PPC Service in Dubai | Google Ads & Paid Search',
   description:
-    'Generate high-quality leads and instant visibility with data-driven PPC campaigns tailored for the UAE market.',
+    'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
+  keywords: [
+    'ppc service in Dubai',
+    'PPC agency dubai',
+    'Google Ads dubai',
+    'pay per click advertising dubai',
+    'search engine marketing dubai',
+    'paid search dubai',
+  ],
   openGraph: {
-    title: 'PPC Services in Dubai | Pay Per Click Advertising | Hala Technologies',
+    title: 'PPC Service in Dubai | Google Ads & Paid Search',
     description:
-      'Generate high-quality leads and instant visibility with data-driven PPC campaigns tailored for the UAE market.',
+      'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
     url: 'https://halatechnologies.com/ppc',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png',
         width: 1200,
         height: 630,
-        alt: 'PPC Services - Hala Technologies',
+        alt: 'PPC Service in Dubai - Hala Technology',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PPC Services in Dubai | Pay Per Click Advertising | Hala Technologies',
+    title: 'PPC Service in Dubai | Google Ads & Paid Search',
     description:
-      'Generate high-quality leads and instant visibility with data-driven PPC campaigns tailored for the UAE market.',
+      'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
     images: ['https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png'],
   },
   alternates: {
@@ -47,6 +56,12 @@ export const metadata: Metadata = {
 export default function PPCPage() {
   return (
     <div className="font-jakarta bg-white text-[#111111] overflow-x-hidden min-h-screen flex flex-col">
+      <ServiceSchema
+        name="PPC Service in Dubai"
+        description="Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals."
+        url="https://halatechnologies.com/ppc"
+        serviceType="Pay-Per-Click Advertising Services"
+      />
       <Navbar />
       <main className="flex-grow w-full">
         <PPCHero />
