@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Agent Services | AI Chatbots & Automation',
     description:
-      'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
-    url: 'https://halatechnologies.com/ai-agent',
+    'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
+    url: 'https://halatechnologies.com/ai-agent-services',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/AiagentHeroimage.png',
+        url: 'https://halatechnologies.com/ai-agent-services',
         width: 1200,
         height: 630,
         alt: 'AI Agent Services - Hala Technology',
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AI Agent Services | AI Chatbots & Automation',
     description:
-      'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
+    'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
     images: ['https://halatechnologies.com/hero-images/AiagentHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/ai-agent',
+    canonical: 'https://halatechnologies.com/ai-agent-services',
   },
 };
 

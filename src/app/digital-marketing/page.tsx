@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Best Digital Marketing Services in Dubai | SEO, PPC & SMM',
     description:
-      'Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content.',
-    url: 'https://halatechnologies.com/digital-marketing',
+    'Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content.',
+    url: 'https://halatechnologies.com/best-digital-marketing-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnologies.com/best-digital-marketing-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Digital Marketing Services - Hala Technology',
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Best Digital Marketing Services in Dubai | SEO, PPC & SMM',
     description:
-      'Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content.',
+    'Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/digital-marketing',
+    canonical: 'https://halatechnologies.com/best-digital-marketing-services-in-dubai',
   },
 };
 

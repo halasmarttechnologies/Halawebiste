@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
     description:
-      'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
-    url: 'https://halatechnologies.com/seo',
+    'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
+    url: 'https://halatechnologies.com/best-seo-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png',
+        url: 'https://halatechnologies.com/best-seo-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Best SEO Services in Dubai - Hala Technology',
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
     description:
-      'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
+    'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
     images: ['https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/seo',
+    canonical: 'https://halatechnologies.com/best-seo-services-in-dubai',
   },
 };
 

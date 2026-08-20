@@ -14,7 +14,7 @@ const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsS
 const HomeWorkflow = dynamic(() => import('@/components/Home/HomeWorkflow'));
 
 export const metadata: Metadata = {
-  title: 'Branding Services in Dubai | best branding agency UAE',
+  title: 'Branding Services in Dubai | Hala Technology',
   description:
     'Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out. Book a free consultation.',
   keywords: [
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
     'brand strategy dubai',
   ],
   openGraph: {
-    title: 'Branding Services in Dubai | best branding agency UAE',
+    title: 'Branding Services in Dubai | Hala Technology',
     description:
       'Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out. Book a free consultation.',
-    url: 'https://halatechnologies.com/branding',
+    url: 'https://halatechnologies.com/branding-services',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Branding Services in Dubai | best branding agency UAE',
+    title: 'Branding Services in Dubai | Hala Technology',
     description:
       'Looking for branding services in Dubai? Hala Technology crafts unique brand identities that help your business stand out. Book a free consultation.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/branding',
+    canonical: 'https://halatechnologies.com/branding-services',
   },
 };
 

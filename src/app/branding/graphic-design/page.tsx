@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Graphic Design Services in Dubai | Graphic Design Agency',
     description:
-      'Need creative visuals? Get graphic design services in Dubai for logos, ads and social media designs tailored to your business and audience.',
-    url: 'https://halatechnologies.com/branding/graphic-design',
+    'Need creative visuals? Get graphic design services in Dubai for logos, ads and social media designs tailored to your business and audience.',
+    url: 'https://halatechnologies.com/graphic-design-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnologies.com/graphic-design-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Graphic Design Services in Dubai - Hala Technology',
@@ -42,11 +42,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Graphic Design Services in Dubai | Graphic Design Agency',
     description:
-      'Need creative visuals? Get graphic design services in Dubai for logos, ads and social media designs tailored to your business and audience.',
+    'Need creative visuals? Get graphic design services in Dubai for logos, ads and social media designs tailored to your business and audience.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/branding/graphic-design',
+    canonical: 'https://halatechnologies.com/graphic-design-services-in-dubai',
   },
 };
 

@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PPC Service in Dubai | Google Ads & Paid Search',
     description:
-      'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
-    url: 'https://halatechnologies.com/ppc',
+    'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
+    url: 'https://halatechnologies.com/ppc-service-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png',
+        url: 'https://halatechnologies.com/ppc-service-in-dubai',
         width: 1200,
         height: 630,
         alt: 'PPC Service in Dubai - Hala Technology',
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PPC Service in Dubai | Google Ads & Paid Search',
     description:
-      'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
+    'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
     images: ['https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/ppc',
+    canonical: 'https://halatechnologies.com/ppc-service-in-dubai',
   },
 };
 

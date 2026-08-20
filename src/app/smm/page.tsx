@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Social Media Marketing Services in Dubai | SMM Services',
     description:
-      'Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns.',
-    url: 'https://halatechnologies.com/smm',
+    'Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns.',
+    url: 'https://halatechnologies.com/social-media-marketing-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnologies.com/social-media-marketing-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Social Media Marketing Services in Dubai - Hala Technology',
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Social Media Marketing Services in Dubai | SMM Services',
     description:
-      'Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns.',
+    'Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/smm',
+    canonical: 'https://halatechnologies.com/social-media-marketing-services-in-dubai',
   },
 };
 

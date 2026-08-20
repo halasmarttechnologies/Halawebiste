@@ -15,7 +15,7 @@ const ContactConsultation = nextDynamic(() => import('@/components/Home/ContactC
 const LatestBlogsSection = nextDynamic(() => import('@/components/Blogs/LatestBlogsSection'), { ssr: true });
 const Footer = nextDynamic(() => import('@/components/Home/Footer'), { ssr: true });
 export const metadata: Metadata = {
-  title: 'Digital Marketing Agency Dubai | Marketing Agency',
+  title: 'Digital Marketing Agency Dubai | Best Marketing Company',
   description:
     'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
   keywords: [
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
     'branding agency dubai',
   ],
   openGraph: {
-    title: 'Digital Marketing Agency Dubai | Marketing Agency',
+    title: 'Digital Marketing Agency Dubai | Best Marketing Company',
     description:
-      'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
+    'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
     url: 'https://halatechnologies.com',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnologies.com',
         width: 1200,
         height: 630,
         alt: 'Hala Technology - Digital Marketing Agency Dubai',
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Digital Marketing Agency Dubai | Marketing Agency',
+    title: 'Digital Marketing Agency Dubai | Best Marketing Company',
     description:
-      'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
+    'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {

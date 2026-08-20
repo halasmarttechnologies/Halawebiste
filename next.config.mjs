@@ -139,22 +139,78 @@ const nextConfig = {
       },
       {
         source: '/services',
-        destination: '/',
+        destination: '/digital-marketing-services',
         permanent: true,
       },
       {
         source: '/marketing-services',
-        destination: '/digital-marketing',
+        destination: '/best-digital-marketing-services-in-dubai',
         permanent: true,
       },
       {
         source: '/marketing',
-        destination: '/digital-marketing',
+        destination: '/best-digital-marketing-services-in-dubai',
         permanent: true,
       },
       {
         source: '/services/:path+',
         destination: '/:path+',
+        permanent: true,
+      },
+      // Redirect old internal paths to keyword-rich canonical slugs
+      {
+        source: '/branding',
+        destination: '/branding-services',
+        permanent: true,
+      },
+      {
+        source: '/branding/graphic-design',
+        destination: '/graphic-design-services-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/branding/video-editing',
+        destination: '/video-editing-services-dubai',
+        permanent: true,
+      },
+      {
+        source: '/branding/content-creation',
+        destination: '/content-creation-services',
+        permanent: true,
+      },
+      {
+        source: '/website-development',
+        destination: '/web-development-services-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/digital-marketing',
+        destination: '/best-digital-marketing-services-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/seo',
+        destination: '/best-seo-services-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/smm',
+        destination: '/social-media-marketing-services-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/ppc',
+        destination: '/ppc-service-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/ai-agent',
+        destination: '/ai-agent-services',
+        permanent: true,
+      },
+      {
+        source: '/whatsapp-automation',
+        destination: '/whatsapp-automation-services',
         permanent: true,
       },
     ];

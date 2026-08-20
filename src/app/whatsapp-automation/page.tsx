@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'WhatsApp Automation Services | Chatbots & Workflows',
     description:
-      'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
-    url: 'https://halatechnologies.com/whatsapp-automation',
+    'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
+    url: 'https://halatechnologies.com/whatsapp-automation-services',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/WhatsappHeroImage.png',
+        url: 'https://halatechnologies.com/whatsapp-automation-services',
         width: 1200,
         height: 630,
         alt: 'WhatsApp Automation Services - Hala Technology',
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'WhatsApp Automation Services | Chatbots & Workflows',
     description:
-      'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
+    'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
     images: ['https://halatechnologies.com/hero-images/WhatsappHeroImage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/whatsapp-automation',
+    canonical: 'https://halatechnologies.com/whatsapp-automation-services',
   },
 };
 

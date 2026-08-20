@@ -18,11 +18,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Content Creation Services | Social Media & Web Content',
     description:
-      'Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story.',
-    url: 'https://halatechnologies.com/branding/content-creation',
+    'Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story.',
+    url: 'https://halatechnologies.com/content-creation-services',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnologies.com/content-creation-services',
         width: 1200,
         height: 630,
         alt: 'Content Creation Services - Hala Technology',
@@ -33,11 +33,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Content Creation Services | Social Media & Web Content',
     description:
-      'Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story.',
+    'Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/branding/content-creation',
+    canonical: 'https://halatechnologies.com/content-creation-services',
   },
 };
 

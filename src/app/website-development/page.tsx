@@ -17,7 +17,7 @@ const ContactCTA = dynamic(() => import('@/components/Home/ContactCTA/ContactCTA
 const LatestBlogsSection = dynamic(() => import('@/components/Blogs/LatestBlogsSection'));
 
 export const metadata: Metadata = {
-  title: 'Web Development Services in Dubai',
+  title: 'Web Development Services in Dubai | Hala Technology',
   description:
     'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
   keywords: [
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     'responsive web design dubai',
   ],
   openGraph: {
-    title: 'Web Development Services in Dubai',
+    title: 'Web Development Services in Dubai | Hala Technology',
     description:
       'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
-    url: 'https://halatechnologies.com/website-development',
+    url: 'https://halatechnologies.com/web-development-services-in-dubai',
     images: [
       {
         url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Web Development Services in Dubai',
+    title: 'Web Development Services in Dubai | Hala Technology',
     description:
       'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/website-development',
+    canonical: 'https://halatechnologies.com/web-development-services-in-dubai',
   },
 };
 

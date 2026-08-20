@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Video Editing Services Dubai | Video Editing Agency',
     description:
-      'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
-    url: 'https://halatechnologies.com/branding/video-editing',
+    'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
+    url: 'https://halatechnologies.com/video-editing-services-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnologies.com/video-editing-services-dubai',
         width: 1200,
         height: 630,
         alt: 'Video Editing Services Dubai - Hala Technology',
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Video Editing Services Dubai | Video Editing Agency',
     description:
-      'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
+    'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
     images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/branding/video-editing',
+    canonical: 'https://halatechnologies.com/video-editing-services-dubai',
   },
 };
 
