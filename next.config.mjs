@@ -213,6 +213,42 @@ const nextConfig = {
         destination: '/whatsapp-automation-services',
         permanent: true,
       },
+      // Legacy URL redirects to prevent 404s
+      {
+        source: '/whatsapp-business-automation',
+        destination: '/whatsapp-automation-services',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/case-study',
+        destination: '/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/graphic-design-company-in-dubai',
+        destination: '/graphic-design-services-in-dubai',
+        permanent: true,
+      },
+      {
+        source: '/video-editing-services',
+        destination: '/video-editing-services-dubai',
+        permanent: true,
+      },
+      {
+        source: '/content-creation-marketing-agency',
+        destination: '/content-creation-services',
+        permanent: true,
+      },
+      {
+        source: '/website-development-agency',
+        destination: '/web-development-services-in-dubai',
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
