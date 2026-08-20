@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     title: 'Content Creation Services | Social Media & Web Content',
     description:
     'Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story.',
-    url: 'https://halatechnologies.com/content-creation-services',
+    url: 'https://halatechnology.ae/content-creation-services',
     images: [
       {
-        url: 'https://halatechnologies.com/content-creation-services',
+        url: 'https://halatechnology.ae/content-creation-services',
         width: 1200,
         height: 630,
         alt: 'Content Creation Services - Hala Technology',
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     title: 'Content Creation Services | Social Media & Web Content',
     description:
     'Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/content-creation-services',
+    canonical: 'https://halatechnology.ae/content-creation-services',
   },
 };
 
@@ -47,7 +47,7 @@ export default function ContentCreationPage() {
       <ServiceSchema
         name="Content Creation Services"
         description="Hala Technology provides content creation services in Dubai, from website copy to social posts and video scripts, built to tell your brand story."
-        url="https://halatechnologies.com/branding/content-creation"
+        url="https://halatechnology.ae/branding/content-creation"
         serviceType="Content Creation Services"
       />
       <ContentCreation />

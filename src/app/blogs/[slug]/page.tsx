@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             "author": [{
               "@type": "Person",
               "name": post.authorName || 'Hala Team',
-              "url": "https://halatechnologies.com"
+              "url": "https://halatechnology.ae"
             }]
           })
         }}

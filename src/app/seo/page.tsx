@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
     description:
     'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
-    url: 'https://halatechnologies.com/best-seo-services-in-dubai',
+    url: 'https://halatechnology.ae/best-seo-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/best-seo-services-in-dubai',
+        url: 'https://halatechnology.ae/best-seo-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Best SEO Services in Dubai - Hala Technology',
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     title: 'Best SEO Services in Dubai | On-Page & Technical SEO',
     description:
     'Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization.',
-    images: ['https://halatechnologies.com/hero-images/SEOPAGEIMAGE.png'],
+    images: ['https://halatechnology.ae/hero-images/SEOPAGEIMAGE.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/best-seo-services-in-dubai',
+    canonical: 'https://halatechnology.ae/best-seo-services-in-dubai',
   },
 };
 
@@ -59,7 +59,7 @@ export default function SEOPage() {
       <ServiceSchema
         name="SEO Services in Dubai"
         description="Looking for the best SEO services in Dubai? Hala Technology helps improve Google rankings with technical, on-page and content optimization."
-        url="https://halatechnologies.com/seo"
+        url="https://halatechnology.ae/seo"
         serviceType="Search Engine Optimization Services"
       />
       <Navbar />

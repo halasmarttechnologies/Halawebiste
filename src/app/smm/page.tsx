@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     title: 'Social Media Marketing Services in Dubai | SMM Services',
     description:
     'Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns.',
-    url: 'https://halatechnologies.com/social-media-marketing-services-in-dubai',
+    url: 'https://halatechnology.ae/social-media-marketing-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/social-media-marketing-services-in-dubai',
+        url: 'https://halatechnology.ae/social-media-marketing-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Social Media Marketing Services in Dubai - Hala Technology',
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     title: 'Social Media Marketing Services in Dubai | SMM Services',
     description:
     'Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/social-media-marketing-services-in-dubai',
+    canonical: 'https://halatechnology.ae/social-media-marketing-services-in-dubai',
   },
 };
 
@@ -59,7 +59,7 @@ export default function SMMPage() {
       <ServiceSchema
         name="Social Media Marketing Services in Dubai"
         description="Boost your online presence with our social media marketing services in Dubai. We help brands create engaging content and campaigns."
-        url="https://halatechnologies.com/smm"
+        url="https://halatechnology.ae/smm"
         serviceType="Social Media Marketing Services"
       />
       <Navbar />

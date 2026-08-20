@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     title: 'About Us | Hala Technology',
     description:
       'Learn about Hala Technology – a Dubai-based digital marketing agency helping businesses grow through SEO, web development, branding, and digital marketing.',
-    url: 'https://halatechnologies.com/about',
+    url: 'https://halatechnology.ae/about',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnology.ae/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
         alt: 'Hala Technologies - About Us',
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
     title: 'About Us | Hala Technology',
     description:
       'Learn about Hala Technology – a Dubai-based digital marketing agency helping businesses grow through SEO, web development, branding, and digital marketing.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/about',
+    canonical: 'https://halatechnology.ae/about',
   },
 };
 

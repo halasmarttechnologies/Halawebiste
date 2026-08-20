@@ -15,7 +15,7 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
-const BASE_URL = 'https://halatechnologies.com';
+const BASE_URL = 'https://halatechnology.ae';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnology.ae/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
         alt: 'Hala Technologies - Grow your brand. Dominate the market.',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: 'Hala Technologies – Scale Your Brand, Dominate the Market',
     description:
       'Digital marketing that delivers. Real clicks. Real customers. Grow your brand. Dominate the market.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   icons: {
     icon: [

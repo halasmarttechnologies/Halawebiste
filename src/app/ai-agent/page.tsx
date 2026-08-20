@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     title: 'AI Agent Services | AI Chatbots & Automation',
     description:
     'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
-    url: 'https://halatechnologies.com/ai-agent-services',
+    url: 'https://halatechnology.ae/ai-agent-services',
     images: [
       {
-        url: 'https://halatechnologies.com/ai-agent-services',
+        url: 'https://halatechnology.ae/ai-agent-services',
         width: 1200,
         height: 630,
         alt: 'AI Agent Services - Hala Technology',
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     title: 'AI Agent Services | AI Chatbots & Automation',
     description:
     'Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently.',
-    images: ['https://halatechnologies.com/hero-images/AiagentHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/AiagentHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/ai-agent-services',
+    canonical: 'https://halatechnology.ae/ai-agent-services',
   },
 };
 
@@ -62,7 +62,7 @@ export default function AIAgentPage() {
       <ServiceSchema
         name="AI Agent Services"
         description="Transform your business with our AI agent services that automate workflows, handle customer queries and help teams work more efficiently."
-        url="https://halatechnologies.com/ai-agent"
+        url="https://halatechnology.ae/ai-agent"
         serviceType="AI Agent and Automation Services"
       />
       <Navbar />

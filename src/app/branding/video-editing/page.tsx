@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     title: 'Video Editing Services Dubai | Video Editing Agency',
     description:
     'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
-    url: 'https://halatechnologies.com/video-editing-services-dubai',
+    url: 'https://halatechnology.ae/video-editing-services-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/video-editing-services-dubai',
+        url: 'https://halatechnology.ae/video-editing-services-dubai',
         width: 1200,
         height: 630,
         alt: 'Video Editing Services Dubai - Hala Technology',
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     title: 'Video Editing Services Dubai | Video Editing Agency',
     description:
     'Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/video-editing-services-dubai',
+    canonical: 'https://halatechnology.ae/video-editing-services-dubai',
   },
 };
 
@@ -57,7 +57,7 @@ export default function VideoEditingPage() {
       <ServiceSchema
         name="Video Editing Services Dubai"
         description="Hala Technology offers professional video editing services in Dubai for social media, ads & corporate videos. Turn raw footage into impact."
-        url="https://halatechnologies.com/branding/video-editing"
+        url="https://halatechnology.ae/branding/video-editing"
         serviceType="Video Editing Services"
       />
       <VideoEditing />

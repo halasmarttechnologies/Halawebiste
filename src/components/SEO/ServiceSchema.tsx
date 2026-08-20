@@ -16,8 +16,8 @@ export default function ServiceSchema({
   url,
   serviceType,
   providerName = 'Hala Technology',
-  providerUrl = 'https://halatechnologies.com',
-  image = 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+  providerUrl = 'https://halatechnology.ae',
+  image = 'https://halatechnology.ae/hero-images/HomeHeroimage.png',
 }: ServiceSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',

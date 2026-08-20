@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 import { client } from '@/sanity/lib/client';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://halatechnologies.com';
+  const baseUrl = 'https://halatechnology.ae';
   const now = new Date();
 
   // 1. Static Routes

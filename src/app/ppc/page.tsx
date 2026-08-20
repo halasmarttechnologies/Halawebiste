@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     title: 'PPC Service in Dubai | Google Ads & Paid Search',
     description:
     'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
-    url: 'https://halatechnologies.com/ppc-service-in-dubai',
+    url: 'https://halatechnology.ae/ppc-service-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/ppc-service-in-dubai',
+        url: 'https://halatechnology.ae/ppc-service-in-dubai',
         width: 1200,
         height: 630,
         alt: 'PPC Service in Dubai - Hala Technology',
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     title: 'PPC Service in Dubai | Google Ads & Paid Search',
     description:
     'Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals.',
-    images: ['https://halatechnologies.com/hero-images/PPCPAGEIMAGE.png'],
+    images: ['https://halatechnology.ae/hero-images/PPCPAGEIMAGE.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/ppc-service-in-dubai',
+    canonical: 'https://halatechnology.ae/ppc-service-in-dubai',
   },
 };
 
@@ -59,7 +59,7 @@ export default function PPCPage() {
       <ServiceSchema
         name="PPC Service in Dubai"
         description="Looking for PPC service in Dubai? Reach high-intent customers with optimized Google Ads campaigns built around your business goals."
-        url="https://halatechnologies.com/ppc"
+        url="https://halatechnology.ae/ppc"
         serviceType="Pay-Per-Click Advertising Services"
       />
       <Navbar />

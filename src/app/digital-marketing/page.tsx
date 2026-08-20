@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     title: 'Best Digital Marketing Services in Dubai | SEO, PPC & SMM',
     description:
     'Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content.',
-    url: 'https://halatechnologies.com/best-digital-marketing-services-in-dubai',
+    url: 'https://halatechnology.ae/best-digital-marketing-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/best-digital-marketing-services-in-dubai',
+        url: 'https://halatechnology.ae/best-digital-marketing-services-in-dubai',
         width: 1200,
         height: 630,
         alt: 'Digital Marketing Services - Hala Technology',
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     title: 'Best Digital Marketing Services in Dubai | SEO, PPC & SMM',
     description:
     'Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/best-digital-marketing-services-in-dubai',
+    canonical: 'https://halatechnology.ae/best-digital-marketing-services-in-dubai',
   },
 };
 
@@ -57,7 +57,7 @@ export default function DigitalMarketingPage() {
       <ServiceSchema
         name="Digital Marketing Services in Dubai"
         description="Looking for digital marketing services in Dubai? Hala Technology helps businesses attract leads through SEO, PPC, social media and content."
-        url="https://halatechnologies.com/digital-marketing"
+        url="https://halatechnology.ae/digital-marketing"
         serviceType="Digital Marketing Services"
       />
       <Navbar />

@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     title: 'Digital Marketing Agency Dubai | Best Marketing Company',
     description:
     'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
-    url: 'https://halatechnologies.com',
+    url: 'https://halatechnology.ae',
     images: [
       {
-        url: 'https://halatechnologies.com',
+        url: 'https://halatechnology.ae',
         width: 1200,
         height: 630,
         alt: 'Hala Technology - Digital Marketing Agency Dubai',
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     title: 'Digital Marketing Agency Dubai | Best Marketing Company',
     description:
     'Hala Technology is a leading digital marketing agency in Dubai helping brands grow with SEO, PPC & web development. Get a free audit today.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com',
+    canonical: 'https://halatechnology.ae',
   },
 };
 

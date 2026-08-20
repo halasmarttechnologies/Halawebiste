@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://halatechnologies.com/sitemap.xml',
+    sitemap: 'https://halatechnology.ae/sitemap.xml',
   };
 }

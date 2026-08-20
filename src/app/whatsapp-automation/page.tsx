@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     title: 'WhatsApp Automation Services | Chatbots & Workflows',
     description:
     'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
-    url: 'https://halatechnologies.com/whatsapp-automation-services',
+    url: 'https://halatechnology.ae/whatsapp-automation-services',
     images: [
       {
-        url: 'https://halatechnologies.com/whatsapp-automation-services',
+        url: 'https://halatechnology.ae/whatsapp-automation-services',
         width: 1200,
         height: 630,
         alt: 'WhatsApp Automation Services - Hala Technology',
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
     title: 'WhatsApp Automation Services | Chatbots & Workflows',
     description:
     'Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7.',
-    images: ['https://halatechnologies.com/hero-images/WhatsappHeroImage.png'],
+    images: ['https://halatechnology.ae/hero-images/WhatsappHeroImage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/whatsapp-automation-services',
+    canonical: 'https://halatechnology.ae/whatsapp-automation-services',
   },
 };
 
@@ -59,7 +59,7 @@ export default function WhatsAppAutomationPage() {
       <ServiceSchema
         name="WhatsApp Automation Services"
         description="Boost customer engagement with our whatsApp automation services for lead generation, follow-ups and support. Automate conversations 24/7."
-        url="https://halatechnologies.com/whatsapp-automation"
+        url="https://halatechnology.ae/whatsapp-automation"
         serviceType="WhatsApp Automation and Chatbot Services"
       />
       <Navbar />

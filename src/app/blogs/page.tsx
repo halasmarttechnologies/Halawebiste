@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: 'Insights & Resources | Hala Technologies',
   description: 'Explore the latest insights, strategies, and news on digital marketing, development, and branding from Hala Technologies.',
   alternates: {
-    canonical: 'https://halatechnologies.com/blogs',
+    canonical: 'https://halatechnology.ae/blogs',
   },
 };
 

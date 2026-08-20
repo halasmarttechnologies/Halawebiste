@@ -16,10 +16,10 @@ export const metadata: Metadata = {
     title: 'Our Case Studies | Hala Technology',
     description:
       'Our case studies showcase real-world results driven by innovation, strategy, and smart execution. Explore how we’ve helped businesses grow through cutting-edge technology and tailored development.',
-    url: 'https://halatechnologies.com/case-studies',
+    url: 'https://halatechnology.ae/case-studies',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnology.ae/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
         alt: 'Case Studies - Hala Technologies',
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     title: 'Our Case Studies | Hala Technology',
     description:
       'Our case studies showcase real-world results driven by innovation, strategy, and smart execution. Explore how we’ve helped businesses grow through cutting-edge technology and tailored development.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/case-studies',
+    canonical: 'https://halatechnology.ae/case-studies',
   },
 };
 

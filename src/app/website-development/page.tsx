@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     title: 'Web Development Services in Dubai | Hala Technology',
     description:
       'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
-    url: 'https://halatechnologies.com/web-development-services-in-dubai',
+    url: 'https://halatechnology.ae/web-development-services-in-dubai',
     images: [
       {
-        url: 'https://halatechnologies.com/hero-images/HomeHeroimage.png',
+        url: 'https://halatechnology.ae/hero-images/HomeHeroimage.png',
         width: 1200,
         height: 630,
         alt: 'Web Development Services in Dubai - Hala Technology',
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     title: 'Web Development Services in Dubai | Hala Technology',
     description:
       'Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites.',
-    images: ['https://halatechnologies.com/hero-images/HomeHeroimage.png'],
+    images: ['https://halatechnology.ae/hero-images/HomeHeroimage.png'],
   },
   alternates: {
-    canonical: 'https://halatechnologies.com/web-development-services-in-dubai',
+    canonical: 'https://halatechnology.ae/web-development-services-in-dubai',
   },
 };
 
@@ -60,7 +60,7 @@ export default function WebsiteDevelopmentPage() {
       <ServiceSchema
         name="Web Development Services in Dubai"
         description="Build a fast, modern website with web development services in Dubai. Hala Technology creates custom, responsive and conversion-focused websites."
-        url="https://halatechnologies.com/website-development"
+        url="https://halatechnology.ae/website-development"
         serviceType="Web Development Services"
       />
       <Navbar />
