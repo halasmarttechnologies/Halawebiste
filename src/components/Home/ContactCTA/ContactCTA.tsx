@@ -387,7 +387,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
           </button>
         </div>
 
-        <form className="flex flex-col gap-3.5 flex-1" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-3.5 flex-1 overflow-y-auto max-h-[460px] pr-1 custom-scrollbar" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-[11px] font-semibold text-white/90">Full Name *</label>
