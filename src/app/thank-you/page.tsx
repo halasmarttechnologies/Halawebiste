@@ -7,7 +7,7 @@ import Script from 'next/script';
 const Footer = dynamic(() => import('@/components/Home/Footer'));
 
 export const metadata = {
-  title: 'Thank You | Hala Technologies',
+  title: 'Thank You | Hala Technology',
   description: 'Your booking has been confirmed.',
   robots: { index: false, follow: false }, // Typically thank you pages shouldn't be indexed
 };
