@@ -82,9 +82,25 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
   // Freeze background scrolling when rendered as a modal (formOnly)
   useEffect(() => {
     if (formOnly) {
-      document.body.style.overflow = 'hidden';
+      // Pause Lenis smooth scrolling globally
+      if (typeof window !== 'undefined' && (window as any).__lenis) {
+        (window as any).__lenis.stop();
+      }
+
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      
+      document.body.style.setProperty('overflow', 'hidden', 'important');
+      document.documentElement.style.setProperty('overflow', 'hidden', 'important');
+
       return () => {
-        document.body.style.overflow = '';
+        // Resume Lenis smooth scrolling globally
+        if (typeof window !== 'undefined' && (window as any).__lenis) {
+          (window as any).__lenis.start();
+        }
+
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
       };
     }
   }, [formOnly]);
