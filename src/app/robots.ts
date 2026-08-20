@@ -8,6 +8,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',       // Block all API routes from indexing
+          '/studio/',    // Block Sanity CMS studio from crawling
+          '/studio',
         ],
       },
     ],

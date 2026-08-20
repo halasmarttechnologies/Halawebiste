@@ -28,16 +28,21 @@ const RATE_LIMIT_WINDOW   = 15 * 60 * 1000; // 15 minutes in ms
 const ipRequestMap         = new Map<string, { count: number; resetAt: number }>();
 
 function isRateLimited(ip: string): boolean {
-  // Never rate-limit localhost or dev mode testing
-  if (process.env.NODE_ENV === 'development' || ip === '127.0.0.1' || ip === '::1' || ip === 'localhost' || ip === 'unknown') {
+  // Never rate-limit in local development
+  if (process.env.NODE_ENV === 'development') {
     return false;
   }
 
+  // If IP is localhost or unknown in production, still apply rate limit key
+  const safeIp = (ip === '127.0.0.1' || ip === '::1' || ip === 'localhost' || ip === 'unknown')
+    ? 'fallback_ip_slot'
+    : ip;
+
   const now   = Date.now();
-  const entry = ipRequestMap.get(ip);
+  const entry = ipRequestMap.get(safeIp);
 
   if (!entry || now > entry.resetAt) {
-    ipRequestMap.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
+    ipRequestMap.set(safeIp, { count: 1, resetAt: now + RATE_LIMIT_WINDOW });
     return false;
   }
   if (entry.count >= RATE_LIMIT_MAX) return true;
@@ -53,15 +58,32 @@ function sanitize(val: unknown, maxLen = 200): string {
   return val.replace(/<[^>]*>/g, '').trim().slice(0, maxLen);
 }
 
+/** Escapes special HTML characters to prevent HTML/template injection in email clients */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-/** Extract the real client IP from common proxy headers, falling back to 'unknown'. */
+/** Extract client IP prioritizing trusted platform headers */
 function getClientIp(request: Request): string {
+  const vercelIp = request.headers.get('x-vercel-ip-address');
+  if (vercelIp) return vercelIp.trim();
+
+  const cfIp = request.headers.get('cf-connecting-ip');
+  if (cfIp) return cfIp.trim();
+
   const xff = request.headers.get('x-forwarded-for');
   if (xff) return xff.split(',')[0].trim();
-  return request.headers.get('x-real-ip') ?? 'unknown';
+
+  return request.headers.get('x-real-ip')?.trim() ?? 'unknown';
 }
 
 // ─── Resend client (initialised once at module load) ─────────────────────────
@@ -99,16 +121,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unsupported media type' }, { status: 415 });
     }
 
-    // 3. Body size guard
+    // 3. Body size guard & parsing
     const contentLength = Number(request.headers.get('content-length') ?? 0);
     if (contentLength > MAX_BODY_BYTES) {
+      return NextResponse.json({ error: 'Request body too large' }, { status: 413 });
+    }
+
+    const rawBodyText = await request.text();
+    if (rawBodyText.length > MAX_BODY_BYTES) {
       return NextResponse.json({ error: 'Request body too large' }, { status: 413 });
     }
 
     // 4. Parse & sanitize input
     let body: any;
     try {
-      body = await request.json();
+      body = JSON.parse(rawBodyText);
     } catch {
       return NextResponse.json({ error: 'Invalid JSON payload' }, { status: 400 });
     }
@@ -182,28 +209,38 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'reCAPTCHA token missing. Please complete the reCAPTCHA verification.' }, { status: 400 });
     }
 
-    // 7. Build safe email HTML
+    // 7. Build safe email HTML with HTML entity escaping
+    const escapedName          = escapeHtml(name);
+    const escapedEmail         = escapeHtml(email);
+    const escapedJobTitle      = escapeHtml(jobTitle);
+    const escapedCountry       = escapeHtml(country);
+    const escapedDate          = escapeHtml(date);
+    const escapedTime          = escapeHtml(time);
+    const escapedBudget        = escapeHtml(safeBudget);
+    const escapedHowDidYouHear = escapeHtml(safeHowDidYouHear);
+    const escapedMessage       = escapeHtml(message);
+
     const htmlContent = `
       <div style="font-family: sans-serif; padding: 20px; max-width: 640px;">
         <h2 style="color: #111; border-bottom: 2px solid #eee; padding-bottom: 8px;">New Booking Request</h2>
         <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee; width: 35%;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${name}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${email}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Job Title:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${jobTitle}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Country:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${country}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Date:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${date}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Time:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${time}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Budget:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${safeBudget}</td></tr>
-          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Source:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${safeHowDidYouHear}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee; width: 35%;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedName}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedEmail}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Job Title:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedJobTitle}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Country:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedCountry}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Date:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedDate}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Time:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedTime}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Budget:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedBudget}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Source:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapedHowDidYouHear}</td></tr>
         </table>
 
         <h3 style="margin-top: 20px; color: #111;">Services Interested In:</h3>
         <ul style="margin: 0; padding-left: 20px;">
-          ${services.map((s) => `<li>${s}</li>`).join('')}
+          ${services.map((s) => `<li>${escapeHtml(s)}</li>`).join('')}
         </ul>
 
         <h3 style="color: #111;">Message / Topic:</h3>
-        <p style="background: #f9f9f9; padding: 15px; border-radius: 8px; white-space: pre-wrap;">${message}</p>
+        <p style="background: #f9f9f9; padding: 15px; border-radius: 8px; white-space: pre-wrap;">${escapedMessage}</p>
       </div>
     `;
 
