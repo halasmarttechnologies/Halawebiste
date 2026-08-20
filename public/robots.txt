@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://halatechnologies.com/sitemap.xml
+Sitemap: https://halatechnology.ae/sitemap.xml
