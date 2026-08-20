@@ -169,8 +169,8 @@ export default withSentryConfig(
 
     // Suppresses source map uploading logs during build
     silent: true,
-    org: "your-sentry-org",
-    project: "your-sentry-project",
+    org: process.env.SENTRY_ORG || "hala-technologies",
+    project: process.env.SENTRY_PROJECT || "hala-website",
   },
   {
     // For all available options, see:

@@ -93,14 +93,29 @@ export async function POST(request: Request) {
       );
     }
 
-    // 2. Body size guard
+    // 2. Content-Type check
+    const contentType = request.headers.get('content-type') ?? '';
+    if (!contentType.toLowerCase().includes('application/json')) {
+      return NextResponse.json({ error: 'Unsupported media type' }, { status: 415 });
+    }
+
+    // 3. Body size guard
     const contentLength = Number(request.headers.get('content-length') ?? 0);
     if (contentLength > MAX_BODY_BYTES) {
       return NextResponse.json({ error: 'Request body too large' }, { status: 413 });
     }
 
-    // 3. Parse & sanitize input
-    const body = await request.json();
+    // 4. Parse & sanitize input
+    let body: any;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON payload' }, { status: 400 });
+    }
+
+    if (!body || typeof body !== 'object') {
+      return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
 
     const name          = sanitize(body.name,          100);
     const email         = sanitize(body.email,         150);

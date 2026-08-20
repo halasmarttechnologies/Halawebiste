@@ -2,6 +2,17 @@ import { revalidatePath } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 import { parseBody } from 'next-sanity/webhook';
 
+export async function GET()    { return methodNotAllowed(); }
+export async function PUT()    { return methodNotAllowed(); }
+export async function PATCH()  { return methodNotAllowed(); }
+export async function DELETE() { return methodNotAllowed(); }
+function methodNotAllowed() {
+  return NextResponse.json({ error: 'Method not allowed' }, {
+    status: 405,
+    headers: { Allow: 'POST' },
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const webhookSecret = process.env.SANITY_REVALIDATE_SECRET;
