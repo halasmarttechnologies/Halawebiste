@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight, ArrowLeft, Check, Calendar as CalendarIcon, Clock, Loader2, Sparkles, X } from 'lucide-react';
 import Image from 'next/image';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -74,6 +75,7 @@ const availableServices = [
 ];
 
 export default function ContactCTA({ contained = false, formOnly = false }: { contained?: boolean; formOnly?: boolean }) {
+  const router = useRouter();
   const [step, setStep] = useState<'calendar' | 'form'>('calendar');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
@@ -155,7 +157,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
       if (!res.ok) throw new Error(data.error || 'Failed to submit booking request');
 
       playSuccessSound();
-      setShowSuccessModal(true);
+      router.push('/thank-you');
     } catch (err: any) {
       setErrorMsg(err.message || 'Something went wrong. Please try again or contact us directly.');
       if (recaptchaRef.current) recaptchaRef.current.reset();
