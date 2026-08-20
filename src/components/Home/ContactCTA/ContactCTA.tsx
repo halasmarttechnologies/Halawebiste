@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight, ArrowLeft, Check, Calendar as CalendarIcon, Clock, Loader2, Sparkles, X } from 'lucide-react';
 import Image from 'next/image';
@@ -78,6 +78,16 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
   const router = useRouter();
   const [step, setStep] = useState<'calendar' | 'form'>('calendar');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  // Freeze background scrolling when rendered as a modal (formOnly)
+  useEffect(() => {
+    if (formOnly) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [formOnly]);
 
   // Calendar State
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -361,7 +371,7 @@ export default function ContactCTA({ contained = false, formOnly = false }: { co
           </button>
         </div>
 
-        <form className="flex flex-col gap-3.5 flex-1 max-h-[460px] overflow-y-auto pr-1 custom-scrollbar" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-3.5 flex-1" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-[11px] font-semibold text-white/90">Full Name *</label>
